@@ -1,34 +1,10 @@
 Also need to give promethium a glowup, make LG darker or something
 
-(Reminder to try and reuse any intermediates made for other sciences (at least))
-
 (Lightened HGProm could probably have an overlay layer thing of some sort, a plus or smth)
  - Or am I darkening the LG texture?
 ---
 
-planetary makes data (dimmed pack icon)
-space makes fluid (simple + local, colored)
-pack == data + fluid + lgPrometh
 
-
-science base (grey) = water + thruster fuel  + steel + lgprom(small)
-advanced science base = base + petroleum + wood + cwire + lgprom(small)
-NOTE for locals, ensure ~ same rocket capacity as well as cost
-w = base + uran
-v = base + carbide
-f = base + conductor
-g = base + biofux
-
-a = advbase + fluoro (noprod, small consume)
-p = advbase + pentegg
-
-pack recipies take variable data, pack stack 50, data stack 400(8-1),200(2-1),50(2-1) depending on type (Meaning F1-1, N2-1, V1-2 stack diffs)
-(all take similar relatively quick time, aquilo x5)
-    (As going w 5x expensive, x5 time to make 1 pack of old?)
-     10/2 per 1.5 (3), aquilo 20/2 per 1 (10). Assuming packs in cryo, 30e(15s) and 150e(75s)
-
-fluids made in chem or cryo, take long time
-packs in assemb or cryo, relatively quick, all take lgprom and data (gleb should get lgprom discount)
 
 
 5000 in rocket
@@ -38,24 +14,6 @@ work out coal/astroids rockets needed for same, ideally lot less (petro) (pre-aq
 
 
 ---
-
-
-orange low stack size, require higher storage amnt (data 50 inst 200), maybe weightx2?
-purple require large amnt, but make lots too (req 20 inst 5, weight/4, stack 400)
-blue have long craft time, long journey anyway (x5?)
-
-all packs stack 50, tech costs all /5? (assume pack 5x expensive (data more like x7 due to prod on data->pack)) (Likely also need to data weight x5 as well) (pack weight to be consistent, make same as data?)
-^ Tech duration x5 as well
-(Apply to all, but try to avoid changing own techs (Do before these) (Probably after pack removals tho)
-Starting techs use dcards? Would need to make these items into tools afaik
-
-DATA
-N stack 200, rocket 1000, 2 per SP, 500PPR and 100PPS
-V stack 50, rocket 500, 2 per SP, 250PPR and 25PPS
-F stack 400, rocket 4000, 8 per SP, 500PPR and 50 PPS (Also lots of item)
-G=N
-A=N but 5x craft times
-P=N but 2x craft times (and egg)
 
 ---
 
@@ -82,36 +40,6 @@ P (Penta egg weight is 200pr instead of 500pr. Vanilla pack takes 1 begg per pac
 
 ---
 
-inf techs
-statpack assume free, rest % divvied over various techs. Assign pack as needed. (These start at planet levels)
-mining x5 pre prometh, get to 100% @ 20% per, but prometh scale x2 per upgrade. (Harsher % amounts?)
-
-Railgun damage 2 for prometh, 6 for big stomper (so close tho, the 2 in -2/50% makes it 5->6)
-+40% per, so need 240% (201% really) for both. (prom just the 2 still, 80%)
-Maybe split damage between turret and ammo, so turret does more? Nerfs demolisher killing too (What cost is 6 normally anyway?)
-If splitting, make tech5 level, or lower. (Remember +20% and +20% is +44% total! +100% and +100% is +300%)
-
-
-speed caps at 10 (+200%) (0.5 at A, 1.5 at P? Look into what %s makes numbers nice.)
-
-
-1p cost = 1
-3p cost = 2
-ap cost = 2.5
-pp cost = 3
-
-y=1\cdot\left(600\left(1.5^{x}-1.5^{x-l}\right)\right) (Max rounded up to 50s)
-assuming 200 base, 300L1 (From 1000b,1500L1)(Side note, remember to adjust labprod tech)
- 0->20 = 750                  | 500
-20->40 = 1700  (/2 = 850)     | 1000
-40->60 = 3800  (/2.5 = 1500)  | 1500
-60->80 = 8550  (/3 = 2850)    | 2500
-80->100= 19250 (/3 = 6400)    | 5000
-
-60->100= 27800 (/3 = 9250)    | X
-
-
-
 
 !!! Change win condition to a 1B prom tech? Maybe?
 
@@ -119,3 +47,28 @@ assuming 200 base, 300L1 (From 1000b,1500L1)(Side note, remember to adjust labpr
 
 !!! Ensure recipe order items is good, see cryo fluid as weak forgetful example (new on top?)
 ^ also this factoriopedia wrong tab/
+
+Need sort item order in recipies AND TECHS !!!
+Check all new recipies and see if need tints (Also do for rainborore later?)
+
+!!! SORT DATA CARD TECHS FIRST IN LIST !!!
+
+
+Should prepare locale later to use (Remember space is nauvis now, check all, descs too)
+
+
+-- !!! Review module local ingredient increase, may be unfair and hurt balance
+
+
+-- !!! STILL NEED TO ADD MED PROMETH TO ASTEROID BELT AREAS between planets (Will also need to review balance)
+^ !!! Needs to be far enough from planet to avoid pulsing thruster cheese (10%?)
+
+"hot", -- This texture is ass and looks like heavy fuel (!!!) (Maybe use hot in white, new for this)
+
+
+!!! AAAAAA Need to add more stuff to packs
+V Ref concrete, engines (many), LDS?
+F FlyFrame, more SConductors? (Tricky as already p good recipe)
+G Explosives and Lube
+A ??? More oil stuff, also something to require either more ice(water) or ammonia (Whichever makes voiding the other easier)
+P Swap qProc with split ABC idea, 20a5b5c, takes b, spoildown2m, c recycle/craft back into qproc or more a? (Craft before rot, and does fresh reset too?)

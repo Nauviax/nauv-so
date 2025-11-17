@@ -24,38 +24,42 @@ low_grade_item.spoil_result = "iron-ore"
 
 -- Add high grade to big asteroid chunks
 local spread = 1
-table.insert(data.raw.asteroid["big-promethium-asteroid"].dying_trigger_effect,
-{
+table.insert(data.raw.asteroid["big-promethium-asteroid"].dying_trigger_effect, {
 	type = "create-asteroid-chunk",
 	asteroid_name = "high-grade-promethium-asteroid-chunk",
 	offset_deviation = {{-spread, -spread}, {spread, spread}},
-	offsets =
-	{
+	offsets = {
 		{-spread/2, -spread/4},
 		{spread/2, -spread/4}
 	}
 })
 
-
 ----- Intermediates items and recipes
 
 -- Update space science sprite
 data.raw.tool["space-science-pack"].icon = "__temp-mod__/graphics/items/space-science-pack.png"
+data.raw.recipe["space-science-pack"].icon = "__temp-mod__/graphics/items/space-science-pack.png"
 data.raw.technology["space-science-pack"].icon = "__temp-mod__/graphics/techs/space-science-pack.png"
 
 -- A few consts (!!! Code review self and add more here if can)
 local space_condition = {{ property = "gravity", max = 0 }}
+local nauvis_condition = {{ property = "pressure", min = 1000, max = 1000 }}
+local function recipe_tints(fluid_color)
+	return { primary = fluid_color, secondary = fluid_color, tertiary = fluid_color, quaternary = fluid_color }
+end
 
 -- Science/data and space fluids (!!! crafting_machine_tint !!!) (Does this affect cryo too?)
+local basic_fluid_color = {0.8, 0.2, 0.2}
+local advanced_fluid_color = {0.5, 0.0, 0.5}
 data:extend({
 	{
 		type = "fluid", name = "basic-science-fluid",
 		icons = {{
 			icon = "__temp-mod__/graphics/fluids/gas.png", icon_size = 64,
-			tint = {1.0, 0.5, 0.5} -- !!! Test both colors !!!
+			tint = {1.0, 0.5, 0.5}
 		}},
 		default_temperature = 15, gas_temperature = 0,
-		base_color = {0.8, 0.2, 0.2}, flow_color = {0.8, 0.2, 0.2},
+		base_color = basic_fluid_color, flow_color = basic_fluid_color,
 		order = "n[new-fluid]-s1[science-fluid]-1[basic]", --!!! TODO
 		auto_barrel = false
 	},
@@ -63,7 +67,7 @@ data:extend({
 		type = "recipe", name = "basic-science-fluid",
 		main_product = "basic-science-fluid",
 		category = "chemistry-or-cryogenics",
-		--subgroup = "fluid-recipes", -- !!!
+		subgroup = "fluid-recipes", -- !!!
 		--order = "!!!TODO", --!!!
 		enabled = false,
 		energy_required = 15,
@@ -71,30 +75,32 @@ data:extend({
 			{ type = "fluid", name = "water", amount = 25 }, -- !!! At some point sort all recipe orders and enforce in-game order (!!! order_in_recipe)
 			{ type = "fluid", name = "thruster-fuel", amount = 75 },
 			{ type = "item", name = "steel-plate", amount = 1}, -- !!! Balance review ofc
-			{ type = "item", name = "promethium-asteroid-chunk", amount = 1, ignored_by_stats = 0.75 }
+			{ type = "item", name = "promethium-asteroid-chunk", amount = 1, ignored_by_stats = 1 }
 		},
 		results = {
 			{ type = "fluid", name = "basic-science-fluid", amount = 100 },
-			{ type = "item", name = "promethium-asteroid-chunk", amount = 1, probability = 0.75, ignored_by_stats = 0.75, ignored_by_productivity = 1 } -- !!! Test prod, stats (in and out) spoilage etc
+			{ type = "item", name = "promethium-asteroid-chunk", amount = 1, probability = 0.75, ignored_by_stats = 1 } -- !!! Test prod, stats (in and out) spoilage etc
 		}, -- !!! Balance ofc
-		surface_conditions = space_condition
+		allow_productivity = true,
+		surface_conditions = space_condition,
+		crafting_machine_tint = recipe_tints(basic_fluid_color)
 	},
 	{
 		type = "fluid", name = "advanced-science-fluid",
 		icons = {{
 			icon = "__temp-mod__/graphics/fluids/gas.png", icon_size = 64,
-			tint = {0.8, 0.2, 0.8} -- !!! Test both colors !!!
+			tint = {0.8, 0.2, 0.8}
 		}},
 		default_temperature = 15, gas_temperature = 0,
-		base_color = {0.5, 0.0, 0.5}, flow_color = {0.5, 0.0, 0.5},
+		base_color = advanced_fluid_color, flow_color = advanced_fluid_color,
 		order = "n[new-fluid]-s1[science-fluid]-2[advanced]", --!!! TODO
 		auto_barrel = false
 	},
 	{
 		type = "recipe", name = "advanced-science-fluid",
 		main_product = "advanced-science-fluid",
-		category = "chemistry-or-cryogenics",
-		--subgroup = "fluid-recipes", -- !!!
+		category = "cryogenics",
+		subgroup = "fluid-recipes", -- !!!
 		--order = "!!!TODO", --!!!
 		enabled = false,
 		energy_required = 25,
@@ -103,38 +109,37 @@ data:extend({
 			{ type = "fluid", name = "petroleum-gas", amount = 100 }, -- Fizzy (need balance lots)
 			{ type = "fluid", name = "sulfuric-acid", amount = 100 }, -- !!! Wood was no good, 0.2ps per tower
 			{ type = "item", name = "copper-cable", amount = 40 }, -- 40 cable (Check time to make)
-			{ type = "item", name = "promethium-asteroid-chunk", amount = 1, ignored_by_stats = 0.5 }
+			{ type = "item", name = "promethium-asteroid-chunk", amount = 1, ignored_by_stats = 1 }
 		},
 		results = {
 			{ type = "fluid", name = "advanced-science-fluid", amount = 100 },
-			{ type = "item", name = "promethium-asteroid-chunk", amount = 1, probability = 0.5, ignored_by_stats = 0.5, ignored_by_productivity = 1 } -- !!! Test prod, stats (in and out) spoilage etc
+			{ type = "item", name = "promethium-asteroid-chunk", amount = 1, probability = 0.5, ignored_by_stats = 1 } -- !!! Review spoilage mechanics with this !!!
 		}, -- !!! Balance ofc
-		surface_conditions = space_condition
+		allow_productivity = true,
+		surface_conditions = space_condition,
+		crafting_machine_tint = recipe_tints(advanced_fluid_color)
 	}
 })
+table.insert(data.raw.technology["space-science-pack"].effects, { type = "unlock-recipe", recipe = "basic-science-fluid" })
+table.insert(data.raw.technology["cryogenic-science-pack"].effects, { type = "unlock-recipe", recipe = "advanced-science-fluid" })
 local new_pack_data_list = {
 	{
 		name = "space", color = {0.9, 0.9, 0.9}, color_light = {1.0, 1.0, 1.0},
 		craft_time_mult = 1,
-		data_recipe = { -- Planet made (account for prod! On VFG)
-			-- Unused for now (!!!)
-		},
 		fluid_base = "basic", fluid_texture = "normal",
 		fluid_local = "uranium-235", fluid_local_in = 1, fluid_local_out = 0.92,
-		data_per_pack = 2, data_craft_cat = "organic-or-assembling"
+		data_per_pack = 2, data_craft_cat = "organic-or-assembling", data_surface_cond = nauvis_condition
 	},
 	{
 		name = "metallurgic", color = {1.0, 0.3, 0.0}, color_light = {1.0, 0.5, 0.2},
 		craft_time_mult = 1,
-		data_recipe = {},
-		fluid_base = "basic", fluid_texture = "hot",
+		fluid_base = "basic", fluid_texture = "hot", -- This texture is ass and looks like heavy fuel (!!!) (Maybe use hot in white, new for this)
 		fluid_local = "tungsten-carbide", fluid_local_in = 3,
 		data_per_pack = 2, data_weight_mult = 2, data_stack_mult = 0.25
 	},
 	{
 		name = "electromagnetic", color = {0.8, 0.0, 0.8}, color_light = {0.8, 0.1, 0.8},
 		craft_time_mult = 1,
-		data_recipe = {},
 		fluid_base = "basic", fluid_texture = "glow",
 		fluid_local = "superconductor", fluid_local_in = 4,
 		data_per_pack = 8, data_weight_mult = 0.25, data_stack_mult = 2
@@ -142,7 +147,6 @@ local new_pack_data_list = {
 	{
 		name = "agricultural", color = {0.5, 1.0, 0.0}, color_light = {0.7, 1.0, 0.2},
 		craft_time_mult = 0.5,
-		data_recipe = {},
 		fluid_base = "basic", fluid_texture = "bean",
 		fluid_local = "bioflux", fluid_local_in = 1,
 		data_per_pack = 2
@@ -150,7 +154,6 @@ local new_pack_data_list = {
 	{
 		name = "cryogenic", color = {0.0, 0.0, 0.6}, color_light = {0.3, 0.3, 1.0},
 		craft_time_mult = 5,
-		data_recipe = {},
 		fluid_base = "advanced", fluid_texture = "tri",
 		fluid_local_type = "fluid", fluid_local = "fluoroketone-cold", fluid_local_in = 6, fluid_local_out = 3,
 		data_per_pack = 2,
@@ -158,9 +161,8 @@ local new_pack_data_list = {
 	{
 		name = "promethium", color = {0.0, 0.1, 0.2}, color_light = {0.2, 0.3, 0.4},
 		craft_time_mult = 2,
-		data_recipe = {},
 		fluid_base = "advanced", fluid_texture = "cloud",
-		fluid_local = "pentapod-egg", fluid_local_in = 1, -- !!! TO BALANCE, should be 1/2 of biter eggs in total data cost
+		fluid_local = "pentapod-egg", fluid_local_in = 4, -- !!! Review balance, about half to 1/4 of biter egg per pack? (Half at most, as egg is more expensive and heavier)
 		data_per_pack = 2, data_stack_mult = 0.25
 	},
 }
@@ -195,7 +197,7 @@ for index, new_pack_data in ipairs(new_pack_data_list) do
 					type = new_pack_data.fluid_local_type and new_pack_data.fluid_local_type or "item",
 					name = new_pack_data.fluid_local,
 					amount = new_pack_data.fluid_local_in,
-					ignored_by_stats = new_pack_data.fluid_local_out and new_pack_data.fluid_local_out or nil
+					ignored_by_stats = new_pack_data.fluid_local_out and math.ceil(new_pack_data.fluid_local_out) or nil
 				},
 				{ type = "fluid", name = new_pack_data.fluid_base.."-science-fluid", amount = 100 }
 			},
@@ -204,17 +206,18 @@ for index, new_pack_data in ipairs(new_pack_data_list) do
 				new_pack_data.fluid_local_out and {
 					type = new_pack_data.fluid_local_type and new_pack_data.fluid_local_type or "item",
 					name = string.gsub(new_pack_data.fluid_local, "-cold", "-hot"), -- Special case for cryogenic
-					amount = math.max(new_pack_data.fluid_local_out, 1),
+					amount = math.ceil(new_pack_data.fluid_local_out),
 					probability = new_pack_data.fluid_local_out < 1 and new_pack_data.fluid_local_out or nil,
-					ignored_by_stats = new_pack_data.fluid_local_out, -- !!! Test uranium's 0.92 weirdness !!!
-					ignored_by_productivity = new_pack_data.fluid_local_in -- Always bigger
+					ignored_by_stats = math.ceil(new_pack_data.fluid_local_out)
 				} or nil
 			},
+			allow_productivity = true,
 			surface_conditions = space_condition,
+			crafting_machine_tint = recipe_tints(new_pack_data.color)
 		}
 	})
 	table.insert(pack_tech.effects, { type = "unlock-recipe", recipe = new_pack_data.name.."-fluid" })
-	-- !!! WIP data additions
+	-- Data additions
     local data_item = table.deepcopy(pack_item)
     data_item.name = new_pack_data.name.."-data"
     data_item.icon = nil
@@ -244,11 +247,10 @@ for index, new_pack_data in ipairs(new_pack_data_list) do
             --order = "!!!TODO", --!!! (Could use pack and edit slightly to put nearby?)
             enabled = false,
             energy_required = 20 * new_pack_data.craft_time_mult, -- !!! BALANCE (Very unsure on this speed)
-            ingredients = {
-                { type = "item", name = "raw-fish", amount = 1000 } -- TODO (!!!)
-            },
-            results = {{ type = "item", name = data_item.name, amount = new_pack_data.data_per_pack / 2 }}, -- !!! Balance ofc
-            surface_conditions = space_condition,
+            ingredients = nil, -- Done outside of loop
+            results = {{ type = "item", name = data_item.name, amount = new_pack_data.data_per_pack / 2 }},
+			allow_productivity = true,
+            surface_conditions = new_pack_data.data_surface_cond and new_pack_data.data_surface_cond or pack_recipe.surface_conditions,
             -- Data can be recycled sure why not (!!! investigate packs though, with LGProm !!!)
         }
     })
@@ -261,16 +263,105 @@ for index, new_pack_data in ipairs(new_pack_data_list) do
 	pack_recipe.ingredients = {
 		{ type = "item", name = new_pack_data.name.."-data", amount = new_pack_data.data_per_pack },
 		{ type = "fluid", name = new_pack_data.name.."-fluid", amount = 100 },
-		{ type = "item", name = "promethium-asteroid-chunk", amount = 1, ignored_by_stats = 0.5 }
+		{ type = "item", name = "promethium-asteroid-chunk", amount = 1, ignored_by_stats = 1 }
 	}
 	pack_recipe.results = {
 		{ type = "item", name = new_pack_data.name.."-science-pack", amount = 1},
-		{ type = "item", name = "promethium-asteroid-chunk", amount = 1, probability = 0.5, ignored_by_stats = 0.5, ignored_by_productivity = 1 }
+		{ type = "item", name = "garbage-data-card", amount = 1, ignored_by_productivity = 1 }, -- 2 plain data card per pack, 1 garbage out.
+		{ type = "item", name = "promethium-asteroid-chunk", amount = 1, probability = 0.75, ignored_by_stats = 1 }
 	}
+	pack_recipe.allow_productivity = true -- Already true, just clarity
 	pack_recipe.main_product = new_pack_data.name.."-science-pack"
 	pack_item.weight = 4000
 	pack_item.stack_size = 50
 end
+-- Special data card intermediates
+local data_item = table.deepcopy(data.raw.item["cryogenic-data"]) -- Most normal of the datas
+data_item.name = "data-card"
+data_item.icons = {{
+	icon = "__temp-mod__/graphics/items/data.png", -- Just a darker version of pack
+	icon_size = 64,
+	tint = {0.2, 0.2, 0.2}
+}}
+-- data_item.order -- !!! TODO
+data_item.default_import_location = "nauvis"
+local data_recipe = {
+	type = "recipe", name = "data-card",
+	category = "electronics",
+	--subgroup = "!!!TODO", -- !!!
+	--order = "!!!TODO",
+	enabled = false,
+	energy_required = 4, -- !!! Review balance
+	ingredients = {
+		{ type = "item", name = "steel-plate", amount = 1 },
+		{ type = "item", name = "battery", amount = 1 },
+		{ type = "item", name = "advanced-circuit", amount = 1 }
+	},
+	results = {{ type = "item", name = "data-card", amount = 1 }},
+	allow_productivity = true,
+	surface_conditions = nil
+}
+local garbage_data_item = table.deepcopy(data_item)
+garbage_data_item.name = "garbage-data-card"
+table.insert(garbage_data_item.icons, {
+	icon = "__base__/graphics/icons/signal/signal-recycle.png",
+	icon_size = 64, scale = 0.4, shift = {-6, 5}, floating = true
+})
+-- garbage_data_item.order -- !!! TODO
+local garbage_data_recipe = table.deepcopy(data_recipe) -- Byproduct of data crafting
+garbage_data_recipe.name = "garbage-data-card"
+garbage_data_recipe.energy_required = 16 -- 1s to recycle each/
+garbage_data_recipe.results = {{ type = "item", name = "garbage-data-card", amount = 2 }} -- Returns 1/8 not 1/4
+garbage_data_recipe.hidden = true -- Don't show
+data:extend({ data_item, garbage_data_item, data_recipe, garbage_data_recipe })
+table.insert(data.raw.technology["space-science-pack"].effects, { type = "unlock-recipe", recipe = "data-card" })
+-- Pack data recipies manually below (Base costs x5. Double recipe is needed per pack due to data:pack ratio, but also ~90% prod step cancels it out, so just x5!)
+local data_card_ing = { type = "item", name = "data-card", amount = 1 }
+data.raw.recipe["space-data"].ingredients = {
+	data_card_ing,
+	{ type = "item", name = "raw-fish", amount = 1000 } -- !!! WIP
+}
+data.raw.recipe["metallurgic-data"].ingredients = {
+	data_card_ing,
+	{ type = "fluid", name = "molten-copper", amount = 1000 },
+	{ type = "item", name = "tungsten-plate", amount = 10 },
+	{ type = "item", name = "tungsten-carbide", amount = 15 } -- !!! WIP
+}
+data.raw.recipe["electromagnetic-data"].ingredients = {
+	data_card_ing,
+	{ type = "item", name = "accumulator", amount = 5 },
+	{ type = "fluid", name = "electrolyte", amount = 125 },
+	{ type = "fluid", name = "holmium-solution", amount = 125 },
+	{ type = "item", name = "supercapacitor", amount = 5 } -- !!! WIP
+}
+data.raw.recipe["agricultural-data"].ingredients = {
+	data_card_ing,
+	{ type = "item", name = "bioflux", amount = 5 },
+	{ type = "item", name = "pentapod-egg", amount = 5 } -- !!! WIP
+}
+local data_recipe = data.raw.recipe["cryogenic-data"]
+data_recipe.ingredients = {
+	data_card_ing,
+	{ type = "fluid", name = "fluoroketone-cold", amount = 30, ignored_by_stats = 15 },
+	{ type = "item", name = "ice", amount = 15 },
+	{ type = "item", name = "lithium-plate", amount = 5 } -- !!! WIP
+}
+table.insert(data_recipe.results, { -- Cryo special case
+	type = "fluid", name = "fluoroketone-hot", amount = 15, ignored_by_stats = 15, ignored_by_productivity = 15
+})
+data_recipe.main_product = "cryogenic-data"
+data_recipe = data.raw.recipe["promethium-data"]
+data_recipe.ingredients = { -- Pack output normally 10, so overall 1/2 costs here
+	data_card_ing,
+	{ type = "item", name = "biter-egg", amount = 5 },
+	{ type = "item", name = "quantum-processor", amount = 99 }, -- !!!!!!!!!!!!!!!!!!!!!!!!!!! WIP, Going to do the split thing !!!!!!!
+	{ type = "item", name = "promethium-asteroid-chunk", amount = 2 }, -- !!! WIP
+	{ type = "item", name = "high-grade-promethium-asteroid-chunk", amount = 1, ignored_by_stats = 1 } -- !!! WIP
+}
+table.insert(data_recipe.results, { -- Cryo special case
+	type = "item", name = "high-grade-promethium-asteroid-chunk", amount = 1, probability = 0.5, ignored_by_stats = 1
+})
+data_recipe.main_product = "promethium-data"
 
 ----- Tier removals (Done in data to avoid recycling recipe issues)
 

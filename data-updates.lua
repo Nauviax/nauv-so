@@ -1,6 +1,4 @@
 ----- Pack additions, updates, and related recipies
--- !!! No base qual on craft, require common? Or always craft as common?
--- Def need to prevent recycle
 
 local all_techs = data.raw.technology
 
@@ -46,7 +44,7 @@ for science_level, pack_name in pairs(packs_to_remove) do
 		end
 	end
 end
--- Remove all techs that now have no pack cost (Skip any that look weird) (!!! May just add science packs to these? Or do rework for vanila and leave alone modded?)
+-- Remove all techs that now have no pack cost (Skip any that look weird)
 local function unlock_and_delete(tech_name)
 	local tech = all_techs[tech_name]
 	if tech.effects then
@@ -226,7 +224,7 @@ data.raw["dont-research-before-researching-achievement"]["rush-to-space"] = nil
 data.raw["research-achievement"]["eco-unfriendly"] = nil
 
 
--- Adjust research speed, +1 and +2 at pre and post white science (Vanilla max is +2.5) (!!! UNTESTED)
+-- Adjust research speed, +1 and +2 at pre and post white science (Vanilla max is +2.5)
 local space_pack_tech = all_techs["space-science-pack"]
 table.insert(space_pack_tech.effects, { type = "laboratory-speed", modifier = 1.0 })
 local lab_speed_tech = all_techs["research-speed-1"]
@@ -264,9 +262,6 @@ all_techs["space-platform-thruster"].prerequisites = {"rocket-silo"}
 all_techs["space-platform-thruster"].order = "b-e"
 
 ----- Pack and tier removals, tech adjustments (Infinites), updates to use data for some early planet techs
----
----(Mining prod, probably going to be 1,2,4,8 style not 1,2,3,4,5)
---- !!! Also combine some tiers, like transport belt capacity? (1 for unlock, 1 for +2 and ins effects but req metalurgic?)
 
 -- All data techs use just one item, but x2 units
 for _, tech_name in pairs({
@@ -295,47 +290,6 @@ for _, pack_name in ipairs({ -- Remove later packs
 end
 table.insert(lab.inputs, 1, "space-data")
 
--- !!!MAXTODOHERE (Also remember to rename tech numbers) (May automate pack tech dependencies and just recreate assuming no others? Check dependencies later)
--- For all infinite techs, new formula and pack counts (Include shoot speed, but skip inf and just do 3)
--- If pre-inf techs no exist, add as needed depending on starting pack
--- 1 tech at pack level (1 extra if starting at or before white for just white)
--- 1 tech at all 3
--- 5 repeat tech at 3+aquilo (Up to 200% prod for early items, 100% for aquilo level. Damage on case by case)
--- Rest up to cap at prometh (May need tech amnt reset here, so dw about formula jumps between this and last 5)
--- MINING PROD SPECIAL CASE, 1 at all 3 diff planets! (Others at this level just pick a good looking pack and do 1 of that)
--- In ALL cases, bonus per tech should be higher to reduce # of techs
-
-
-
--- Mining prod
-
--- SA current
--- 10% at 250G
--- 10% at 500B     20% 750
--- 10% pr 1000P    
-
--- So (at 300s) (Account for x5 cost) (These may need to be lower? !!!)
--- 30% 200W -- 1
--- 30% 400WV -- side?
--- 30% 400WF -- side?
--- 30% 400WG -- side?
--- 30% 800WVFG -- 2 (require previous 3 as prereq)
--- 30% 1000WVFGA -- 3 
--- 20% 1000WVFGAP -- Exponential repeat (1000*1.5^(level-4)) (Should start 1000) (or 2000?)
--- !!! Need to spreadsheet this and normal prod !!! (Assume science is x5) -- !!! Max can you double check data weight? nauv/fulg same rockets to pack as vanilla rockets holding pack? (assume 50% prod)
-
--- !!! MINING PROD TODO AAA HERE !!!
-
--- Other prods, less promethium (oof ow my balance !!!)
----
---- 20% at pack level
---- 20% at 3 level
---- 20%x3 at cryo level (skip for rocket prod)
---- rest 20 at prometh
---- 
---- formula no clue, 300% apparently take 500mil so should be /5 for us, /2 again due to more packs? (Call it 50mil?)
----
--- !!! Scrap half price, rocket double. Account for? !!! local inf_prod_formula = "2002^N", sortof, but 100/400 for specific ones?
 local inf_prod_techs = {
     metallurgic = {
         "steel-plate-productivity", -- Technically white but bleh
@@ -355,7 +309,7 @@ local inf_prod_techs = {
     },
 
 }
-local tiers = { -- !!! Are the 3 in order that matches normal game? See resarch prod as untouched !!!
+local tiers = {
     {{ "space-science-pack", 1 }, { "metallurgic-science-pack", 1 }, { "electromagnetic-science-pack", 1 }, { "agricultural-science-pack", 1 }},
     {{ "space-science-pack", 1 }, { "metallurgic-science-pack", 1 }, { "electromagnetic-science-pack", 1 }, { "agricultural-science-pack", 1 }, { "cryogenic-science-pack", 1 }},
     {{ "space-science-pack", 1 }, { "metallurgic-science-pack", 1 }, { "electromagnetic-science-pack", 1 }, { "agricultural-science-pack", 1 }, { "cryogenic-science-pack", 1 }, { "promethium-science-pack", 1 }}
@@ -364,7 +318,7 @@ local tiers = { -- !!! Are the 3 in order that matches normal game? See resarch 
     -- !!! Could make promethium require less HGprom?
 }
 
-local all_tech = all_techs -- !!! Reminder to set 'upgrade' in techs if not already (Also does promethium allow productivity to self? (is 1.2 good even? What is effective costs at each level when accounting for it's own prod? !!!))
+local all_tech = all_techs
 local prod_tech_costs = {1,2,3,5,10} -- 500*this
 for type_name, type_techs in pairs(inf_prod_techs) do
     local first_pack_name = type_name.."-science-pack"
@@ -380,9 +334,9 @@ for type_name, type_techs in pairs(inf_prod_techs) do
 		end
 		for level = 1, 5 do
 			local tech = table.deepcopy(old_tech)
-			tech.name = tech_name.."-"..level -- !!! test (Also check upgrade parm still set)
+			tech.name = tech_name.."-"..level
 			if level > 1 then
-        		tech.prerequisites = { tech_name.."-"..(level-1) } -- Will 1 be good always? Test Aquilo techs !!!
+        		tech.prerequisites = { tech_name.."-"..(level-1) }
 			end
 			tech.unit.count = 500 * prod_tech_costs[level] * count_modifier
 			local tier_level = aquilo_tech and ({2,2,3,3,3})[level] or (level-1) -- 'or' tiers are effectively {0,1,2,3,3}
@@ -409,7 +363,7 @@ local packs = {
 	{ "promethium-science-pack", 3 }
 }
 -- Create a tech based on an old one
-local function create_tech(old_tech, name, level, pack, amount, modifiers, skip_extend) -- !!! Modifiers?
+local function create_tech(old_tech, name, level, pack, amount, modifiers, skip_extend)
 	local tech = table.deepcopy(old_tech)
 	tech.name = level and name.."-"..level or name
 	tech.unit.count = amount
@@ -489,7 +443,7 @@ old_tech = all_techs[tech_name.."-1"]
 spare_tech = all_techs[tech_name.."-3"]
 cleanup_old(tech_name, 1)
 create_tech(old_tech, tech_name, 1, packs[1], 150, {0.7})
-create_tech(spare_tech, tech_name, 2, packs[1], 1000, {2.0, 2.0, 1.3}) -- May need a second? !!! review damage vs others at max later.
+create_tech(spare_tech, tech_name, 2, packs[1], 1000, {2.0, 2.0, 1.3}) -- May need a third? !!! review damage vs others at max later.
 tech_name = "refined-flammables"
 old_tech = all_techs[tech_name.."-4"]
 cleanup_old(tech_name, 4)
@@ -513,7 +467,7 @@ tech_name = "railgun-damage"
 old_tech = all_techs[tech_name.."-1"]
 table.insert(old_tech.effects, { type = "turret-attack", turret_id = "railgun-turret" }) -- Locale !!!
 cleanup_old(tech_name, 1)
-create_tech(old_tech, tech_name, nil, packs[7], 2500, {0.6, 1.0}) -- !!! TEST one shot big stompers !!! (>200%total)
+create_tech(old_tech, tech_name, nil, packs[7], 2500, {0.6, 1.0})
 tech_name = "railgun-shooting-speed"
 old_tech = all_techs[tech_name.."-1"]
 cleanup_old(tech_name, 1)
@@ -574,4 +528,4 @@ spare_tech.unit.count_formula = "500 * (1.3 ^ (L - 6))" -- Scales harder than va
 spare_tech.max_level = "infinite"
 
 -- Adjust research productivity formula
-all_techs["research-productivity"].unit.count_formula = "200 * (1.3 ^ L)" -- Note the 1.2->1.3 (Also balance !!!)
+all_techs["research-productivity"].unit.count_formula = "200 * (1.3 ^ L)" -- Note the 1.2->1.3
