@@ -77,3 +77,7 @@ P Swap qProc with split ABC idea, 20a5b5c, takes b, spoildown2m, c recycle/craft
 -- !!! Also see pinned clipboard
 -- !!! Potentially repurpose science-fluids
 
+AAA UPDATE RAINBOWORE
+^ crafting_machine_tint ?? Small misc tidy too perhaps
+
+Assemb power up 0.75 to 1 (!!!)
