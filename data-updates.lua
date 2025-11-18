@@ -1,5 +1,6 @@
 ----- Pack additions, updates, and related recipies
-
+-- !!! TO BE MOVED TO SEPERATE FILES AND (some) CONSTS MOVED TO UTILS
+-- !!! Actually now that I think of it, why NOT just do this in data?
 local all_techs = data.raw.technology
 
 -- Remove unused packs, including their techs

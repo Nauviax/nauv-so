@@ -55,6 +55,7 @@ Check all new recipies and see if need tints (Also do for rainborore later?)
 
 
 Should prepare locale later to use (Remember space is nauvis now, check all, descs too)
+-- NOTE: !!! Remember descriptions/localised_description etc in all
 
 
 -- !!! Review module local ingredient increase, may be unfair and hurt balance
@@ -72,3 +73,12 @@ F FlyFrame, more SConductors? (Tricky as already p good recipe)
 G Explosives and Lube
 A ??? More oil stuff, also something to require either more ice(water) or ammonia (Whichever makes voiding the other easier)
 P Swap qProc with split ABC idea, 20a5b5c, takes b, spoildown2m, c recycle/craft back into qproc or more a? (Craft before rot, and does fresh reset too?)
+
+-- !!! Max double check ignored_by_productivity via debug log maybe? (It should set to ignored_by_stats) (Just where used) 
+-- !!! Also see pinned clipboard
+-- !!! Potentially repurpose science-fluids
+
+ -- !!!!! USE ICONS TO DISTINGUISH, use planet icons?
+  -- !!!!! USE ICONS TO DISTINGUISH, use planet icons?
+   -- !!!!! USE ICONS TO DISTINGUISH, use planet icons?
+   -- !!! May want to add planet names to utils instead of science-data
