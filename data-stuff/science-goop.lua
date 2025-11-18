@@ -3,8 +3,8 @@ local utils = require("common.utils")
 -- Params
 local base_craft_time = 15 -- !!! aaa no idea yet (!!! I may make this constant even ?!)
 local base_texture = "__temp-mod__/graphics/fluids/bean.png" -- May need to set recipies if main_product doesn't work for it (!!!)
-local fluid_color = {0.6, 0.6, 0.6}
-local fluid_color_light = {0.6, 0.6, 0.6}
+local fluid_color = {0.9, 0.9, 0.9} -- !!! WIP (Trying white)
+local fluid_color_light = {1.0, 1.0, 1.0}
 
 local science_data = {
 	space = {
@@ -51,7 +51,7 @@ local item = {
 		icon = base_texture, icon_size = 64,
 		tint = fluid_color_light
 	}},
-	default_temperature = 15, gas_temperature = 0,
+	default_temperature = 15,
 	base_color = fluid_color, flow_color = fluid_color,
 	order = "n[new-fluid]-s2[science-fluid]-1[goop]", --!!! TODO
 	auto_barrel = false
@@ -63,6 +63,17 @@ for name, props in pairs(science_data) do
 
 	local recipe = { -- !!!!! USE ICONS TO DISTINGUISH, use planet icons?
 		type = "recipe", name = "science-goop-"..name, -- Intentionally never matches item name, meaning no main recipe
+		icons = {{
+			icon = (util_props.planet == "nauvis" and "__base__" or "__space-age__").."/graphics/icons/"..util_props.planet..".png", icon_size = 64
+		}, {
+			icon = base_texture, icon_size = 64,
+			tint = fluid_color_light,
+			scale = 0.3, shift = {-8, 7}, floating = true
+		}, {
+			icon = base_texture, icon_size = 64,
+			tint = fluid_color_light,
+			scale = 0.3, shift = {8, 7}, floating = true
+		}},
 		main_product = "science-goop",
 		category = props.craft_category,
 		subgroup = "fluid-recipes", -- !!!
@@ -72,7 +83,7 @@ for name, props in pairs(science_data) do
 		ingredients =  props.ingredients,
 		results = {{ type = "fluid", name = "science-goop", amount = 400 }}, -- 4 data crafts, so 2 pack crafts
 		allow_productivity = true,
-		surface_conditions = props.surface_condition,
+		surface_conditions = util_props.surface_condition,
 		crafting_machine_tint = utils.recipe_tints(fluid_color)
 	}
 	data:extend({ recipe })

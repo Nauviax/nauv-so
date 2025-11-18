@@ -5,7 +5,7 @@ local base_craft_time = 20 -- !!! BALANCE (Very unsure on this speed) (I want da
 local base_stack_size = 200 -- !!! Review all items added for stack/weight etc to ensure no regressions
 local base_weight = 1000
 local data_crafts_per_pack = 2
-local icon = "__temp-mod__/graphics/items/data.png"
+local icon = "__temp-mod__/graphics/items/data.png" -- Ass texture for this, ngl (!!! Color maybe? Or find free textures?)
 
 local base_item = table.deepcopy(data.raw.tool["automation-science-pack"])
 base_item.icon = nil -- We will use icons
@@ -14,7 +14,6 @@ local science_data = {
 	space = {
 		stack_mult = 1,
 		weight_mult = 1,
-		default_import_location = "nauvis", -- !!! May want to add planet names to utils instead of science-data
 		craft_category = "organic-or-assembling",
 		color = {1.0, 1.0, 1.0},
 		is_tool = true,
@@ -25,7 +24,6 @@ local science_data = {
 	metallurgic = {
 		stack_mult = 0.25,
 		weight_mult = 2,
-		default_import_location = "vulcanus",
 		craft_category = "metallurgy",
 		color = {1.0, 0.5, 0.2},
 		is_tool = false,
@@ -36,7 +34,6 @@ local science_data = {
 	agricultural = {
 		stack_mult = 1,
 		weight_mult = 1,
-		default_import_location = "gleba",
 		craft_category = "organic",
 		color = {0.7, 1.0, 0.2},
 		is_tool = false,
@@ -47,7 +44,6 @@ local science_data = {
 	electromagnetic = {
 		stack_mult = 2,
 		weight_mult = 0.25,
-		default_import_location = "fulgora",
 		craft_category = "electromagnetics",
 		color = {0.8, 0.1, 0.8},
 		is_tool = false,
@@ -58,7 +54,6 @@ local science_data = {
 	cryogenic = {
 		stack_mult = 1,
 		weight_mult = 1,
-		default_import_location = "aquilo",
 		craft_category = "cryogenics",
 		color = {0.3, 0.3, 1.0},
 		is_tool = false,
@@ -71,7 +66,6 @@ local science_data = {
 		stack_mult = 0.25, -- Balance review, egg to pack stack ratio concerns (!!!)
 		weight_mult = 1,
 		craft_category = "cryogenics",
-		default_import_location = "shattered-planet", -- lol (!!! This may fail)
 		color = {0.2, 0.3, 0.4},
 		is_tool = false,
 		ingredients = { -- !!! Review Pegg balance, about half to 1/4 of biter egg per pack? (Half at most, as egg is more expensive and heavier)
@@ -91,8 +85,7 @@ for name, props in pairs(science_data) do
 			-- Data card main icon
 			icon = icon, icon_size = 64,
 			tint = props.color
-		},
-		{
+		}, {
 			-- Second layer, darkened version of relevant pack
 			icon = data.raw.tool[name.."-science-pack"].icon, icon_size = 64,
 			scale = 0.4, shift = {-6, 5}, floating = true,
@@ -105,7 +98,7 @@ for name, props in pairs(science_data) do
 	end
 	item.stack_size = base_stack_size * props.stack_mult
 	item.weight = base_weight * props.weight_mult
-	item.default_import_location = props.default_import_location
+	item.default_import_location = util_props.planet
 
 	local recipe = {
 		type = "recipe", name = item.name,

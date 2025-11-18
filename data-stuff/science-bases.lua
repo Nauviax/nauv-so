@@ -4,10 +4,10 @@ local utils = require("common.utils")
 local craft_time_basic = 15
 local craft_time_advanced = 25
 local icon = "__temp-mod__/graphics/fluids/glow.png" -- !!! Redo colors !!!
-local basic_fluid_color = {0.8, 0.2, 0.2}
-local basic_fluid_color_light = {1.0, 0.5, 0.5}
-local advanced_fluid_color = {0.5, 0.0, 0.5}
-local advanced_fluid_color_light = {0.8, 0.2, 0.8}
+local basic_fluid_color = {0.8, 0.2, 0.2} -- !!! Redo colors !!!
+local basic_fluid_color_light = {1.0, 0.5, 0.5} -- !!! Redo colors !!!
+local advanced_fluid_color = {0.5, 0.0, 0.5} -- !!! Redo colors !!!
+local advanced_fluid_color_light = {0.8, 0.2, 0.8} -- !!! Redo colors !!!
 
 -- !!! Can I combine the two here slightly, reduce repeated code? !!! (Also general cleanup)
 
@@ -17,7 +17,7 @@ local basic_fluid = {
 		icon = icon, icon_size = 64,
 		tint = basic_fluid_color_light
 	}},
-	default_temperature = 15, gas_temperature = 0,
+	default_temperature = 15,
 	base_color = basic_fluid_color, flow_color = basic_fluid_color,
 	order = "n[new-fluid]-s1[science-fluid]-1[basic]", --!!! TODO
 	auto_barrel = false
@@ -52,7 +52,7 @@ local advanced_fluid = {
 		icon = icon, icon_size = 64,
 		tint = advanced_fluid_color_light
 	}},
-	default_temperature = 15, gas_temperature = 0,
+	default_temperature = 15,
 	base_color = advanced_fluid_color, flow_color = advanced_fluid_color,
 	order = "n[new-fluid]-s1[science-fluid]-2[advanced]", --!!! TODO
 	auto_barrel = false

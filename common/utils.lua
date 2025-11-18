@@ -5,36 +5,42 @@ utils.sciences = {
 		order = "a", -- !!! USE IN ALL ITEMS/RECIPIES !!!
 		craft_time_mult = 1,
 		data_per_pack = 2,
+		planet = "nauvis",
 		surface_condition = {{ property = "pressure", min = 1000, max = 1000 }}
 	},
 	metallurgic = {
 		order = "b",
 		craft_time_mult = 1,
 		data_per_pack = 2,
+		planet = "vulcanus",
 		surface_condition = {{ property = "pressure", min = 4000, max = 4000 }}
 	},
 	agricultural = {
 		order = "c",
 		craft_time_mult = 0.5,
 		data_per_pack = 2,
+		planet = "gleba",
 		surface_condition = {{ property = "pressure", min = 2000, max = 2000 }}
 	},
 	electromagnetic = {
 		order = "d",
 		craft_time_mult = 1,
 		data_per_pack = 8,
-		surface_condition = {{ property = "magnetic-field", min = 0.99 }} -- !!! TEST >=99%
+		planet = "fulgora",
+		surface_condition = {{ property = "magnetic-field", min = 99 }}
 	},
 	cryogenic = {
 		order = "e",
 		craft_time_mult = 5,
 		data_per_pack = 2,
-		surface_condition = {{ property = "pressure", max = 600 }}
+		planet = "aquilo",
+		surface_condition = {{ property = "pressure", min = 100, max = 600 }}
 	},
 	promethium = {
 		order = "f",
 		craft_time_mult = 2,
 		data_per_pack = 2, -- !!! Do more with this maybe? Not here necessarily.
+		planet = "shattered-planet",
 		surface_condition = {{ property = "gravity", max = 0 }}
 	}
 }

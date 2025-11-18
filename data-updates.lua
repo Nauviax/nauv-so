@@ -94,7 +94,7 @@ local statpack_building_tech = {
 	icon = "__base__/graphics/technology/toolbelt.png", icon_size = 256,
 	effects = {},
 	unit = { ingredients = {}, count = 1, time = 10 },
-	order = "b-a"
+	order = "a-t1"
 }
 data:extend({statpack_building_tech})
 local statpack_combat_tech = {
@@ -102,7 +102,7 @@ local statpack_combat_tech = {
 	icon = "__base__/graphics/technology/stronger-explosives-3.png", icon_size = 256,
 	effects = {},
 	unit = { ingredients = {}, count = 1, time = 10 },
-	order = "b-b"
+	order = "a-t2"
 }
 data:extend({statpack_combat_tech})
 local function merge_into_statpack(statpack, tech_name)
@@ -249,34 +249,33 @@ for _, tech in pairs(all_techs) do
 			-- Won't touch infinite techs, those are done later down.
 			tech.unit.count = math.ceil(tech.unit.count / 5) -- Affects non-inf
         end
-    end
+    else
+		tech.order = "t-for-trigger" -- Move them out of the way of data-card techs
+	end
 end
 
 -- Final tech adjustments
 space_pack_tech.prerequisites = nil
 space_pack_tech.research_trigger = nil
 space_pack_tech.unit = { ingredients = {}, count = 1000, time = 60 } -- Overwrites previous increase. Intentional.
-space_pack_tech.order = "b-c" -- 3rd
-all_techs["rocket-silo"].prerequisites = {"space-science-pack"}
-all_techs["rocket-silo"].order = "b-d"
+space_pack_tech.order = "a-t3"
+all_techs["rocket-silo"].prerequisites = {"space-science-pack", "kovarex-enrichment-process"}
 all_techs["space-platform-thruster"].prerequisites = {"rocket-silo"}
-all_techs["space-platform-thruster"].order = "b-e"
 
------ Pack and tier removals, tech adjustments (Infinites), updates to use data for some early planet techs
 
--- All data techs use just one item, but x2 units
-for _, tech_name in pairs({
-	"kovarex-enrichment-process",
+for index, tech_name in pairs({
+	"kovarex-enrichment-process", -- Significantly cheaper
 	"rocket-silo",
 	"space-platform-thruster",
 	"planet-discovery-vulcanus",
-	"planet-discovery-fulgora",
-	"planet-discovery-gleba"
-}) do
+	"planet-discovery-gleba",
+	"planet-discovery-fulgora"
+}) do  -- Count and time is post x5 time adjustment
 	local tech = all_techs[tech_name]
+	tech.order = "a-t"..(index+3) -- Starting at 4
 	tech.unit.ingredients = {{"space-data", 1}}
-	tech.unit.count = tech.unit.count * 2
-	tech.unit.time = tech.unit.time / 2
+	tech.unit.count = index == 1 and 10 or 200
+	tech.unit.time = 60
 end
 
 -- Modify normal lab to allow early data use, but not late science use

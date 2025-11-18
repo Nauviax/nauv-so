@@ -51,7 +51,6 @@ P (Penta egg weight is 200pr instead of 500pr. Vanilla pack takes 1 begg per pac
 Need sort item order in recipies AND TECHS !!!
 Check all new recipies and see if need tints (Also do for rainborore later?)
 
-!!! SORT DATA CARD TECHS FIRST IN LIST !!!
 
 
 Should prepare locale later to use (Remember space is nauvis now, check all, descs too)
@@ -78,7 +77,3 @@ P Swap qProc with split ABC idea, 20a5b5c, takes b, spoildown2m, c recycle/craft
 -- !!! Also see pinned clipboard
 -- !!! Potentially repurpose science-fluids
 
- -- !!!!! USE ICONS TO DISTINGUISH, use planet icons?
-  -- !!!!! USE ICONS TO DISTINGUISH, use planet icons?
-   -- !!!!! USE ICONS TO DISTINGUISH, use planet icons?
-   -- !!! May want to add planet names to utils instead of science-data
