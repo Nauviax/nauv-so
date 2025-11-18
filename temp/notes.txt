@@ -57,13 +57,11 @@ Should prepare locale later to use (Remember space is nauvis now, check all, des
 -- NOTE: !!! Remember descriptions/localised_description etc in all
 
 
--- !!! Review module local ingredient increase, may be unfair and hurt balance
 
 
 -- !!! STILL NEED TO ADD MED PROMETH TO ASTEROID BELT AREAS between planets (Will also need to review balance)
 ^ !!! Needs to be far enough from planet to avoid pulsing thruster cheese (10%?)
 
-"hot", -- This texture is ass and looks like heavy fuel (!!!) (Maybe use hot in white, new for this)
 
 
 !!! AAAAAA Need to add more stuff to packs
@@ -75,9 +73,8 @@ P Swap qProc with split ABC idea, 20a5b5c, takes b, spoildown2m, c recycle/craft
 
 -- !!! Max double check ignored_by_productivity via debug log maybe? (It should set to ignored_by_stats) (Just where used) 
 -- !!! Also see pinned clipboard
--- !!! Potentially repurpose science-fluids
 
 AAA UPDATE RAINBOWORE
 ^ crafting_machine_tint ?? Small misc tidy too perhaps
 
-Assemb power up 0.75 to 1 (!!!)
+-- ??? Could not load source '@__factoryplanner__/backend/data/ModuleSet.lua'.

@@ -153,12 +153,12 @@ for _, module_name in pairs({
 	data.raw.module[mk2_name] = nil
 	data.raw.technology[mk2_name] = nil
 	local mk3_module = data.raw.recipe[mk3_name]
-	for _, ingredient in pairs(mk3_module.ingredients) do -- Slightly cheaper to account for lack of a prod step
-		if  ingredient.name == mk2_name then
+	for _, ingredient in pairs(mk3_module.ingredients) do -- Slightly cheaper base overall to account for lack of a prod step
+		if ingredient.name == mk2_name then
 			ingredient.name = module_name -- MK1
 			ingredient.amount = ingredient.amount * 3
-		else
-			ingredient.amount = ingredient.amount * 4 -- Includes planet items
+		elseif ingredient.name == "advanced-circuit" or ingredient.name == "processing-unit" then
+			ingredient.amount = ingredient.amount * 4
 		end
 	end
 	for index, prereq in ipairs(data.raw.technology[mk3_name].prerequisites) do
