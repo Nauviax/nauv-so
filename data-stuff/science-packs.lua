@@ -9,27 +9,27 @@ local pack_craft_category = "cryogenics-or-assembling" -- !!! This or "chemistry
 local science_data = {
 	space = {
 		advanced = false,
-		prom_out = 0.75
+		prom_amnt = 2
 	},
 	metallurgic = {
 		advanced = false,
-		prom_out = 0.75
+		prom_amnt = 2
 	},
 	agricultural = {
 		advanced = false,
-		prom_out = 0.75
+		prom_amnt = 1 -- Less to help manage freshness
 	},
 	electromagnetic = {
 		advanced = false,
-		prom_out = 0.75
+		prom_amnt = 2
 	},
 	cryogenic = {
-		advanced = true,
-		prom_out = 0.5 -- !!! May want to add extra LGprom between Gleba and Aquilo, increasing along rest of path to shattered? (Still not AT planets ofc)
+		advanced = true, -- Reminder: Advanced is an extra 2 prom-147
+		prom_amnt = 3
 	},
 	promethium = {
 		advanced = true,
-		prom_out = 0.25
+		prom_amnt = 5 -- !!! Balance along with others, but perhaps this could be even HIGHER safely? It's a long trip back to convert the data
 	}
 }
 
@@ -47,12 +47,11 @@ for name, props in pairs(science_data) do
 	recipe.ingredients = {
 		{ type = "item", name = name.."-data", amount = util_props.data_per_pack },
 		{ type = "fluid", name = (props.advanced and "advanced" or "basic").."-base-fluid", amount = 100 },
-		utils.items.prom_in
+		{ type = "item", name = "promethium-147", amount = props.prom_amnt }
 	}
 	recipe.results = {
 		{ type = "item", name = name.."-science-pack", amount = 1 },
-		{ type = "item", name = "garbage-data", amount = 1, ignored_by_stats = 1 },
-		utils.items.prom_out(props.prom_out)
+		{ type = "item", name = "garbage-data", amount = 1, ignored_by_stats = 1 }
 	}
 	recipe.allow_productivity = true -- Already true, just clarity
 	recipe.surface_conditions = utils.sciences.promethium.surface_condition

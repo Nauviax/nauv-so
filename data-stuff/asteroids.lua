@@ -1,3 +1,5 @@
+local utils = require("common.utils")
+
 -- High grade promethium
 local high_grade_item = table.deepcopy(data.raw.item["promethium-asteroid-chunk"])
 high_grade_item.name = "high-grade-promethium-asteroid-chunk"
@@ -20,32 +22,35 @@ low_grade_item.spoil_ticks = 18000 -- 5 minutes
 low_grade_item.spoil_result = "iron-ore"
 
 -- Promethium powder (intermediate, uses asteroid productivity)
-local crushed_item = {
-	type = "item", name = "crushed-promethium",
+local prom_item = {
+	type = "item", name = "promethium-147",
 	icons = {{
-		-- Redish tint ig, uranium icon from graphics (!!! Need to gen one !!!)
+		icon = "__temp-mod__/graphics/items/prom-147.png", icon_size = 64,
+		tint = {1.0, 0.5, 0.5} -- !!! Should be matching red
 	}},
 	stack_size = 20, -- Amnt per chunk
 	weight = 1000, -- !!! BALANCE (likely based on chunk weight)
 	spoil_ticks = 18000, -- Same as chunk
-	spoil_result = "iron-ore" -- !!! Will result in a LOT more, perhaps find a diff item, or just *none*?
+	spoil_result = "iron-ore", -- !!! Will result in a LOT more, perhaps find a diff item, or just *none*?
+	default_import_location = "shattered-planet"
 	-- !!! WIP
 }
-local crushed_recipe = table.deepcopy(data.raw.recipe["metallic-asteroid-crushing"])
-crushed_recipe.name = "promethium-asteroid-crushing"
-crushed_recipe.energy_required = 5 -- Same as advanced
-crushed_recipe.ingredients[1].name = "promethium-asteroid-chunk"
-crushed_recipe.results = {
-	{ type = "item", name = "crushed-promethium", amount = 20 }, -- ~25 per chunk, pre-prod
+local prom_recipe = table.deepcopy(data.raw.recipe["metallic-asteroid-crushing"])
+prom_recipe.name = prom_item.name
+prom_recipe.energy_required = 5 -- Same as advanced
+prom_recipe.ingredients[1].name = "promethium-asteroid-chunk"
+prom_recipe.results = {
+	{ type = "item", name = prom_item.name, amount = 10 }, -- ~12.5 per chunk, pre-prod
 	{ type = "item", name = "promethium-asteroid-chunk", amount = 1, probability = 0.2 }
 } -- Chunk output NOT ignored apparently, and also uses prod.
-crushed_recipe.main_product = "crushed-promethium" -- Deviation from other crushing recipies afaik (!!! Check?)
+prom_recipe.main_product = prom_item.name -- Deviation from other crushing recipies afaik (!!! Check?)
 -- !!! UNSURE WHAT TO USE AS ICON, if any
-crushed_recipe.order = "b-a-d" --!!! This or the e[] thing the advanced ones have going on (Probably the other)
-data:extend({ crushed_item, crushed_recipe })
+prom_recipe.order = "p[promethium]" -- !!! COMPARE TO NEIGHBOUR RECIPIES, including factoriopedia
+data:extend({ prom_item, prom_recipe })
 table.insert(data.raw.technology["asteroid-productivity"].effects, {
-	type = "change-recipe-productivity", recipe = crushed_recipe.name, change = 0.1
+	type = "change-recipe-productivity", recipe = prom_recipe.name, change = 0.1
 }) -- Noteably this is BEFORE the tech rework code, so just 0.1 for now. (!!! TEST THE PROD CHANGES AND 0.2a STUFF)
+utils.add_to_tech("promethium-science-pack", prom_item.name)
 
 -- Add high grade to big asteroid chunks
 local spread = 1

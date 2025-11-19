@@ -12,7 +12,7 @@ item.icons = {{
 	tint = {0.2, 0.2, 0.2}
 }}
 item.type = "item"
-item.durability = 1
+item.durability = nil
 -- item.order -- !!! TODO, along w category tweaks to move to new subgroup????
 
 local recipe = {

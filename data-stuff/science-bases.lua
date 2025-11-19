@@ -35,11 +35,10 @@ local basic_recipe = {
 		{ type = "fluid", name = "water", amount = 25 }, -- !!! At some point sort all recipe orders and enforce in-game order (!!! order_in_recipe) (!!! Also tech-effects order)
 		{ type = "fluid", name = "thruster-fuel", amount = 75 },
 		{ type = "item", name = "steel-plate", amount = 1}, -- !!! Balance review ofc
-		utils.items.prom_in
+		{ type = "item", name = "promethium-147", amount = 1 }
 	},
 	results = {
-		{ type = "fluid", name = basic_fluid.name, amount = 100 }, -- Enough for 1 pack
-		utils.items.prom_out(0.75) -- !!! Test prod, stats (in and out) spoilage etc
+		{ type = "fluid", name = basic_fluid.name, amount = 100 } -- Enough for 1 pack
 	}, -- !!! Balance ofc
 	allow_productivity = true,
 	surface_conditions = utils.sciences.promethium.surface_condition,
@@ -70,12 +69,11 @@ local advanced_recipe = {
 		{ type = "fluid", name = basic_fluid.name, amount = 100 },
 		{ type = "fluid", name = "petroleum-gas", amount = 100 }, -- Fizzy (need balance lots !!! Compare making on platform vs shipping up petro barrels)
 		{ type = "item", name = "battery", amount = 2 }, -- !!! Balance (Mainly for requiring sulfur + copper)
-		utils.items.prom_in,
+		{ type = "item", name = "promethium-147", amount = 2 },
 		utils.items.fluo_in(2) -- !!! How much gets stockpiled in machine? (!!! Also review using fluoro here)
 	},
 	results = {
 		{ type = "fluid", name = advanced_fluid.name, amount = 100 }, -- Enough for 1 pack
-		utils.items.prom_out(0.5), -- !!! Review spoilage mechanics with this !!!
 		utils.items.fluo_out(1)
 	},
 	allow_productivity = true,

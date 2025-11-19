@@ -39,7 +39,9 @@ local science_data = {
 		is_tool = false,
 		ingredients = {
 			{ type = "item", name = "raw-fish", amount = 1000 }
-		}
+		},
+		spoil_ticks = 216000, -- 1h, normal pack timer
+		spoil_result = "spoilage"
 	},
 	electromagnetic = {
 		stack_mult = 2,
@@ -80,18 +82,16 @@ for name, props in pairs(science_data) do
 
 	local item = table.deepcopy(base_item)
 	item.name = name.."-data"
-	item.icons = {
-		{
-			-- Data card main icon
-			icon = icon, icon_size = 64,
-			tint = props.color
-		}, {
-			-- Second layer, darkened version of relevant pack
-			icon = data.raw.tool[name.."-science-pack"].icon, icon_size = 64,
-			scale = 0.4, shift = {-6, 5}, floating = true,
-			tint = {0.5, 0.5, 0.5}
-		}
-	}
+	item.icons = {{
+		-- Data card main icon
+		icon = icon, icon_size = 64,
+		tint = props.color
+	}, {
+		-- Second layer, darkened version of relevant pack
+		icon = data.raw.tool[name.."-science-pack"].icon, icon_size = 64,
+		scale = 0.4, shift = {-6, 5}, floating = true,
+		tint = {0.5, 0.5, 0.5}
+	}}
 	if not props.is_tool then
 		item.type = "item"
 		item.durability = nil
@@ -99,6 +99,10 @@ for name, props in pairs(science_data) do
 	item.stack_size = base_stack_size * props.stack_mult
 	item.weight = base_weight * props.weight_mult
 	item.default_import_location = util_props.planet
+	if props.spoil_ticks then
+		item.spoil_ticks = props.spoil_ticks
+		item.spoil_result = props.spoil_result
+	end
 
 	local recipe = {
 		type = "recipe", name = item.name,

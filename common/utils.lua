@@ -46,8 +46,6 @@ utils.sciences = {
 }
 
 utils.items = { -- Common item ingredient/results
-	prom_in = { type = "item", name = "promethium-asteroid-chunk", amount = 1, ignored_by_stats = 1 },
-	prom_out = function(prob) return { type = "item", name = "promethium-asteroid-chunk", amount = 1, probability = prob, ignored_by_stats = 1 } end,
 	fluo_in = function(amnt) return { type = "fluid", name = "fluoroketone-cold", amount = amnt, ignored_by_stats = amnt } end,
 	fluo_out = function(amnt) return { type = "fluid", name = "fluoroketone-hot", amount = amnt, ignored_by_stats = amnt } end
 }
