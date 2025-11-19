@@ -1,22 +1,13 @@
 NOTE the below prom-147 section is a little outdated, code is source of truth
-HG prometh may want icon?
-Also want nosat powder icon. Look through SA textures? (Uranium ore but red, likely)
-Use powder in recipies, 1a->20p+0.2a, (around 1a->25p after a) (now 10 not 20)
-If recipe used 0.5, is now 10 powder.
-If recipe used 0.75, is now 5 powder. (No outs btw)
--- May lower to 6 and 3 ? Though pro
--- NOTE this would be affected by prod, including tech prod @ 100%
--- ^^^ (!!! Does this include the 0.2a?? It seems like it DOES, meaning way more P per A) (!!! TEST, though research seems it's fair game)
--- Normal crush energy is 2s or 5s for adv, so prom take 5? Will need to test ingame as usual.
--- !!! Gleba science should require less prometh in pack/data craft due to spoilage
-(just 1 for gleb maybe, adjust crush output to account for that? Spoilage reasons)
-1 gleb, 2 norm, 3 for A, 4 for P (LG not in data, just pack)
-1pp for basic, 2pp(3tot) for advanced
+--  (!!! Does chunk crushing include the 0.2a?? It seems like it DOES, meaning way more P per A) (!!! TEST, though research seems it's fair game)
+
+
 vulc to nauv enough for 4 rockets of data? (assume no base)
 large ship + prod enough for 16? Test Aquilo level, prometh likely fine
 
 Compare prom packs per huge prometh in old and using new (lg and hg), ideally similar (remember account for x5 costs)
 
+!!!!!!!!!!! Consider mass rename space pack to nauvis pack, internally (Would need to do locale after)
 
 petrochem balance for adv base
 5000 in rocket
@@ -25,7 +16,9 @@ work out coal/astroids rockets needed for same, ideally lot less (petro) (pre-aq
 (Nerf barrel per rocket, aside from fluoro?)
 
 
----
+
+-- !!! Ensure weight matches other data cards !!! Test this !!!
+
 
 ---
 

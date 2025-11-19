@@ -1,7 +1,7 @@
 local utils = require("common.utils")
 
 -- Params
-local base_craft_time = 30 -- !!! Needs balance maybe (!!! Promethium should be fairly quick ideally right? Do I need to adjust packs-per-craft, or override the craft time mult for packs so data can craft fast? (!!! That's the issue, data crafting needs to be relatively fast to help consume high amounts of prometh and egg, unless we leave that to needing modules?))
+local base_craft_time = 15 -- !!! Needs balance maybe
 local stack_size = 50 -- !!! Review all items added for stack/weight etc to ensure no regressions
 local weight = 4000
 local pack_craft_category = "cryogenics-or-assembling" -- !!! This or "chemistry-or-cryogenics"? (Should just be my preference, both work)
@@ -25,7 +25,7 @@ local science_data = {
 	},
 	cryogenic = {
 		advanced = true, -- Reminder: Advanced is an extra 2 prom-147
-		prom_amnt = 3
+		prom_amnt = 3 -- Asteroid prod needs to be considered here, along with longer trips. (!!!)
 	},
 	promethium = {
 		advanced = true,

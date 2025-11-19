@@ -18,7 +18,7 @@ local science_data = {
 		color = {1.0, 1.0, 1.0},
 		is_tool = true,
 		ingredients = { -- !!! Old U235 (based on rockets though) fluid_local_in = 1, fluid_local_out = 0.92,
-			{ type = "item", name = "raw-fish", amount = 1000 }
+			{ type = "item", name = "raw-fish", amount = 1000 } -- Likely use fuel cells for uranium costs, to avoid needing outputs. (But balance, assume prod!)
 		}
 	},
 	metallurgic = {

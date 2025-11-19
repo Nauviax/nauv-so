@@ -1,8 +1,8 @@
 local utils = require("common.utils")
 
 -- Params
-local craft_time_basic = 15
-local craft_time_advanced = 25
+local craft_time_basic = 5
+local craft_time_advanced = 15
 local icon = "__temp-mod__/graphics/fluids/glow.png" -- !!! Redo colors !!!
 local basic_fluid_color = {0.8, 0.2, 0.2} -- !!! Redo colors !!!
 local basic_fluid_color_light = {1.0, 0.5, 0.5} -- !!! Redo colors !!!

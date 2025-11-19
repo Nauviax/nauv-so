@@ -29,9 +29,8 @@ local prom_item = {
 		tint = {1.0, 0.5, 0.5} -- !!! Should be matching red
 	}},
 	stack_size = 20, -- Amnt per chunk
-	weight = 1000, -- !!! BALANCE (likely based on chunk weight)
-	spoil_ticks = 18000, -- Same as chunk
-	spoil_result = "iron-ore", -- !!! Will result in a LOT more, perhaps find a diff item, or just *none*?
+	weight = 1000, -- !!! BALANCE (likely based on chunk weight, 10th of weight?)
+	spoil_ticks = 18000, -- Same as chunk, but no spoil result.
 	default_import_location = "shattered-planet"
 	-- !!! WIP
 }
@@ -46,6 +45,7 @@ prom_recipe.results = {
 prom_recipe.main_product = prom_item.name -- Deviation from other crushing recipies afaik (!!! Check?)
 -- !!! UNSURE WHAT TO USE AS ICON, if any
 prom_recipe.order = "p[promethium]" -- !!! COMPARE TO NEIGHBOUR RECIPIES, including factoriopedia
+prom_recipe.icon = nil -- Clear the custom icon
 data:extend({ prom_item, prom_recipe })
 table.insert(data.raw.technology["asteroid-productivity"].effects, {
 	type = "change-recipe-productivity", recipe = prom_recipe.name, change = 0.1
@@ -84,10 +84,11 @@ for _, conn in ipairs(med_connections) do
 		type = "entity",
 		asteroid = "medium-promethium-asteroid",
 		spawn_points = {
-			-- angle_when_stopped = 0.4, do I care?
-			{ distance = 0.2, probability = base_prob, speed = speed, angle_when_stopped = 0.4 }, -- !!! Ensure none in orbits !!!
+			{ distance = 0.1, probability = 0, speed = speed, angle_when_stopped = 0.4 },
+			{ distance = 0.2, probability = base_prob, speed = speed, angle_when_stopped = 0.4 },
 			{ distance = 0.5, probability = base_prob * 1.4, speed = speed, angle_when_stopped = 0.4 },
-			{ distance = 0.8, probability = base_prob, speed = speed, angle_when_stopped = 0.4 }
+			{ distance = 0.8, probability = base_prob, speed = speed, angle_when_stopped = 0.4 },
+			{ distance = 0.9, probability = 0, speed = speed, angle_when_stopped = 0.4 }
 		}
 	})
 end
