@@ -7,7 +7,7 @@ local item = table.deepcopy(data.raw.tool["automation-science-pack"])
 item.name = "fresh-data"
 item.icon = nil
 item.icons = {{
-	icon = "__temp-mod__/graphics/items/data.png", -- Just a darker version of pack
+	icon = "__temp-mod__/graphics/items/data.png", -- Just a darker version of pack (!!! Ass texture for this, ngl (!!! Color maybe? Or find free textures?))
 	icon_size = 64,
 	tint = {0.2, 0.2, 0.2}
 }}

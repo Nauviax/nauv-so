@@ -1,10 +1,13 @@
-Also need to give promethium a glowup, make LG darker or something
-
-(Lightened HGProm could probably have an overlay layer thing of some sort, a plus or smth)
- - Or am I darkening the LG texture?
----
-
-
+HG prometh may want icon?
+Also want nosat powder icon. Look through SA textures? (Uranium ore but red, likely)
+Use powder in recipies, 1a->20p+0.2a, (around 1a->25p after a)
+If recipe used 0.5, is now 10 powder.
+If recipe used 0.75, is now 5 powder. (No outs btw)
+-- May lower to 6 and 3 ? Though pro
+-- NOTE this would be affected by prod, including tech prod @ 100%
+-- ^^^ (!!! Does this include the 0.2a?? It seems like it DOES, meaning way more P per A) (!!! TEST, though research seems it's fair game)
+-- Normal crush energy is 2s or 5s for adv, so prom take 5? Will need to test ingame as usual.
+-- !!! Gleba science should require less prometh in pack/data craft due to spoilage
 
 
 5000 in rocket

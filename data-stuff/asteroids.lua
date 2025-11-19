@@ -19,6 +19,34 @@ local low_grade_item = data.raw.item["promethium-asteroid-chunk"]
 low_grade_item.spoil_ticks = 18000 -- 5 minutes
 low_grade_item.spoil_result = "iron-ore"
 
+-- Promethium powder (intermediate, uses asteroid productivity)
+local crushed_item = {
+	type = "item", name = "crushed-promethium",
+	icons = {{
+		-- Redish tint ig, uranium icon from graphics (!!! Need to gen one !!!)
+	}},
+	stack_size = 20, -- Amnt per chunk
+	weight = 1000, -- !!! BALANCE (likely based on chunk weight)
+	spoil_ticks = 18000, -- Same as chunk
+	spoil_result = "iron-ore" -- !!! Will result in a LOT more, perhaps find a diff item, or just *none*?
+	-- !!! WIP
+}
+local crushed_recipe = table.deepcopy(data.raw.recipe["metallic-asteroid-crushing"])
+crushed_recipe.name = "promethium-asteroid-crushing"
+crushed_recipe.energy_required = 5 -- Same as advanced
+crushed_recipe.ingredients[1].name = "promethium-asteroid-chunk"
+crushed_recipe.results = {
+	{ type = "item", name = "crushed-promethium", amount = 20 }, -- ~25 per chunk, pre-prod
+	{ type = "item", name = "promethium-asteroid-chunk", amount = 1, probability = 0.2 }
+} -- Chunk output NOT ignored apparently, and also uses prod.
+crushed_recipe.main_product = "crushed-promethium" -- Deviation from other crushing recipies afaik (!!! Check?)
+-- !!! UNSURE WHAT TO USE AS ICON, if any
+crushed_recipe.order = "b-a-d" --!!! This or the e[] thing the advanced ones have going on (Probably the other)
+data:extend({ crushed_item, crushed_recipe })
+table.insert(data.raw.technology["asteroid-productivity"].effects, {
+	type = "change-recipe-productivity", recipe = crushed_recipe.name, change = 0.1
+}) -- Noteably this is BEFORE the tech rework code, so just 0.1 for now. (!!! TEST THE PROD CHANGES AND 0.2a STUFF)
+
 -- Add high grade to big asteroid chunks
 local spread = 1
 table.insert(data.raw.asteroid["big-promethium-asteroid"].dying_trigger_effect, {

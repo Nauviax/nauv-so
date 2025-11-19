@@ -5,7 +5,7 @@ local base_craft_time = 20 -- !!! BALANCE (Very unsure on this speed) (I want da
 local base_stack_size = 200 -- !!! Review all items added for stack/weight etc to ensure no regressions
 local base_weight = 1000
 local data_crafts_per_pack = 2
-local icon = "__temp-mod__/graphics/items/data.png" -- Ass texture for this, ngl (!!! Color maybe? Or find free textures?)
+local icon = "__temp-mod__/graphics/items/data.png"
 
 local base_item = table.deepcopy(data.raw.tool["automation-science-pack"])
 base_item.icon = nil -- We will use icons
