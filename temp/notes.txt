@@ -1,7 +1,6 @@
 NOTE the below prom-147 section is a little outdated, code is source of truth
 --  (!!! Does chunk crushing include the 0.2a?? It seems like it DOES, meaning way more P per A) (!!! TEST, though research seems it's fair game)
 
-
 vulc to nauv enough for 4 rockets of data? (assume no base)
 large ship + prod enough for 16? Test Aquilo level, prometh likely fine
 

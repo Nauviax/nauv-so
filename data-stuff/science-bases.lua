@@ -4,10 +4,10 @@ local utils = require("common.utils")
 local craft_time_basic = 5
 local craft_time_advanced = 15
 local icon = "__temp-mod__/graphics/fluids/glow.png" -- !!! Redo colors !!!
-local basic_fluid_color = {0.8, 0.2, 0.2} -- !!! Redo colors !!!
-local basic_fluid_color_light = {1.0, 0.5, 0.5} -- !!! Redo colors !!!
-local advanced_fluid_color = {0.5, 0.0, 0.5} -- !!! Redo colors !!!
-local advanced_fluid_color_light = {0.8, 0.2, 0.8} -- !!! Redo colors !!!
+local basic_fluid_color = {0.8, 0.1, 0.1}
+local basic_fluid_color_light = {1.0, 0.2, 0.2}
+local advanced_fluid_color = {0.6, 0.1, 0.6}
+local advanced_fluid_color_light = {0.9, 0.3, 0.9}
 
 -- !!! Can I combine the two here slightly, reduce repeated code? !!! (Also general cleanup)
 

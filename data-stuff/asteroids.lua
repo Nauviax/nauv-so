@@ -28,7 +28,7 @@ local prom_item = {
 		icon = "__temp-mod__/graphics/items/prom-147.png", icon_size = 64,
 		tint = {1.0, 0.5, 0.5} -- !!! Should be matching red
 	}},
-	stack_size = 20, -- Amnt per chunk
+	stack_size = 20,
 	weight = 1000, -- !!! BALANCE (likely based on chunk weight, 10th of weight?)
 	spoil_ticks = 18000, -- Same as chunk, but no spoil result.
 	default_import_location = "shattered-planet"
@@ -63,6 +63,18 @@ table.insert(data.raw.asteroid["big-promethium-asteroid"].dying_trigger_effect, 
 		{spread/2, -spread/4}
 	}
 })
+
+-- Adjust med/small promethium asteroids to be weak to lasers (Lower need for extra turrets)
+for _, asteroid in ipairs({
+	"small-promethium-asteroid",
+	"medium-promethium-asteroid"
+}) do
+	for _, resist in ipairs(data.raw.asteroid[asteroid].resistances) do
+		if resist.type == "laser" then
+			resist.percent = -100 -- !!! MAY need to look at power options in no-sun mod, as lasers may be hard in that !!!
+		end
+	end
+end
 
 -- Add medium promethium to space connections
 local med_connections = {

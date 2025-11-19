@@ -2,8 +2,8 @@ local utils = require("common.utils")
 
 -- Params
 local base_craft_time = 20 -- !!! BALANCE (Very unsure on this speed) (I want data to be long, but promethium should be quicker I think? !!! See pack note here for same item)
-local base_stack_size = 200 -- !!! Review all items added for stack/weight etc to ensure no regressions
-local base_weight = 1000
+local base_stack_size = 100
+local base_weight = 2000
 local data_crafts_per_pack = 2
 local icon = "__temp-mod__/graphics/items/data.png"
 

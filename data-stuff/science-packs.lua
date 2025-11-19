@@ -2,7 +2,7 @@ local utils = require("common.utils")
 
 -- Params
 local base_craft_time = 15 -- !!! Needs balance maybe
-local stack_size = 50 -- !!! Review all items added for stack/weight etc to ensure no regressions
+local stack_size = 50
 local weight = 4000
 local pack_craft_category = "cryogenics-or-assembling" -- !!! This or "chemistry-or-cryogenics"? (Should just be my preference, both work)
 

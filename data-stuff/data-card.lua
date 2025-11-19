@@ -14,7 +14,8 @@ item.icons = {{
 item.type = "item"
 item.durability = nil
 -- item.order -- !!! TODO, along w category tweaks to move to new subgroup????
--- !!! Ensure weight matches other data cards !!! Test this !!!
+item.stack_size = 100
+item.weight = 2000
 
 local recipe = {
 	type = "recipe", name = "fresh-data",
