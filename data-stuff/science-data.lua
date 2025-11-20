@@ -7,18 +7,24 @@ local base_weight = 2000
 local data_crafts_per_pack = 2
 local icon = "__temp-mod__/graphics/items/data.png"
 
+local dcard = { type = "item", name = "fresh-data", amount = 1 }
+local goop = { type = "fluid", name = "science-goop", amount = 100 }
+
 local base_item = table.deepcopy(data.raw.tool["automation-science-pack"])
 base_item.icon = nil -- We will use icons
 
-local science_data = {
+local science_data = { -- !!! ALL AMOUNTS ARE UNBALANCED, items are p good I think tho.
 	space = {
 		stack_mult = 1,
 		weight_mult = 1,
 		craft_category = "organic-or-assembling",
 		color = {1.0, 1.0, 1.0},
 		is_tool = true,
-		ingredients = { -- !!! Old U235 (based on rockets though) fluid_local_in = 1, fluid_local_out = 0.92,
-			{ type = "item", name = "raw-fish", amount = 1000 } -- Likely use fuel cells for uranium costs, to avoid needing outputs. (But balance, assume prod!)
+		ingredients = {
+			dcard, goop,
+			{ type = "item", name = "flying-robot-frame", amount = 4 },
+			{ type = "item", name = "electric-furnace", amount = 4 },
+			{ type = "item", name = "rail", amount = 40 }
 		}
 	},
 	metallurgic = {
@@ -28,7 +34,10 @@ local science_data = {
 		color = {1.0, 0.5, 0.2},
 		is_tool = false,
 		ingredients = {
-			{ type = "item", name = "raw-fish", amount = 1000 }
+			dcard, goop,
+			{ type = "fluid", name = "molten-copper", amount = 1000 },
+			{ type = "item", name = "tungsten-plate", amount = 10 },
+			{ type = "item", name = "engine-unit", amount = 20 } -- Require bulk (!!!) (Potentially try to match Mcopper here?)
 		}
 	},
 	agricultural = {
@@ -38,7 +47,10 @@ local science_data = {
 		color = {0.7, 1.0, 0.2},
 		is_tool = false,
 		ingredients = {
-			{ type = "item", name = "raw-fish", amount = 1000 }
+			dcard, goop,
+			{ type = "item", name = "bioflux", amount = 8 },
+			{ type = "item", name = "pentapod-egg", amount = 8 },
+			{ type = "item", name = "electronic-circuit", amount = 8 } -- Extra (!!!)
 		},
 		spoil_ticks = 216000, -- 1h, normal pack timer
 		spoil_result = "spoilage"
@@ -50,7 +62,10 @@ local science_data = {
 		color = {0.8, 0.1, 0.8},
 		is_tool = false,
 		ingredients = {
-			{ type = "item", name = "raw-fish", amount = 1000 }
+			dcard, goop,
+			{ type = "item", name = "accumulator", amount = 5 },
+			{ type = "fluid", name = "electrolyte", amount = 125 },
+			{ type = "item", name = "supercapacitor", amount = 5 }
 		}
 	},
 	cryogenic = {
@@ -60,9 +75,11 @@ local science_data = {
 		color = {0.3, 0.3, 1.0},
 		is_tool = false,
 		ingredients = {
-			{ type = "item", name = "raw-fish", amount = 1000 }
+			dcard, goop,
+			{ type = "item", name = "ice", amount = 15 }, -- !!! May do some ice derivitive, water something, possibly in addition. Need investigate ammonia balancing. (Want excess ice ideally)
+			{ type = "item", name = "lithium-plate", amount = 5 }
 		},
-		fluoro_used = 2
+		fluoro_used = 15 -- !!! This is x5 normal
 	},
 	promethium = {
 		stack_mult = 0.25, -- Balance review, egg to pack stack ratio concerns (!!!)
@@ -71,9 +88,13 @@ local science_data = {
 		color = {0.2, 0.3, 0.4},
 		is_tool = false,
 		ingredients = { -- !!! Review Pegg balance, about half to 1/4 of biter egg per pack? (Half at most, as egg is more expensive and heavier)
-			{ type = "item", name = "raw-fish", amount = 1000 }
+			dcard, goop,
+			{ type = "item", name = "biter-egg", amount = 5 }, -- !!! Review stack size of ingredients vs out, and overall storage needed for ideal trip (Too much egg/circ means too much storage, not enough means will just be waiting for HGprom)
+			{ type = "item", name = "quantum-processor", amount = 5 }, -- !!!!!!!!!!!!!!!!!!!!!!!!!!! WIP, Going to do the split thing !!!!!!!
+			{ type = "item", name = "high-grade-promethium-asteroid-chunk", amount = 1 }
 		},
-		fluoro_used = 1 -- !!! This would be in ADDITION to science base, being used in space. Check packs per fluoro-rockets, compare to Beggs? (Ideally packs per Begg-rocket like x4 as many at least)
+		fluoro_used = 3 -- !!! This would be in ADDITION to science base, being used in space. Careful of rocket cost. Check packs per fluoro-rockets, compare to Beggs? (Ideally packs per Begg-rocket like x4 as many at least)
+		-- !!! Lower rocket cost of fluoro? May need to rebalance other recipies if so, like fusion power usage
 	}
 }
 
@@ -172,7 +193,7 @@ end
 -- 	{ type = "item", name = "promethium-asteroid-chunk", amount = 2 }, -- !!! WIP
 -- 	{ type = "item", name = "high-grade-promethium-asteroid-chunk", amount = 1, ignored_by_stats = 1 } -- !!! WIP
 -- }
--- table.insert(data_recipe.results, { -- Cryo special case
+-- table.insert(data_recipe.results, {
 -- 	type = "item", name = "high-grade-promethium-asteroid-chunk", amount = 1, probability = 0.5, ignored_by_stats = 1
 -- })
 -- data_recipe.main_product = "promethium-data"

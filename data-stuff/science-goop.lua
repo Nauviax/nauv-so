@@ -7,16 +7,16 @@ local fluid_color = {0.9, 0.9, 0.9} -- !!! WIP (Trying white)
 local fluid_color_light = {1.0, 1.0, 1.0}
 
 -- !!! Mostly happy with lube, sulf, plast. Wood needs good looking at, and 4/5 need heavy amount balance
--- !!! Tempted to output less goop per craft to inflate costs. Balance !!!
+-- !!! Tempted to output less goop per craft to inflate costs. Balance !!! (Current is 1 goop craft -> 2 packs. Some costs too low for this)
 local science_data = {
 	space = {
 		craft_category = "organic-or-chemistry",
 		ingredients = {
 			{ type = "fluid", name = "lubricant", amount = 50 },
 			{ type = "fluid", name = "sulfuric-acid", amount = 50 },
-			{ type = "item", name = "plastic", amount = 5 },
-			{ type = "item", name = "uranium-fuel-cell", amount = 2 }, -- !!! Price check!
-			{ type = "item", name = "depleted-uranium-fuel-cell", amount = 1 } -- !!! Unsure if want both cells
+			{ type = "item", name = "plastic-bar", amount = 5 },
+			{ type = "item", name = "nuclear-fuel", amount = 1 }, -- !!! Price check!
+			{ type = "item", name = "uranium-fuel-cell", amount = 4 }, -- !!! Price check!
 		}
 	},
 	metallurgic = {
@@ -24,10 +24,9 @@ local science_data = {
 		ingredients = {
 			{ type = "fluid", name = "lubricant", amount = 50 },
 			{ type = "fluid", name = "sulfuric-acid", amount = 200 }, -- Extra acid
-			{ type = "item", name = "plastic", amount = 5 },
+			{ type = "item", name = "plastic-bar", amount = 5 },
 			{ type = "item", name = "tungsten-carbide", amount = 3 }, -- !!! Price check!
 			{ type = "item", name = "refined-concrete", amount = 10 } -- !!! Price check!
-
 		}
 	},
 	agricultural = {
@@ -35,7 +34,7 @@ local science_data = {
 		ingredients = {
 			{ type = "fluid", name = "lubricant", amount = 50 },
 			{ type = "fluid", name = "sulfuric-acid", amount = 50 },
-			{ type = "item", name = "plastic", amount = 20 }, -- Extra (bio)plastic
+			{ type = "item", name = "plastic-bar", amount = 20 }, -- Extra (bio)plastic
 			{ type = "item", name = "nutrients", amount = 20 }, -- !!! Price check! (Likely a decent amount here tho, bioflux is cheap) (1biof is 60 after prod)
 			{ type = "item", name = "coal", amount = 10 } -- !!! Price check! Maybe coal, maybe explosives (!!! Test both? Prolly coal tho)
 
@@ -46,7 +45,7 @@ local science_data = {
 		ingredients = {
 			{ type = "fluid", name = "lubricant", amount = 200 }, -- Extra lube
 			{ type = "fluid", name = "sulfuric-acid", amount = 50 },
-			{ type = "item", name = "plastic", amount = 5 },
+			{ type = "item", name = "plastic-bar", amount = 5 },
 			{ type = "item", name = "superconductor", amount = 5 }, -- !!! PRICE
 			{ type = "item", name = "rocket-fuel", amount = 1 }, -- !!! PRICE (Also this one is uncertain)
 		}
