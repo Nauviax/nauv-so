@@ -55,7 +55,7 @@ local science_data = {
 		ingredients = {
 			{ type = "fluid", name = "lubricant", amount = 50 },
 			{ type = "fluid", name = "sulfuric-acid", amount = 50 },
-			{ type = "item", name = "wood", amount = 5 }, -- Requires wood (!!! MAKE SPOIL, but also grow way faster. Heavy balance pass)
+			{ type = "item", name = "wood", amount = 2 }, -- !!! time mostly, test
 			{ type = "item", name = "solid-fuel", amount = 5 }, -- !!! PRICE
 			utils.items.fluo_in(4) -- !!! PRICE AAA
 		},
@@ -66,7 +66,7 @@ local science_data = {
 		ingredients = {
 			{ type = "fluid", name = "lubricant", amount = 50 },
 			{ type = "fluid", name = "sulfuric-acid", amount = 50 },
-			{ type = "item", name = "wood", amount = 5 },
+			{ type = "item", name = "wood", amount = 2 },
 			{ type = "item", name = "pentapod-egg", amount = 5 }, -- !!! PRICE (Overall 1/4 of b-egg I think I said? Check. Account for higher cost, risk and weight)
 			{ type = "item", name = "foundation", amount = 1 }, -- !!! PRICE (may be v expensive)
 		}
@@ -117,3 +117,14 @@ for name, props in pairs(science_data) do
 	data:extend({ recipe })
 	utils.add_to_tech(name.."-science-pack", "science-goop-"..name)
 end
+
+-- Wood adjustments to prevent manual stockpiling and increace generation rate
+-- Base game is 0.15wps per tower (45 trees), or 0.2wps with seed-biochambers
+-- These changes bring it up to about 2.1wps and 2.2wps per tower
+-- 1kspm (5k) is theoretically 16 towers worth, before prod.
+data.raw.items["wood"].spoil_ticks = 216000 -- 1h, fairly normal length.
+data.raw.items["wood"].spoil_result = "spoilage"
+data.raw.plant["tree-plant"].growth_ticks = 18000 -- 5m instead of 10m
+data.raw.plant["tree-plant"].minable.results[1].amount = 16 -- !!! TEST if this affects other trees also !!! (Manually planted? Just test all)
+-- !!! Likely log in tips-n-tricks these changes, and to expect just over 2wps per tower
+-- 1kspm, 2000p, 4000d, 1000goops, 2000wpm, 33wps, ~16 towers. Assumes no prod, so actual is less

@@ -14,6 +14,11 @@ work out coal/astroids rockets needed for same, ideally lot less (petro) (pre-aq
 !!! ^ for all petrochem, ensure barrels aren't just better/easier
 (Nerf barrel per rocket, aside from fluoro?)
 
+-- !!! NEED to review cost of shipping gas vs coal vs space made.
+{ type = "fluid", name = "petroleum-gas", amount = 100 }, 
+-- Fizzy (need balance lots !!! Compare making on platform vs shipping up petro barrels)
+
+
 
 
 -- !!! Ensure weight matches other data cards !!! Test this !!!
