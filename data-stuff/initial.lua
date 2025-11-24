@@ -3,6 +3,26 @@ data.raw.tool["space-science-pack"].icon = "__temp-mod__/graphics/items/space-sc
 data.raw.recipe["space-science-pack"].icon = "__temp-mod__/graphics/items/space-science-pack.png"
 data.raw.technology["space-science-pack"].icon = "__temp-mod__/graphics/techs/space-science-pack.png"
 
+-- Set up science tab subgroup
+data:extend({
+	{
+		type = "item-subgroup", name = "science-data-pre", -- Goop, fresh cards
+		group = "space", order = "z-a"
+	}, {
+		type = "item-subgroup", name = "science-data",
+		group = "space", order = "z-b"
+	}, {
+		type = "item-subgroup", name = "science-pack-pre", -- Bases, prom-147
+		group = "space", order = "z-c"
+	}
+})
+local pack_group = data.raw["item-subgroup"]["science-pack"]
+pack_group.group = "space"
+pack_group.order = "z-z"
+data.raw["item-group"]["space"].order_in_recipe = "z" -- Put these items at end of recipies
+
+-- !!! TEMP STUFF BELOW
+
 -- Duplicate items and recipies for specific packs to help balance (!!! TEMP)
 local packs_to_dupe = {
 	"production-science-pack",

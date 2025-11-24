@@ -2,6 +2,7 @@ local utils = require("common.utils") -- !!! This file could use a minor cleanup
 
 -- Params
 local craft_time = 4
+local order = "b-"
 
 local item = table.deepcopy(data.raw.tool["automation-science-pack"])
 item.name = "fresh-data"
@@ -13,21 +14,22 @@ item.icons = {{
 }}
 item.type = "item"
 item.durability = nil
--- item.order -- !!! TODO, along w category tweaks to move to new subgroup????
+item.subgroup = utils.subgroup.data_pre
+item.order = order.."y"
 item.stack_size = 100
 item.weight = 2000
 
 local recipe = {
 	type = "recipe", name = "fresh-data",
 	category = "electronics",
-	--subgroup = "!!!TODO", -- !!!
-	--order = "!!!TODO",
+	subgroup = utils.subgroup.data_pre,
+	order = order.."y",
 	enabled = false,
 	energy_required = craft_time, -- !!! Review balance
 	ingredients = {
 		{ type = "item", name = "steel-plate", amount = 1 },
-		{ type = "item", name = "battery", amount = 1 },
-		{ type = "item", name = "advanced-circuit", amount = 1 }
+		{ type = "item", name = "battery", amount = 2 },
+		{ type = "item", name = "advanced-circuit", amount = 3 }
 	},
 	results = {{ type = "item", name = "fresh-data", amount = 1 }},
 	allow_productivity = true,
@@ -40,13 +42,14 @@ table.insert(garbage_item.icons, {
 	icon = "__base__/graphics/icons/signal/signal-recycle.png",
 	icon_size = 64, scale = 0.4, shift = {-6, 5}, floating = true
 })
--- garbage_data_item.order -- !!! TODO
+garbage_item.order = order.."z"
 
 local garbage_recipe = table.deepcopy(recipe) -- Byproduct of data crafting
 garbage_recipe.name = "garbage-data"
 garbage_recipe.energy_required = craft_time * 4 -- Means 1s to recycle each
 garbage_recipe.results = {{ type = "item", name = "garbage-data", amount = 2 }} -- Returns 1/8 not 1/4
 garbage_recipe.hidden = true -- Don't show, ever
+garbage_recipe.order = order.."z"
 
 data:extend({ item, recipe, garbage_item, garbage_recipe })
 utils.add_to_tech("space-science-pack", "fresh-data")

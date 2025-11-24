@@ -50,6 +50,15 @@ utils.items = { -- Common item ingredient/results
 	fluo_out = function(amnt) return { type = "fluid", name = "fluoroketone-hot", amount = amnt, ignored_by_stats = amnt } end
 }
 
+utils.subgroup = { -- Groupings for things that need to follow vanilla
+	data_pre = "science-data-pre",
+	data = "science-data",
+	pack_pre = "science-pack-pre",
+	pack = "science-pack",
+	fluid = "fluid",
+	fluid_order = "n[nauv]-" -- Useful, even if not a subgroup
+}
+
 function utils.recipe_tints(fluid_color)
 	return { primary = fluid_color, secondary = fluid_color, tertiary = fluid_color, quaternary = fluid_color }
 end

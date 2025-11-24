@@ -8,40 +8,10 @@ Compare prom packs per huge prometh in old and using new (lg and hg), ideally si
 
 !!!!!!!!!!! Consider mass rename space pack to nauvis pack, internally (Would need to do locale after)
 
-petrochem balance for adv base
-5000 in rocket
-work out coal/astroids rockets needed for same, ideally lot less (petro) (pre-aquilo)}
-!!! ^ for all petrochem, ensure barrels aren't just better/easier
-(Nerf barrel per rocket, aside from fluoro?)
-
--- !!! NEED to review cost of shipping gas vs coal vs space made.
-{ type = "fluid", name = "petroleum-gas", amount = 100 }, 
--- Fizzy (need balance lots !!! Compare making on platform vs shipping up petro barrels)
 
 
 
 
--- !!! Ensure weight matches other data cards !!! Test this !!!
-
-
----
-
-BASED ON TECH /5
-1 rocket launch for fluid intermediate to 1 launches of data
-Assume 1000 data per rocket for nauvis -> 500 science (ie pre weight changes to data to make heavier maybe maybe)
-(1 Liq craft is 2 packs)
-N (D1000e2=500, I20) 500P, 250L, means 12.5 rockets to match 1 data if 1 per
- - Thus should consume 1/12.5 per L, or 0.08 per L (0.04 per pack)
-V (D500e2=250, I500) 250P, 125L, mean 0.25 rockets to match 1 data if 1 per
- - Start 3 carbide for 0.75 rockets
-F (D4000e8, I1000) 500P, 250L, mean 0.25 rockets to match 1 data if 1 per
- - Start 4 condct for match, these are p cheap
-G (D1000e2=500, I1000) 500P, 250L, mean 0.25 rockets to match 1 data if 1 per
- - Bio is weird, so just 1 for 0.25 rocket per (Need account that spoilage is hard, even if planet is free)
-A gonna be weird, and needs to take in >1 AND return some. Maybe join w nauvis and make 2 diff params instead of 1 and seeing if >1 !!!(Do an in and out)
-A (D1000e2=500, I5000) 500P, 250L, means 0.25 rockets to match 1 data if 1 per
- - So consume 4 to match? fair fair
-P (Penta egg weight is 200pr instead of 500pr. Vanilla pack takes 1 begg per pack, so likely take half of what I use in egg?)
 
 
 
@@ -57,7 +27,7 @@ P (Penta egg weight is 200pr instead of 500pr. Vanilla pack takes 1 begg per pac
 !!! Ensure recipe order items is good, see cryo fluid as weak forgetful example (new on top?)
 ^ also this factoriopedia wrong tab/
 
-Need sort item order in recipies AND TECHS !!!
+Need sort item order in recipies AND TECHS !!! (Just techs now)
 Check all new recipies and see if need tints (Also do for rainborore later?)
 
 
@@ -67,23 +37,24 @@ Should prepare locale later to use (Remember space is nauvis now, check all, des
 
 
 
-
--- !!! STILL NEED TO ADD MED PROMETH TO ASTEROID BELT AREAS between planets (Will also need to review balance)
-^ !!! Needs to be far enough from planet to avoid pulsing thruster cheese (10%?)
+-- !!! STILL NEED TO balance MED PROMETH TO ASTEROID BELT AREAS between planets (Will also need to review balance)
 
 
 
-!!! AAAAAA Need to add more stuff to packs
-V Ref concrete, engines (many), LDS?
-F FlyFrame, more SConductors? (Tricky as already p good recipe)
-G Explosives and Lube
-A ??? More oil stuff, also something to require either more ice(water) or ammonia (Whichever makes voiding the other easier)
-P Swap qProc with split ABC idea, 20a5b5c, takes b, spoildown2m, c recycle/craft back into qproc or more a? (Craft before rot, and does fresh reset too?)
-
--- !!! Max double check ignored_by_productivity via debug log maybe? (It should set to ignored_by_stats) (Just where used) 
--- !!! Also see pinned clipboard
 
 AAA UPDATE RAINBOWORE
 ^ crafting_machine_tint ?? Small misc tidy too perhaps
 
 -- ??? Could not load source '@__factoryplanner__/backend/data/ModuleSet.lua'.
+
+-- Instead of ribbon world, just super distant resources? (OR JUST PLAY DEFAULT IDK)
+-- Likely just do x5 sci, more than that seems artificial
+
+-----
+TODO
+balance recipies
+order, subgroups (new space?) (Recipe item order too!) (May just be tech left now)
+locale (nauvispack) (Fix rail turret bonus too)
+rainbowore release + craft tints
+attempt fix factoryplanner
+wincon 1b tech?

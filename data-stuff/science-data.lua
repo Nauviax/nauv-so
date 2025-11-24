@@ -6,6 +6,8 @@ local base_stack_size = 100
 local base_weight = 2000
 local data_crafts_per_pack = 2
 local icon = "__temp-mod__/graphics/items/data.png"
+local subgroup = "science-data"
+local order = "a-"
 
 local dcard = { type = "item", name = "fresh-data", amount = 1 }
 local goop = { type = "fluid", name = "science-goop", amount = 100 }
@@ -14,7 +16,7 @@ local base_item = table.deepcopy(data.raw.tool["automation-science-pack"])
 base_item.icon = nil -- We will use icons
 
 local science_data = { -- !!! ALL AMOUNTS ARE UNBALANCED, items are p good I think tho.
-	space = {
+	space = { -- !!! Mostly balanced (Space)
 		stack_mult = 1,
 		weight_mult = 1,
 		craft_category = "organic-or-assembling",
@@ -23,8 +25,8 @@ local science_data = { -- !!! ALL AMOUNTS ARE UNBALANCED, items are p good I thi
 		ingredients = {
 			dcard, goop,
 			{ type = "item", name = "flying-robot-frame", amount = 4 },
-			{ type = "item", name = "electric-furnace", amount = 4 },
-			{ type = "item", name = "rail", amount = 40 }
+			{ type = "item", name = "electric-furnace", amount = 2 },
+			{ type = "item", name = "heat-exchanger", amount = 1 }
 		}
 	},
 	metallurgic = {
@@ -84,13 +86,14 @@ local science_data = { -- !!! ALL AMOUNTS ARE UNBALANCED, items are p good I thi
 	promethium = {
 		stack_mult = 0.25, -- Balance review, egg to pack stack ratio concerns (!!!)
 		weight_mult = 1,
+		extra_craft_mult = 0.2, -- Fast crafting for this step due to spoilables and hazardous area
 		craft_category = "cryogenics",
 		color = {0.2, 0.3, 0.4},
 		is_tool = false,
 		ingredients = { -- !!! Review Pegg balance, about half to 1/4 of biter egg per pack? (Half at most, as egg is more expensive and heavier)
 			dcard, goop,
 			{ type = "item", name = "biter-egg", amount = 5 }, -- !!! Review stack size of ingredients vs out, and overall storage needed for ideal trip (Too much egg/circ means too much storage, not enough means will just be waiting for HGprom)
-			{ type = "item", name = "quantum-processor", amount = 5 }, -- !!!!!!!!!!!!!!!!!!!!!!!!!!! WIP, Going to do the split thing !!!!!!!
+			{ type = "item", name = "quantum-processor", amount = 2 }, -- !!! Extra
 			{ type = "item", name = "high-grade-promethium-asteroid-chunk", amount = 1 }
 		},
 		fluoro_used = 3 -- !!! This would be in ADDITION to science base, being used in space. Careful of rocket cost. Check packs per fluoro-rockets, compare to Beggs? (Ideally packs per Begg-rocket like x4 as many at least)
@@ -117,6 +120,8 @@ for name, props in pairs(science_data) do
 		item.type = "item"
 		item.durability = nil
 	end
+	item.subgroup = utils.subgroup.data
+	item.order = order..util_props.order
 	item.stack_size = base_stack_size * props.stack_mult
 	item.weight = base_weight * props.weight_mult
 	item.default_import_location = util_props.planet
@@ -129,17 +134,15 @@ for name, props in pairs(science_data) do
 		type = "recipe", name = item.name,
 		main_product = item.name,
 		category = props.craft_category,
-		--subgroup = "!!!TODO", -- !!!
-		--order = "!!!TODO", --!!! (Could use pack and edit slightly to put nearby?)
+		subgroup = utils.subgroup.data,
+		order = order..util_props.order,
 		enabled = false,
-		energy_required = base_craft_time * util_props.craft_time_mult,
+		energy_required = base_craft_time * util_props.craft_time_mult * (props.extra_craft_mult or 1),
 		ingredients = props.ingredients, -- Done outside of loop
 		results = {{ type = "item", name = item.name, amount =  util_props.data_per_pack / data_crafts_per_pack }},
 		allow_productivity = true,
 		surface_conditions = util_props.surface_condition
 	}
-	table.insert(recipe.ingredients, 1, { type = "item", name = "fresh-data", amount = 1 })
-	table.insert(recipe.ingredients, 2, { type = "fluid", name = "science-goop", amount = 100 })
 	if props.fluoro_used then
 		table.insert(recipe.ingredients, utils.items.fluo_in(props.fluoro_used * 2))
 		table.insert(recipe.results, utils.items.fluo_out(props.fluoro_used))
@@ -148,54 +151,5 @@ for name, props in pairs(science_data) do
 	data:extend({ item, recipe })
 	utils.add_to_tech(name.."-science-pack", item.name)
 end
-
-
--- Pack data recipies manually below (Base costs x5. Double recipe is needed per pack due to data:pack ratio, but also ~90% prod step cancels it out, so just x5!)
--- local data_card_ing = { type = "item", name = "fresh-data", amount = 1 }
--- data.raw.recipe["space-data"].ingredients = {
--- 	data_card_ing,
--- 	{ type = "item", name = "raw-fish", amount = 1000 } -- !!! WIP
--- }
--- data.raw.recipe["metallurgic-data"].ingredients = {
--- 	data_card_ing,
--- 	{ type = "fluid", name = "molten-copper", amount = 1000 },
--- 	{ type = "item", name = "tungsten-plate", amount = 10 },
--- 	{ type = "item", name = "tungsten-carbide", amount = 15 } -- !!! WIP
--- }
--- data.raw.recipe["electromagnetic-data"].ingredients = {
--- 	data_card_ing,
--- 	{ type = "item", name = "accumulator", amount = 5 },
--- 	{ type = "fluid", name = "electrolyte", amount = 125 },
--- 	{ type = "fluid", name = "holmium-solution", amount = 125 },
--- 	{ type = "item", name = "supercapacitor", amount = 5 } -- !!! WIP
--- }
--- data.raw.recipe["agricultural-data"].ingredients = {
--- 	data_card_ing,
--- 	{ type = "item", name = "bioflux", amount = 5 },
--- 	{ type = "item", name = "pentapod-egg", amount = 5 } -- !!! WIP
--- }
--- local data_recipe = data.raw.recipe["cryogenic-data"]
--- data_recipe.ingredients = {
--- 	data_card_ing,
--- 	{ type = "fluid", name = "fluoroketone-cold", amount = 30, ignored_by_stats = 15 },
--- 	{ type = "item", name = "ice", amount = 15 },
--- 	{ type = "item", name = "lithium-plate", amount = 5 } -- !!! WIP
--- }
--- table.insert(data_recipe.results, { -- Cryo special case
--- 	type = "fluid", name = "fluoroketone-hot", amount = 15, ignored_by_stats = 15, ignored_by_productivity = 15
--- })
--- data_recipe.main_product = "cryogenic-data"
--- data_recipe = data.raw.recipe["promethium-data"]
--- data_recipe.ingredients = { -- Pack output normally 10, so overall 1/2 costs here
--- 	data_card_ing,
--- 	{ type = "item", name = "biter-egg", amount = 5 },
--- 	{ type = "item", name = "quantum-processor", amount = 99 }, -- !!!!!!!!!!!!!!!!!!!!!!!!!!! WIP, Going to do the split thing !!!!!!!
--- 	{ type = "item", name = "promethium-asteroid-chunk", amount = 2 }, -- !!! WIP
--- 	{ type = "item", name = "high-grade-promethium-asteroid-chunk", amount = 1, ignored_by_stats = 1 } -- !!! WIP
--- }
--- table.insert(data_recipe.results, {
--- 	type = "item", name = "high-grade-promethium-asteroid-chunk", amount = 1, probability = 0.5, ignored_by_stats = 1
--- })
--- data_recipe.main_product = "promethium-data"
 
 -- !!! Science tab in space tab may be good idea for fluids and data/packs

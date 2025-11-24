@@ -4,7 +4,8 @@ local utils = require("common.utils")
 local base_craft_time = 15 -- !!! Needs balance maybe
 local stack_size = 50
 local weight = 4000
-local pack_craft_category = "cryogenics-or-assembling" -- !!! This or "chemistry-or-cryogenics"? (Should just be my preference, both work)
+local pack_craft_category = "cryogenics-or-assembling"
+local order = "a-"
 
 local science_data = {
 	space = {
@@ -42,7 +43,9 @@ for name, props in pairs(science_data) do
 
 	local recipe = data.raw.recipe[name.."-science-pack"] -- May just overwrite, will see !!! (Issue is already exists)
 	recipe.main_product = name.."-science-pack"
-	recipe.category = pack_craft_category -- !!! Subcategory? !!!
+	recipe.category = pack_craft_category
+	recipe.subgroup = utils.subgroup.pack
+	recipe.order = order..util_props.order
 	recipe.energy_required = base_craft_time * util_props.craft_time_mult
 	recipe.ingredients = {
 		{ type = "item", name = name.."-data", amount = util_props.data_per_pack },

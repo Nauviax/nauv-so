@@ -24,6 +24,8 @@ low_grade_item.spoil_result = "iron-ore"
 -- Promethium powder (intermediate, uses asteroid productivity)
 local prom_item = {
 	type = "item", name = "promethium-147",
+	subgroup = utils.subgroup.pack_pre,
+	order = "z-a", -- Last in subgroup
 	icons = {{
 		icon = "__temp-mod__/graphics/items/prom-147.png", icon_size = 64,
 		tint = {1.0, 0.5, 0.5} -- !!! Should be matching red
@@ -44,7 +46,8 @@ prom_recipe.results = {
 } -- Chunk output NOT ignored apparently, and also uses prod.
 prom_recipe.main_product = prom_item.name -- Deviation from other crushing recipies afaik (!!! Check?)
 -- !!! UNSURE WHAT TO USE AS ICON, if any
-prom_recipe.order = "p[promethium]" -- !!! COMPARE TO NEIGHBOUR RECIPIES, including factoriopedia
+prom_recipe.subgroup = utils.subgroup.pack_pre
+prom_recipe.order = "z-a" -- Last in subgroup
 prom_recipe.icon = nil -- Clear the custom icon
 data:extend({ prom_item, prom_recipe })
 table.insert(data.raw.technology["asteroid-productivity"].effects, {
@@ -105,7 +108,7 @@ for _, conn in ipairs(med_connections) do
 	})
 end
 
-log(serpent.block(data.raw["space-connection"][huge_connection].asteroid_spawn_definitions[7])) -- Really just care about huge prom
+--log(serpent.block(data.raw["space-connection"][huge_connection].asteroid_spawn_definitions[7])) -- Really just care about huge prom
 -- It's a little low early perhaps, so maybe up this?
 --     asteroid = "huge-oxide-asteroid",
 --     spawn_points = {

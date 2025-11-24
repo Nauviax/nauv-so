@@ -335,15 +335,17 @@ for type_name, type_techs in pairs(inf_prod_techs) do
 		for level = 1, 5 do
 			local tech = table.deepcopy(old_tech)
 			tech.name = tech_name.."-"..level
-			if level > 1 then
-        		tech.prerequisites = { tech_name.."-"..(level-1) }
-			end
 			tech.unit.count = 500 * prod_tech_costs[level] * count_modifier
 			local tier_level = aquilo_tech and ({2,2,3,3,3})[level] or (level-1) -- 'or' tiers are effectively {0,1,2,3,3}
+			local tier = tiers[math.min(tier_level, 3)]
+			if level > 1 then
+        		tech.prerequisites = tier_level == 1 and { tier[2][1], tier[3][1], tier[4][1] } or { tier[#tier][1] } -- VGF, or latest
+				table.insert(tech.prerequisites, tech_name.."-"..(level-1)) -- Previous tech
+			end
 			if tier_level == 0 then -- Custom ingredients
 				tech.unit.ingredients = {{ "space-science-pack", 1 }, { first_pack_name, 1 }}
 			else -- Tier ingredients
-				tech.unit.ingredients = tiers[math.min(tier_level, 3)]
+				tech.unit.ingredients = tier
 			end
 			data:extend({tech})
 		end

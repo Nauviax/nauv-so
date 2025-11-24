@@ -8,6 +8,7 @@ local basic_fluid_color = {0.8, 0.1, 0.1}
 local basic_fluid_color_light = {1.0, 0.2, 0.2}
 local advanced_fluid_color = {0.6, 0.1, 0.6}
 local advanced_fluid_color_light = {0.9, 0.3, 0.9}
+local order = "b-"
 
 -- !!! Can I combine the two here slightly, reduce repeated code? !!! (Also general cleanup)
 
@@ -19,7 +20,8 @@ local basic_fluid = {
 	}},
 	default_temperature = 15,
 	base_color = basic_fluid_color, flow_color = basic_fluid_color,
-	order = "n[new-fluid]-s1[science-fluid]-1[basic]", --!!! TODO
+	subgroup = utils.subgroup.fluid,
+	order = utils.subgroup.fluid_order..order.."a",
 	auto_barrel = false
 }
 
@@ -27,8 +29,8 @@ local basic_recipe = {
 	type = "recipe", name = basic_fluid.name,
 	main_product = basic_fluid.name,
 	category = "chemistry-or-cryogenics",
-	subgroup = "fluid-recipes", -- !!!
-	--order = "!!!TODO", --!!!
+	subgroup = utils.subgroup.pack_pre,
+	order = order.."a",
 	enabled = false,
 	energy_required = craft_time_basic,
 	ingredients = {
@@ -53,7 +55,8 @@ local advanced_fluid = {
 	}},
 	default_temperature = 15,
 	base_color = advanced_fluid_color, flow_color = advanced_fluid_color,
-	order = "n[new-fluid]-s1[science-fluid]-2[advanced]", --!!! TODO
+	subgroup = utils.subgroup.fluid,
+	order = utils.subgroup.fluid_order..order.."b",
 	auto_barrel = false
 }
 
@@ -61,14 +64,14 @@ local advanced_recipe = {
 	type = "recipe", name = advanced_fluid.name,
 	main_product = advanced_fluid.name,
 	category = "cryogenics",
-	subgroup = "fluid-recipes", -- !!!
-	--order = "!!!TODO", --!!!
+	subgroup = utils.subgroup.pack_pre,
+	order = order.."b",
 	enabled = false,
 	energy_required = craft_time_advanced,
 	ingredients = {
 		{ type = "fluid", name = basic_fluid.name, amount = 100 },
-		{ type = "fluid", name = "petroleum-gas", amount = 100 }, -- Fizzy (need balance lots !!! Compare making on platform vs shipping up petro barrels)
-		{ type = "item", name = "battery", amount = 2 }, -- !!! Balance (Mainly for requiring sulfur + copper)
+		{ type = "fluid", name = "steam", amount = 1000, min_temperature = 500 }, -- !!! Balance review
+		{ type = "item", name = "slowdown-capsule", amount = 1 }, -- Balance !!!
 		{ type = "item", name = "promethium-147", amount = 2 },
 		utils.items.fluo_in(2) -- !!! How much gets stockpiled in machine? (!!! Also review using fluoro here)
 	},
