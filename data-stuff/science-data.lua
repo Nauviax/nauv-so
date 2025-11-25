@@ -16,7 +16,7 @@ local base_item = table.deepcopy(data.raw.tool["automation-science-pack"])
 base_item.icon = nil -- We will use icons
 
 local science_data = { -- !!! ALL AMOUNTS ARE UNBALANCED, items are p good I think tho.
-	space = { -- !!! Mostly balanced (Space)
+	space = { -- !!! Mostly balanced
 		stack_mult = 1,
 		weight_mult = 1,
 		craft_category = "organic-or-assembling",
@@ -29,7 +29,7 @@ local science_data = { -- !!! ALL AMOUNTS ARE UNBALANCED, items are p good I thi
 			{ type = "item", name = "heat-exchanger", amount = 1 }
 		}
 	},
-	metallurgic = {
+	metallurgic = { -- !!! Mostly balanced
 		stack_mult = 0.25,
 		weight_mult = 2,
 		craft_category = "metallurgy",
@@ -57,7 +57,7 @@ local science_data = { -- !!! ALL AMOUNTS ARE UNBALANCED, items are p good I thi
 		spoil_ticks = 216000, -- 1h, normal pack timer
 		spoil_result = "spoilage"
 	},
-	electromagnetic = {
+	electromagnetic = {-- !!! Mostly balanced
 		stack_mult = 2,
 		weight_mult = 0.25,
 		craft_category = "electromagnetics",
@@ -65,9 +65,9 @@ local science_data = { -- !!! ALL AMOUNTS ARE UNBALANCED, items are p good I thi
 		is_tool = false,
 		ingredients = {
 			dcard, goop,
-			{ type = "item", name = "accumulator", amount = 5 },
-			{ type = "fluid", name = "electrolyte", amount = 125 },
-			{ type = "item", name = "supercapacitor", amount = 5 }
+			{ type = "item", name = "accumulator", amount = 6 },
+			{ type = "fluid", name = "electrolyte", amount = 200 },
+			{ type = "item", name = "supercapacitor", amount = 6 }
 		}
 	},
 	cryogenic = {
@@ -83,21 +83,20 @@ local science_data = { -- !!! ALL AMOUNTS ARE UNBALANCED, items are p good I thi
 		},
 		fluoro_used = 15 -- !!! This is x5 normal
 	},
-	promethium = {
-		stack_mult = 0.25, -- Balance review, egg to pack stack ratio concerns (!!!)
+	promethium = { -- !!! Mostly balanced (!!! Still want to balance prometh (both) to begg ratio, see if eggs run out too fast once at hgprom area)
+		stack_mult = 0.25,
 		weight_mult = 1,
 		extra_craft_mult = 0.2, -- Fast crafting for this step due to spoilables and hazardous area
 		craft_category = "cryogenics",
 		color = {0.2, 0.3, 0.4},
 		is_tool = false,
-		ingredients = { -- !!! Review Pegg balance, about half to 1/4 of biter egg per pack? (Half at most, as egg is more expensive and heavier)
+		ingredients = {
 			dcard, goop,
-			{ type = "item", name = "biter-egg", amount = 5 }, -- !!! Review stack size of ingredients vs out, and overall storage needed for ideal trip (Too much egg/circ means too much storage, not enough means will just be waiting for HGprom)
-			{ type = "item", name = "quantum-processor", amount = 2 }, -- !!! Extra
+			{ type = "item", name = "biter-egg", amount = 5 },
+			{ type = "item", name = "quantum-processor", amount = 2 },
 			{ type = "item", name = "high-grade-promethium-asteroid-chunk", amount = 1 }
 		},
-		fluoro_used = 3 -- !!! This would be in ADDITION to science base, being used in space. Careful of rocket cost. Check packs per fluoro-rockets, compare to Beggs? (Ideally packs per Begg-rocket like x4 as many at least)
-		-- !!! Lower rocket cost of fluoro? May need to rebalance other recipies if so, like fusion power usage
+		fluoro_used = 3
 	}
 }
 

@@ -10,24 +10,24 @@ local order = "a-"
 -- !!! Mostly happy with lube, sulf, plast. Wood needs good looking at, and 4/5 need heavy amount balance
 -- Local ing balance same each (tung to holm, same amnt per pack as vanila, if vulc is x6 then fulg is x6 too)
 local science_data = {
-	space = { -- !!! Mostly balanced (Space)
+	space = { -- !!! Mostly balanced
 		craft_category = "organic-or-chemistry",
 		ingredients = {
-			{ type = "fluid", name = "lubricant", amount = 200 },
+			{ type = "fluid", name = "lubricant", amount = 200 }, -- No extra compared to VFG, but also no base 50% prod until Gleba
 			{ type = "fluid", name = "sulfuric-acid", amount = 200 },
 			{ type = "item", name = "plastic-bar", amount = 20 },
-			{ type = "item", name = "uranium-235", amount = 3 }, -- !!! Price check!
-			{ type = "item", name = "flamethrower-ammo", amount = 10 }, -- !!! Price check! (Crude may be high, but I like the idea. Investigate oil/s spare crude on my save?)
+			{ type = "item", name = "uranium-235", amount = 4 },
+			{ type = "item", name = "flamethrower-ammo", amount = 10 }, -- !!! (Crude may be high, but I like the idea. Investigate oil/s spare crude on my save?)
 		}
 	},
-	metallurgic = {
+	metallurgic = { -- !!! Mostly balanced
 		craft_category = "metallurgy",
 		ingredients = {
 			{ type = "fluid", name = "lubricant", amount = 200 },
-			{ type = "fluid", name = "sulfuric-acid", amount = 800 }, -- Extra acid
+			{ type = "fluid", name = "sulfuric-acid", amount = 1000 }, -- Extra acid
 			{ type = "item", name = "plastic-bar", amount = 20 },
-			{ type = "item", name = "tungsten-carbide", amount = 10 }, -- !!! Price check!
-			{ type = "item", name = "refined-concrete", amount = 20 } -- !!! Price check!
+			{ type = "item", name = "tungsten-carbide", amount = 30 },
+			{ type = "item", name = "refined-concrete", amount = 40 }
 		}
 	},
 	agricultural = {
@@ -35,20 +35,20 @@ local science_data = {
 		ingredients = {
 			{ type = "fluid", name = "lubricant", amount = 200 },
 			{ type = "fluid", name = "sulfuric-acid", amount = 200 },
-			{ type = "item", name = "plastic-bar", amount = 80 }, -- Extra (bio)plastic
+			{ type = "item", name = "plastic-bar", amount = 100 }, -- Extra (bio)plastic
 			{ type = "item", name = "nutrients", amount = 50 }, -- !!! Price check! (Likely a decent amount here tho, bioflux is cheap) (1biof is 60 after prod)
 			{ type = "item", name = "coal", amount = 20 } -- !!! Price check! Maybe coal, maybe explosives (!!! Test both? Prolly coal tho)
 
 		}
 	},
-	electromagnetic = {
+	electromagnetic = { -- !!! Mostly balanced
 		craft_category = "electromagnetics",
 		ingredients = {
-			{ type = "fluid", name = "lubricant", amount = 800 }, -- Extra lube
+			{ type = "fluid", name = "lubricant", amount = 1000 }, -- Extra lube
 			{ type = "fluid", name = "sulfuric-acid", amount = 200 },
 			{ type = "item", name = "plastic-bar", amount = 20 },
-			{ type = "item", name = "superconductor", amount = 12 }, -- !!! PRICE
-			{ type = "item", name = "rocket-fuel", amount = 4 }, -- !!! PRICE (Also this one is uncertain)
+			{ type = "item", name = "superconductor", amount = 30 },
+			{ type = "item", name = "rocket-fuel", amount = 15 },
 		}
 	},
 	cryogenic = {
@@ -56,20 +56,20 @@ local science_data = {
 		ingredients = {
 			{ type = "fluid", name = "lubricant", amount = 200 },
 			{ type = "fluid", name = "sulfuric-acid", amount = 200 },
-			{ type = "item", name = "wood", amount = 5 }, -- !!! time mostly, test (!!! OLD WAS 2 BUT I UPPED IT)
+			{ type = "item", name = "wood", amount = 5 }, -- !!! time mostly, test (!!! OLD WAS 2 BUT I UPPED IT) (!!! Review prom wood too)
 			{ type = "item", name = "solid-fuel", amount = 15 }, -- !!! PRICE
 			utils.items.fluo_in(10) -- !!! PRICE AAA
 		},
 		byproduct = utils.items.fluo_out(5)
 	},
-	promethium = {
+	promethium = { -- !!! Mostly balanced
 		craft_category = "cryogenics",
 		ingredients = {
-			{ type = "fluid", name = "lubricant", amount = 200 },
+			{ type = "fluid", name = "basic-base-fluid", amount = 200 }, -- Lube is just a little too much for platforms
 			{ type = "fluid", name = "sulfuric-acid", amount = 200 },
 			{ type = "item", name = "wood", amount = 5 },
-			{ type = "item", name = "pentapod-egg", amount = 5 }, -- !!! PRICE (Begg per pack also 5, goop makes 2 so is good?? Check. Account for higher cost, risk and weight)
-			{ type = "item", name = "foundation", amount = 2 }, -- !!! PRICE (Actually not THAT bad, balance w circuits)
+			{ type = "item", name = "pentapod-egg", amount = 5 },
+			{ type = "item", name = "foundation", amount = 2 },
 		}
 	}
 }
