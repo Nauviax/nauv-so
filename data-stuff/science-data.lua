@@ -3,7 +3,7 @@ local utils = require("common.utils")
 -- Params
 local base_craft_time = 20
 local base_stack_size = 100
-local base_weight = 2000
+local base_weight = 5000
 local data_crafts_per_pack = 2
 local icon = "__temp-mod__/graphics/items/data.png"
 local order = "a-"
@@ -82,7 +82,7 @@ local science_data = {
 		},
 		fluoro_used = 20
 	},
-	promethium = { -- !!! Still want to balance prometh data/pack to begg ratio, see if eggs run out too fast once at hgprom area. (Amnt pegg seems fine for now) (!!! Double stack size of begg and call it day?)
+	promethium = {
 		stack_mult = 0.25,
 		weight_mult = 1,
 		extra_craft_mult = 0.2, -- Fast crafting for this step due to spoilables and hazardous area

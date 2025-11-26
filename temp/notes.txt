@@ -47,20 +47,9 @@ wincon 1b tech?
 
 -- PHONE NOTES
 
-stack science density vs vanilla, stack size /4 but stack value x5, investigate impact of this, resolve?
-- Basically means less science storage space needed in ships right? Ideally we require somewhat large holding bays, but perhaps needing to store data is good enough.
-- ^ Is data storage less dense? Ideally it SHOULD be, at least partially. Data -> pack should result in less stacks, even after some prod. (10 data stacks -> 5 pack stacks?)
-- ^ Though also, I want science to NOT be dense. Perhaps other way around is better? Data is dense? (Liking this better afaik)
-
-Egg to pack storage ratio, investigate beggs to prompacks. Probably want lots of eggs to respectable num packs, but also need to hold all the eggs
-- May double begg stack size, unsure. (Investigate)
-
 Ideally promethium scarce enough to warrant not crafting base at same time as packs. Too much prometh and we can just do both.
 - (Tho both still requires double the crusher right? Maybe current is fine, player may choose less crushers)
 - Ideally small early ships process 3-4 rockets of data on way back. Larger later ships closer to 12-16 rockets of data?
 - ^ (Aquilo distance just assume fine maybe, tho it IS like triple required. But also asteroid productivity)
 
 Balance non-prom asteroid material in early game. (Later-game is probably ok anyway)
-
-Packs per rocket (After data to pack prod step in space) is it x5 rockets than vanilla?
-1 rocket 1000 sci in vanilla, then 1 rocket 200 sci after data-prod-step in mod. (Investigate) (!!!)
