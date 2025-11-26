@@ -1,7 +1,7 @@
 local utils = require("common.utils")
 
 -- Params
-local base_craft_time = 15 -- !!! Needs balance maybe
+local base_craft_time = 15
 local stack_size = 50
 local weight = 4000
 local pack_craft_category = "cryogenics-or-assembling"
@@ -25,12 +25,12 @@ local science_data = {
 		prom_amnt = 2
 	},
 	cryogenic = {
-		advanced = true, -- Reminder: Advanced is an extra 2 prom-147
-		prom_amnt = 3 -- Asteroid prod needs to be considered here, along with longer trips. (!!!)
+		advanced = true, -- +2
+		prom_amnt = 5
 	},
 	promethium = {
-		advanced = true,
-		prom_amnt = 5 -- !!! Balance along with others, but perhaps this could be even HIGHER safely? It's a long trip back to convert the data
+		advanced = true, -- +2
+		prom_amnt = 20
 	}
 }
 
@@ -41,7 +41,7 @@ for name, props in pairs(science_data) do
 	item.stack_size = stack_size
 	item.weight = weight
 
-	local recipe = data.raw.recipe[name.."-science-pack"] -- May just overwrite, will see !!! (Issue is already exists)
+	local recipe = data.raw.recipe[name.."-science-pack"]
 	recipe.main_product = name.."-science-pack"
 	recipe.category = pack_craft_category
 	recipe.subgroup = utils.subgroup.pack

@@ -1,19 +1,7 @@
-NOTE the below prom-147 section is a little outdated, code is source of truth
---  (!!! Does chunk crushing include the 0.2a?? It seems like it DOES, meaning way more P per A) (!!! TEST, though research seems it's fair game)
-
-vulc to nauv enough for 4 rockets of data? (assume no base)
-large ship + prod enough for 16? Test Aquilo level, prometh likely fine
-
 Compare prom packs per huge prometh in old and using new (lg and hg), ideally similar (remember account for x5 costs)
+-- Doesn't seem to bad in game, but still compare
 
-!!!!!!!!!!! Consider mass rename space pack to nauvis pack, internally (Would need to do locale after)
-
-
-
-
-
-
-
+!!! Consider mass rename space pack to nauvis pack, !!_internally_!! (Would need to do locale after)
 
 
 
@@ -24,37 +12,55 @@ Compare prom packs per huge prometh in old and using new (lg and hg), ideally si
 
 
 
-!!! Ensure recipe order items is good, see cryo fluid as weak forgetful example (new on top?)
-^ also this factoriopedia wrong tab/
-
-Need sort item order in recipies AND TECHS !!! (Just techs now)
-Check all new recipies and see if need tints (Also do for rainborore later?)
-
+Need sort item order in TECHS !!!
+Check all new recipies and see if need crafting tints (!!! Also do for rainborore later?)
 
 
 Should prepare locale later to use (Remember space is nauvis now, check all, descs too)
--- NOTE: !!! Remember descriptions/localised_description etc in all
+-- NOTE: !!! Remember descriptions/localised_description etc in all, and that one turret thing
+
+-- Promethium-147 balance in very early game, investigate (may be fine as-is)
 
 
-
--- !!! STILL NEED TO balance MED PROMETH TO ASTEROID BELT AREAS between planets (Will also need to review balance)
-
-
-
-
-AAA UPDATE RAINBOWORE
+AAA UPDATE RAINBOWORE !!!
 ^ crafting_machine_tint ?? Small misc tidy too perhaps
 
 -- ??? Could not load source '@__factoryplanner__/backend/data/ModuleSet.lua'.
+-- ^ look into fixing maybe, or just hide instead of nil
 
 -- Instead of ribbon world, just super distant resources? (OR JUST PLAY DEFAULT IDK)
--- Likely just do x5 sci, more than that seems artificial
+
+---
+
+
+
 
 -----
 TODO
-balance recipies
-order, subgroups (new space?) (Recipe item order too!) (May just be tech left now)
+balance recipies (Almost done)
+order of unlocks in each tech
+balance railgun handheld *maybe*
 locale (nauvispack) (Fix rail turret bonus too)
 rainbowore release + craft tints
 attempt fix factoryplanner
 wincon 1b tech?
+
+-- PHONE NOTES
+
+stack science density vs vanilla, stack size /4 but stack value x5, investigate impact of this, resolve?
+- Basically means less science storage space needed in ships right? Ideally we require somewhat large holding bays, but perhaps needing to store data is good enough.
+- ^ Is data storage less dense? Ideally it SHOULD be, at least partially. Data -> pack should result in less stacks, even after some prod. (10 data stacks -> 5 pack stacks?)
+- ^ Though also, I want science to NOT be dense. Perhaps other way around is better? Data is dense? (Liking this better afaik)
+
+Egg to pack storage ratio, investigate beggs to prompacks. Probably want lots of eggs to respectable num packs, but also need to hold all the eggs
+- May double begg stack size, unsure. (Investigate)
+
+Ideally promethium scarce enough to warrant not crafting base at same time as packs. Too much prometh and we can just do both.
+- (Tho both still requires double the crusher right? Maybe current is fine, player may choose less crushers)
+- Ideally small early ships process 3-4 rockets of data on way back. Larger later ships closer to 12-16 rockets of data?
+- ^ (Aquilo distance just assume fine maybe, tho it IS like triple required. But also asteroid productivity)
+
+Balance non-prom asteroid material in early game. (Later-game is probably ok anyway)
+
+Packs per rocket (After data to pack prod step in space) is it x5 rockets than vanilla?
+1 rocket 1000 sci in vanilla, then 1 rocket 200 sci after data-prod-step in mod. (Investigate) (!!!)

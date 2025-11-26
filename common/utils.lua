@@ -1,8 +1,8 @@
-local utils = {} -- Pass later on to remove unused items (!!!)
+local utils = {} -- !!! TODO implement utils in/for remove-unused-items code
 
 utils.sciences = {
 	space = {
-		order = "a", -- !!! USE IN ALL ITEMS/RECIPIES !!!
+		order = "a",
 		craft_time_mult = 1,
 		data_per_pack = 2,
 		planet = "nauvis",
@@ -39,7 +39,7 @@ utils.sciences = {
 	promethium = {
 		order = "f",
 		craft_time_mult = 2,
-		data_per_pack = 2, -- !!! Do more with this maybe? Not here necessarily.
+		data_per_pack = 2,
 		planet = "shattered-planet",
 		surface_condition = {{ property = "gravity", max = 0 }}
 	}

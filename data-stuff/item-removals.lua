@@ -1,3 +1,4 @@
+-- !!! CONFIG TO JUST HIDE INSTEAD OF REMOVE, or just hide anyway? !!! Review if hiding makes game slower to load, more sprites in ctrlF3 altas
 -- Inserter removals
 data.raw.inserter["burner-inserter"]= nil
 data.raw.item["burner-inserter"] = nil

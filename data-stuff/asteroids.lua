@@ -28,13 +28,12 @@ local prom_item = {
 	order = "z-a", -- Last in subgroup
 	icons = {{
 		icon = "__temp-mod__/graphics/items/prom-147.png", icon_size = 64,
-		tint = {1.0, 0.5, 0.5} -- !!! Should be matching red
+		tint = {1.0, 0.5, 0.5}
 	}},
 	stack_size = 20,
-	weight = 1000, -- !!! BALANCE (likely based on chunk weight, 10th of weight?)
+	weight = 5000,
 	spoil_ticks = 18000, -- Same as chunk, but no spoil result.
 	default_import_location = "shattered-planet"
-	-- !!! WIP
 }
 local prom_recipe = table.deepcopy(data.raw.recipe["metallic-asteroid-crushing"])
 prom_recipe.name = prom_item.name
@@ -43,16 +42,15 @@ prom_recipe.ingredients[1].name = "promethium-asteroid-chunk"
 prom_recipe.results = {
 	{ type = "item", name = prom_item.name, amount = 10 }, -- ~12.5 per chunk, pre-prod
 	{ type = "item", name = "promethium-asteroid-chunk", amount = 1, probability = 0.2 }
-} -- Chunk output NOT ignored apparently, and also uses prod.
-prom_recipe.main_product = prom_item.name -- Deviation from other crushing recipies afaik (!!! Check?)
--- !!! UNSURE WHAT TO USE AS ICON, if any
+} -- Chunk output NOT ignored apparently, and also uses prod
+prom_recipe.main_product = prom_item.name -- Deviation from other crushing recipies afaik
 prom_recipe.subgroup = utils.subgroup.pack_pre
 prom_recipe.order = "z-a" -- Last in subgroup
 prom_recipe.icon = nil -- Clear the custom icon
 data:extend({ prom_item, prom_recipe })
 table.insert(data.raw.technology["asteroid-productivity"].effects, {
 	type = "change-recipe-productivity", recipe = prom_recipe.name, change = 0.1
-}) -- Noteably this is BEFORE the tech rework code, so just 0.1 for now. (!!! TEST THE PROD CHANGES AND 0.2a STUFF)
+}) -- Noteably this is BEFORE the tech rework code, so just set 0.1 for now
 utils.add_to_tech("promethium-science-pack", prom_item.name)
 
 -- Add high grade to big asteroid chunks
@@ -74,7 +72,7 @@ for _, asteroid in ipairs({
 }) do
 	for _, resist in ipairs(data.raw.asteroid[asteroid].resistances) do
 		if resist.type == "laser" then
-			resist.percent = -100 -- !!! MAY need to look at power options in no-sun mod, as lasers may be hard in that !!!
+			resist.percent = -100 -- !!! MAY need to look at power options in no-sun mod, as lasers may be hard in that
 		end
 	end
 end
@@ -90,9 +88,7 @@ local med_connections = {
 	"fulgora-aquilo",
 	"aquilo-solar-system-edge"
 }
-local huge_connection = "solar-system-edge-shattered-planet" -- Adjust so large appear sooner?
-local base_prob = 0.006 -- !!! BALANCE VALUES with whatever seems right (!!! TEST SCIENCE CHAINS IN GAME)
--- !!! May need to adjust promethium usage instead of spawn rate, as too many is lag and difficult to shoot down !!!
+local base_prob = 0.003 -- !!! Should be fine, but review for earlier sciences
 local speed = 1/60 -- Default
 for _, conn in ipairs(med_connections) do
 	table.insert(data.raw["space-connection"][conn].asteroid_spawn_definitions, {
@@ -101,32 +97,9 @@ for _, conn in ipairs(med_connections) do
 		spawn_points = {
 			{ distance = 0.1, probability = 0, speed = speed, angle_when_stopped = 0.4 },
 			{ distance = 0.2, probability = base_prob, speed = speed, angle_when_stopped = 0.4 },
-			{ distance = 0.5, probability = base_prob * 1.4, speed = speed, angle_when_stopped = 0.4 },
+			{ distance = 0.5, probability = base_prob * 1.5, speed = speed, angle_when_stopped = 0.4 },
 			{ distance = 0.8, probability = base_prob, speed = speed, angle_when_stopped = 0.4 },
 			{ distance = 0.9, probability = 0, speed = speed, angle_when_stopped = 0.4 }
 		}
 	})
 end
-
---log(serpent.block(data.raw["space-connection"][huge_connection].asteroid_spawn_definitions[7])) -- Really just care about huge prom
--- It's a little low early perhaps, so maybe up this?
---     asteroid = "huge-oxide-asteroid",
---     spawn_points = {
---       {
---         angle_when_stopped = 0.4,
---         distance = 0.001,
---         probability = 0.0005,
---         speed = 0.016666666666666665
---       },
---       {
---         angle_when_stopped = 0.4,
---         distance = 0.002,
---         probability = 0.00054398797595190382,
---         speed = 0.016666666666666665
---       },
---       {
---         angle_when_stopped = 0.4,
---         distance = 0.2,
---         probability = 0.023134018036072144,
---         speed = 0.016666666666666665
---       },

@@ -1,7 +1,7 @@
-local utils = require("common.utils") -- !!! This file could use a minor cleanup (Whitespace etc)
+local utils = require("common.utils")
 
 -- Params
-local craft_time = 4
+local craft_time = 6
 local order = "b-"
 
 local item = table.deepcopy(data.raw.tool["automation-science-pack"])
@@ -25,7 +25,7 @@ local recipe = {
 	subgroup = utils.subgroup.data_pre,
 	order = order.."y",
 	enabled = false,
-	energy_required = craft_time, -- !!! Review balance
+	energy_required = craft_time,
 	ingredients = {
 		{ type = "item", name = "steel-plate", amount = 1 },
 		{ type = "item", name = "battery", amount = 2 },

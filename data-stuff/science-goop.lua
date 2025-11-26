@@ -1,30 +1,28 @@
 local utils = require("common.utils")
 
 -- Params
-local base_craft_time = 15 -- !!! aaa no idea yet (!!! I may make this constant even ?!)
-local base_texture = "__temp-mod__/graphics/fluids/bean.png" -- May need to set recipies if main_product doesn't work for it (!!!)
-local fluid_color = {0.9, 0.9, 0.9} -- !!! WIP (Trying white)
+local base_craft_time = 15
+local base_texture = "__temp-mod__/graphics/fluids/bean.png"
+local fluid_color = {0.9, 0.9, 0.9}
 local fluid_color_light = {1.0, 1.0, 1.0}
 local order = "a-"
 
--- !!! Mostly happy with lube, sulf, plast. Wood needs good looking at, and 4/5 need heavy amount balance
--- Local ing balance same each (tung to holm, same amnt per pack as vanila, if vulc is x6 then fulg is x6 too)
 local science_data = {
-	space = { -- !!! Mostly balanced
+	space = {
 		craft_category = "organic-or-chemistry",
 		ingredients = {
 			{ type = "fluid", name = "lubricant", amount = 200 }, -- No extra compared to VFG, but also no base 50% prod until Gleba
 			{ type = "fluid", name = "sulfuric-acid", amount = 200 },
 			{ type = "item", name = "plastic-bar", amount = 20 },
 			{ type = "item", name = "uranium-235", amount = 4 },
-			{ type = "item", name = "flamethrower-ammo", amount = 10 }, -- !!! (Crude may be high, but I like the idea. Investigate oil/s spare crude on my save?)
+			{ type = "item", name = "flamethrower-ammo", amount = 10 },
 		}
 	},
-	metallurgic = { -- !!! Mostly balanced
+	metallurgic = {
 		craft_category = "metallurgy",
 		ingredients = {
 			{ type = "fluid", name = "lubricant", amount = 200 },
-			{ type = "fluid", name = "sulfuric-acid", amount = 1000 }, -- Extra acid
+			{ type = "fluid", name = "sulfuric-acid", amount = 1000 },
 			{ type = "item", name = "plastic-bar", amount = 20 },
 			{ type = "item", name = "tungsten-carbide", amount = 30 },
 			{ type = "item", name = "refined-concrete", amount = 40 }
@@ -35,13 +33,13 @@ local science_data = {
 		ingredients = {
 			{ type = "fluid", name = "lubricant", amount = 200 },
 			{ type = "fluid", name = "sulfuric-acid", amount = 200 },
-			{ type = "item", name = "plastic-bar", amount = 100 }, -- Extra (bio)plastic
-			{ type = "item", name = "nutrients", amount = 50 }, -- !!! Price check! (Likely a decent amount here tho, bioflux is cheap) (1biof is 60 after prod)
-			{ type = "item", name = "coal", amount = 20 } -- !!! Price check! Maybe coal, maybe explosives (!!! Test both? Prolly coal tho)
+			{ type = "item", name = "plastic-bar", amount = 100 },
+			{ type = "item", name = "nutrients", amount = 50 },
+			{ type = "item", name = "coal", amount = 10 }
 
 		}
 	},
-	electromagnetic = { -- !!! Mostly balanced
+	electromagnetic = {
 		craft_category = "electromagnetics",
 		ingredients = {
 			{ type = "fluid", name = "lubricant", amount = 1000 }, -- Extra lube
@@ -54,20 +52,20 @@ local science_data = {
 	cryogenic = {
 		craft_category = "cryogenics",
 		ingredients = {
-			{ type = "fluid", name = "lubricant", amount = 200 },
-			{ type = "fluid", name = "sulfuric-acid", amount = 200 },
-			{ type = "item", name = "wood", amount = 5 }, -- !!! time mostly, test (!!! OLD WAS 2 BUT I UPPED IT) (!!! Review prom wood too)
-			{ type = "item", name = "solid-fuel", amount = 15 }, -- !!! PRICE
-			utils.items.fluo_in(10) -- !!! PRICE AAA
+			{ type = "fluid", name = "sulfuric-acid", amount = 200 }, -- No lube, too much hassle
+			{ type = "item", name = "wood", amount = 20 },
+			{ type = "item", name = "solid-fuel", amount = 20 },
+			{ type = "item", name = "rocket-fuel", amount = 10 },
+			utils.items.fluo_in(50)
 		},
-		byproduct = utils.items.fluo_out(5)
+		byproduct = utils.items.fluo_out(25)
 	},
-	promethium = { -- !!! Mostly balanced
+	promethium = {
 		craft_category = "cryogenics",
 		ingredients = {
 			{ type = "fluid", name = "basic-base-fluid", amount = 200 }, -- Lube is just a little too much for platforms
 			{ type = "fluid", name = "sulfuric-acid", amount = 200 },
-			{ type = "item", name = "wood", amount = 5 },
+			{ type = "item", name = "wood", amount = 20 },
 			{ type = "item", name = "pentapod-egg", amount = 5 },
 			{ type = "item", name = "foundation", amount = 2 },
 		}
@@ -91,7 +89,7 @@ data:extend({ fluid })
 for name, props in pairs(science_data) do
 	local util_props = utils.sciences[name]
 
-	local recipe = { -- !!!!! USE ICONS TO DISTINGUISH, use planet icons?
+	local recipe = {
 		type = "recipe", name = fluid.name.."-"..name, -- Intentionally never matches item name, meaning no main recipe
 		icons = {{
 			icon = (util_props.planet == "nauvis" and "__base__" or "__space-age__").."/graphics/icons/"..util_props.planet..".png", icon_size = 64
@@ -111,21 +109,24 @@ for name, props in pairs(science_data) do
 		enabled = false,
 		energy_required = base_craft_time * util_props.craft_time_mult,
 		ingredients =  props.ingredients,
-		results = {{ type = "fluid", name = fluid.name, amount = 400 }}, -- 4 data crafts, so 2 pack crafts (!!! I may change this ratio significantly !!! (See craft time too if so))
+		results = {{ type = "fluid", name = fluid.name, amount = 400 }},
 		allow_productivity = true,
 		surface_conditions = util_props.surface_condition,
 		crafting_machine_tint = utils.recipe_tints(fluid_color)
 	}
+	if props.byproduct then
+		table.insert(recipe.results, props.byproduct)
+	end
 	data:extend({ recipe })
 	utils.add_to_tech(name.."-science-pack", recipe.name)
 end
 
--- Wood adjustments to prevent manual stockpiling and increace generation rate
--- Base game is 0.15 or 0.2wps, now about 2.1 or 2.2wps.
--- 1kspm (5k) theoretically needs 16 towers, before prod.
-data.raw.item["wood"].spoil_ticks = 216000 -- 1h, fairly normal length.
-data.raw.item["wood"].spoil_result = "spoilage"
+-- Wood adjustments to prevent manual stockpiling and make easier to produce/ship.
+-- Base game is 0.15/0.2wps per tower. These changes, with bio, make it 1.0. 
+local wood = data.raw.item["wood"]
+wood.spoil_ticks = 216000 -- 1h, fairly normal length.
+wood.spoil_result = "spoilage"
+wood.weight = 1000 -- Old 2000
 data.raw.plant["tree-plant"].growth_ticks = 18000 -- 5m instead of 10m
-data.raw.plant["tree-plant"].minable.results[1].amount = 16 -- !!! TEST if this affects other trees also !!! (Manually planted? Just test all)
--- !!! Likely log in tips-n-tricks these changes, and to expect just over 2wps per tower
--- !!! 16 isn't that much really, maybe revert more if 1kspm is easy to hit? (1wps?)
+data.raw.plant["tree-plant"].minable.results[1].amount = 8 -- Double wood, also reduces seed dependency
+-- !!! Likely log in tips-n-tricks these changes, and to expect just 1wps per tower
