@@ -51,7 +51,7 @@ data:extend({ prom_item, prom_recipe })
 table.insert(data.raw.technology["asteroid-productivity"].effects, {
 	type = "change-recipe-productivity", recipe = prom_recipe.name, change = 0.1
 }) -- Noteably this is BEFORE the tech rework code, so just set 0.1 for now
-utils.add_to_tech("promethium-science-pack", prom_item.name)
+utils.add_to_tech("space-science-pack", prom_item.name)
 
 -- Add high grade to big asteroid chunks
 local spread = 1
@@ -103,3 +103,7 @@ for _, conn in ipairs(med_connections) do
 		}
 	})
 end
+
+-- Slightly more ice from oxide asteroids (Due to higher requirements for ice)
+data.raw.recipe["oxide-asteroid-crushing"].results[1].amount = 8 -- From 5
+data.raw.recipe["advanced-oxide-asteroid-crushing"].results[1].amount = 4 -- From 3

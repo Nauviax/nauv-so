@@ -36,11 +36,11 @@ local basic_recipe = {
 	ingredients = { -- !!! Light balance review for recipe, just to ensure not too much of any one asteroid early. (Review at pack, not just this.)
 		{ type = "fluid", name = "water", amount = 25 },
 		{ type = "fluid", name = "thruster-fuel", amount = 75 },
-		{ type = "item", name = "steel-plate", amount = 1},
-		{ type = "item", name = "promethium-147", amount = 1 }
+		{ type = "item", name = "steel-plate", amount = 1 },
+		{ type = "item", name = "promethium-147", amount = 2 }
 	},
 	results = {
-		{ type = "fluid", name = basic_fluid.name, amount = 100 } -- Enough for 1 pack
+		{ type = "fluid", name = basic_fluid.name, amount = 50 } -- Enough for 1/2 pack
 	},
 	allow_productivity = true,
 	surface_conditions = utils.sciences.promethium.surface_condition,
@@ -72,7 +72,7 @@ local advanced_recipe = {
 		{ type = "fluid", name = basic_fluid.name, amount = 100 },
 		{ type = "fluid", name = "steam", amount = 1000, min_temperature = 500 },
 		{ type = "item", name = "slowdown-capsule", amount = 1 },
-		{ type = "item", name = "promethium-147", amount = 2 },
+		{ type = "item", name = "promethium-147", amount = 4 },
 		utils.items.fluo_in(6)
 	},
 	results = {

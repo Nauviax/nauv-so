@@ -1,8 +1,4 @@
-Compare prom packs per huge prometh in old and using new (lg and hg), ideally similar (remember account for x5 costs)
--- Doesn't seem to bad in game, but still compare
-
 !!! Consider mass rename space pack to nauvis pack, !!_internally_!! (Would need to do locale after)
-
 
 
 ---
@@ -19,8 +15,6 @@ Check all new recipies and see if need crafting tints (!!! Also do for rainboror
 Should prepare locale later to use (Remember space is nauvis now, check all, descs too)
 -- NOTE: !!! Remember descriptions/localised_description etc in all, and that one turret thing
 
--- Promethium-147 balance in very early game, investigate (may be fine as-is)
-
 
 AAA UPDATE RAINBOWORE !!!
 ^ crafting_machine_tint ?? Small misc tidy too perhaps
@@ -33,15 +27,13 @@ AAA UPDATE RAINBOWORE !!!
 ---
 
 
-
-
 -----
 TODO
 balance recipies (Almost done)
 order of unlocks in each tech
 balance railgun handheld *maybe*
 locale (nauvispack) (Fix rail turret bonus too)
-rainbowore release + craft tints
+rainbowore release + craft tints (Just for known types)
 attempt fix factoryplanner
 wincon 1b tech?
 
@@ -51,5 +43,3 @@ Ideally promethium scarce enough to warrant not crafting base at same time as pa
 - (Tho both still requires double the crusher right? Maybe current is fine, player may choose less crushers)
 - Ideally small early ships process 3-4 rockets of data on way back. Larger later ships closer to 12-16 rockets of data?
 - ^ (Aquilo distance just assume fine maybe, tho it IS like triple required. But also asteroid productivity)
-
-Balance non-prom asteroid material in early game. (Later-game is probably ok anyway)

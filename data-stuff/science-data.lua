@@ -19,7 +19,6 @@ local science_data = {
 		stack_mult = 1,
 		weight_mult = 1,
 		craft_category = "organic-or-assembling",
-		color = {1.0, 1.0, 1.0},
 		is_tool = true,
 		ingredients = {
 			dcard, goop,
@@ -32,7 +31,6 @@ local science_data = {
 		stack_mult = 0.25,
 		weight_mult = 2,
 		craft_category = "metallurgy",
-		color = {1.0, 0.5, 0.2},
 		is_tool = false,
 		ingredients = {
 			dcard, goop,
@@ -45,7 +43,6 @@ local science_data = {
 		stack_mult = 1,
 		weight_mult = 1,
 		craft_category = "organic",
-		color = {0.7, 1.0, 0.2},
 		is_tool = false,
 		ingredients = {
 			dcard, goop,
@@ -60,7 +57,6 @@ local science_data = {
 		stack_mult = 2,
 		weight_mult = 0.25,
 		craft_category = "electromagnetics",
-		color = {0.8, 0.1, 0.8},
 		is_tool = false,
 		ingredients = {
 			dcard, goop,
@@ -73,7 +69,6 @@ local science_data = {
 		stack_mult = 1,
 		weight_mult = 1,
 		craft_category = "cryogenics",
-		color = {0.3, 0.3, 1.0},
 		is_tool = false,
 		ingredients = {
 			dcard, goop,
@@ -87,7 +82,6 @@ local science_data = {
 		weight_mult = 1,
 		extra_craft_mult = 0.2, -- Fast crafting for this step due to spoilables and hazardous area
 		craft_category = "cryogenics",
-		color = {0.2, 0.3, 0.4},
 		is_tool = false,
 		ingredients = {
 			dcard, goop,
@@ -107,7 +101,7 @@ for name, props in pairs(science_data) do
 	item.icons = {{
 		-- Data card main icon
 		icon = icon, icon_size = 64,
-		tint = props.color
+		tint = util_props.color
 	}, {
 		-- Second layer, darkened version of relevant pack
 		icon = data.raw.tool[name.."-science-pack"].icon, icon_size = 64,

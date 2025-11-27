@@ -1,7 +1,7 @@
 local utils = require("common.utils")
 
 -- Params
-local base_craft_time = 15
+local base_craft_time = 12
 local stack_size = 50
 local weight = 5000
 local pack_craft_category = "cryogenics-or-assembling"
@@ -58,4 +58,5 @@ for name, props in pairs(science_data) do
 	}
 	recipe.allow_productivity = true -- Already true, just clarity
 	recipe.surface_conditions = utils.sciences.promethium.surface_condition
+	recipe.crafting_machine_tint = utils.recipe_tints(util_props.color)
 end

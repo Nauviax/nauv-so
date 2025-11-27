@@ -5,6 +5,7 @@ utils.sciences = {
 		order = "a",
 		craft_time_mult = 1,
 		data_per_pack = 2,
+		color = {1.0, 1.0, 1.0},
 		planet = "nauvis",
 		surface_condition = {{ property = "pressure", min = 1000, max = 1000 }}
 	},
@@ -12,6 +13,7 @@ utils.sciences = {
 		order = "b",
 		craft_time_mult = 1,
 		data_per_pack = 2,
+		color = {1.0, 0.5, 0.2},
 		planet = "vulcanus",
 		surface_condition = {{ property = "pressure", min = 4000, max = 4000 }}
 	},
@@ -19,6 +21,7 @@ utils.sciences = {
 		order = "c",
 		craft_time_mult = 0.5,
 		data_per_pack = 2,
+		color = {0.7, 1.0, 0.2},
 		planet = "gleba",
 		surface_condition = {{ property = "pressure", min = 2000, max = 2000 }}
 	},
@@ -26,6 +29,7 @@ utils.sciences = {
 		order = "d",
 		craft_time_mult = 1,
 		data_per_pack = 8,
+		color = {0.8, 0.1, 0.8},
 		planet = "fulgora",
 		surface_condition = {{ property = "magnetic-field", min = 99 }}
 	},
@@ -33,6 +37,7 @@ utils.sciences = {
 		order = "e",
 		craft_time_mult = 5,
 		data_per_pack = 2,
+		color = {0.3, 0.3, 1.0},
 		planet = "aquilo",
 		surface_condition = {{ property = "pressure", min = 100, max = 600 }}
 	},
@@ -40,6 +45,7 @@ utils.sciences = {
 		order = "f",
 		craft_time_mult = 2,
 		data_per_pack = 2,
+		color = {0.2, 0.3, 0.4},
 		planet = "shattered-planet",
 		surface_condition = {{ property = "gravity", max = 0 }}
 	}
