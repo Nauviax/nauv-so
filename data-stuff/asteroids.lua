@@ -37,7 +37,7 @@ local prom_item = {
 }
 local prom_recipe = table.deepcopy(data.raw.recipe["metallic-asteroid-crushing"])
 prom_recipe.name = prom_item.name
-prom_recipe.energy_required = 5 -- Same as advanced
+prom_recipe.energy_required = 3 -- Slightly longer
 prom_recipe.ingredients[1].name = "promethium-asteroid-chunk"
 prom_recipe.results = {
 	{ type = "item", name = prom_item.name, amount = 10 }, -- ~12.5 per chunk, pre-prod
@@ -53,16 +53,12 @@ table.insert(data.raw.technology["asteroid-productivity"].effects, {
 }) -- Noteably this is BEFORE the tech rework code, so just set 0.1 for now
 utils.add_to_tech("space-science-pack", prom_item.name)
 
--- Add high grade to big asteroid chunks
-local spread = 1
+-- Add high grade to big asteroid chunks (4)
 table.insert(data.raw.asteroid["big-promethium-asteroid"].dying_trigger_effect, {
 	type = "create-asteroid-chunk",
 	asteroid_name = "high-grade-promethium-asteroid-chunk",
-	offset_deviation = {{-spread, -spread}, {spread, spread}},
-	offsets = {
-		{-spread/2, -spread/4},
-		{spread/2, -spread/4}
-	}
+	offset_deviation = {{-1, -1}, {1, 1}},
+	offsets = {{-0.5, -0.25}, {0.5, -0.25}, {-0.5, 0.25}, {0.5, 0.25}}
 })
 
 -- Adjust med/small promethium asteroids to be weak to lasers (Lower need for extra turrets)

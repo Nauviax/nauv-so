@@ -43,3 +43,9 @@ Ideally promethium scarce enough to warrant not crafting base at same time as pa
 - (Tho both still requires double the crusher right? Maybe current is fine, player may choose less crushers)
 - Ideally small early ships process 3-4 rockets of data on way back. Larger later ships closer to 12-16 rockets of data?
 - ^ (Aquilo distance just assume fine maybe, tho it IS like triple required. But also asteroid productivity)
+
+
+-- !!! Maybe look into making a tips-n-tricks page for the mod? At least about the science/quality changes?
+-- !!! Delete all other tips? Maybe make part of the hide/nil config if end up adding that (delete tips if deleting prototypes)
+
+--Also arcosphere??

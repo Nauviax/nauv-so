@@ -1,7 +1,7 @@
 local utils = require("common.utils")
 
 -- Params
-local base_craft_time = 12
+local base_craft_time = 6
 local stack_size = 50
 local weight = 5000
 local pack_craft_category = "cryogenics-or-assembling"
@@ -25,11 +25,11 @@ local science_data = {
 		prom_amnt = 2
 	},
 	cryogenic = {
-		advanced = true, -- +2
+		advanced = true,
 		prom_amnt = 5
 	},
 	promethium = {
-		advanced = true, -- +2
+		advanced = true,
 		prom_amnt = 25
 	}
 }

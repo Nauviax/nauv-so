@@ -43,7 +43,7 @@ utils.sciences = {
 	},
 	promethium = {
 		order = "f",
-		craft_time_mult = 2,
+		craft_time_mult = 1,
 		data_per_pack = 2,
 		color = {0.2, 0.3, 0.4},
 		planet = "shattered-planet",
