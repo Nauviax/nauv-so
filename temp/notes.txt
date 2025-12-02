@@ -49,3 +49,20 @@ Ideally promethium scarce enough to warrant not crafting base at same time as pa
 -- !!! Delete all other tips? Maybe make part of the hide/nil config if end up adding that (delete tips if deleting prototypes)
 
 --Also arcosphere??
+
+---
+
+Locale file notes
+Need to do each pack and data, check base game desc if has any at all (change if so?)
+bases, goop (recipe desc seperate for all 6?)
+Note when speeds vary from default, or when goop recipies have particulars
+
+-- New
+Any other new techs? Or put these in changed? (May add helpful descs for changes?)
+Any mod settings, possibly the nil things.
+
+-- Changed
+lab?
+(Perhaps mention in tech desc required koravex tech? Or leave to the goop recipe)
+Railgun desc note turret gets larger bonus? Or just do in tech? (prolly just tech)
+May update med/small prom asteroid desc in factpedia, and other descs?

@@ -13,6 +13,7 @@ local goop = { type = "fluid", name = "science-goop", amount = 100 }
 
 local base_item = table.deepcopy(data.raw.tool["automation-science-pack"])
 base_item.icon = nil
+base_item.localised_description = nil
 
 local science_data = {
 	space = {
@@ -61,7 +62,7 @@ local science_data = {
 		ingredients = {
 			dcard, goop,
 			{ type = "item", name = "accumulator", amount = 6 },
-			{ type = "fluid", name = "electrolyte", amount = 240 },
+			{ type = "fluid", name = "electrolyte", amount = 200 },
 			{ type = "item", name = "supercapacitor", amount = 6 }
 		}
 	},
@@ -111,6 +112,8 @@ for name, props in pairs(science_data) do
 	if not props.is_tool then
 		item.type = "item"
 		item.durability = nil
+		item.durability_description_key = nil
+		item.durability_description_value = nil
 	end
 	item.subgroup = utils.subgroup.data
 	item.order = order..util_props.order
@@ -133,7 +136,10 @@ for name, props in pairs(science_data) do
 		ingredients = props.ingredients,
 		results = {{ type = "item", name = item.name, amount =  util_props.data_per_pack / data_crafts_per_pack }},
 		allow_productivity = true,
-		surface_conditions = util_props.surface_condition
+		surface_conditions = util_props.surface_condition,
+		show_amount_in_title = false,
+		always_show_products = true
+		-- Actually happy to leave crafting_machine_tint white for data crafting
 	}
 	if props.fluoro_used then
 		table.insert(recipe.ingredients, utils.items.fluo_in(props.fluoro_used * 2))

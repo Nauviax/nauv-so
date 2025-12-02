@@ -1,7 +1,7 @@
 local utils = require("common.utils")
 
 -- Params
-local base_craft_time = 15
+local base_craft_time = 40
 local base_texture = "__temp-mod__/graphics/fluids/bean.png"
 local fluid_color = {0.9, 0.9, 0.9}
 local fluid_color_light = {1.0, 1.0, 1.0}
@@ -24,7 +24,7 @@ local science_data = {
 			{ type = "fluid", name = "lubricant", amount = 200 },
 			{ type = "fluid", name = "sulfuric-acid", amount = 1000 },
 			{ type = "item", name = "plastic-bar", amount = 20 },
-			{ type = "item", name = "tungsten-carbide", amount = 30 },
+			{ type = "item", name = "tungsten-carbide", amount = 40 },
 			{ type = "item", name = "refined-concrete", amount = 40 }
 		}
 	},
@@ -36,7 +36,6 @@ local science_data = {
 			{ type = "item", name = "plastic-bar", amount = 100 },
 			{ type = "item", name = "nutrients", amount = 50 },
 			{ type = "item", name = "coal", amount = 10 }
-
 		}
 	},
 	electromagnetic = {
@@ -45,14 +44,14 @@ local science_data = {
 			{ type = "fluid", name = "lubricant", amount = 1000 }, -- Extra lube
 			{ type = "fluid", name = "sulfuric-acid", amount = 200 },
 			{ type = "item", name = "plastic-bar", amount = 20 },
-			{ type = "item", name = "superconductor", amount = 30 },
+			{ type = "item", name = "superconductor", amount = 40 },
 			{ type = "item", name = "rocket-fuel", amount = 15 },
 		}
 	},
 	cryogenic = {
 		craft_category = "cryogenics",
 		ingredients = {
-			{ type = "fluid", name = "sulfuric-acid", amount = 200 }, -- No lube, too much hassle
+			{ type = "fluid", name = "sulfuric-acid", amount = 200 },
 			{ type = "item", name = "wood", amount = 20 },
 			{ type = "item", name = "solid-fuel", amount = 20 },
 			{ type = "item", name = "rocket-fuel", amount = 10 },
@@ -63,7 +62,7 @@ local science_data = {
 	promethium = {
 		craft_category = "cryogenics",
 		ingredients = {
-			{ type = "fluid", name = "basic-base-fluid", amount = 200 }, -- Lube is just a little too much for platforms
+			{ type = "fluid", name = "basic-base-fluid", amount = 200 },
 			{ type = "fluid", name = "sulfuric-acid", amount = 200 },
 			{ type = "item", name = "wood", amount = 20 },
 			{ type = "item", name = "pentapod-egg", amount = 5 },
@@ -88,7 +87,6 @@ data:extend({ fluid })
 
 for name, props in pairs(science_data) do
 	local util_props = utils.sciences[name]
-
 	local recipe = {
 		type = "recipe", name = fluid.name.."-"..name, -- Intentionally never matches item name, meaning no main recipe
 		icons = {{
@@ -112,6 +110,7 @@ for name, props in pairs(science_data) do
 		results = {{ type = "fluid", name = fluid.name, amount = 400 }},
 		allow_productivity = true,
 		surface_conditions = util_props.surface_condition,
+		show_amount_in_title = false,
 		crafting_machine_tint = utils.recipe_tints(fluid_color)
 	}
 	if props.byproduct then

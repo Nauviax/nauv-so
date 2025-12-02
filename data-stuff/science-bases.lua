@@ -44,6 +44,8 @@ local basic_recipe = {
 	},
 	allow_productivity = true,
 	surface_conditions = utils.sciences.promethium.surface_condition,
+	show_amount_in_title = false,
+	always_show_products = true,
 	crafting_machine_tint = utils.recipe_tints(basic_fluid_color)
 }
 
@@ -70,7 +72,7 @@ local advanced_recipe = {
 	energy_required = craft_time_advanced,
 	ingredients = {
 		{ type = "fluid", name = basic_fluid.name, amount = 100 },
-		{ type = "fluid", name = "steam", amount = 1000, min_temperature = 500 },
+		{ type = "fluid", name = "steam", amount = 1000, minimum_temperature = 500 },
 		{ type = "item", name = "slowdown-capsule", amount = 1 },
 		{ type = "item", name = "promethium-147", amount = 4 },
 		utils.items.fluo_in(6)
@@ -81,6 +83,8 @@ local advanced_recipe = {
 	},
 	allow_productivity = true,
 	surface_conditions = utils.sciences.promethium.surface_condition,
+	show_amount_in_title = false,
+	always_show_products = true,
 	crafting_machine_tint = utils.recipe_tints(advanced_fluid_color)
 }
 

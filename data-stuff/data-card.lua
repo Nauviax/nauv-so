@@ -18,6 +18,8 @@ item.subgroup = utils.subgroup.data_pre
 item.order = order.."y"
 item.stack_size = 100
 item.weight = 5000
+item.durability_description_key = nil
+item.durability_description_value = nil
 
 local recipe = {
 	type = "recipe", name = "fresh-data",
