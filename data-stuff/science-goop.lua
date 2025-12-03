@@ -22,10 +22,10 @@ local science_data = {
 		craft_category = "metallurgy",
 		ingredients = {
 			{ type = "fluid", name = "lubricant", amount = 200 },
-			{ type = "fluid", name = "sulfuric-acid", amount = 1000 },
+			{ type = "fluid", name = "sulfuric-acid", amount = 1000 }, -- Extra acid
 			{ type = "item", name = "plastic-bar", amount = 20 },
-			{ type = "item", name = "tungsten-carbide", amount = 40 },
-			{ type = "item", name = "refined-concrete", amount = 40 }
+			{ type = "item", name = "tungsten-carbide", amount = 50 },
+			{ type = "item", name = "refined-concrete", amount = 50 }
 		}
 	},
 	agricultural = {
@@ -33,8 +33,8 @@ local science_data = {
 		ingredients = {
 			{ type = "fluid", name = "lubricant", amount = 200 },
 			{ type = "fluid", name = "sulfuric-acid", amount = 200 },
-			{ type = "item", name = "plastic-bar", amount = 100 },
-			{ type = "item", name = "nutrients", amount = 50 },
+			{ type = "item", name = "plastic-bar", amount = 100 }, -- Extra plastic
+			{ type = "item", name = "nutrients", amount = 60 },
 			{ type = "item", name = "coal", amount = 10 }
 		}
 	},
@@ -44,7 +44,7 @@ local science_data = {
 			{ type = "fluid", name = "lubricant", amount = 1000 }, -- Extra lube
 			{ type = "fluid", name = "sulfuric-acid", amount = 200 },
 			{ type = "item", name = "plastic-bar", amount = 20 },
-			{ type = "item", name = "superconductor", amount = 40 },
+			{ type = "item", name = "superconductor", amount = 50 },
 			{ type = "item", name = "rocket-fuel", amount = 15 },
 		}
 	},

@@ -1,17 +1,3 @@
-!!! Consider mass rename space pack to nauvis pack, !!_internally_!! (Would need to do locale after)
-
-
----
-
-
-!!! Change win condition to a 1B prom tech? Maybe?
-
-
-
-Need sort item order in TECHS !!!
-Check all new recipies and see if need crafting tints (!!! Also do for rainborore later?)
-
-
 Should prepare locale later to use (Remember space is nauvis now, check all, descs too)
 -- NOTE: !!! Remember descriptions/localised_description etc in all, and that one turret thing
 
@@ -29,20 +15,10 @@ AAA UPDATE RAINBOWORE !!!
 
 -----
 TODO
-balance recipies (Almost done)
-order of unlocks in each tech
-balance railgun handheld *maybe*
-locale (nauvispack) (Fix rail turret bonus too)
-rainbowore release + craft tints (Just for known types)
+rainbowore release + craft tints for rainborore (Just for known types)
 attempt fix factoryplanner
 wincon 1b tech?
 
--- PHONE NOTES
-
-Ideally promethium scarce enough to warrant not crafting base at same time as packs. Too much prometh and we can just do both.
-- (Tho both still requires double the crusher right? Maybe current is fine, player may choose less crushers)
-- Ideally small early ships process 3-4 rockets of data on way back. Larger later ships closer to 12-16 rockets of data?
-- ^ (Aquilo distance just assume fine maybe, tho it IS like triple required. But also asteroid productivity)
 
 
 -- !!! Maybe look into making a tips-n-tricks page for the mod? At least about the science/quality changes?
@@ -52,17 +28,6 @@ Ideally promethium scarce enough to warrant not crafting base at same time as pa
 
 ---
 
-Locale file notes
-Need to do each pack and data, check base game desc if has any at all (change if so?)
-bases, goop (recipe desc seperate for all 6?)
-Note when speeds vary from default, or when goop recipies have particulars
+Locale New: Any mod settings, possibly the nil things.
 
--- New
-Any other new techs? Or put these in changed? (May add helpful descs for changes?)
-Any mod settings, possibly the nil things.
-
--- Changed
-lab?
-(Perhaps mention in tech desc required koravex tech? Or leave to the goop recipe)
-Railgun desc note turret gets larger bonus? Or just do in tech? (prolly just tech)
-May update med/small prom asteroid desc in factpedia, and other descs?
+May update med/small prom asteroid desc in factpedia, and other descs? (tnt instead)
