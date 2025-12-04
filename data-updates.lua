@@ -209,12 +209,7 @@ for _, shortcut in pairs(data.raw.shortcut) do
 		shortcut.technology_to_unlock = nil
 	end
 end
-for _, tip in pairs(data.raw["tips-and-tricks-item"]) do
-	-- Tips are weird, just clear triggers and unlock all of them
-	tip.trigger = nil
-	tip.skip_trigger = nil
-	tip.starting_status = "completed"
-end
+data.raw["tips-and-tricks-item"] = nil -- No tips (!!! Aside from MINE)
 data.raw["research-with-science-pack-achievement"]["research-with-automation"] = nil
 data.raw["research-with-science-pack-achievement"]["research-with-logistics"] = nil
 data.raw["research-with-science-pack-achievement"]["research-with-military"] = nil
@@ -223,7 +218,6 @@ data.raw["research-with-science-pack-achievement"]["research-with-production"] =
 data.raw["research-with-science-pack-achievement"]["research-with-utility"] = nil
 data.raw["dont-research-before-researching-achievement"]["rush-to-space"] = nil
 data.raw["research-achievement"]["eco-unfriendly"] = nil
-
 
 -- Adjust research speed, +1 and +2 at pre and post white science (Vanilla max is +2.5)
 local space_pack_tech = all_techs["space-science-pack"]
@@ -261,7 +255,6 @@ space_pack_tech.unit = { ingredients = {}, count = 1000, time = 60 } -- Overwrit
 space_pack_tech.order = "a-t3"
 all_techs["rocket-silo"].prerequisites = {"space-science-pack", "kovarex-enrichment-process"}
 all_techs["space-platform-thruster"].prerequisites = {"rocket-silo"}
-
 
 for index, tech_name in pairs({
 	"kovarex-enrichment-process", -- Significantly cheaper
@@ -313,9 +306,6 @@ local tiers = {
     {{ "space-science-pack", 1 }, { "metallurgic-science-pack", 1 }, { "electromagnetic-science-pack", 1 }, { "agricultural-science-pack", 1 }},
     {{ "space-science-pack", 1 }, { "metallurgic-science-pack", 1 }, { "electromagnetic-science-pack", 1 }, { "agricultural-science-pack", 1 }, { "cryogenic-science-pack", 1 }},
     {{ "space-science-pack", 1 }, { "metallurgic-science-pack", 1 }, { "electromagnetic-science-pack", 1 }, { "agricultural-science-pack", 1 }, { "cryogenic-science-pack", 1 }, { "promethium-science-pack", 1 }}
-    -- !!! Do I make promethium tech take x2 other packs? Or just make promethium a bit less expensive? Unsure. Test. (Both buffs even??) (!!!)
-    -- !!! ^ Would be trying to avoid lag issues, NOT nerfing consumption of endgame material required
-    -- !!! Could make promethium require less HGprom?
 }
 
 local all_tech = all_techs
@@ -365,7 +355,7 @@ local packs = {
 	{ "promethium-science-pack", 3 }
 }
 -- Create a tech based on an old one
-local function create_tech(old_tech, name, level, pack, amount, modifiers, skip_extend)
+local function create_tech(old_tech, name, level, pack, amount, modifiers, dependency, skip_extend)
 	local tech = table.deepcopy(old_tech)
 	tech.name = level and name.."-"..level or name
 	tech.unit.count = amount
@@ -396,6 +386,8 @@ local function create_tech(old_tech, name, level, pack, amount, modifiers, skip_
 	end
 	if level and level > 1 then
 		table.insert(tech.prerequisites, name.."-"..(level-1))
+	elseif dependency then
+		table.insert(tech.prerequisites, dependency)
 	end
 	for index, effect in ipairs(tech.effects) do
 		effect.modifier = modifiers[index]
@@ -504,7 +496,7 @@ create_tech(old_tech, tech_name, nil, packs[1], 300, {1.0})
 tech_name = "inserter-capacity-bonus"
 old_tech = all_techs[tech_name.."-7"]
 cleanup_old(tech_name, 4)
-create_tech(old_tech, tech_name, nil, packs[1], 300, {1, 7})
+create_tech(old_tech, tech_name, nil, packs[1], 300, {1, 7}, "statpack-building")
 tech_name = "transport-belt-capacity"
 old_tech = all_techs[tech_name.."-2"]
 table.insert(old_tech.prerequisites, "stack-inserter") -- Copied -2, so this is missing
@@ -516,10 +508,10 @@ old_tech = all_techs[tech_name.."-3"]
 cleanup_old(tech_name, 1)
 create_tech(old_tech, tech_name, 1, packs[1], 200, {0.2}) -- S
 create_tech(old_tech, tech_name, 2, packs[2], 500, {0.1}) -- V
-spare_tech = create_tech(old_tech, tech_name, 2, packs[3], 500, {0.1}, true) -- F
+spare_tech = create_tech(old_tech, tech_name, 2, packs[3], 500, {0.1}, nil, true) -- F
 spare_tech.name = tech_name.."-3" -- Manually increment to put side-by-side
 data:extend({spare_tech})
-spare_tech = create_tech(old_tech, tech_name, 2, packs[4], 500, {0.1}, true) -- G
+spare_tech = create_tech(old_tech, tech_name, 2, packs[4], 500, {0.1}, nil, true) -- G
 spare_tech.name = tech_name.."-4"
 data:extend({spare_tech})
 spare_tech = create_tech(old_tech, tech_name, 5, packs[5], 500, {0.2}) -- VFG

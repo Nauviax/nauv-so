@@ -69,7 +69,7 @@ for _, asteroid in ipairs({
 }) do
 	for _, resist in ipairs(data.raw.asteroid[asteroid].resistances) do
 		if resist.type == "laser" then
-			resist.percent = -100 -- !!! MAY need to look at power options in no-sun mod, as lasers may be hard in that
+			resist.percent = -100
 		end
 	end
 end
@@ -85,7 +85,7 @@ local med_connections = {
 	"fulgora-aquilo",
 	"aquilo-solar-system-edge"
 }
-local base_prob = 0.003 -- !!! Should be fine, but review for earlier sciences
+local base_prob = 0.003
 local speed = 1/60 -- Default
 for _, conn in ipairs(med_connections) do
 	table.insert(data.raw["space-connection"][conn].asteroid_spawn_definitions, {

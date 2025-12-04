@@ -2,9 +2,8 @@ local utils = require("common.utils")
 
 -- Params
 local base_craft_time = 40
-local base_texture = "__temp-mod__/graphics/fluids/bean.png"
-local fluid_color = {0.9, 0.9, 0.9}
-local fluid_color_light = {1.0, 1.0, 1.0}
+local base_texture = "__temp-mod__/graphics/fluids/goop.png"
+local fluid_color = {0.9, 0.6, 0.6}
 local order = "a-"
 
 local science_data = {
@@ -62,7 +61,7 @@ local science_data = {
 	promethium = {
 		craft_category = "cryogenics",
 		ingredients = {
-			{ type = "fluid", name = "basic-base-fluid", amount = 200 },
+			{ type = "fluid", name = "space-slurry", amount = 200 },
 			{ type = "fluid", name = "sulfuric-acid", amount = 200 },
 			{ type = "item", name = "wood", amount = 20 },
 			{ type = "item", name = "pentapod-egg", amount = 5 },
@@ -74,8 +73,7 @@ local science_data = {
 local fluid = {
 	type = "fluid", name = "science-goop",
 	icons = {{
-		icon = base_texture, icon_size = 64,
-		tint = fluid_color_light
+		icon = base_texture, icon_size = 64
 	}},
 	default_temperature = 15,
 	base_color = fluid_color, flow_color = fluid_color,
@@ -93,11 +91,9 @@ for name, props in pairs(science_data) do
 			icon = (util_props.planet == "nauvis" and "__base__" or "__space-age__").."/graphics/icons/"..util_props.planet..".png", icon_size = 64
 		}, {
 			icon = base_texture, icon_size = 64,
-			tint = fluid_color_light,
 			scale = 0.3, shift = {-8, 7}, floating = true
 		}, {
 			icon = base_texture, icon_size = 64,
-			tint = fluid_color_light,
 			scale = 0.3, shift = {8, 7}, floating = true
 		}},
 		main_product = fluid.name,
@@ -128,4 +124,3 @@ wood.spoil_result = "spoilage"
 wood.weight = 1000 -- Old 2000
 data.raw.plant["tree-plant"].growth_ticks = 18000 -- 5m instead of 10m
 data.raw.plant["tree-plant"].minable.results[1].amount = 8 -- Double wood, also reduces seed dependency
--- !!! Likely log in tips-n-tricks these changes, and to expect just 1wps per tower

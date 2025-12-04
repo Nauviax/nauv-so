@@ -4,23 +4,19 @@ local utils = require("common.utils")
 local craft_time = 6
 local order = "b-"
 
-local item = table.deepcopy(data.raw.tool["automation-science-pack"])
+local item = table.deepcopy(data.raw.item["electronic-circuit"])
 item.name = "fresh-data"
 item.icon = nil
 item.icons = {{
-	icon = "__temp-mod__/graphics/items/data.png", -- Just a darker version of pack (!!! Ass texture for this, ngl (!!! Color maybe? Or find free textures?))
-	icon_size = 64,
-	tint = {0.2, 0.2, 0.2}
+	icon = "__temp-mod__/graphics/items/data-blank.png", -- Just a darker version of pack (!!! Ass texture for this, ngl (!!! Color maybe? Or find free textures?))
+	icon_size = 64
 }}
 item.type = "item"
-item.durability = nil
 item.subgroup = utils.subgroup.data_pre
 item.order = order.."y"
 item.stack_size = 100
 item.weight = 5000
 item.localised_description = nil
-item.durability_description_key = nil
-item.durability_description_value = nil
 
 local recipe = {
 	type = "recipe", name = "fresh-data",
@@ -42,8 +38,8 @@ local recipe = {
 local garbage_item = table.deepcopy(item)
 garbage_item.name = "garbage-data"
 table.insert(garbage_item.icons, {
-	icon = "__base__/graphics/icons/signal/signal-recycle.png",
-	icon_size = 64, scale = 0.4, shift = {-6, 5}, floating = true
+	icon = "__core__/graphics/icons/alerts/not-enough-repair-packs-icon.png",
+	icon_size = 64, scale = 0.3, shift = {-5, 5}, floating = true
 })
 garbage_item.order = order.."z"
 

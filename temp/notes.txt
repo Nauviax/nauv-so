@@ -1,33 +1,18 @@
-Should prepare locale later to use (Remember space is nauvis now, check all, descs too)
--- NOTE: !!! Remember descriptions/localised_description etc in all, and that one turret thing
-
-
-AAA UPDATE RAINBOWORE !!!
-^ crafting_machine_tint ?? Small misc tidy too perhaps
-
+attempt fix factoryplanner
 -- ??? Could not load source '@__factoryplanner__/backend/data/ModuleSet.lua'.
 -- ^ look into fixing maybe, or just hide instead of nil
 
--- Instead of ribbon world, just super distant resources? (OR JUST PLAY DEFAULT IDK)
 
----
+Mod settings do later if requested by others methinks
 
-
------
-TODO
-rainbowore release + craft tints for rainborore (Just for known types)
-attempt fix factoryplanner
-wincon 1b tech?
+Clean up updates file
 
 
+https://github.com/malcolmriley/unused-renders
+Need to give credit now, see how
 
--- !!! Maybe look into making a tips-n-tricks page for the mod? At least about the science/quality changes?
--- !!! Delete all other tips? Maybe make part of the hide/nil config if end up adding that (delete tips if deleting prototypes)
-
---Also arcosphere??
-
----
-
-Locale New: Any mod settings, possibly the nil things.
-
-May update med/small prom asteroid desc in factpedia, and other descs? (tnt instead)
+-- Tips (!!! Delete all other tips)
+General how science works, goop, slurry, promethium, techcost rebalance, infinite tech adjustments and low caps etc
+All promethium stuff, +lasers
+wood buffs, 1wps per tower
+removed items/tiers (list)

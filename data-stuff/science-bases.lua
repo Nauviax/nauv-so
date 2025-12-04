@@ -3,21 +3,15 @@ local utils = require("common.utils")
 -- Params
 local craft_time_basic = 3
 local craft_time_advanced = 15
-local icon = "__temp-mod__/graphics/fluids/glow.png"
-local basic_fluid_color = {0.8, 0.1, 0.1}
-local basic_fluid_color_light = {1.0, 0.2, 0.2}
-local advanced_fluid_color = {0.6, 0.1, 0.6}
-local advanced_fluid_color_light = {0.9, 0.3, 0.9}
+local basic_fluid_color = {0.5, 0.8, 0.8}
+local advanced_fluid_color = {0.3, 0.5, 0.8}
 local order = "b-"
 
 -- !!! Can I combine the two here slightly, reduce repeated code? (Also general cleanup)
 
 local basic_fluid = {
-	type = "fluid", name = "basic-base-fluid",
-	icons = {{
-		icon = icon, icon_size = 64,
-		tint = basic_fluid_color_light
-	}},
+	type = "fluid", name = "space-slurry",
+	icon = "__temp-mod__/graphics/fluids/slurry.png",
 	default_temperature = 15,
 	base_color = basic_fluid_color, flow_color = basic_fluid_color,
 	subgroup = utils.subgroup.fluid,
@@ -50,11 +44,8 @@ local basic_recipe = {
 }
 
 local advanced_fluid = {
-	type = "fluid", name = "advanced-base-fluid",
-	icons = {{
-		icon = icon, icon_size = 64,
-		tint = advanced_fluid_color_light
-	}},
+	type = "fluid", name = "adv-space-slurry",
+	icon = "__temp-mod__/graphics/fluids/adv-slurry.png",
 	default_temperature = 15,
 	base_color = advanced_fluid_color, flow_color = advanced_fluid_color,
 	subgroup = utils.subgroup.fluid,
@@ -89,5 +80,5 @@ local advanced_recipe = {
 }
 
 data:extend({ basic_fluid, basic_recipe, advanced_fluid, advanced_recipe })
-utils.add_to_tech("space-science-pack", "basic-base-fluid")
-utils.add_to_tech("cryogenic-science-pack", "advanced-base-fluid")
+utils.add_to_tech("space-science-pack", "space-slurry")
+utils.add_to_tech("cryogenic-science-pack", "adv-space-slurry")

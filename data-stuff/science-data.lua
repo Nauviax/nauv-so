@@ -35,7 +35,7 @@ local science_data = {
 		is_tool = false,
 		ingredients = {
 			dcard, goop,
-			{ type = "fluid", name = "molten-copper", amount = 1000 },
+			{ type = "fluid", name = "molten-copper", amount = 1500 },
 			{ type = "item", name = "tungsten-plate", amount = 10 },
 			{ type = "item", name = "engine-unit", amount = 20 }
 		}
@@ -100,15 +100,10 @@ for name, props in pairs(science_data) do
 	local item = table.deepcopy(base_item)
 	item.name = name.."-data"
 	item.icons = {{
-		-- Data card main icon
 		icon = icon, icon_size = 64,
 		tint = util_props.color
-	}, {
-		-- Second layer, darkened version of relevant pack
-		icon = data.raw.tool[name.."-science-pack"].icon, icon_size = 64,
-		scale = 0.4, shift = {-6, 5}, floating = true,
-		tint = {0.5, 0.5, 0.5}
-	}}
+	}
+}
 	if not props.is_tool then
 		item.type = "item"
 		item.durability = nil

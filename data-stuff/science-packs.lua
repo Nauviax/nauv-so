@@ -49,7 +49,7 @@ for name, props in pairs(science_data) do
 	recipe.energy_required = base_craft_time * util_props.craft_time_mult
 	recipe.ingredients = {
 		{ type = "item", name = name.."-data", amount = util_props.data_per_pack },
-		{ type = "fluid", name = (props.advanced and "advanced" or "basic").."-base-fluid", amount = 100 },
+		{ type = "fluid", name = (props.advanced and "adv-space-slurry" or "space-slurry"), amount = 100 },
 		{ type = "item", name = "promethium-147", amount = props.prom_amnt }
 	}
 	recipe.results = {

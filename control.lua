@@ -1,2 +1,2 @@
 require("control-stuff.starting-items")
--- !!! Open tips?
+-- !!! Open tips on game start?
