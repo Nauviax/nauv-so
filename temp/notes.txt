@@ -7,6 +7,7 @@ Mod settings do later if requested by others methinks
 
 Clean up updates file
 
+mod prefix to all internal names?
 
 https://github.com/malcolmriley/unused-renders
 Need to give credit now, see how

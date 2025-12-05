@@ -209,7 +209,6 @@ for _, shortcut in pairs(data.raw.shortcut) do
 		shortcut.technology_to_unlock = nil
 	end
 end
-data.raw["tips-and-tricks-item"] = nil -- No tips (!!! Aside from MINE)
 data.raw["research-with-science-pack-achievement"]["research-with-automation"] = nil
 data.raw["research-with-science-pack-achievement"]["research-with-logistics"] = nil
 data.raw["research-with-science-pack-achievement"]["research-with-military"] = nil
