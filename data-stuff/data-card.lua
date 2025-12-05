@@ -5,10 +5,10 @@ local craft_time = 6
 local order = "b-"
 
 local item = table.deepcopy(data.raw.item["electronic-circuit"])
-item.name = "fresh-data"
+item.name = utils.prefix.."blank-data"
 item.icon = nil
 item.icons = {{
-	icon = "__temp-mod__/graphics/items/data-blank.png", -- Just a darker version of pack (!!! Ass texture for this, ngl (!!! Color maybe? Or find free textures?))
+	icon = "__nauv-so__/graphics/items/data-blank.png", -- Just a darker version of pack (!!! Ass texture for this, ngl (!!! Color maybe? Or find free textures?))
 	icon_size = 64
 }}
 item.type = "item"
@@ -19,7 +19,7 @@ item.weight = 5000
 item.localised_description = nil
 
 local recipe = {
-	type = "recipe", name = "fresh-data",
+	type = "recipe", name = item.name,
 	category = "electronics",
 	subgroup = utils.subgroup.data_pre,
 	order = order.."y",
@@ -30,13 +30,13 @@ local recipe = {
 		{ type = "item", name = "battery", amount = 2 },
 		{ type = "item", name = "advanced-circuit", amount = 3 }
 	},
-	results = {{ type = "item", name = "fresh-data", amount = 1 }},
+	results = {{ type = "item", name = item.name, amount = 1 }},
 	allow_productivity = true,
 	surface_conditions = nil
 }
 
 local garbage_item = table.deepcopy(item)
-garbage_item.name = "garbage-data"
+garbage_item.name = utils.prefix.."garbage-data"
 table.insert(garbage_item.icons, {
 	icon = "__core__/graphics/icons/alerts/not-enough-repair-packs-icon.png",
 	icon_size = 64, scale = 0.3, shift = {-5, 5}, floating = true
@@ -44,11 +44,11 @@ table.insert(garbage_item.icons, {
 garbage_item.order = order.."z"
 
 local garbage_recipe = table.deepcopy(recipe) -- Byproduct of data crafting
-garbage_recipe.name = "garbage-data"
+garbage_recipe.name = garbage_item.name
 garbage_recipe.energy_required = craft_time * 4 -- Means 1s to recycle each
-garbage_recipe.results = {{ type = "item", name = "garbage-data", amount = 2 }} -- Returns 1/8 not 1/4
+garbage_recipe.results = {{ type = "item", name = garbage_item.name, amount = 2 }} -- Returns 1/8 not 1/4
 garbage_recipe.hidden = true -- Don't show, ever
 garbage_recipe.order = order.."z"
 
 data:extend({ item, recipe, garbage_item, garbage_recipe })
-utils.add_to_tech("space-science-pack", "fresh-data")
+utils.add_to_tech("space-science-pack", recipe.name)

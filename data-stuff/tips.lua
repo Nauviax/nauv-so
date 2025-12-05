@@ -1,10 +1,12 @@
+local utils = require("common.utils")
+
 for index, name in ipairs({
     "test-category-1",
     "test-category-2"
 }) do -- !!! May need to watch out for duplicates
     local category = {
         type = "tips-and-tricks-item-category",
-        name = name,
+        name = utils.prefix..name,
         order = index
     }
     data:extend(category)
@@ -21,8 +23,8 @@ for index, tipProps in ipairs(newTips) do
     local previous = newTips[index-1] or {}
     local tip = {
         type = "tips-and-tricks-item",
-        name = tipProps[2],
-        category = tipProps[1],
+        name = utils.prefix..tipProps[2],
+        category = utils.prefix..tipProps[1],
         order = index,
         is_title = previous[1] ~= tipProps[1], -- First in category
         starting_status = "suggested" -- !!! Other options are "unlocked" or "completed" to try

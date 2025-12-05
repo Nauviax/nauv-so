@@ -2,7 +2,7 @@ local utils = require("common.utils")
 
 -- Params
 local base_craft_time = 40
-local base_texture = "__temp-mod__/graphics/fluids/goop.png"
+local base_texture = "__nauv-so__/graphics/fluids/goop.png"
 local fluid_color = {0.9, 0.6, 0.6}
 local order = "a-"
 
@@ -71,7 +71,7 @@ local science_data = {
 }
 
 local fluid = {
-	type = "fluid", name = "science-goop",
+	type = "fluid", name = utils.prefix.."science-goop",
 	icons = {{
 		icon = base_texture, icon_size = 64
 	}},

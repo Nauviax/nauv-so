@@ -1,3 +1,5 @@
+local utils = require("data-stuff.utils")
+
 ----- Pack additions, updates, and related recipies
 -- !!! TO BE MOVED TO SEPERATE FILES AND (some) CONSTS MOVED TO UTILS
 -- !!! Actually now that I think of it, why NOT just do this in data?
@@ -90,7 +92,7 @@ all_techs["space-platform"] = nil
 
 -- Move effects into statpacks
 local statpack_building_tech = {
-	type = "technology", name = "statpack-building",
+	type = "technology", name = utils.prefix.."statpack-building",
 	icon = "__base__/graphics/technology/toolbelt.png", icon_size = 256,
 	effects = {},
 	unit = { ingredients = {}, count = 1, time = 10 },
@@ -98,7 +100,7 @@ local statpack_building_tech = {
 }
 data:extend({statpack_building_tech})
 local statpack_combat_tech = {
-	type = "technology", name = "statpack-combat",
+	type = "technology", name = utils.prefix.."statpack-combat",
 	icon = "__base__/graphics/technology/stronger-explosives-3.png", icon_size = 256,
 	effects = {},
 	unit = { ingredients = {}, count = 1, time = 10 },
@@ -447,7 +449,7 @@ old_tech = all_techs[tech_name.."-4"]
 cleanup_old(tech_name, 4)
 create_tech(old_tech, tech_name, 1, packs[1], 200, {0.9, 0.4, 0.4})
 create_tech(old_tech, tech_name, 2, packs[4], 800, {1.6, 0.6, 0.6})
-tech_name = "artillery-improvements" -- Artillery special case (!!! LOCALE NEED ADD AAA)
+tech_name = utils.prefix.."artillery-improvements" -- Artillery special case
 old_tech = all_techs["artillery-shell-range-1"]
 table.insert(old_tech.effects, all_techs["artillery-shell-damage-1"].effects[1])
 table.insert(old_tech.effects, all_techs["artillery-shell-speed-1"].effects[1])
@@ -495,7 +497,7 @@ create_tech(old_tech, tech_name, nil, packs[1], 300, {1.0})
 tech_name = "inserter-capacity-bonus"
 old_tech = all_techs[tech_name.."-7"]
 cleanup_old(tech_name, 4)
-create_tech(old_tech, tech_name, nil, packs[1], 300, {1, 7}, "statpack-building")
+create_tech(old_tech, tech_name, nil, packs[1], 300, {1, 7}, statpack_building_tech.name)
 tech_name = "transport-belt-capacity"
 old_tech = all_techs[tech_name.."-2"]
 table.insert(old_tech.prerequisites, "stack-inserter") -- Copied -2, so this is missing

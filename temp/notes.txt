@@ -7,7 +7,9 @@ Mod settings do later if requested by others methinks
 
 Clean up updates file
 
-mod prefix to all internal names?
+mod prefix to all internal names? wip
+
+utils could hold internal names as needed, for data/packs etc? May reduce code needed, less building via prefix
 
 https://github.com/malcolmriley/unused-renders
 Need to give credit now, see how

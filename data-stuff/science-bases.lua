@@ -10,8 +10,8 @@ local order = "b-"
 -- !!! Can I combine the two here slightly, reduce repeated code? (Also general cleanup)
 
 local basic_fluid = {
-	type = "fluid", name = "space-slurry",
-	icon = "__temp-mod__/graphics/fluids/slurry.png",
+	type = "fluid", name = utils.prefix.."space-slurry",
+	icon = "__nauv-so__/graphics/fluids/slurry.png",
 	default_temperature = 15,
 	base_color = basic_fluid_color, flow_color = basic_fluid_color,
 	subgroup = utils.subgroup.fluid,
@@ -31,7 +31,7 @@ local basic_recipe = {
 		{ type = "fluid", name = "water", amount = 25 },
 		{ type = "fluid", name = "thruster-fuel", amount = 75 },
 		{ type = "item", name = "steel-plate", amount = 1 },
-		{ type = "item", name = "promethium-147", amount = 2 }
+		utils.items.prom147(2)
 	},
 	results = {
 		{ type = "fluid", name = basic_fluid.name, amount = 50 } -- Enough for 1/2 pack
@@ -44,8 +44,8 @@ local basic_recipe = {
 }
 
 local advanced_fluid = {
-	type = "fluid", name = "adv-space-slurry",
-	icon = "__temp-mod__/graphics/fluids/adv-slurry.png",
+	type = "fluid", name = utils.prefix.."adv-space-slurry",
+	icon = "__nauv-so__/graphics/fluids/adv-slurry.png",
 	default_temperature = 15,
 	base_color = advanced_fluid_color, flow_color = advanced_fluid_color,
 	subgroup = utils.subgroup.fluid,
@@ -65,7 +65,7 @@ local advanced_recipe = {
 		{ type = "fluid", name = basic_fluid.name, amount = 100 },
 		{ type = "fluid", name = "steam", amount = 1000, minimum_temperature = 500 },
 		{ type = "item", name = "slowdown-capsule", amount = 1 },
-		{ type = "item", name = "promethium-147", amount = 4 },
+		utils.items.prom147(4),
 		utils.items.fluo_in(6)
 	},
 	results = {

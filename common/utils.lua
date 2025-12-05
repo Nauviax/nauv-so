@@ -1,5 +1,7 @@
 local utils = {} -- !!! TODO implement utils in/for remove-unused-items code
 
+utils.prefix = "nso-"
+
 utils.sciences = {
 	space = {
 		order = "a",
@@ -53,7 +55,8 @@ utils.sciences = {
 
 utils.items = { -- Common item ingredient/results
 	fluo_in = function(amnt) return { type = "fluid", name = "fluoroketone-cold", amount = amnt, ignored_by_stats = amnt } end,
-	fluo_out = function(amnt) return { type = "fluid", name = "fluoroketone-hot", amount = amnt, ignored_by_stats = amnt } end
+	fluo_out = function(amnt) return { type = "fluid", name = "fluoroketone-hot", amount = amnt, ignored_by_stats = amnt } end,
+	prom147 = function(amnt) return { type = "item", name = utils.prefix.."promethium-147", amount = amnt } end
 }
 
 utils.subgroup = { -- Groupings for things that need to follow vanilla

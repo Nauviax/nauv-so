@@ -1,6 +1,6 @@
 -- Data stage - Initial stuff (Things I want finished first)
-require("data-stuff.initial")
 require("common.utils")
+require("data-stuff.initial")
 
 -- Data stage - Science (additions and edits)
 require("data-stuff.data-card")

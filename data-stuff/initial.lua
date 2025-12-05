@@ -1,18 +1,20 @@
+local utils = require("common.utils")
+
 -- Update space science sprite
-data.raw.tool["space-science-pack"].icon = "__temp-mod__/graphics/items/space-science-pack.png"
-data.raw.recipe["space-science-pack"].icon = "__temp-mod__/graphics/items/space-science-pack.png"
-data.raw.technology["space-science-pack"].icon = "__temp-mod__/graphics/techs/space-science-pack.png"
+data.raw.tool["space-science-pack"].icon = "__nauv-so__/graphics/items/space-science-pack.png"
+data.raw.recipe["space-science-pack"].icon = "__nauv-so__/graphics/items/space-science-pack.png"
+data.raw.technology["space-science-pack"].icon = "__nauv-so__/graphics/techs/space-science-pack.png"
 
 -- Set up science tab subgroup
 data:extend({
 	{
-		type = "item-subgroup", name = "science-data-pre", -- Goop, fresh cards
+		type = "item-subgroup", name = utils.prefix.."science-data-pre", -- Goop, fresh cards
 		group = "space", order = "z-a"
 	}, {
-		type = "item-subgroup", name = "science-data",
+		type = "item-subgroup", name = utils.prefix.."science-data",
 		group = "space", order = "z-b"
 	}, {
-		type = "item-subgroup", name = "science-pack-pre", -- Bases, prom-147
+		type = "item-subgroup", name = utils.prefix.."science-pack-pre", -- Bases, prom-147
 		group = "space", order = "z-c"
 	}
 })

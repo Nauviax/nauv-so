@@ -5,11 +5,11 @@ local base_craft_time = 20
 local base_stack_size = 100
 local base_weight = 5000
 local data_crafts_per_pack = 2
-local icon = "__temp-mod__/graphics/items/data.png"
+local icon = "__nauv-so__/graphics/items/data.png"
 local order = "a-"
 
-local dcard = { type = "item", name = "fresh-data", amount = 1 }
-local goop = { type = "fluid", name = "science-goop", amount = 100 }
+local dcard = { type = "item", name = utils.prefix.."blank-data", amount = 1 }
+local goop = { type = "fluid", name = utils.prefix.."science-goop", amount = 100 }
 
 local base_item = table.deepcopy(data.raw.tool["automation-science-pack"])
 base_item.icon = nil
@@ -88,7 +88,7 @@ local science_data = {
 			dcard, goop,
 			{ type = "item", name = "biter-egg", amount = 5 },
 			{ type = "item", name = "quantum-processor", amount = 2 },
-			{ type = "item", name = "high-grade-promethium-asteroid-chunk", amount = 1 }
+			{ type = "item", name = utils.prefix.."hg-promethium-asteroid-chunk", amount = 1 }
 		},
 		fluoro_used = 3
 	}
@@ -98,7 +98,7 @@ for name, props in pairs(science_data) do
 	local util_props = utils.sciences[name]
 
 	local item = table.deepcopy(base_item)
-	item.name = name.."-data"
+	item.name = utils.prefix..name.."-data"
 	item.icons = {{
 		icon = icon, icon_size = 64,
 		tint = util_props.color
