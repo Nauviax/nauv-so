@@ -1,5 +1,7 @@
 local utils = require("common.utils")
 
+local order = "1-"
+
 for index, name in ipairs({
     "test-category-1",
     "test-category-2"
@@ -7,9 +9,9 @@ for index, name in ipairs({
     local category = {
         type = "tips-and-tricks-item-category",
         name = utils.prefix..name,
-        order = index
+        order = order..index
     }
-    data:extend(category)
+    data:extend({category})
 end
 
 data.raw["tips-and-tricks-item"] = {} -- Delete all existing tips (Most are broken)
@@ -25,10 +27,10 @@ for index, tipProps in ipairs(newTips) do
         type = "tips-and-tricks-item",
         name = utils.prefix..tipProps[2],
         category = utils.prefix..tipProps[1],
-        order = index,
+        order = order..index,
         is_title = previous[1] ~= tipProps[1], -- First in category
         starting_status = "suggested" -- !!! Other options are "unlocked" or "completed" to try
         -- !!! icon(s) (Also 'image' available)
     }
-    data:extend(tip)
+    data:extend({tip})
 end

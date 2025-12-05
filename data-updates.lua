@@ -1,4 +1,4 @@
-local utils = require("data-stuff.utils")
+local utils = require("common.utils")
 
 ----- Pack additions, updates, and related recipies
 -- !!! TO BE MOVED TO SEPERATE FILES AND (some) CONSTS MOVED TO UTILS
@@ -267,7 +267,7 @@ for index, tech_name in pairs({
 }) do  -- Count and time is post x5 time adjustment
 	local tech = all_techs[tech_name]
 	tech.order = "a-t"..(index+3) -- Starting at 4
-	tech.unit.ingredients = {{"space-data", 1}}
+	tech.unit.ingredients = {{utils.prefix.."space-data", 1}}
 	tech.unit.count = index == 1 and 10 or 200
 	tech.unit.time = 60
 end
@@ -282,7 +282,7 @@ for _, pack_name in ipairs({ -- Remove later packs
     if input == pack_name then table.remove(lab.inputs, index); break end
   end
 end
-table.insert(lab.inputs, 1, "space-data")
+table.insert(lab.inputs, 1, utils.prefix.."space-data")
 
 local inf_prod_techs = {
     metallurgic = {

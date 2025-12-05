@@ -60,9 +60,9 @@ utils.items = { -- Common item ingredient/results
 }
 
 utils.subgroup = { -- Groupings for things that need to follow vanilla
-	data_pre = "science-data-pre",
-	data = "science-data",
-	pack_pre = "science-pack-pre",
+	data_pre = utils.prefix.."science-data-pre",
+	data = utils.prefix.."science-data",
+	pack_pre = utils.prefix.."science-pack-pre",
 	pack = "science-pack",
 	fluid = "fluid",
 	fluid_order = "n[nauv]-" -- Useful, even if not a subgroup

@@ -61,7 +61,7 @@ local science_data = {
 	promethium = {
 		craft_category = "cryogenics",
 		ingredients = {
-			{ type = "fluid", name = "space-slurry", amount = 200 },
+			{ type = "fluid", name = utils.prefix.."space-slurry", amount = 200 },
 			{ type = "fluid", name = "sulfuric-acid", amount = 200 },
 			{ type = "item", name = "wood", amount = 20 },
 			{ type = "item", name = "pentapod-egg", amount = 5 },

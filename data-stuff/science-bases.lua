@@ -80,5 +80,5 @@ local advanced_recipe = {
 }
 
 data:extend({ basic_fluid, basic_recipe, advanced_fluid, advanced_recipe })
-utils.add_to_tech("space-science-pack", "space-slurry")
-utils.add_to_tech("cryogenic-science-pack", "adv-space-slurry")
+utils.add_to_tech("space-science-pack", basic_recipe.name)
+utils.add_to_tech("cryogenic-science-pack", advanced_recipe.name)
