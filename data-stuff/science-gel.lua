@@ -8,7 +8,8 @@ local order = "a-"
 
 local science_data = {
 	space = {
-		craft_category = "organic-or-chemistry",
+		craft_category = "oil-processing",
+		craft_category_extra = {"organic"},
 		ingredients = {
 			{ type = "fluid", name = "lubricant", amount = 200 }, -- No extra compared to VFG, but also no base 50% prod until Gleba
 			{ type = "fluid", name = "sulfuric-acid", amount = 200 },
@@ -91,6 +92,7 @@ for name, props in pairs(science_data) do
 		}},
 		main_product = fluid.name,
 		category = props.craft_category,
+		additional_categories = props.craft_category_extra,
 		subgroup = utils.subgroup.data_pre,
 		order = order..util_props.order,
 		enabled = false,
@@ -106,7 +108,7 @@ for name, props in pairs(science_data) do
 		table.insert(recipe.results, props.byproduct)
 	end
 	data:extend({ recipe })
-	utils.add_to_tech(name.."-science-pack", recipe.name)
+	utils.add_to_tech(util_props.pack, recipe.name)
 end
 
 -- Wood adjustments to prevent manual stockpiling and make easier to produce/ship.

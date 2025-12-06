@@ -1,36 +1,29 @@
 local utils = require("common.utils")
 
 local order = "1-"
-
-for index, name in ipairs({
-    "test-category-1",
-    "test-category-2"
-}) do -- !!! May need to watch out for duplicates
-    local category = {
-        type = "tips-and-tricks-item-category",
-        name = utils.prefix..name,
-        order = order..index
-    }
-    data:extend({category})
-end
-
+local category = utils.prefix.."tips"
+data:extend({{
+    type = "tips-and-tricks-item-category",
+    name = category,
+    order = order.."0"
+}})
 data.raw["tips-and-tricks-item"] = {} -- Delete all existing tips (Most are broken)
 local newTips = {
-    { "test-category-1", "test-tip" },
-    { "test-category-1", "test-subtip-1" },
-    { "test-category-2", "test-tip-2" },
-    { "test-category-2", "test-subtip-2" }
+    { "title" },
+    { "data" },
+    { "packs" },
+    { "tech" }, -- !!! Menton artillery merge as well as caps
+    { "removals" } -- !!! Also mention tips, achivements, remaining entity buffs
 }
 for index, tipProps in ipairs(newTips) do
-    local previous = newTips[index-1] or {}
-    local tip = {
+    data:extend({{
         type = "tips-and-tricks-item",
-        name = utils.prefix..tipProps[2],
-        category = utils.prefix..tipProps[1],
+        name = utils.prefix..tipProps[1],
+        category = category,
         order = order..index,
-        is_title = previous[1] ~= tipProps[1], -- First in category
-        starting_status = "suggested" -- !!! Other options are "unlocked" or "completed" to try
+        is_title = index == 1,
+        indent = index == 1 and 0 or 1,
+        starting_status = "suggested"
         -- !!! icon(s) (Also 'image' available)
-    }
-    data:extend({tip})
+    }})
 end
