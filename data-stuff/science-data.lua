@@ -8,8 +8,8 @@ local data_crafts_per_pack = 2
 local icon = "__nauv-so__/graphics/items/data.png"
 local order = "a-"
 
-local dcard = { type = "item", name = utils.prefix.."blank-data", amount = 1 }
-local goop = { type = "fluid", name = utils.prefix.."science-goop", amount = 100 }
+local dcard = { type = "item", name = utils.items.blank_data, amount = 1 }
+local gel = { type = "fluid", name = utils.items.gel, amount = 100 }
 
 local base_item = table.deepcopy(data.raw.tool["automation-science-pack"])
 base_item.icon = nil
@@ -22,7 +22,7 @@ local science_data = {
 		craft_category = "organic-or-assembling",
 		is_tool = true,
 		ingredients = {
-			dcard, goop,
+			dcard, gel,
 			{ type = "item", name = "flying-robot-frame", amount = 4 },
 			{ type = "item", name = "electric-furnace", amount = 3 },
 			{ type = "item", name = "heat-exchanger", amount = 1 }
@@ -34,7 +34,7 @@ local science_data = {
 		craft_category = "metallurgy",
 		is_tool = false,
 		ingredients = {
-			dcard, goop,
+			dcard, gel,
 			{ type = "fluid", name = "molten-copper", amount = 1500 },
 			{ type = "item", name = "tungsten-plate", amount = 10 },
 			{ type = "item", name = "engine-unit", amount = 20 }
@@ -46,7 +46,7 @@ local science_data = {
 		craft_category = "organic",
 		is_tool = false,
 		ingredients = {
-			dcard, goop,
+			dcard, gel,
 			{ type = "item", name = "bioflux", amount = 5 },
 			{ type = "item", name = "pentapod-egg", amount = 5 },
 			{ type = "item", name = "electronic-circuit", amount = 10 }
@@ -60,7 +60,7 @@ local science_data = {
 		craft_category = "electromagnetics",
 		is_tool = false,
 		ingredients = {
-			dcard, goop,
+			dcard, gel,
 			{ type = "item", name = "accumulator", amount = 6 },
 			{ type = "fluid", name = "electrolyte", amount = 200 },
 			{ type = "item", name = "supercapacitor", amount = 6 }
@@ -72,7 +72,7 @@ local science_data = {
 		craft_category = "cryogenics",
 		is_tool = false,
 		ingredients = {
-			dcard, goop,
+			dcard, gel,
 			{ type = "item", name = "ice-platform", amount = 1 },
 			{ type = "item", name = "lithium-plate", amount = 8 }
 		},
@@ -85,10 +85,10 @@ local science_data = {
 		craft_category = "cryogenics",
 		is_tool = false,
 		ingredients = {
-			dcard, goop,
+			dcard, gel,
 			{ type = "item", name = "biter-egg", amount = 5 },
 			{ type = "item", name = "quantum-processor", amount = 2 },
-			{ type = "item", name = utils.prefix.."hg-promethium-asteroid-chunk", amount = 1 }
+			{ type = "item", name = utils.items.hg_prom, amount = 1 }
 		},
 		fluoro_used = 3
 	}
@@ -98,12 +98,8 @@ for name, props in pairs(science_data) do
 	local util_props = utils.sciences[name]
 
 	local item = table.deepcopy(base_item)
-	item.name = utils.prefix..name.."-data"
-	item.icons = {{
-		icon = icon, icon_size = 64,
-		tint = util_props.color
-	}
-}
+	item.name = util_props.data
+	item.icons = {{ icon = icon, tint = util_props.color }}
 	if not props.is_tool then
 		item.type = "item"
 		item.durability = nil

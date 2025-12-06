@@ -4,7 +4,7 @@ require("data-stuff.initial")
 
 -- Data stage - Science (additions and edits)
 require("data-stuff.data-card")
-require("data-stuff.science-goop")
+require("data-stuff.science-gel")
 require("data-stuff.science-data")
 require("data-stuff.asteroids")
 require("data-stuff.science-bases")

@@ -8,6 +8,8 @@ utils.sciences = {
 		craft_time_mult = 1,
 		data_per_pack = 2,
 		color = {1.0, 1.0, 1.0},
+		data = utils.prefix.."space-data",
+		pack = "space-science-pack",
 		planet = "nauvis",
 		surface_condition = {{ property = "pressure", min = 1000, max = 1000 }}
 	},
@@ -16,6 +18,8 @@ utils.sciences = {
 		craft_time_mult = 1,
 		data_per_pack = 2,
 		color = {1.0, 0.5, 0.2},
+		data = utils.prefix.."metallurgic-data",
+		pack = "metallurgic-science-pack",
 		planet = "vulcanus",
 		surface_condition = {{ property = "pressure", min = 4000, max = 4000 }}
 	},
@@ -24,6 +28,8 @@ utils.sciences = {
 		craft_time_mult = 0.5,
 		data_per_pack = 2,
 		color = {0.7, 1.0, 0.2},
+		data = utils.prefix.."agricultural-data",
+		pack = "agricultural-science-pack",
 		planet = "gleba",
 		surface_condition = {{ property = "pressure", min = 2000, max = 2000 }}
 	},
@@ -32,6 +38,8 @@ utils.sciences = {
 		craft_time_mult = 1,
 		data_per_pack = 8,
 		color = {0.8, 0.1, 0.8},
+		data = utils.prefix.."electromagnetic-data",
+		pack = "electromagnetic-science-pack",
 		planet = "fulgora",
 		surface_condition = {{ property = "magnetic-field", min = 99 }}
 	},
@@ -40,6 +48,8 @@ utils.sciences = {
 		craft_time_mult = 5,
 		data_per_pack = 2,
 		color = {0.3, 0.3, 1.0},
+		data = utils.prefix.."cryogenic-data",
+		pack = "cryogenic-science-pack",
 		planet = "aquilo",
 		surface_condition = {{ property = "pressure", min = 100, max = 600 }}
 	},
@@ -48,6 +58,8 @@ utils.sciences = {
 		craft_time_mult = 1,
 		data_per_pack = 2,
 		color = {0.2, 0.3, 0.4},
+		data = utils.prefix.."promethium-data",
+		pack = "promethium-science-pack",
 		planet = "shattered-planet",
 		surface_condition = {{ property = "gravity", max = 0 }}
 	}
@@ -56,7 +68,13 @@ utils.sciences = {
 utils.items = { -- Common item ingredient/results
 	fluo_in = function(amnt) return { type = "fluid", name = "fluoroketone-cold", amount = amnt, ignored_by_stats = amnt } end,
 	fluo_out = function(amnt) return { type = "fluid", name = "fluoroketone-hot", amount = amnt, ignored_by_stats = amnt } end,
-	prom147 = function(amnt) return { type = "item", name = utils.prefix.."promethium-147", amount = amnt } end
+	gel = utils.prefix.."science-gel",
+	prom147 = utils.prefix.."promethium-147",
+	hg_prom = utils.prefix.."hg-promethium-asteroid-chunk",
+	basic_slurry = utils.prefix.."space-slurry",
+	adv_slurry = utils.prefix.."adv-space-slurry",
+	blank_data = utils.prefix.."blank-data",
+	garbage_data = utils.prefix.."garbage-data"
 }
 
 utils.subgroup = { -- Groupings for things that need to follow vanilla

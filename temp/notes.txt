@@ -7,15 +7,11 @@ Mod settings do later if requested by others methinks
 
 Clean up updates file
 
-mod prefix to all internal names? wip
-
-utils could hold internal names as needed, for data/packs etc? May reduce code needed, less building via prefix
-
 https://github.com/malcolmriley/unused-renders
 Need to give credit now, see how
 
 -- Tips (!!! Delete all other tips)
-General how science works, goop, slurry, promethium, techcost rebalance, infinite tech adjustments and low caps etc
+General how science works, gel, slurry, promethium, techcost rebalance, infinite tech adjustments and low caps etc
 All promethium stuff, +lasers
 wood buffs, 1wps per tower
 removed items/tiers (list)

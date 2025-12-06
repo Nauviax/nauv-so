@@ -362,6 +362,7 @@ local function create_tech(old_tech, name, level, pack, amount, modifiers, depen
 	tech.unit.count = amount
 	tech.unit.count_formula = nil
 	tech.max_level = nil
+	tech.upgrade = true
 	if pack[2] then -- !!! Look into simplifying these "if" cases !!! (See next "!!!")
 		tech.unit.ingredients = tiers[pack[2]]
 	elseif pack[1] then

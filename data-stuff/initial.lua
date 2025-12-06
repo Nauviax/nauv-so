@@ -8,17 +8,17 @@ data.raw.technology["space-science-pack"].icon = "__nauv-so__/graphics/techs/spa
 -- Set up science tab subgroup
 data:extend({
 	{
-		type = "item-subgroup", name = utils.prefix.."science-data-pre", -- Goop, fresh cards
+		type = "item-subgroup", name = utils.subgroup.data_pre, -- gel, fresh cards
 		group = "space", order = "z-a"
 	}, {
-		type = "item-subgroup", name = utils.prefix.."science-data",
+		type = "item-subgroup", name = utils.subgroup.data,
 		group = "space", order = "z-b"
 	}, {
-		type = "item-subgroup", name = utils.prefix.."science-pack-pre", -- Bases, prom-147
+		type = "item-subgroup", name = utils.subgroup.pack_pre, -- Bases, prom-147
 		group = "space", order = "z-c"
 	}
 })
-local pack_group = data.raw["item-subgroup"]["science-pack"]
+local pack_group = data.raw["item-subgroup"][utils.subgroup.pack]
 pack_group.group = "space"
 pack_group.order = "z-z"
 data.raw["item-group"]["space"].order_in_recipe = "z" -- Put these items at end of recipies
@@ -39,13 +39,7 @@ local packs_to_dupe = {
 for _, pack_name in pairs(packs_to_dupe) do
 	local item = table.deepcopy(data.raw.tool[pack_name])
 	item.name = pack_name.."-OLD"
-	item.icons = {
-		{
-			icon = item.icon,
-			icon_size = 64,
-			tint = {0.5, 0.5, 0.5}
-		}
-	}
+	item.icons = {{ icon = item.icon, tint = {0.5, 0.5, 0.5} }}
 	item.icon = nil
 	item.order = "z-"..item.order
 	data:extend({ item })

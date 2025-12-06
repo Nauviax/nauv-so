@@ -37,24 +37,24 @@ local science_data = {
 for name, props in pairs(science_data) do
 	local util_props = utils.sciences[name]
 
-	local item = data.raw.tool[name.."-science-pack"]
+	local item = data.raw.tool[util_props.pack]
 	item.stack_size = stack_size
 	item.weight = weight
 
-	local recipe = data.raw.recipe[name.."-science-pack"]
-	recipe.main_product = name.."-science-pack"
+	local recipe = data.raw.recipe[util_props.pack]
+	recipe.main_product = util_props.pack
 	recipe.category = pack_craft_category
 	recipe.subgroup = utils.subgroup.pack
 	recipe.order = order..util_props.order
 	recipe.energy_required = base_craft_time * util_props.craft_time_mult
 	recipe.ingredients = {
-		{ type = "item", name = utils.prefix..name.."-data", amount = util_props.data_per_pack },
-		{ type = "fluid", name = utils.prefix..(props.advanced and "adv-space-slurry" or "space-slurry"), amount = 100 },
-		utils.items.prom147(props.prom_amnt)
+		{ type = "item", name = util_props.data, amount = util_props.data_per_pack },
+		{ type = "fluid", name = (props.advanced and utils.items.adv_slurry or utils.items.basic_slurry), amount = 100 },
+		{ type = "item", name = utils.items.prom147, amount = props.prom_amnt }
 	}
 	recipe.results = {
-		{ type = "item", name = name.."-science-pack", amount = 1 },
-		{ type = "item", name = utils.prefix.."garbage-data", amount = 1, ignored_by_stats = 1 }
+		{ type = "item", name = util_props.pack, amount = 1 },
+		{ type = "item", name = utils.items.garbage_data, amount = 1, ignored_by_stats = 1 }
 	}
 	recipe.allow_productivity = true -- Already true, just clarity
 	recipe.surface_conditions = utils.sciences.promethium.surface_condition

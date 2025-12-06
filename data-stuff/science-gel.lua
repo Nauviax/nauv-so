@@ -2,7 +2,7 @@ local utils = require("common.utils")
 
 -- Params
 local base_craft_time = 40
-local base_texture = "__nauv-so__/graphics/fluids/goop.png"
+local base_texture = "__nauv-so__/graphics/fluids/gel.png"
 local fluid_color = {0.9, 0.6, 0.6}
 local order = "a-"
 
@@ -61,7 +61,7 @@ local science_data = {
 	promethium = {
 		craft_category = "cryogenics",
 		ingredients = {
-			{ type = "fluid", name = utils.prefix.."space-slurry", amount = 200 },
+			{ type = "fluid", name = utils.items.basic_slurry, amount = 200 },
 			{ type = "fluid", name = "sulfuric-acid", amount = 200 },
 			{ type = "item", name = "wood", amount = 20 },
 			{ type = "item", name = "pentapod-egg", amount = 5 },
@@ -71,10 +71,8 @@ local science_data = {
 }
 
 local fluid = {
-	type = "fluid", name = utils.prefix.."science-goop",
-	icons = {{
-		icon = base_texture, icon_size = 64
-	}},
+	type = "fluid", name = utils.items.gel,
+	icon = base_texture,
 	default_temperature = 15,
 	base_color = fluid_color, flow_color = fluid_color,
 	subgroup = utils.subgroup.fluid,
@@ -87,14 +85,9 @@ for name, props in pairs(science_data) do
 	local util_props = utils.sciences[name]
 	local recipe = {
 		type = "recipe", name = fluid.name.."-"..name, -- Intentionally never matches item name, meaning no main recipe
-		icons = {{
-			icon = (util_props.planet == "nauvis" and "__base__" or "__space-age__").."/graphics/icons/"..util_props.planet..".png", icon_size = 64
-		}, {
-			icon = base_texture, icon_size = 64,
+		icons = { { icon = base_texture }, {
+			icon = (util_props.planet == "nauvis" and "__base__" or "__space-age__").."/graphics/icons/"..util_props.planet..".png",
 			scale = 0.3, shift = {-8, 7}, floating = true
-		}, {
-			icon = base_texture, icon_size = 64,
-			scale = 0.3, shift = {8, 7}, floating = true
 		}},
 		main_product = fluid.name,
 		category = props.craft_category,

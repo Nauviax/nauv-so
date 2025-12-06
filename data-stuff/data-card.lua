@@ -5,12 +5,9 @@ local craft_time = 6
 local order = "b-"
 
 local item = table.deepcopy(data.raw.item["electronic-circuit"])
-item.name = utils.prefix.."blank-data"
+item.name = utils.items.blank_data
 item.icon = nil
-item.icons = {{
-	icon = "__nauv-so__/graphics/items/data-blank.png", -- Just a darker version of pack (!!! Ass texture for this, ngl (!!! Color maybe? Or find free textures?))
-	icon_size = 64
-}}
+item.icons = {{ icon = "__nauv-so__/graphics/items/data-blank.png" }} -- More inserted later
 item.type = "item"
 item.subgroup = utils.subgroup.data_pre
 item.order = order.."y"
@@ -36,10 +33,10 @@ local recipe = {
 }
 
 local garbage_item = table.deepcopy(item)
-garbage_item.name = utils.prefix.."garbage-data"
+garbage_item.name = utils.items.garbage_data
 table.insert(garbage_item.icons, {
 	icon = "__core__/graphics/icons/alerts/not-enough-repair-packs-icon.png",
-	icon_size = 64, scale = 0.3, shift = {-5, 5}, floating = true
+	scale = 0.3, shift = {-5, 5}, floating = true
 })
 garbage_item.order = order.."z"
 

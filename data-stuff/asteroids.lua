@@ -2,7 +2,7 @@ local utils = require("common.utils")
 
 -- High grade promethium
 local high_grade_item = table.deepcopy(data.raw.item["promethium-asteroid-chunk"])
-high_grade_item.name = utils.prefix.."hg-promethium-asteroid-chunk"
+high_grade_item.name = utils.items.hg_prom
 high_grade_item.spoil_ticks = 3600 -- 1 minute
 high_grade_item.spoil_result = "promethium-asteroid-chunk"
 high_grade_item.icon = "__nauv-so__/graphics/items/hg-promethium-asteroid-chunk.png"
@@ -23,11 +23,11 @@ low_grade_item.spoil_result = "iron-ore"
 
 -- Promethium powder (intermediate, uses asteroid productivity)
 local prom_item = {
-	type = "item", name = utils.prefix.."promethium-147",
+	type = "item", name = utils.items.prom147,
 	subgroup = utils.subgroup.pack_pre,
 	order = "z-a", -- Last in subgroup
 	icons = {{
-		icon = "__nauv-so__/graphics/items/prom-147.png", icon_size = 64,
+		icon = "__nauv-so__/graphics/items/prom-147.png",
 		tint = {1.0, 0.5, 0.5}
 	}},
 	stack_size = 20,
