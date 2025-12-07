@@ -8,7 +8,7 @@ data:extend({{
     order = order.."0"
 }})
 data.raw["tips-and-tricks-item"] = {} -- Delete all existing tips (Most are broken)
-local newTips = {
+local newTips = { -- !!! Icons
     { "title" },
     { "data" },
     { "packs" },
