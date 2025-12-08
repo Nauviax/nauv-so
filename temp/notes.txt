@@ -7,6 +7,16 @@ Mod settings do later if requested by others methinks
 
 Clean up updates file
 
+science bases -> slurry?
+
+Spellcheck locale!
+
+What did I do to transport belt capacity tech-2 again?
+
+Review start of game, powerpoles and furnaces from steel etc, power for drills (poles for this?)
+
+Review module 3 cost, given no module 2 prod step (May already be accounted for)
+
 https://github.com/malcolmriley/unused-renders
 Need to give credit now, see how
 
