@@ -448,12 +448,12 @@ create_tech(old_tech, tech_name, 2, packs[4], 600, {0.8, 0.8})
 tech_name = "stronger-explosives"
 old_tech = all_techs[tech_name.."-4"]
 cleanup_old(tech_name, 4)
-create_tech(old_tech, tech_name, 1, packs[1], 200, {0.9, 0.4, 0.4})
-create_tech(old_tech, tech_name, 2, packs[4], 800, {1.6, 0.6, 0.6})
+create_tech(old_tech, tech_name, 1, packs[1], 200, {0.9, 0.4, 0.4}) -- Big in 9->6
+create_tech(old_tech, tech_name, 2, packs[4], 800, {1.6, 0.6, 0.6}) -- Big in 6->3
 tech_name = utils.prefix.."artillery-improvements" -- Artillery special case
 old_tech = all_techs["artillery-shell-range-1"]
 table.insert(old_tech.effects, all_techs["artillery-shell-damage-1"].effects[1])
-table.insert(old_tech.effects, all_techs["artillery-shell-speed-1"].effects[1])
+table.insert(old_tech.effects, all_techs["artillery-shell-speed-1"].effects[1]) -- Bnest 1, Pnest 2
 cleanup_old("artillery-shell-range", 1)
 cleanup_old("artillery-shell-damage", 1)
 cleanup_old("artillery-shell-speed", 1)
@@ -461,9 +461,9 @@ create_tech(old_tech, tech_name, 1, packs[1], 1000, {0.6, 0.5, 1.0})
 create_tech(old_tech, tech_name, 2, packs[5], 4000, {0.9, 0.5, 2.0})
 tech_name = "railgun-damage"
 old_tech = all_techs[tech_name.."-1"]
-table.insert(old_tech.effects, { type = "turret-attack", turret_id = "railgun-turret" }) -- Locale !!!
+table.insert(old_tech.effects, { type = "turret-attack", turret_id = "railgun-turret" })
 cleanup_old(tech_name, 1)
-create_tech(old_tech, tech_name, nil, packs[7], 2500, {0.6, 1.0})
+create_tech(old_tech, tech_name, nil, packs[7], 2500, {0.6, 1.0}) -- Phuge in 1
 tech_name = "railgun-shooting-speed"
 old_tech = all_techs[tech_name.."-1"]
 cleanup_old(tech_name, 1)
