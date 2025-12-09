@@ -12,8 +12,8 @@ local newTips = { -- !!! Icons
     { "title" },
     { "data" },
     { "packs" },
-    { "tech" }, -- !!! Menton artillery merge as well as caps
-    { "removals" } -- !!! Also mention tips, achivements, remaining entity buffs
+    { "tech" },
+    { "removals" }
 }
 for index, tipProps in ipairs(newTips) do
     data:extend({{
