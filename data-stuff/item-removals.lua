@@ -9,9 +9,6 @@ data.raw.recipe["inserter"] = nil
 local fast_inserter = data.raw.inserter["fast-inserter"]
 fast_inserter.energy_per_movement = "5kJ" -- These values == normal inserter
 fast_inserter.energy_per_rotation = "5kJ"
--- fast_inserter.order = "z-b[fast-inserter]" -- Before long-handed (!!! Unsure if needed/wanted)
--- data.raw.item["fast-inserter"].order = "b[fast-inserter]"
--- data.raw.recipe["fast-inserter"].order = "b[fast-inserter]"
 data.raw.recipe["fast-inserter"].ingredients = {
 	{ type = "item", name = "iron-plate", amount = 3 },
 	{ type = "item", name = "iron-gear-wheel", amount = 1 },
@@ -54,7 +51,6 @@ data.raw.recipe["assembling-machine-2"].ingredients = { -- Little over double, b
 	{ type = "item", name = "steel-plate", amount = 5 }
 }
 data.raw["build-entity-achievement"]["automate-this"] = nil
--- !!! Locale will need some updates for all the removed tiers !!! (See below, remove "fast")
 
 -- Belts
 data.raw["transport-belt"]["transport-belt"]= nil

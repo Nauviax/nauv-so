@@ -27,7 +27,7 @@ local basic_recipe = {
 	order = order.."a",
 	enabled = false,
 	energy_required = craft_time_basic,
-	ingredients = { -- !!! Light balance review for recipe, just to ensure not too much of any one asteroid early. (Review at pack, not just this.)
+	ingredients = {
 		{ type = "fluid", name = "water", amount = 25 },
 		{ type = "fluid", name = "thruster-fuel", amount = 75 },
 		{ type = "item", name = "steel-plate", amount = 1 },

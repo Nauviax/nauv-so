@@ -1,17 +1,17 @@
+-- Set starting items for players
 script.on_init(function()
-    -- Set starting items for new players
-    script.on_event(defines.events.on_player_created, function(event)
-        local player = game.players[event.player_index]
-        for _, item in pairs({
-            { "coal", 200 },
-            { "iron-plate", 300 },
-            { "copper-plate", 100 },
-            { "iron-gear-wheel", 50 },
-            { "steel-plate", 50 },
-            { "stone-brick", 50 },
-            { "electronic-circuit", 50 }
-        }) do
-            player.insert({ name = item[1], count = item[2] })
-        end
-    end)
+    if remote.interfaces["freeplay"] then
+        local items = remote.call("freeplay", "get_created_items")
+        items["wood"] = nil
+        items["burner-mining-drill"] = nil
+        items["stone-furnace"] = nil
+        items["coal"] = 100
+        items["iron-plate"] = 300
+        items["copper-plate"] = 100
+        items["iron-gear-wheel"] = 50
+        items["steel-plate"] = 50
+        items["stone-brick"] = 50
+        items["electronic-circuit"] = 50
+        remote.call("freeplay", "set_created_items", items)
+	end
 end)

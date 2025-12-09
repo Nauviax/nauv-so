@@ -6,9 +6,5 @@ Clean up updates file
 
 science bases -> slurry?
 
-Spellcheck locale!
-
-Review start of game, powerpoles and furnaces from steel etc, power for drills (poles for this?)
-
 https://github.com/malcolmriley/unused-renders
 Need to give credit now, see how
