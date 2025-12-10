@@ -13,8 +13,5 @@ require("data-stuff.science-packs")
 -- Data stage - Removals (All that need to be done before quality mod data-updates)
 require("data-stuff.item-removals")
 
--- Data stage - Tech (Tech removals, adjustments, merges and additions)
-require("data-stuff.tech-rework")
-
 -- Data stage - Tips (Remove others, add mine)
 require("data-stuff.tips")

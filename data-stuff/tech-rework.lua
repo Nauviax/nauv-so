@@ -5,31 +5,9 @@ local all_techs = data.raw.technology
 
 -- ## Early tech removals, statpacks, misc adjustments ## --
 
--- Remove unused packs, including their techs
-local packs_to_remove = {
-	"automation-science-pack",
-	"logistic-science-pack",
-	"military-science-pack",
-	"chemical-science-pack",
-	"production-science-pack",
-	"utility-science-pack"
-}
-for science_level, pack_name in pairs(packs_to_remove) do
-	-- Remove pack item, recipe, and technology
-	data.raw.tool[pack_name] = nil
-	data.raw.recipe[pack_name] = nil
-	data.raw.recipe[pack_name.."-recycling"] = nil
+-- Remove unused pack from techs
+for science_level, pack_name in pairs(utils.removed_packs) do
 	all_techs[pack_name] = nil
-	-- Remove from labs
-	for _, lab in pairs(data.raw.lab) do
-		for index, input in ipairs(lab.inputs) do
-			if input == pack_name then
-				table.remove(lab.inputs, index)
-				break
-			end
-		end
-	end
-	-- Clean up any techs that used this pack
 	for _, tech in pairs(all_techs) do
 		-- Remove this pack from ingredients if it exists
 		if tech.unit and tech.unit.ingredients then

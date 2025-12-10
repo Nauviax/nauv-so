@@ -1,4 +1,20 @@
 -- !!! CONFIG TO JUST HIDE INSTEAD OF REMOVE, or just hide anyway? !!! Review if hiding makes game slower to load, more sprites in ctrlF3 altas
+local utils = require("common.utils")
+
+-- Pack removal (tech done in tech-rework.lua)
+for _, pack_name in pairs(utils.removed_packs) do
+	data.raw.tool[pack_name] = nil
+	data.raw.recipe[pack_name] = nil
+	for _, lab in pairs(data.raw.lab) do
+		for index, input in ipairs(lab.inputs) do
+			if input == pack_name then
+				table.remove(lab.inputs, index)
+				break
+			end
+		end
+	end
+end
+
 -- Inserter removals
 data.raw.inserter["burner-inserter"]= nil
 data.raw.item["burner-inserter"] = nil

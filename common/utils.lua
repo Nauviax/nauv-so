@@ -94,4 +94,13 @@ function utils.add_to_tech(tech, recipe)
 	table.insert(data.raw.technology[tech].effects, { type = "unlock-recipe", recipe = recipe })
 end
 
+utils.removed_packs = {
+	"automation-science-pack",
+	"logistic-science-pack",
+	"military-science-pack",
+	"chemical-science-pack",
+	"production-science-pack",
+	"utility-science-pack"
+}
+
 return utils
