@@ -181,11 +181,13 @@ merge_into_statpack(statpack_combat_tech, "follower-robot-count-3")
 -- Loop one more time to clean up dependencies on removed techs
 for _, tech in pairs(all_techs) do
     if tech.prerequisites then
-        for index = #tech.prerequisites, 1, -1 do -- Iterate in reverse to avoid index shifting (!!! not needed?)
-            if not all_techs[tech.prerequisites[index]] then
-                table.remove(tech.prerequisites, index)
+		local new_prereqs = {}
+		for _, prereq in ipairs(tech.prerequisites) do
+            if all_techs[prereq] then
+				table.insert(new_prereqs, prereq)
             end
-        end
+		end
+		tech.prerequisites = new_prereqs
     end
 end
 
@@ -430,7 +432,7 @@ old_tech = all_techs[tech_name.."-1"]
 spare_tech = all_techs[tech_name.."-3"]
 cleanup_old(tech_name, 1)
 create_tech(old_tech, tech_name, 1, packs[1], 150, {0.7})
-create_tech(spare_tech, tech_name, 2, packs[1], 1000, {2.0, 2.0, 1.3}) -- May need a third? !!! review damage vs others at max later.
+create_tech(spare_tech, tech_name, 2, packs[1], 1000, {2.0, 2.0, 1.3})
 tech_name = "refined-flammables"
 old_tech = all_techs[tech_name.."-4"]
 cleanup_old(tech_name, 4)

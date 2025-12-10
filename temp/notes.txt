@@ -3,4 +3,4 @@ attempt fix factoryplanner
 -- ^ look into fixing maybe, or just hide instead of nil
 
 https://github.com/malcolmriley/unused-renders
-Need to give credit now, see how
+Credit in mod portal once published!
