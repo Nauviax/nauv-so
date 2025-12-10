@@ -43,7 +43,7 @@ prom_recipe.results = {
 	{ type = "item", name = prom_item.name, amount = 10 }, -- ~12.5 per chunk, pre-prod
 	{ type = "item", name = "promethium-asteroid-chunk", amount = 1, probability = 0.2 }
 } -- Chunk output NOT ignored apparently, and also uses prod
-prom_recipe.main_product = prom_item.name -- Deviation from other crushing recipies afaik
+prom_recipe.main_product = prom_item.name -- Deviation from other crushing recipes afaik
 prom_recipe.subgroup = utils.subgroup.pack_pre
 prom_recipe.order = "z-a" -- Last in subgroup
 prom_recipe.icon = nil -- Clear the custom icon

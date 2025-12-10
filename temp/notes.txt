@@ -5,7 +5,7 @@ attempt fix factoryplanner
 
 Mod settings do later if requested by others methinks
 
-Clean up updates file
+Clean up tech changes, use utils?
 
 science bases -> slurry?
 

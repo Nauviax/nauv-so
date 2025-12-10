@@ -21,4 +21,4 @@ data:extend({
 local pack_group = data.raw["item-subgroup"][utils.subgroup.pack]
 pack_group.group = "space"
 pack_group.order = "z-z"
-data.raw["item-group"]["space"].order_in_recipe = "z" -- Put these items at end of recipies
+data.raw["item-group"]["space"].order_in_recipe = "z" -- Put these items at end of recipes
