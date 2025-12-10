@@ -5,6 +5,7 @@ attempt fix factoryplanner
 Clean up tech changes, use utils?
 
 science bases -> slurry?
+Ensure craft times same (3,15), slurries in general
 
 https://github.com/malcolmriley/unused-renders
 Need to give credit now, see how
