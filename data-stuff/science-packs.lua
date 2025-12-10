@@ -59,4 +59,14 @@ for name, props in pairs(science_data) do
 	recipe.allow_productivity = true -- Already true, just clarity
 	recipe.surface_conditions = utils.sciences.promethium.surface_condition
 	recipe.crafting_machine_tint = utils.recipe_tints(util_props.color)
+
+	-- Remove and re-add from respective tech to ensure it is shown at the end
+	local tech = data.raw.technology[util_props.pack]
+	for index, unlock in pairs(tech.effects) do
+		if unlock.recipe == recipe.name then
+			table.remove(tech.effects, index)
+			utils.add_to_tech(util_props.pack, recipe.name)
+			break
+		end
+	end
 end

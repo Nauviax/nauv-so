@@ -2,9 +2,5 @@ attempt fix factoryplanner
 -- ??? Could not load source '@__factoryplanner__/backend/data/ModuleSet.lua'.
 -- ^ look into fixing maybe, or just hide instead of nil
 
-Clean up tech changes, use utils?
-
-Ensure craft times same (3,15), slurries in general
-
 https://github.com/malcolmriley/unused-renders
 Need to give credit now, see how

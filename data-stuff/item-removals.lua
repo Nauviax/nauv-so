@@ -1,5 +1,4 @@
--- !!! CONFIG TO JUST HIDE INSTEAD OF REMOVE, or just hide anyway? !!! Review if hiding makes game slower to load, more sprites in ctrlF3 altas
-local utils = require("common.utils")
+local utils = require("common.utils") -- Potentually underutilized here
 
 -- Pack removal (tech done in tech-rework.lua)
 for _, pack_name in pairs(utils.removed_packs) do

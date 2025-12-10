@@ -1,4 +1,4 @@
-local utils = {} -- !!! TODO implement utils in/for remove-unused-items code
+local utils = {}
 
 utils.prefix = "nso-"
 
@@ -101,6 +101,11 @@ utils.removed_packs = {
 	"chemical-science-pack",
 	"production-science-pack",
 	"utility-science-pack"
+}
+
+utils.misc = {
+	statpack_building = utils.prefix.."statpack-building",
+	statpack_combat = utils.prefix.."statpack-combat",
 }
 
 return utils
