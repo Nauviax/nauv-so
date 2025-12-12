@@ -15,19 +15,19 @@ for _, pack_name in pairs(utils.removed_packs) do
 end
 
 -- Inserter removals
-data.raw.inserter["burner-inserter"]= nil
+data.raw.inserter["burner-inserter"] = nil
 data.raw.item["burner-inserter"] = nil
 data.raw.recipe["burner-inserter"] = nil
-data.raw.inserter["inserter"]= nil
+data.raw.inserter["inserter"] = nil
 data.raw.item["inserter"] = nil
 data.raw.recipe["inserter"] = nil
 local fast_inserter = data.raw.inserter["fast-inserter"]
 fast_inserter.energy_per_movement = "5kJ" -- These values == normal inserter
 fast_inserter.energy_per_rotation = "5kJ"
 data.raw.recipe["fast-inserter"].ingredients = {
-	{ type = "item", name = "iron-plate", amount = 3 },
+	{ type = "item", name = "iron-plate", amount = 2 },
 	{ type = "item", name = "iron-gear-wheel", amount = 1 },
-	{ type = "item", name = "electronic-circuit", amount = 3 }
+	{ type = "item", name = "electronic-circuit", amount = 2 }
 }
 data.raw.recipe["long-handed-inserter"].ingredients = {
 	{ type = "item", name = "iron-plate", amount = 2 },
@@ -36,20 +36,20 @@ data.raw.recipe["long-handed-inserter"].ingredients = {
 }
 
 -- Stone furnace / burner mining drill removal (Items given at start to avoid softlock)
-data.raw.furnace["stone-furnace"]= nil
+data.raw.furnace["stone-furnace"] = nil
 data.raw.item["stone-furnace"] = nil
 data.raw.recipe["stone-furnace"] = nil
 data.raw.recipe.boiler.ingredients = {
 	{ type = "item", name = "pipe", amount = 4 },
 	{ type = "item", name = "stone-brick", amount = 2 },
 }
-data.raw["mining-drill"]["burner-mining-drill"]= nil
+data.raw["mining-drill"]["burner-mining-drill"] = nil
 data.raw.item["burner-mining-drill"] = nil
 data.raw.recipe["burner-mining-drill"] = nil
 
 -- Assembler adjustments
-data.raw["assembling-machine"]["assembling-machine-1"]= nil
-data.raw["assembling-machine"]["assembling-machine-3"]= nil
+data.raw["assembling-machine"]["assembling-machine-1"] = nil
+data.raw["assembling-machine"]["assembling-machine-3"] = nil
 data.raw.item["assembling-machine-1"] = nil
 data.raw.item["assembling-machine-3"] = nil
 data.raw.recipe["assembling-machine-1"] = nil
@@ -62,33 +62,33 @@ assembling_machine_2.module_slots = 4
 assembling_machine_2.next_upgrade = nil
 data.raw.recipe["assembling-machine-2"].ingredients = { -- Little over double, but then no mk1
 	{ type = "item", name = "iron-gear-wheel", amount = 10 },
-	{ type = "item", name = "electronic-circuit", amount = 10 },
+	{ type = "item", name = "electronic-circuit", amount = 8 },
 	{ type = "item", name = "steel-plate", amount = 5 }
 }
 data.raw["build-entity-achievement"]["automate-this"] = nil
 
 -- Belts
-data.raw["transport-belt"]["transport-belt"]= nil
+data.raw["transport-belt"]["transport-belt"] = nil
 data.raw.item["transport-belt"] = nil
 data.raw.recipe["transport-belt"] = nil
-data.raw["transport-belt"]["express-transport-belt"]= nil
+data.raw["transport-belt"]["express-transport-belt"] = nil
 data.raw.item["express-transport-belt"] = nil
 data.raw.recipe["express-transport-belt"] = nil
-data.raw["underground-belt"]["underground-belt"]= nil
+data.raw["underground-belt"]["underground-belt"] = nil
 data.raw.item["underground-belt"] = nil
 data.raw.recipe["underground-belt"] = nil
-data.raw["underground-belt"]["express-underground-belt"]= nil
+data.raw["underground-belt"]["express-underground-belt"] = nil
 data.raw.item["express-underground-belt"] = nil
 data.raw.recipe["express-underground-belt"] = nil
-data.raw["splitter"]["splitter"]= nil
+data.raw["splitter"]["splitter"] = nil
 data.raw.item["splitter"] = nil
 data.raw.recipe["splitter"] = nil
-data.raw["splitter"]["express-splitter"]= nil
+data.raw["splitter"]["express-splitter"] = nil
 data.raw.item["express-splitter"] = nil
 data.raw.recipe["express-splitter"] = nil
 data.raw.recipe["fast-transport-belt"].ingredients = {
 	{ type = "item", name = "iron-plate", amount = 2 },
-	{ type = "item", name = "iron-gear-wheel", amount = 2 }
+	{ type = "item", name = "iron-gear-wheel", amount = 1 }
 }
 data.raw.recipe["fast-underground-belt"].ingredients = {
 	{ type = "item", name = "iron-gear-wheel", amount = 7 },
@@ -137,10 +137,10 @@ data.raw.recipe["loader"] = nil
 data.raw.recipe["express-loader"] = nil
 
 -- Chests + nerfs
-data.raw.container["wooden-chest"]= nil
+data.raw.container["wooden-chest"] = nil
 data.raw.item["wooden-chest"] = nil
 data.raw.recipe["wooden-chest"] = nil
-data.raw.container["iron-chest"]= nil
+data.raw.container["iron-chest"] = nil
 data.raw.item["iron-chest"] = nil
 data.raw.recipe["iron-chest"] = nil
 local inventory_size = 20 -- Was 48
@@ -187,7 +187,7 @@ data.raw["module-transfer-achievement"]["make-it-better"] = nil
 data.raw["electric-pole"]["small-electric-pole"] = nil
 data.raw.item["small-electric-pole"] = nil
 data.raw.recipe["small-electric-pole"] = nil
-data.raw.armor["light-armor"]= nil
+data.raw.armor["light-armor"] = nil
 data.raw.item["light-armor"] = nil
 data.raw.recipe["light-armor"] = nil
 data.raw["character-corpse"]["character-corpse"].armor_picture_mapping["light-armor"] = nil

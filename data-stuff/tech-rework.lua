@@ -75,7 +75,7 @@ local statpack_building_tech = {
 	type = "technology", name = utils.misc.statpack_building,
 	icon = "__base__/graphics/technology/toolbelt.png", icon_size = 256,
 	effects = {},
-	unit = { ingredients = {}, count = 1, time = 10 },
+	unit = { ingredients = {}, count = 1, time = 12 }, -- Time will be 60 after x5
 	order = "a-t1"
 }
 data:extend({statpack_building_tech})
@@ -83,7 +83,7 @@ local statpack_combat_tech = {
 	type = "technology", name = utils.misc.statpack_combat,
 	icon = "__base__/graphics/technology/stronger-explosives-3.png", icon_size = 256,
 	effects = {},
-	unit = { ingredients = {}, count = 1, time = 10 },
+	unit = { ingredients = {}, count = 1, time = 12 },
 	order = "a-t2"
 }
 data:extend({statpack_combat_tech})
