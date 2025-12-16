@@ -2,7 +2,7 @@ local utils = {}
 
 utils.prefix = "nso-"
 
-utils.sciences = {
+utils.science = {
 	space = {
 		order = "a",
 		craft_time_mult = 1,
@@ -62,6 +62,9 @@ utils.sciences = {
 		pack = "promethium-science-pack",
 		planet = "shattered-planet",
 		surface_condition = {{ property = "gravity", max = 0 }}
+	},
+	common = {
+		weight = 50000 -- 20 per rocket
 	}
 }
 

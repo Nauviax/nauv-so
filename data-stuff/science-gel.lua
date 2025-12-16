@@ -1,7 +1,7 @@
 local utils = require("common.utils")
 
 -- Params
-local base_craft_time = 40
+local base_craft_time = 60
 local base_texture = "__nauv-so__/graphics/fluids/gel.png"
 local fluid_color = {0.9, 0.6, 0.6}
 local order = "a-"
@@ -83,7 +83,7 @@ local fluid = {
 data:extend({ fluid })
 
 for name, props in pairs(science_data) do
-	local util_props = utils.sciences[name]
+	local util_props = utils.science[name]
 	local recipe = {
 		type = "recipe", name = fluid.name.."-"..name, -- Intentionally never matches item name, meaning no main recipe
 		icons = { { icon = base_texture }, {

@@ -3,7 +3,7 @@ local utils = require("common.utils")
 -- Params
 local base_craft_time = 20
 local base_stack_size = 100
-local base_weight = 5000
+local base_weight = utils.science.common.weight
 local data_crafts_per_pack = 2
 local icon = "__nauv-so__/graphics/items/data.png"
 local order = "a-"
@@ -68,7 +68,7 @@ local science_data = {
 	},
 	cryogenic = {
 		stack_mult = 1,
-		weight_mult = 1,
+		weight_mult = 0.5,
 		craft_category = "cryogenics",
 		is_tool = false,
 		ingredients = {
@@ -95,7 +95,7 @@ local science_data = {
 }
 
 for name, props in pairs(science_data) do
-	local util_props = utils.sciences[name]
+	local util_props = utils.science[name]
 
 	local item = table.deepcopy(base_item)
 	item.name = util_props.data

@@ -3,7 +3,7 @@ local utils = require("common.utils")
 -- Params
 local base_craft_time = 6
 local stack_size = 50
-local weight = 5000
+local weight = utils.science.common.weight
 local pack_craft_category = "cryogenics-or-assembling"
 local order = "a-"
 
@@ -35,7 +35,7 @@ local science_data = {
 }
 
 for name, props in pairs(science_data) do
-	local util_props = utils.sciences[name]
+	local util_props = utils.science[name]
 
 	local item = data.raw.tool[util_props.pack]
 	item.stack_size = stack_size
@@ -57,7 +57,7 @@ for name, props in pairs(science_data) do
 		{ type = "item", name = utils.items.garbage_data, amount = 1, ignored_by_stats = 1 }
 	}
 	recipe.allow_productivity = true -- Already true, just clarity
-	recipe.surface_conditions = utils.sciences.promethium.surface_condition
+	recipe.surface_conditions = utils.science.promethium.surface_condition
 	recipe.crafting_machine_tint = utils.recipe_tints(util_props.color)
 
 	-- Remove and re-add from respective tech to ensure it is shown at the end

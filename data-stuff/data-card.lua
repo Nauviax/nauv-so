@@ -12,7 +12,7 @@ item.type = "item"
 item.subgroup = utils.subgroup.data_pre
 item.order = order.."y"
 item.stack_size = 100
-item.weight = 5000
+item.weight = utils.science.common.weight
 item.localised_description = nil
 
 local recipe = {

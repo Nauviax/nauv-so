@@ -15,8 +15,8 @@ for science_level, pack_name in pairs(utils.removed_packs) do
 					table.remove(tech.unit.ingredients, index)
 					-- If no ingredients left, add space-science-pack as default if tech was above blue
 					if #tech.unit.ingredients == 0 and science_level > 4 then
-						tech.unit.ingredients = {{utils.sciences.space.pack, 1}}
-						table.insert(tech.prerequisites, utils.sciences.space.pack)
+						tech.unit.ingredients = {{utils.science.space.pack, 1}}
+						table.insert(tech.prerequisites, utils.science.space.pack)
 					end
 					break
 				end
@@ -212,14 +212,14 @@ data.raw["research-achievement"]["eco-unfriendly"] = nil
 -- ## Remaining tech broad adjustments ## --
 
 -- Adjust research speed, +1 and +2 at pre and post white science (Vanilla max is +2.5)
-local space_pack_tech = all_techs[utils.sciences.space.pack]
+local space_pack_tech = all_techs[utils.science.space.pack]
 table.insert(space_pack_tech.effects, { type = "laboratory-speed", modifier = 1.0 })
 local lab_speed_tech = all_techs["research-speed-1"]
 all_techs["research-speed-1"] = nil -- Remove old first
 lab_speed_tech.name = "research-speed" -- Remove number
 lab_speed_tech.effects = {{ type = "laboratory-speed", modifier = 2.0 }}
-lab_speed_tech.prerequisites = {utils.sciences.space.pack}
-lab_speed_tech.unit.ingredients = {{utils.sciences.space.pack, 1}}
+lab_speed_tech.prerequisites = {utils.science.space.pack}
+lab_speed_tech.unit.ingredients = {{utils.science.space.pack, 1}}
 lab_speed_tech.unit.count = 500 -- Will be 100 after the /5
 lab_speed_tech.upgrade = false
 data:extend({lab_speed_tech}) -- Add back modified
@@ -245,7 +245,7 @@ space_pack_tech.prerequisites = nil
 space_pack_tech.research_trigger = nil
 space_pack_tech.unit = { ingredients = {}, count = 1000, time = 60 } -- Intentionally AFTER the /5 to cost
 space_pack_tech.order = "a-t3"
-all_techs["rocket-silo"].prerequisites = {utils.sciences.space.pack, "kovarex-enrichment-process"}
+all_techs["rocket-silo"].prerequisites = {utils.science.space.pack, "kovarex-enrichment-process"}
 all_techs["space-platform-thruster"].prerequisites = {"rocket-silo"}
 
 for index, tech_name in pairs({
@@ -258,7 +258,7 @@ for index, tech_name in pairs({
 }) do  -- Count and time is post x5 time adjustment
 	local tech = all_techs[tech_name]
 	tech.order = "a-t"..(index+3) -- Starting at 4
-	tech.unit.ingredients = {{utils.sciences.space.data, 1}}
+	tech.unit.ingredients = {{utils.science.space.data, 1}}
 	tech.unit.count = index == 1 and 10 or 200
 	tech.unit.time = 60
 end
@@ -266,14 +266,14 @@ end
 -- Modify normal lab to allow early data use, but not late science use
 local lab = data.raw.lab.lab
 for _, pack_name in ipairs({ -- Remove later packs
-	utils.sciences.cryogenic.pack,
-    utils.sciences.promethium.pack
+	utils.science.cryogenic.pack,
+    utils.science.promethium.pack
 }) do
   for index, input in ipairs(lab.inputs) do
     if input == pack_name then table.remove(lab.inputs, index); break end
   end
 end
-table.insert(lab.inputs, 1, utils.sciences.space.data)
+table.insert(lab.inputs, 1, utils.science.space.data)
 
 
 -- ## Recipe productivity adjustments and caps ## --
@@ -297,9 +297,9 @@ local inf_prod_techs = {
     }
 }
 local tiers = { -- Single VGF packs are done manually
-    {{ utils.sciences.space.pack, 1 }, { utils.sciences.metallurgic.pack, 1 }, { utils.sciences.electromagnetic.pack, 1 }, { utils.sciences.agricultural.pack, 1 }},
-    {{ utils.sciences.space.pack, 1 }, { utils.sciences.metallurgic.pack, 1 }, { utils.sciences.electromagnetic.pack, 1 }, { utils.sciences.agricultural.pack, 1 }, { utils.sciences.cryogenic.pack, 1 }},
-    {{ utils.sciences.space.pack, 1 }, { utils.sciences.metallurgic.pack, 1 }, { utils.sciences.electromagnetic.pack, 1 }, { utils.sciences.agricultural.pack, 1 }, { utils.sciences.cryogenic.pack, 1 }, { utils.sciences.promethium.pack, 1 }}
+    {{ utils.science.space.pack, 1 }, { utils.science.metallurgic.pack, 1 }, { utils.science.electromagnetic.pack, 1 }, { utils.science.agricultural.pack, 1 }},
+    {{ utils.science.space.pack, 1 }, { utils.science.metallurgic.pack, 1 }, { utils.science.electromagnetic.pack, 1 }, { utils.science.agricultural.pack, 1 }, { utils.science.cryogenic.pack, 1 }},
+    {{ utils.science.space.pack, 1 }, { utils.science.metallurgic.pack, 1 }, { utils.science.electromagnetic.pack, 1 }, { utils.science.agricultural.pack, 1 }, { utils.science.cryogenic.pack, 1 }, { utils.science.promethium.pack, 1 }}
 }
 
 local prod_tech_costs = { 1, 2, 3, 5, 10 } -- 500*this
@@ -325,25 +325,25 @@ for type_name, type_techs in pairs(inf_prod_techs) do
         		tech.prerequisites = tier_level == 1 and { tier[2][1], tier[3][1], tier[4][1] } or { tier[#tier][1] } -- VGF, or latest
 				table.insert(tech.prerequisites, tech_name.."-"..(level-1)) -- Previous tech
 			end
-			tech.unit.ingredients = tier_level == 0 and {{ utils.sciences.space.pack, 1 }, { first_pack_name, 1 }} or tier
+			tech.unit.ingredients = tier_level == 0 and {{ utils.science.space.pack, 1 }, { first_pack_name, 1 }} or tier
 			data:extend({tech})
 		end
 	end
 end
 -- Add Steel Prod prereq to metallurgic tech due to new pack
-all_techs["steel-plate-productivity-1"].prerequisites = {utils.sciences.metallurgic.pack}
+all_techs["steel-plate-productivity-1"].prerequisites = {utils.science.metallurgic.pack}
 
 
 -- ## All other tech adjustments and replacements, infinite removals etc ## --
 
 local packs = { -- Each second item references the previous 'tiers' table
 	{ nil, nil }, -- Effectively, do not add packs
-	{ utils.sciences.metallurgic.pack, nil },
-	{ utils.sciences.electromagnetic.pack, nil },
-	{ utils.sciences.agricultural.pack, nil },
+	{ utils.science.metallurgic.pack, nil },
+	{ utils.science.electromagnetic.pack, nil },
+	{ utils.science.agricultural.pack, nil },
 	{ nil, 1 }, -- Will add all 3 VFG
-	{ utils.sciences.cryogenic.pack, 2 },
-	{ utils.sciences.promethium.pack, 3 }
+	{ utils.science.cryogenic.pack, 2 },
+	{ utils.science.promethium.pack, 3 }
 }
 
 -- Create a tech based on an old one
@@ -371,9 +371,9 @@ local function create_tech(old_tech, name, level, pack, amount, modifiers, depen
 	if pack[1] then
 		table.insert(tech.prerequisites, pack[1])
 	elseif pack[2] == 1 then
-		table.insert(tech.prerequisites, utils.sciences.metallurgic.pack)
-		table.insert(tech.prerequisites, utils.sciences.electromagnetic.pack)
-		table.insert(tech.prerequisites, utils.sciences.agricultural.pack)
+		table.insert(tech.prerequisites, utils.science.metallurgic.pack)
+		table.insert(tech.prerequisites, utils.science.electromagnetic.pack)
+		table.insert(tech.prerequisites, utils.science.agricultural.pack)
 	end
 	if level and level > 1 then
 		table.insert(tech.prerequisites, name.."-"..(level-1))

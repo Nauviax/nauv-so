@@ -10,8 +10,8 @@ data:extend({{
 data.raw["tips-and-tricks-item"] = {} -- Delete all existing tips (Most are broken)
 local newTips = {
     { "title", "[item=science]" },
-    { "data",  "[item="..utils.sciences.space.data.."]" },
-    { "packs", "[item="..utils.sciences.space.pack.."]" },
+    { "data",  "[item="..utils.science.space.data.."]" },
+    { "packs", "[item="..utils.science.space.pack.."]" },
     { "tech", "[item=lab]" },
     { "removals", "[virtual-signal=signal-trash-bin]" }
 }

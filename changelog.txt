@@ -1,4 +1,10 @@
 ---------------------------------------------------------------------------------------------------
+Version: 1.0.1
+Date: 2024.12.17
+  Changes:
+    - Weight of data and science increased tenfold, to require more rocket parts per pack. (Cryo just x5)
+    - Slightly longer gel craft times
+---------------------------------------------------------------------------------------------------
 Version: 1.0.0
 Date: 2024.12.16
   Changes:
