@@ -15,7 +15,7 @@ local science_data = {
 			{ type = "fluid", name = "sulfuric-acid", amount = 200 },
 			{ type = "item", name = "plastic-bar", amount = 20 },
 			{ type = "item", name = "uranium-235", amount = 4 },
-			{ type = "item", name = "flamethrower-ammo", amount = 10 },
+			{ type = "item", name = "flamethrower-ammo", amount = 16 },
 		}
 	},
 	metallurgic = {
