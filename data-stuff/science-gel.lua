@@ -97,7 +97,7 @@ for name, props in pairs(science_data) do
 		order = order..util_props.order,
 		enabled = false,
 		energy_required = base_craft_time * util_props.craft_time_mult,
-		ingredients =  props.ingredients,
+		ingredients = props.ingredients,
 		results = {{ type = "fluid", name = fluid.name, amount = 400 }},
 		allow_productivity = true,
 		surface_conditions = util_props.surface_condition,

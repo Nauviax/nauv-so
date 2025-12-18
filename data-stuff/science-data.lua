@@ -125,7 +125,7 @@ for name, props in pairs(science_data) do
 		enabled = false,
 		energy_required = base_craft_time * util_props.craft_time_mult * (props.extra_craft_mult or 1),
 		ingredients = props.ingredients,
-		results = {{ type = "item", name = item.name, amount =  util_props.data_per_pack / data_crafts_per_pack }},
+		results = {{ type = "item", name = item.name, amount = util_props.data_per_pack / data_crafts_per_pack }},
 		allow_productivity = true,
 		surface_conditions = util_props.surface_condition,
 		show_amount_in_title = false,

@@ -255,7 +255,7 @@ for index, tech_name in pairs({
 	"planet-discovery-vulcanus",
 	"planet-discovery-gleba",
 	"planet-discovery-fulgora"
-}) do  -- Count and time is post x5 time adjustment
+}) do -- Count and time is post x5 time adjustment
 	local tech = all_techs[tech_name]
 	tech.order = "a-t"..(index+3) -- Starting at 4
 	tech.unit.ingredients = {{utils.science.space.data, 1}}
