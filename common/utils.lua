@@ -3,8 +3,8 @@ local utils = {}
 utils.prefix = "nso-"
 
 utils.settings = { -- !!! To be populated later
-	mod_compat_mode = false, -- Hide prototypes instead of removing them
-	remove_items = true -- Prevent tier removals (And some things like chest size adjustments !!!)
+	mod_compat_mode = settings.startup["nso-mod-compat-mode"].value, -- Hide prototypes instead of removing them
+	remove_items = settings.startup["nso-remove-items"].value -- Prevent tier removals (And some things like chest size adjustments !!!)
 }
 
 utils.science = {

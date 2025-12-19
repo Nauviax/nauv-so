@@ -7,7 +7,9 @@ data:extend({{
     name = category,
     order = order.."0"
 }})
-data.raw["tips-and-tricks-item"] = {} -- Delete all existing tips (Most are broken)
+if !utils.settings.mod_compat_mode then
+    data.raw["tips-and-tricks-item"] = {} -- Delete all existing tips (Most are broken)
+end
 local newTips = {
     { "title", "[item=science]" },
     { "data", "[item="..utils.science.space.data.."]" },
