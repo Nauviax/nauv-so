@@ -6,7 +6,7 @@ local all_techs = data.raw.technology
 
 -- Remove unused pack from techs
 for science_level, pack_name in pairs(utils.removed_packs) do
-	all_techs[pack_name] = nil
+	utils.delete(all_techs, pack_name)
 	for _, tech in pairs(all_techs) do
 		-- Remove this pack from ingredients if it exists
 		if tech.unit and tech.unit.ingredients then
@@ -35,7 +35,7 @@ local function unlock_and_delete(tech_name)
 			end
 		end
 	end
-	all_techs[tech_name] = nil
+	utils.delete(all_techs, tech_name)
 end
 
 -- Remove all techs that now have no pack cost. Skip any that do more than unlock recipes
@@ -68,7 +68,7 @@ local rocket_silo_tech = all_techs["rocket-silo"]
 for _, effect in pairs(all_techs["space-platform"].effects) do
 	table.insert(rocket_silo_tech.effects, effect)
 end
-all_techs["space-platform"] = nil
+utils.delete(all_techs, "space-platform")
 
 -- Statpacks contain all bonuses provided by tech being removed
 local statpack_building_tech = {
@@ -130,7 +130,7 @@ local function merge_into_statpack(statpack, tech_name)
 			end
 		end
 	end
-	all_techs[tech_name] = nil
+	utils.delete(all_techs, tech_name)
 end
 
 -- Populate building statpack
@@ -199,14 +199,14 @@ for _, shortcut in pairs(data.raw.shortcut) do
 end
 
 -- Remove achivements tied to removed tech (More achievements removed in item-removals)
-data.raw["research-with-science-pack-achievement"]["research-with-automation"] = nil
-data.raw["research-with-science-pack-achievement"]["research-with-logistics"] = nil
-data.raw["research-with-science-pack-achievement"]["research-with-military"] = nil
-data.raw["research-with-science-pack-achievement"]["research-with-chemicals"] = nil
-data.raw["research-with-science-pack-achievement"]["research-with-production"] = nil
-data.raw["research-with-science-pack-achievement"]["research-with-utility"] = nil
-data.raw["dont-research-before-researching-achievement"]["rush-to-space"] = nil
-data.raw["research-achievement"]["eco-unfriendly"] = nil
+utils.delete(data.raw["research-with-science-pack-achievement"], "research-with-automation")
+utils.delete(data.raw["research-with-science-pack-achievement"], "research-with-logistics")
+utils.delete(data.raw["research-with-science-pack-achievement"], "research-with-military")
+utils.delete(data.raw["research-with-science-pack-achievement"], "research-with-chemicals")
+utils.delete(data.raw["research-with-science-pack-achievement"], "research-with-production")
+utils.delete(data.raw["research-with-science-pack-achievement"], "research-with-utility")
+utils.delete(data.raw["dont-research-before-researching-achievement"], "rush-to-space")
+utils.delete(data.raw["research-achievement"], "eco-unfriendly")
 
 
 -- ## Remaining tech broad adjustments ## --
@@ -215,7 +215,7 @@ data.raw["research-achievement"]["eco-unfriendly"] = nil
 local space_pack_tech = all_techs[utils.science.space.pack]
 table.insert(space_pack_tech.effects, { type = "laboratory-speed", modifier = 1.0 })
 local lab_speed_tech = all_techs["research-speed-1"]
-all_techs["research-speed-1"] = nil -- Remove old first
+utils.delete(all_techs, "research-speed-1") -- Remove old first
 lab_speed_tech.name = "research-speed" -- Remove number
 lab_speed_tech.effects = {{ type = "laboratory-speed", modifier = 2.0 }}
 lab_speed_tech.prerequisites = {utils.science.space.pack}
@@ -224,7 +224,7 @@ lab_speed_tech.unit.count = 500 -- Will be 100 after the /5
 lab_speed_tech.upgrade = false
 data:extend({lab_speed_tech}) -- Add back modified
 for level = 2, 6 do -- Remove rest of techs
-	all_techs["research-speed-"..level] = nil
+	utils.delete(all_techs, "research-speed-"..level)
 end
 
 -- Go through all remaining techs, if not trigger tech then /5 pack cost (Round up) and *5 time
@@ -309,7 +309,7 @@ for type_name, type_techs in pairs(inf_prod_techs) do
     for _, tech_name in pairs(type_techs) do
 		local count_modifier = tech_name == "scrap-recycling-productivity" and 0.5 or tech_name == "rocket-part-productivity" and 2 or 1
 		local old_tech = all_techs[tech_name]
-		all_techs[tech_name] = nil -- Remove old tech reference
+		utils.delete(all_techs, tech_name) -- Remove old tech reference
 		old_tech.unit.count_formula = nil
 		old_tech.max_level = nil
 		for _, effect in pairs(old_tech.effects) do
@@ -394,7 +394,7 @@ local function cleanup_old(name, next_level)
 	while true do
 		local next_tech = all_techs[name.."-"..next_level]
 		if next_tech then
-			all_techs[name.."-"..next_level] = nil
+			utils.delete(all_techs, next_tech.name)
 			next_level = next_level + 1
 		else
 			return -- Done
@@ -466,7 +466,7 @@ create_tech(old_tech, tech_name, 2, packs[7], 8000, {0.5})
 -- Other techs
 tech_name = "health"
 old_tech = all_techs[tech_name]
-all_techs[tech_name] = nil -- No -1
+utils.delete(all_techs, tech_name) -- No -1
 create_tech(old_tech, tech_name, nil, packs[1], 500, {250})
 tech_name = "worker-robots-storage"
 old_tech = all_techs[tech_name.."-2"]

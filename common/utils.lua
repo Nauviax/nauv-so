@@ -2,6 +2,11 @@ local utils = {}
 
 utils.prefix = "nso-"
 
+utils.settings = { -- !!! To be populated later
+	mod_compat_mode = false, -- Hide prototypes instead of removing them
+	remove_items = true -- Prevent tier removals (And some things like chest size adjustments !!!)
+}
+
 utils.science = {
 	space = {
 		order = "a",
@@ -95,6 +100,18 @@ end
 
 function utils.add_to_tech(tech, recipe)
 	table.insert(data.raw.technology[tech].effects, { type = "unlock-recipe", recipe = recipe })
+end
+
+function utils.delete(tbl, key)
+	local obj = tbl[key]
+    if utils.settings.mod_compat_mode then
+        obj.hidden = true
+		if obj.enabled == true then
+			obj.enabled = false -- Only false if property existed
+		end
+    else
+        tbl[key] = nil -- Easier to notice issues related to the removal
+    end
 end
 
 utils.removed_packs = {

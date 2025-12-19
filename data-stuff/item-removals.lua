@@ -2,8 +2,8 @@ local utils = require("common.utils") -- Potentually underutilized here
 
 -- Pack removal (tech done in tech-rework.lua)
 for _, pack_name in pairs(utils.removed_packs) do
-	data.raw.tool[pack_name] = nil
-	data.raw.recipe[pack_name] = nil
+	utils.delete(data.raw.tool, pack_name)
+	utils.delete(data.raw.recipe, pack_name)
 	for _, lab in pairs(data.raw.lab) do
 		for index, input in ipairs(lab.inputs) do
 			if input == pack_name then
@@ -15,12 +15,12 @@ for _, pack_name in pairs(utils.removed_packs) do
 end
 
 -- Inserter removals
-data.raw.inserter["burner-inserter"] = nil
-data.raw.item["burner-inserter"] = nil
-data.raw.recipe["burner-inserter"] = nil
-data.raw.inserter["inserter"] = nil
-data.raw.item["inserter"] = nil
-data.raw.recipe["inserter"] = nil
+utils.delete(data.raw.inserter, "burner-inserter")
+utils.delete(data.raw.item, "burner-inserter")
+utils.delete(data.raw.recipe, "burner-inserter")
+utils.delete(data.raw.inserter, "inserter")
+utils.delete(data.raw.item, "inserter")
+utils.delete(data.raw.recipe, "inserter")
 local fast_inserter = data.raw.inserter["fast-inserter"]
 fast_inserter.energy_per_movement = "5kJ" -- These values == normal inserter
 fast_inserter.energy_per_rotation = "5kJ"
@@ -36,25 +36,25 @@ data.raw.recipe["long-handed-inserter"].ingredients = {
 }
 
 -- Stone furnace / burner mining drill removal (Items given at start to avoid softlock)
-data.raw.furnace["stone-furnace"] = nil
-data.raw.item["stone-furnace"] = nil
-data.raw.recipe["stone-furnace"] = nil
+utils.delete(data.raw.furnace, "stone-furnace")
+utils.delete(data.raw.item, "stone-furnace")
+utils.delete(data.raw.recipe, "stone-furnace")
 data.raw.recipe.boiler.ingredients = {
 	{ type = "item", name = "pipe", amount = 4 },
 	{ type = "item", name = "stone-brick", amount = 2 },
 }
-data.raw["mining-drill"]["burner-mining-drill"] = nil
-data.raw.item["burner-mining-drill"] = nil
-data.raw.recipe["burner-mining-drill"] = nil
+utils.delete(data.raw["mining-drill"], "burner-mining-drill")
+utils.delete(data.raw.item, "burner-mining-drill")
+utils.delete(data.raw.recipe, "burner-mining-drill")
 
 -- Assembler adjustments
-data.raw["assembling-machine"]["assembling-machine-1"] = nil
-data.raw["assembling-machine"]["assembling-machine-3"] = nil
-data.raw.item["assembling-machine-1"] = nil
-data.raw.item["assembling-machine-3"] = nil
-data.raw.recipe["assembling-machine-1"] = nil
-data.raw.recipe["assembling-machine-3"] = nil
-data.raw.technology["automation-3"] = nil -- MK1 is removed later anyway
+utils.delete(data.raw["assembling-machine"], "assembling-machine-1")
+utils.delete(data.raw["assembling-machine"], "assembling-machine-3")
+utils.delete(data.raw.item, "assembling-machine-1")
+utils.delete(data.raw.item, "assembling-machine-3")
+utils.delete(data.raw.recipe, "assembling-machine-1")
+utils.delete(data.raw.recipe, "assembling-machine-3")
+utils.delete(data.raw.technology, "automation-3") -- MK1 is removed later anyway
 local assembling_machine_2 = data.raw["assembling-machine"]["assembling-machine-2"]
 assembling_machine_2.crafting_speed = 1.0 -- Was 0.75
 assembling_machine_2.energy_usage = "200kW" -- Was 150kW
@@ -65,27 +65,27 @@ data.raw.recipe["assembling-machine-2"].ingredients = { -- Little over double, b
 	{ type = "item", name = "electronic-circuit", amount = 8 },
 	{ type = "item", name = "steel-plate", amount = 5 }
 }
-data.raw["build-entity-achievement"]["automate-this"] = nil
+utils.delete(data.raw["build-entity-achievement"], "automate-this")
 
 -- Belts
-data.raw["transport-belt"]["transport-belt"] = nil
-data.raw.item["transport-belt"] = nil
-data.raw.recipe["transport-belt"] = nil
-data.raw["transport-belt"]["express-transport-belt"] = nil
-data.raw.item["express-transport-belt"] = nil
-data.raw.recipe["express-transport-belt"] = nil
-data.raw["underground-belt"]["underground-belt"] = nil
-data.raw.item["underground-belt"] = nil
-data.raw.recipe["underground-belt"] = nil
-data.raw["underground-belt"]["express-underground-belt"] = nil
-data.raw.item["express-underground-belt"] = nil
-data.raw.recipe["express-underground-belt"] = nil
-data.raw["splitter"]["splitter"] = nil
-data.raw.item["splitter"] = nil
-data.raw.recipe["splitter"] = nil
-data.raw["splitter"]["express-splitter"] = nil
-data.raw.item["express-splitter"] = nil
-data.raw.recipe["express-splitter"] = nil
+utils.delete(data.raw["transport-belt"], "transport-belt")
+utils.delete(data.raw.item, "transport-belt")
+utils.delete(data.raw.recipe, "transport-belt")
+utils.delete(data.raw["transport-belt"], "express-transport-belt")
+utils.delete(data.raw.item, "express-transport-belt")
+utils.delete(data.raw.recipe, "express-transport-belt")
+utils.delete(data.raw["underground-belt"], "underground-belt")
+utils.delete(data.raw.item, "underground-belt")
+utils.delete(data.raw.recipe, "underground-belt")
+utils.delete(data.raw["underground-belt"], "express-underground-belt")
+utils.delete(data.raw.item, "express-underground-belt")
+utils.delete(data.raw.recipe, "express-underground-belt")
+utils.delete(data.raw["splitter"], "splitter")
+utils.delete(data.raw.item, "splitter")
+utils.delete(data.raw.recipe, "splitter")
+utils.delete(data.raw["splitter"], "express-splitter")
+utils.delete(data.raw.item, "express-splitter")
+utils.delete(data.raw.recipe, "express-splitter")
 data.raw.recipe["fast-transport-belt"].ingredients = {
 	{ type = "item", name = "iron-plate", amount = 2 },
 	{ type = "item", name = "iron-gear-wheel", amount = 1 }
@@ -121,7 +121,7 @@ data.raw.recipe["turbo-splitter"].ingredients = {
 data.raw["transport-belt"]["fast-transport-belt"].next_upgrade = "turbo-transport-belt"
 data.raw["underground-belt"]["fast-underground-belt"].next_upgrade = "turbo-underground-belt"
 data.raw["splitter"]["fast-splitter"].next_upgrade = "turbo-splitter"
-data.raw.technology["logistics-3"] = nil
+utils.delete(data.raw.technology, "logistics-3")
 for index, prereq in ipairs(data.raw.technology["turbo-transport-belt"].prerequisites) do
 	if prereq == "logistics-3" then
 		table.remove(data.raw.technology["turbo-transport-belt"].prerequisites, index)
@@ -133,16 +133,16 @@ data.raw.recipe["lab"].ingredients = {
 	{ type = "item", name = "electronic-circuit", amount = 10 },
 	{ type = "item", name = "fast-transport-belt", amount = 3 }
 }
-data.raw.recipe["loader"] = nil
-data.raw.recipe["express-loader"] = nil
+utils.delete(data.raw.recipe, "loader")
+utils.delete(data.raw.recipe, "express-loader")
 
 -- Chests + nerfs
-data.raw.container["wooden-chest"] = nil
-data.raw.item["wooden-chest"] = nil
-data.raw.recipe["wooden-chest"] = nil
-data.raw.container["iron-chest"] = nil
-data.raw.item["iron-chest"] = nil
-data.raw.recipe["iron-chest"] = nil
+utils.delete(data.raw.container, "wooden-chest")
+utils.delete(data.raw.item, "wooden-chest")
+utils.delete(data.raw.recipe, "wooden-chest")
+utils.delete(data.raw.container, "iron-chest")
+utils.delete(data.raw.item, "iron-chest")
+utils.delete(data.raw.recipe, "iron-chest")
 local inventory_size = 20 -- Was 48
 data.raw.container["steel-chest"].inventory_size = inventory_size
 data.raw.recipe["steel-chest"].ingredients = {
@@ -160,10 +160,10 @@ for _, module_name in pairs({
 }) do
 	local mk2_name = module_name.."-2"
 	local mk3_name = module_name.."-3"
-	data.raw.item[mk2_name] = nil
-	data.raw.recipe[mk2_name] = nil
-	data.raw.module[mk2_name] = nil
-	data.raw.technology[mk2_name] = nil
+	utils.delete(data.raw.item, mk2_name)
+	utils.delete(data.raw.recipe, mk2_name)
+	utils.delete(data.raw.module, mk2_name)
+	utils.delete(data.raw.technology, mk2_name)
 	local mk3_module = data.raw.recipe[mk3_name]
 	for _, ingredient in pairs(mk3_module.ingredients) do -- Slightly cheaper base overall to account for lack of a prod step
 		if ingredient.name == mk2_name then
@@ -181,13 +181,13 @@ for _, module_name in pairs({
 	end
 end
 data.raw.module["efficiency-module-3"].effect.consumption = -0.8 -- Old was -0.5
-data.raw["module-transfer-achievement"]["make-it-better"] = nil
+utils.delete(data.raw["module-transfer-achievement"], "make-it-better")
 
 -- Misc
-data.raw["electric-pole"]["small-electric-pole"] = nil
-data.raw.item["small-electric-pole"] = nil
-data.raw.recipe["small-electric-pole"] = nil
-data.raw.armor["light-armor"] = nil
-data.raw.item["light-armor"] = nil
-data.raw.recipe["light-armor"] = nil
+utils.delete(data.raw["electric-pole"], "small-electric-pole")
+utils.delete(data.raw.item, "small-electric-pole")
+utils.delete(data.raw.recipe, "small-electric-pole")
+utils.delete(data.raw.armor, "light-armor")
+utils.delete(data.raw.item, "light-armor")
+utils.delete(data.raw.recipe, "light-armor")
 data.raw["character-corpse"]["character-corpse"].armor_picture_mapping["light-armor"] = nil
