@@ -76,7 +76,7 @@ local science_data = {
 			{ type = "item", name = "ice-platform", amount = 1 },
 			{ type = "item", name = "lithium-plate", amount = 8 }
 		},
-		fluoro_used = 20
+		fluoro_used = 50
 	},
 	promethium = {
 		stack_mult = 0.25,
@@ -90,7 +90,7 @@ local science_data = {
 			{ type = "item", name = "quantum-processor", amount = 2 },
 			{ type = "item", name = utils.items.hg_prom, amount = 1 }
 		},
-		fluoro_used = 3
+		fluoro_used = 4
 	}
 }
 

@@ -51,19 +51,19 @@ local science_data = {
 	cryogenic = {
 		craft_category = "cryogenics",
 		ingredients = {
-			{ type = "fluid", name = "sulfuric-acid", amount = 200 },
+			{ type = "fluid", name = "sulfuric-acid", amount = 300 },
 			{ type = "item", name = "wood", amount = 20 },
 			{ type = "item", name = "solid-fuel", amount = 20 },
 			{ type = "item", name = "rocket-fuel", amount = 10 },
-			utils.items.fluo_in(50)
+			utils.items.fluo_in(100)
 		},
-		byproduct = utils.items.fluo_out(25)
+		byproduct = utils.items.fluo_out(50)
 	},
 	promethium = {
 		craft_category = "cryogenics",
 		ingredients = {
-			{ type = "fluid", name = utils.items.basic_slurry, amount = 200 },
-			{ type = "fluid", name = "sulfuric-acid", amount = 200 },
+			{ type = "fluid", name = utils.items.basic_slurry, amount = 400 },
+			{ type = "fluid", name = "sulfuric-acid", amount = 400 },
 			{ type = "item", name = "wood", amount = 20 },
 			{ type = "item", name = "pentapod-egg", amount = 5 },
 			{ type = "item", name = "foundation", amount = 2 },
