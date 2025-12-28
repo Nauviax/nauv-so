@@ -40,7 +40,7 @@ prom_recipe.name = prom_item.name
 prom_recipe.energy_required = 3 -- Slightly longer
 prom_recipe.ingredients[1].name = "promethium-asteroid-chunk"
 prom_recipe.results = {
-	{ type = "item", name = prom_item.name, amount = 10 }, -- ~12.5 per chunk, pre-prod
+	{ type = "item", name = prom_item.name, amount = 5 }, -- ~6.25 per chunk, pre-prod
 	{ type = "item", name = "promethium-asteroid-chunk", amount = 1, probability = 0.2 }
 } -- Chunk output NOT ignored apparently, and also uses prod
 prom_recipe.main_product = prom_item.name -- Deviation from other crushing recipes afaik
@@ -101,7 +101,3 @@ for _, conn in ipairs(connections) do
 		}
 	})
 end
-
--- Slightly more ice from oxide asteroids (Due to higher requirements for ice)
-data.raw.recipe["oxide-asteroid-crushing"].results[1].amount = 8 -- From 5
-data.raw.recipe["advanced-oxide-asteroid-crushing"].results[1].amount = 4 -- From 3

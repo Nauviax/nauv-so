@@ -1,4 +1,11 @@
 ---------------------------------------------------------------------------------------------------
+Version: 1.0.3
+Date: 2024.12.28
+  Changes:
+    - Slurry now takes iron sticks instead of water, and requires more thruster fuel. Starfrost slurry output reduced.
+    - Promethium 147 per chunk halved. Reverted oxide chunk ice output to normal levels.
+    - Fluoroketone use increased in most relevant science recipes. Minor gel cost increaces.
+---------------------------------------------------------------------------------------------------
 Version: 1.0.2
 Date: 2024.12.27
   Changes:
