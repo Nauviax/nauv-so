@@ -1,4 +1,9 @@
 ---------------------------------------------------------------------------------------------------
+Version: 1.0.2
+Date: 2024.12.27
+  Changes:
+    - Nauvis space routes now only have small promethium asteroids. Now more resistant to lasers.
+---------------------------------------------------------------------------------------------------
 Version: 1.0.1
 Date: 2024.12.17
   Changes:

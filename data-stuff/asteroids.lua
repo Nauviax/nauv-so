@@ -69,17 +69,17 @@ for _, asteroid in ipairs({
 }) do
 	for _, resist in ipairs(data.raw.asteroid[asteroid].resistances) do
 		if resist.type == "laser" then
-			resist.percent = -100
+			resist.percent = -50
 		end
 	end
 end
 
--- Add medium promethium to space connections
-local med_connections = {
-	"nauvis-vulcanus",
+-- Add promethium to space connections
+local connections = {
+	"nauvis-vulcanus", -- Small
 	"nauvis-gleba",
 	"nauvis-fulgora",
-	"vulcanus-gleba",
+	"vulcanus-gleba", -- Medium
 	"gleba-fulgora",
 	"gleba-aquilo",
 	"fulgora-aquilo",
@@ -87,10 +87,11 @@ local med_connections = {
 }
 local base_prob = 0.003
 local speed = 1/60 -- Default
-for _, conn in ipairs(med_connections) do
+for _, conn in ipairs(connections) do
+	local size = string.sub(conn, 1, 6) == "nauvis" and "small" or "medium"
 	table.insert(data.raw["space-connection"][conn].asteroid_spawn_definitions, {
 		type = "entity",
-		asteroid = "medium-promethium-asteroid",
+		asteroid = size.."-promethium-asteroid",
 		spawn_points = {
 			{ distance = 0.1, probability = 0, speed = speed, angle_when_stopped = 0.4 },
 			{ distance = 0.2, probability = base_prob, speed = speed, angle_when_stopped = 0.4 },
