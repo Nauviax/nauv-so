@@ -10,27 +10,33 @@ local order = "a-"
 local science_data = {
 	space = {
 		advanced = false,
-		prom_amnt = 2
+		prom_amnt = 3, -- Extra prom, nil ingredient
 	},
 	metallurgic = {
 		advanced = false,
-		prom_amnt = 2
+		prom_amnt = 2,
+		ingredient = { type = "item", name = "iron-gear-wheel", amount = 1 }
 	},
 	agricultural = {
 		advanced = false,
-		prom_amnt = 1 -- Less to help manage freshness
+		prom_amnt = 1, -- Less to help manage freshness
+		ingredient = { type = "item", name = "carbon", amount = 2 }
 	},
 	electromagnetic = {
 		advanced = false,
-		prom_amnt = 2
+		prom_amnt = 2,
+		ingredient = { type = "item", name = "iron-stick", amount = 4 }
 	},
 	cryogenic = {
 		advanced = true,
-		prom_amnt = 5
+		prom_amnt = 5,
+		ingredient = { type = "item", name = "ice", amount = 10 }
 	},
 	promethium = {
 		advanced = true,
-		prom_amnt = 25
+		prom_amnt = 25,
+		ingredient = { type = "item", name = utils.items.blank_data, amount = 1 },
+		garbage_out = 2 -- Account for extra in
 	}
 }
 
@@ -52,9 +58,12 @@ for name, props in pairs(science_data) do
 		{ type = "fluid", name = (props.advanced and utils.items.adv_slurry or utils.items.basic_slurry), amount = 100 },
 		{ type = "item", name = utils.items.prom147, amount = props.prom_amnt }
 	}
+	if props.ingredient then
+		table.insert(recipe.ingredients, props.ingredient)
+	end
 	recipe.results = {
 		{ type = "item", name = util_props.pack, amount = 1 },
-		{ type = "item", name = utils.items.garbage_data, amount = 1, ignored_by_stats = 1 }
+		{ type = "item", name = utils.items.garbage_data, amount = props.garbage_out or 1, ignored_by_stats = props.garbage_out or 1 }
 	}
 	recipe.allow_productivity = true -- Already true, just clarity
 	recipe.surface_conditions = utils.science.promethium.surface_condition

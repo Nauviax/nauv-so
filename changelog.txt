@@ -1,23 +1,30 @@
 ---------------------------------------------------------------------------------------------------
+Version: 1.0.4
+Date: 2026.01.01
+  Changes:
+    - Pack crafting now takes an additional simple ingredient unique to each pack.
+    - Vulcanus gel now takes twice as much concrete.
+    - Fixed years in previous changelog dates.
+---------------------------------------------------------------------------------------------------
 Version: 1.0.3
-Date: 2024.12.28
+Date: 2025.12.28
   Changes:
     - Slurry now takes iron sticks instead of water, and requires more thruster fuel. Starfrost slurry output reduced.
     - Promethium 147 per chunk halved. Reverted oxide chunk ice output to normal levels.
     - Fluoroketone use increased in most relevant science recipes. Minor gel cost increaces.
 ---------------------------------------------------------------------------------------------------
 Version: 1.0.2
-Date: 2024.12.27
+Date: 2025.12.27
   Changes:
     - Nauvis space routes now only have small promethium asteroids. Now more resistant to lasers.
 ---------------------------------------------------------------------------------------------------
 Version: 1.0.1
-Date: 2024.12.17
+Date: 2025.12.17
   Changes:
     - Weight of data and science increased tenfold, to require more rocket parts per pack. (Cryo just x5)
     - Slightly longer gel craft times
 ---------------------------------------------------------------------------------------------------
 Version: 1.0.0
-Date: 2024.12.16
+Date: 2025.12.16
   Changes:
     - Changelog added, version 1.0 set

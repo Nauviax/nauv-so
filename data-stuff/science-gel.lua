@@ -25,7 +25,7 @@ local science_data = {
 			{ type = "fluid", name = "sulfuric-acid", amount = 1000 }, -- Extra acid
 			{ type = "item", name = "plastic-bar", amount = 20 },
 			{ type = "item", name = "tungsten-carbide", amount = 50 },
-			{ type = "item", name = "refined-concrete", amount = 50 }
+			{ type = "item", name = "refined-concrete", amount = 100 }
 		}
 	},
 	agricultural = {
