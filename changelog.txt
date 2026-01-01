@@ -1,4 +1,13 @@
 ---------------------------------------------------------------------------------------------------
+Version: 1.0.5
+Date: 2026.01.02
+  Changes:
+    - Blank data cost and craft time increaced, can now output duds
+    - Plastic costs for gels increased. Lube for Fulgora gel and acid for Vulcanus gel increased.
+    - Fulgora science recipe tweaks, and data density significantly reduced. Additionally requires ~1.5x rocket launches.
+    - Cryo science requires more rocket fuel, but solid fuel replaced with small amount of lube.
+    - Stack size of most data cards halved.
+---------------------------------------------------------------------------------------------------
 Version: 1.0.4
 Date: 2026.01.01
   Changes:

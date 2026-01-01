@@ -2,7 +2,7 @@ local utils = require("common.utils")
 
 -- Params
 local base_craft_time = 20
-local base_stack_size = 100
+local base_stack_size = 50
 local base_weight = utils.science.common.weight
 local data_crafts_per_pack = 2
 local icon = "__nauv-so__/graphics/items/data.png"
@@ -18,7 +18,7 @@ base_item.localised_description = nil
 local science_data = {
 	space = {
 		stack_mult = 1,
-		weight_mult = 1,
+		weight_mult = 1, -- 10 crafts per data rocket
 		craft_category = "organic-or-assembling",
 		is_tool = true,
 		ingredients = {
@@ -29,8 +29,8 @@ local science_data = {
 		}
 	},
 	metallurgic = {
-		stack_mult = 0.25,
-		weight_mult = 2,
+		stack_mult = 0.4,
+		weight_mult = 2, -- 5 crafts per data rocket
 		craft_category = "metallurgy",
 		is_tool = false,
 		ingredients = {
@@ -55,20 +55,20 @@ local science_data = {
 		spoil_result = "spoilage"
 	},
 	electromagnetic = {
-		stack_mult = 2,
-		weight_mult = 0.25,
+		stack_mult = 4,
+		weight_mult = 1/15, -- 7.5 crafts per data rocket
 		craft_category = "electromagnetics",
 		is_tool = false,
 		ingredients = {
 			dcard, gel,
-			{ type = "item", name = "accumulator", amount = 6 },
-			{ type = "fluid", name = "electrolyte", amount = 200 },
-			{ type = "item", name = "supercapacitor", amount = 6 }
+			{ type = "item", name = "accumulator", amount = 5 },
+			{ type = "fluid", name = "electrolyte", amount = 125 },
+			{ type = "item", name = "supercapacitor", amount = 8 }
 		}
 	},
 	cryogenic = {
 		stack_mult = 1,
-		weight_mult = 0.5,
+		weight_mult = 0.5, -- 20 crafts per data rocket
 		craft_category = "cryogenics",
 		is_tool = false,
 		ingredients = {
@@ -79,7 +79,7 @@ local science_data = {
 		fluoro_used = 50
 	},
 	promethium = {
-		stack_mult = 0.25,
+		stack_mult = 0.4,
 		weight_mult = 1,
 		extra_craft_mult = 0.2, -- Fast crafting for this step due to spoilables and hazardous area
 		craft_category = "cryogenics",

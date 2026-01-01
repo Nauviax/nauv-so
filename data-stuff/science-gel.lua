@@ -13,7 +13,7 @@ local science_data = {
 		ingredients = {
 			{ type = "fluid", name = "lubricant", amount = 200 }, -- No extra compared to VFG, but also no base 50% prod until Gleba
 			{ type = "fluid", name = "sulfuric-acid", amount = 200 },
-			{ type = "item", name = "plastic-bar", amount = 20 },
+			{ type = "item", name = "plastic-bar", amount = 25 },
 			{ type = "item", name = "uranium-235", amount = 4 },
 			{ type = "item", name = "flamethrower-ammo", amount = 16 },
 		}
@@ -22,8 +22,8 @@ local science_data = {
 		craft_category = "metallurgy",
 		ingredients = {
 			{ type = "fluid", name = "lubricant", amount = 200 },
-			{ type = "fluid", name = "sulfuric-acid", amount = 1000 }, -- Extra acid
-			{ type = "item", name = "plastic-bar", amount = 20 },
+			{ type = "fluid", name = "sulfuric-acid", amount = 2500 }, -- Extra acid
+			{ type = "item", name = "plastic-bar", amount = 25 },
 			{ type = "item", name = "tungsten-carbide", amount = 50 },
 			{ type = "item", name = "refined-concrete", amount = 100 }
 		}
@@ -33,7 +33,7 @@ local science_data = {
 		ingredients = {
 			{ type = "fluid", name = "lubricant", amount = 200 },
 			{ type = "fluid", name = "sulfuric-acid", amount = 200 },
-			{ type = "item", name = "plastic-bar", amount = 100 }, -- Extra plastic
+			{ type = "item", name = "plastic-bar", amount = 125 }, -- Extra plastic
 			{ type = "item", name = "nutrients", amount = 60 },
 			{ type = "item", name = "coal", amount = 10 }
 		}
@@ -41,20 +41,20 @@ local science_data = {
 	electromagnetic = {
 		craft_category = "electromagnetics",
 		ingredients = {
-			{ type = "fluid", name = "lubricant", amount = 1000 }, -- Extra lube
+			{ type = "fluid", name = "lubricant", amount = 2500 }, -- Extra lube
 			{ type = "fluid", name = "sulfuric-acid", amount = 200 },
-			{ type = "item", name = "plastic-bar", amount = 20 },
+			{ type = "item", name = "plastic-bar", amount = 25 },
 			{ type = "item", name = "superconductor", amount = 50 },
-			{ type = "item", name = "rocket-fuel", amount = 15 },
+			{ type = "item", name = "lightning-rod", amount = 20 }
 		}
 	},
 	cryogenic = {
 		craft_category = "cryogenics",
 		ingredients = {
+			{ type = "fluid", name = "lubricant", amount = 100 },
 			{ type = "fluid", name = "sulfuric-acid", amount = 300 },
 			{ type = "item", name = "wood", amount = 20 },
-			{ type = "item", name = "solid-fuel", amount = 20 },
-			{ type = "item", name = "rocket-fuel", amount = 10 },
+			{ type = "item", name = "rocket-fuel", amount = 20 },
 			utils.items.fluo_in(100)
 		},
 		byproduct = utils.items.fluo_out(50)
