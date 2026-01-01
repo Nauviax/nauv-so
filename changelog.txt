@@ -7,6 +7,7 @@ Date: 2026.01.02
     - Fulgora science recipe tweaks, and data density significantly reduced. Additionally requires ~1.5x rocket launches.
     - Cryo science requires more rocket fuel, but solid fuel replaced with small amount of lube.
     - Stack size of most data cards halved.
+    - Locale file names renamed from old placeholder names.
 ---------------------------------------------------------------------------------------------------
 Version: 1.0.4
 Date: 2026.01.01
