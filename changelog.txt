@@ -1,8 +1,19 @@
 ---------------------------------------------------------------------------------------------------
+Version: 1.0.6
+Date: 2026.01.07
+  Changes:
+    - Disallowed prod modules in gel recipies. Mainly to keep science requirements more consistent for higher levels of productivity.
+    - Gel craft times increased by 150%. (Partially to encourage speed modules now that prod is gone.)
+    - Data craft times increased slightly. Vulcanus craft times 50% larger on top due to foundry base speed.
+    - Fulgora science rebalanbce to require less bricks and more batteries.
+    - Nauvis gel requires more uranium and flamethrower ammo.
+    - Vulcanus gel requires more carbide and concrete.
+    - Gleba gel requires more coal and nutrient.
+---------------------------------------------------------------------------------------------------
 Version: 1.0.5
 Date: 2026.01.02
   Changes:
-    - Blank data cost and craft time increaced, can now output duds
+    - Blank data cost and craft time increaced, can now output duds.
     - Plastic costs for gels increased. Lube for Fulgora gel and acid for Vulcanus gel increased.
     - Fulgora science recipe tweaks, and data density significantly reduced. Additionally requires ~1.5x rocket launches.
     - Cryo science requires more rocket fuel, but solid fuel replaced with small amount of lube.

@@ -1,7 +1,7 @@
 local utils = require("common.utils")
 
 -- Params
-local base_craft_time = 20
+local base_craft_time = 30
 local base_stack_size = 50
 local base_weight = utils.science.common.weight
 local data_crafts_per_pack = 2
@@ -61,7 +61,7 @@ local science_data = {
 		is_tool = false,
 		ingredients = {
 			dcard, gel,
-			{ type = "item", name = "accumulator", amount = 5 },
+			{ type = "item", name = "accumulator", amount = 6 },
 			{ type = "fluid", name = "electrolyte", amount = 125 },
 			{ type = "item", name = "supercapacitor", amount = 8 }
 		}

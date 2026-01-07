@@ -15,7 +15,7 @@ utils.science = {
 	},
 	metallurgic = {
 		order = "b",
-		craft_time_mult = 1,
+		craft_time_mult = 1.5, -- Due to foundry base speed
 		data_per_pack = 2,
 		color = {1.0, 0.5, 0.2},
 		data = utils.prefix.."metallurgic-data",

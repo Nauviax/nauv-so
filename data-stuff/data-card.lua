@@ -1,7 +1,7 @@
 local utils = require("common.utils")
 
 -- Params
-local craft_time = 15
+local craft_time = 20
 local order = "b-"
 
 local item = table.deepcopy(data.raw.item["electronic-circuit"])

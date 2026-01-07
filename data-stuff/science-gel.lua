@@ -1,7 +1,7 @@
 local utils = require("common.utils")
 
 -- Params
-local base_craft_time = 60
+local base_craft_time = 150
 local base_texture = "__nauv-so__/graphics/fluids/gel.png"
 local fluid_color = {0.9, 0.6, 0.6}
 local order = "a-"
@@ -14,8 +14,8 @@ local science_data = {
 			{ type = "fluid", name = "lubricant", amount = 200 }, -- No extra compared to VFG, but also no base 50% prod until Gleba
 			{ type = "fluid", name = "sulfuric-acid", amount = 200 },
 			{ type = "item", name = "plastic-bar", amount = 25 },
-			{ type = "item", name = "uranium-235", amount = 4 },
-			{ type = "item", name = "flamethrower-ammo", amount = 16 },
+			{ type = "item", name = "uranium-235", amount = 5 },
+			{ type = "item", name = "flamethrower-ammo", amount = 20 },
 		}
 	},
 	metallurgic = {
@@ -24,8 +24,8 @@ local science_data = {
 			{ type = "fluid", name = "lubricant", amount = 200 },
 			{ type = "fluid", name = "sulfuric-acid", amount = 2500 }, -- Extra acid
 			{ type = "item", name = "plastic-bar", amount = 25 },
-			{ type = "item", name = "tungsten-carbide", amount = 50 },
-			{ type = "item", name = "refined-concrete", amount = 100 }
+			{ type = "item", name = "tungsten-carbide", amount = 60 },
+			{ type = "item", name = "refined-concrete", amount = 150 }
 		}
 	},
 	agricultural = {
@@ -34,8 +34,8 @@ local science_data = {
 			{ type = "fluid", name = "lubricant", amount = 200 },
 			{ type = "fluid", name = "sulfuric-acid", amount = 200 },
 			{ type = "item", name = "plastic-bar", amount = 125 }, -- Extra plastic
-			{ type = "item", name = "nutrients", amount = 60 },
-			{ type = "item", name = "coal", amount = 10 }
+			{ type = "item", name = "nutrients", amount = 100 },
+			{ type = "item", name = "coal", amount = 15 }
 		}
 	},
 	electromagnetic = {
@@ -44,8 +44,8 @@ local science_data = {
 			{ type = "fluid", name = "lubricant", amount = 2500 }, -- Extra lube
 			{ type = "fluid", name = "sulfuric-acid", amount = 200 },
 			{ type = "item", name = "plastic-bar", amount = 25 },
-			{ type = "item", name = "superconductor", amount = 50 },
-			{ type = "item", name = "lightning-rod", amount = 20 }
+			{ type = "item", name = "superconductor", amount = 60 },
+			{ type = "item", name = "lightning-rod", amount = 15 }
 		}
 	},
 	cryogenic = {
@@ -99,7 +99,7 @@ for name, props in pairs(science_data) do
 		energy_required = base_craft_time * util_props.craft_time_mult,
 		ingredients = props.ingredients,
 		results = {{ type = "fluid", name = fluid.name, amount = 400 }},
-		allow_productivity = true,
+		allow_productivity = false, -- No prod for gel, just for the data.
 		surface_conditions = util_props.surface_condition,
 		show_amount_in_title = false,
 		crafting_machine_tint = utils.recipe_tints(fluid_color)
