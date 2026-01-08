@@ -42,7 +42,7 @@ local science_data = {
 	},
 	agricultural = {
 		stack_mult = 1,
-		weight_mult = 1,
+		weight_mult = 0.5, -- 20 crafts per data rocket
 		craft_category = "organic",
 		is_tool = false,
 		ingredients = {
@@ -52,7 +52,7 @@ local science_data = {
 			{ type = "item", name = "electronic-circuit", amount = 10 }
 		},
 		spoil_ticks = 216000, -- 1h, normal pack timer
-		spoil_result = "spoilage"
+		spoil_result = utils.items.garbage_data
 	},
 	electromagnetic = {
 		stack_mult = 4,

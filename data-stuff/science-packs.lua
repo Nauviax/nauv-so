@@ -46,6 +46,9 @@ for name, props in pairs(science_data) do
 	local item = data.raw.tool[util_props.pack]
 	item.stack_size = stack_size
 	item.weight = weight
+	if item.spoil_ticks then
+		item.spoil_result = utils.items.garbage_data
+	end
 
 	local recipe = data.raw.recipe[util_props.pack]
 	recipe.main_product = util_props.pack

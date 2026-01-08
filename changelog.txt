@@ -1,4 +1,10 @@
 ---------------------------------------------------------------------------------------------------
+Version: 1.0.7
+Date: 2026.01.09
+  Changes:
+    - Gleba data weight halved, and both pack and data now spoil into garbage data.
+    - Gleba plant spores per harvest reduced from 15 to 10 due to larger amount needed for progression. May revisit this amount again later.
+---------------------------------------------------------------------------------------------------
 Version: 1.0.6
 Date: 2026.01.07
   Changes:
