@@ -56,7 +56,7 @@ local science_data = {
 	},
 	electromagnetic = {
 		stack_mult = 4,
-		weight_mult = 1/15, -- 7.5 crafts per data rocket
+		weight_mult = 2/15, -- 7.5 crafts per data rocket
 		craft_category = "electromagnetics",
 		is_tool = false,
 		ingredients = {
