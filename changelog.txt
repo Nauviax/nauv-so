@@ -6,6 +6,7 @@ Date: 2026.01.09
     - Gleba plant spores per harvest reduced from 15 to 10 due to larger amount needed for progression. May revisit this amount again later.
     - Fulgora data density doubled; Seemed a little too much.
     - Updated tips slightly
+    - Added placeholder thumbnail to mod
 ---------------------------------------------------------------------------------------------------
 Version: 1.0.6
 Date: 2026.01.07
