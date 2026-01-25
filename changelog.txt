@@ -1,11 +1,60 @@
 ---------------------------------------------------------------------------------------------------
+Version: 1.0.7
+Date: 2026.01.09
+  Changes:
+    - Gleba data weight halved, and both pack and data now spoil into garbage data.
+    - Gleba plant spores per harvest reduced from 15 to 10 due to larger amount needed for progression. May revisit this amount again later.
+    - Fulgora data density doubled; Seemed a little too much.
+    - Updated tips slightly
+    - Added placeholder thumbnail to mod
+---------------------------------------------------------------------------------------------------
+Version: 1.0.6
+Date: 2026.01.07
+  Changes:
+    - Disallowed prod modules in gel recipies. Mainly to keep science requirements more consistent for higher levels of productivity.
+    - Gel craft times increased by 150%. (Partially to encourage speed modules now that prod is gone.)
+    - Data craft times increased slightly. Vulcanus craft times 50% larger on top due to foundry base speed.
+    - Fulgora science rebalanbce to require less bricks and more batteries.
+    - Nauvis gel requires more uranium and flamethrower ammo.
+    - Vulcanus gel requires more carbide and concrete.
+    - Gleba gel requires more coal and nutrient.
+---------------------------------------------------------------------------------------------------
+Version: 1.0.5
+Date: 2026.01.02
+  Changes:
+    - Blank data cost and craft time increaced, can now output duds.
+    - Plastic costs for gels increased. Lube for Fulgora gel and acid for Vulcanus gel increased.
+    - Fulgora science recipe tweaks, and data density significantly reduced. Additionally requires ~1.5x rocket launches.
+    - Cryo science requires more rocket fuel, but solid fuel replaced with small amount of lube.
+    - Stack size of most data cards halved.
+    - Locale file names renamed from old placeholder names.
+---------------------------------------------------------------------------------------------------
+Version: 1.0.4
+Date: 2026.01.01
+  Changes:
+    - Pack crafting now takes an additional simple ingredient unique to each pack.
+    - Vulcanus gel now takes twice as much concrete.
+    - Fixed years in previous changelog dates.
+---------------------------------------------------------------------------------------------------
+Version: 1.0.3
+Date: 2025.12.28
+  Changes:
+    - Slurry now takes iron sticks instead of water, and requires more thruster fuel. Starfrost slurry output reduced.
+    - Promethium 147 per chunk halved. Reverted oxide chunk ice output to normal levels.
+    - Fluoroketone use increased in most relevant science recipes. Minor gel cost increaces.
+---------------------------------------------------------------------------------------------------
+Version: 1.0.2
+Date: 2025.12.27
+  Changes:
+    - Nauvis space routes now only have small promethium asteroids. Now more resistant to lasers.
+---------------------------------------------------------------------------------------------------
 Version: 1.0.1
-Date: 2024.12.17
+Date: 2025.12.17
   Changes:
     - Weight of data and science increased tenfold, to require more rocket parts per pack. (Cryo just x5)
     - Slightly longer gel craft times
 ---------------------------------------------------------------------------------------------------
 Version: 1.0.0
-Date: 2024.12.16
+Date: 2025.12.16
   Changes:
     - Changelog added, version 1.0 set

@@ -1,8 +1,8 @@
 local utils = require("common.utils")
 
 -- Params
-local base_craft_time = 20
-local base_stack_size = 100
+local base_craft_time = 30
+local base_stack_size = 50
 local base_weight = utils.science.common.weight
 local data_crafts_per_pack = 2
 local icon = "__nauv-so__/graphics/items/data.png"
@@ -18,7 +18,7 @@ base_item.localised_description = nil
 local science_data = {
 	space = {
 		stack_mult = 1,
-		weight_mult = 1,
+		weight_mult = 1, -- 10 crafts per data rocket
 		craft_category = "organic-or-assembling",
 		is_tool = true,
 		ingredients = {
@@ -29,8 +29,8 @@ local science_data = {
 		}
 	},
 	metallurgic = {
-		stack_mult = 0.25,
-		weight_mult = 2,
+		stack_mult = 0.4,
+		weight_mult = 2, -- 5 crafts per data rocket
 		craft_category = "metallurgy",
 		is_tool = false,
 		ingredients = {
@@ -42,7 +42,7 @@ local science_data = {
 	},
 	agricultural = {
 		stack_mult = 1,
-		weight_mult = 1,
+		weight_mult = 0.5, -- 20 crafts per data rocket
 		craft_category = "organic",
 		is_tool = false,
 		ingredients = {
@@ -52,23 +52,23 @@ local science_data = {
 			{ type = "item", name = "electronic-circuit", amount = 10 }
 		},
 		spoil_ticks = 216000, -- 1h, normal pack timer
-		spoil_result = "spoilage"
+		spoil_result = utils.items.garbage_data
 	},
 	electromagnetic = {
-		stack_mult = 2,
-		weight_mult = 0.25,
+		stack_mult = 4,
+		weight_mult = 2/15, -- 7.5 crafts per data rocket
 		craft_category = "electromagnetics",
 		is_tool = false,
 		ingredients = {
 			dcard, gel,
 			{ type = "item", name = "accumulator", amount = 6 },
-			{ type = "fluid", name = "electrolyte", amount = 200 },
-			{ type = "item", name = "supercapacitor", amount = 6 }
+			{ type = "fluid", name = "electrolyte", amount = 125 },
+			{ type = "item", name = "supercapacitor", amount = 8 }
 		}
 	},
 	cryogenic = {
 		stack_mult = 1,
-		weight_mult = 0.5,
+		weight_mult = 0.5, -- 20 crafts per data rocket
 		craft_category = "cryogenics",
 		is_tool = false,
 		ingredients = {
@@ -76,10 +76,10 @@ local science_data = {
 			{ type = "item", name = "ice-platform", amount = 1 },
 			{ type = "item", name = "lithium-plate", amount = 8 }
 		},
-		fluoro_used = 20
+		fluoro_used = 50
 	},
 	promethium = {
-		stack_mult = 0.25,
+		stack_mult = 0.4,
 		weight_mult = 1,
 		extra_craft_mult = 0.2, -- Fast crafting for this step due to spoilables and hazardous area
 		craft_category = "cryogenics",
@@ -90,7 +90,7 @@ local science_data = {
 			{ type = "item", name = "quantum-processor", amount = 2 },
 			{ type = "item", name = utils.items.hg_prom, amount = 1 }
 		},
-		fluoro_used = 3
+		fluoro_used = 4
 	}
 }
 
