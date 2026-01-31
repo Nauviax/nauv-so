@@ -1,9 +1,9 @@
 {
   "name": "nauv-so",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "title": "Nauviax's Science Overhaul",
   "author": "Nauviax",
-  "description": "Overhaul science production in Space Age, requiring larger bases and more complex space platforms",
+  "description": "Overhaul science production in Space Age, requiring larger bases and more complex space platforms.",
   "factorio_version": "2.0",
   "dependencies": [
     "base >= 2.0",

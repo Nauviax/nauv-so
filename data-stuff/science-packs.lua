@@ -1,7 +1,7 @@
 local utils = require("common.utils")
 
 -- Params
-local base_craft_time = 6
+local base_craft_time = 12
 local stack_size = 50
 local weight = utils.science.common.weight
 local pack_craft_category = "cryogenics-or-assembling"
@@ -46,7 +46,8 @@ for name, props in pairs(science_data) do
 	local item = data.raw.tool[util_props.pack]
 	item.stack_size = stack_size
 	item.weight = weight
-	if item.spoil_ticks then
+	if util_props.spoil_ticks then
+		item.spoil_ticks = util_props.spoil_ticks
 		item.spoil_result = utils.items.garbage_data
 	end
 
@@ -66,11 +67,15 @@ for name, props in pairs(science_data) do
 	end
 	recipe.results = {
 		{ type = "item", name = util_props.pack, amount = 1 },
-		{ type = "item", name = utils.items.garbage_data, amount = props.garbage_out or 1, ignored_by_stats = props.garbage_out or 1 }
+		{ type = "item", name = utils.items.garbage_data, amount = props.garbage_out or 1 }
 	}
 	recipe.allow_productivity = true -- Already true, just clarity
+	recipe.maximum_productivity = utils.science.common.max_productivity
 	recipe.surface_conditions = utils.science.promethium.surface_condition
 	recipe.crafting_machine_tint = utils.recipe_tints(util_props.color)
+	recipe.custom_tooltip_fields = {{
+		name = utils.misc.prod_cap_tt, value = (utils.science.common.max_productivity * 100).."%"
+	}};
 
 	-- Remove and re-add from respective tech to ensure it is shown at the end
 	local tech = data.raw.technology[util_props.pack]

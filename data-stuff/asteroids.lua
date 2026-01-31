@@ -37,7 +37,7 @@ local prom_item = {
 }
 local prom_recipe = table.deepcopy(data.raw.recipe["metallic-asteroid-crushing"])
 prom_recipe.name = prom_item.name
-prom_recipe.energy_required = 3 -- Slightly longer
+prom_recipe.energy_required = 4 -- Normal is 2
 prom_recipe.ingredients[1].name = "promethium-asteroid-chunk"
 prom_recipe.results = {
 	{ type = "item", name = prom_item.name, amount = 5 }, -- ~6.25 per chunk, pre-prod

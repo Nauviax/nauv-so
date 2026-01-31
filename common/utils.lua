@@ -31,7 +31,8 @@ utils.science = {
 		data = utils.prefix.."agricultural-data",
 		pack = "agricultural-science-pack",
 		planet = "gleba",
-		surface_condition = {{ property = "pressure", min = 2000, max = 2000 }}
+		surface_condition = {{ property = "pressure", min = 2000, max = 2000 }},
+		spoil_ticks = 432000 -- 2h, double normal. (Due to cost)
 	},
 	electromagnetic = {
 		order = "d",
@@ -64,7 +65,8 @@ utils.science = {
 		surface_condition = {{ property = "gravity", max = 0 }}
 	},
 	common = {
-		weight = 50000 -- 20 per rocket
+		weight = 50000, -- 20 per rocket
+		max_productivity = 1.0 -- 100% productivity cap on science recipes
 	}
 }
 
@@ -107,6 +109,7 @@ utils.removed_packs = {
 }
 
 utils.misc = {
+	prod_cap_tt = { utils.prefix.."tooltip.prod-cap" },
 	statpack_building = utils.prefix.."statpack-building",
 	statpack_combat = utils.prefix.."statpack-combat",
 }

@@ -1,7 +1,7 @@
 local utils = require("common.utils")
 
 -- Params
-local craft_time_base = 3 -- Adv x5
+local craft_time_base = 6 -- Adv x5
 local basic_slurry_color = {0.5, 0.8, 0.8}
 local adv_slurry_color = {0.3, 0.5, 0.8}
 local order = "b-"
@@ -25,8 +25,10 @@ local function slurry_recipe(name, category, order_suffix, tint, tech, craft_mul
         type = "recipe", name = name, main_product = name, enabled = false,
         category = category, subgroup = utils.subgroup.pack_pre, order = order .. order_suffix,
         energy_required = craft_time_base * craft_mult, ingredients = ingredients, results = results,
-        allow_productivity = true, surface_conditions = utils.science.promethium.surface_condition,
-        show_amount_in_title = false, always_show_products = true, crafting_machine_tint = utils.recipe_tints(tint)
+        allow_productivity = true, maximum_productivity = utils.science.common.max_productivity,
+        surface_conditions = utils.science.promethium.surface_condition, show_amount_in_title = false,
+        always_show_products = true, crafting_machine_tint = utils.recipe_tints(tint),
+		custom_tooltip_fields = {{ name = utils.misc.prod_cap_tt, value = (utils.science.common.max_productivity * 100).."%" }},
     }})
 end
 slurry_recipe(

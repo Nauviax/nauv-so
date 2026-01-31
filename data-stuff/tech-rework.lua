@@ -211,13 +211,11 @@ data.raw["research-achievement"]["eco-unfriendly"] = nil
 
 -- ## Remaining tech broad adjustments ## --
 
--- Adjust research speed, +1 and +2 at pre and post white science (Vanilla max is +2.5)
-local space_pack_tech = all_techs[utils.science.space.pack]
-table.insert(space_pack_tech.effects, { type = "laboratory-speed", modifier = 1.0 })
+-- Adjust research speed, just one white science tech for total of 1.0 boost. (Vanilla max is +2.5, so longer research times)
 local lab_speed_tech = all_techs["research-speed-1"]
 all_techs["research-speed-1"] = nil -- Remove old first
 lab_speed_tech.name = "research-speed" -- Remove number
-lab_speed_tech.effects = {{ type = "laboratory-speed", modifier = 2.0 }}
+lab_speed_tech.effects = {{ type = "laboratory-speed", modifier = 1.0 }}
 lab_speed_tech.prerequisites = {utils.science.space.pack}
 lab_speed_tech.unit.ingredients = {{utils.science.space.pack, 1}}
 lab_speed_tech.unit.count = 500 -- Will be 100 after the /5
@@ -230,7 +228,7 @@ end
 -- Go through all remaining techs, if not trigger tech then /5 pack cost (Round up) and *5 time
 for _, tech in pairs(all_techs) do
     if tech.unit then
-		tech.unit.time = tech.unit.time * 5 -- Affects all tech
+		tech.unit.time = tech.unit.time * 5 -- Affects all tech (Note: Change lab research before changing tech times)
 		if tech.unit.count then
 			-- Won't touch infinite techs, those are done later down.
 			tech.unit.count = math.ceil(tech.unit.count / 5) -- Affects non-inf
@@ -241,6 +239,7 @@ for _, tech in pairs(all_techs) do
 end
 
 -- Misc adjustments for now-early-game techs
+local space_pack_tech = all_techs[utils.science.space.pack]
 space_pack_tech.prerequisites = nil
 space_pack_tech.research_trigger = nil
 space_pack_tech.unit = { ingredients = {}, count = 1000, time = 60 } -- Intentionally AFTER the /5 to cost

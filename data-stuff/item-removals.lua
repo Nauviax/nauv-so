@@ -136,7 +136,7 @@ data.raw.recipe["lab"].ingredients = {
 data.raw.recipe["loader"] = nil
 data.raw.recipe["express-loader"] = nil
 
--- Chests + nerfs
+-- Chests
 data.raw.container["wooden-chest"] = nil
 data.raw.item["wooden-chest"] = nil
 data.raw.recipe["wooden-chest"] = nil
@@ -154,7 +154,7 @@ data.raw["logistic-container"]["storage-chest"].inventory_size = inventory_size
 data.raw["logistic-container"]["requester-chest"].inventory_size = inventory_size
 data.raw["logistic-container"]["buffer-chest"].inventory_size = inventory_size
 
--- Modules and eff buff
+-- Modules
 for _, module_name in pairs({
 	"speed-module", "efficiency-module", "productivity-module", "quality-module"
 }) do
@@ -180,8 +180,16 @@ for _, module_name in pairs({
 		end
 	end
 end
-data.raw.module["efficiency-module-3"].effect.consumption = -0.8 -- Old was -0.5
 data.raw["module-transfer-achievement"]["make-it-better"] = nil
+-- Eff module extra efficient
+data.raw.module["efficiency-module-3"].effect.consumption = -0.8 -- Old was -0.5
+-- Prod module double consumption, mk3 has 20% less productivity
+data.raw.module["productivity-module"].effect.speed = -0.1 -- Old -0.05
+data.raw.module["productivity-module-3"].effect.speed = -0.3 -- Old -0.15
+data.raw.module["productivity-module-3"].effect.productivity = 0.08 -- Old 0.1
+-- Speed module 3 20% less speed
+data.raw.module["speed-module-3"].effect.speed = 0.4 -- Old 0.5
+data.raw.module["speed-module-3"].effect.quality = -0.2 -- Old -0.25
 
 -- Misc
 data.raw["electric-pole"]["small-electric-pole"] = nil

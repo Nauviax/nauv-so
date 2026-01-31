@@ -1,4 +1,22 @@
 ---------------------------------------------------------------------------------------------------
+Version: 1.0.8
+Date: 2026.02.31
+  Info:
+    - This update aims to slow down science production and decrease the effect of late-game productivity.
+    - Mostly nerfs, a single Gleba buff. Existing saves will work fine, just slower.
+  Changes:
+    - Most recipes added by NSO have had their base craft times doubled.
+    - Research speed tech bonus halved. Researching the first pack tech no longer provides a free research speed boost. (Overall, labs are half as fast)
+    - Productivity in slurry, data and pack recipes are capped to 100%. Tooltips added to recipes to show this. (Otherwise late game the packs can be CHEAPER than vanilla!)
+    - Science gel is capped at 0%, preventing any base productivity from having an effect. Recipes adjusted so the cost per gel remains mostly the same.
+    - Nauvis gel can no longer be made in biochambers. Nauvis gel craft time halved.
+    - Prod module 3 now has 8% productivity instead of 10%. All prod modules speed penalties doubled.
+    - Speed module 3 now has 40% boost instead of 50%.
+    - Garbage data cards from pack crafting are now affected by productivity again and will show in production graph stats. Recycling garbage data gives 33% less material.
+    - Agricultural science packs take twice as long to spoil. (Data spoil time is unchanged.)
+    - Updated tips and tricks.
+    - Blank data recipe tooltip now shows "Made in".
+---------------------------------------------------------------------------------------------------
 Version: 1.0.7
 Date: 2026.01.09
   Changes:

@@ -1,7 +1,7 @@
 local utils = require("common.utils")
 
 -- Params
-local base_craft_time = 30
+local base_craft_time = 60
 local base_stack_size = 50
 local base_weight = utils.science.common.weight
 local data_crafts_per_pack = 2
@@ -127,9 +127,13 @@ for name, props in pairs(science_data) do
 		ingredients = props.ingredients,
 		results = {{ type = "item", name = item.name, amount = util_props.data_per_pack / data_crafts_per_pack }},
 		allow_productivity = true,
+		maximum_productivity = utils.science.common.max_productivity,
 		surface_conditions = util_props.surface_condition,
 		show_amount_in_title = false,
-		always_show_products = true
+		always_show_products = true,
+		custom_tooltip_fields = {{
+			name = utils.misc.prod_cap_tt, value = (utils.science.common.max_productivity * 100).."%"
+		}},
 		-- Actually happy to leave crafting_machine_tint white for data crafting
 	}
 	if props.fluoro_used then

@@ -1,7 +1,7 @@
 local utils = require("common.utils")
 
 -- Params
-local craft_time = 20
+local craft_time = 40
 local order = "b-"
 
 local item = table.deepcopy(data.raw.item["electronic-circuit"])
@@ -42,14 +42,15 @@ local recipe = {
 	},
 	allow_productivity = true,
 	surface_conditions = nil,
-	show_amount_in_title = false
+	show_amount_in_title = false,
+	always_show_made_in = true
 }
 
 local garbage_recipe = table.deepcopy(recipe) -- Byproduct of data crafting
 garbage_recipe.name = garbage_item.name
 garbage_recipe.main_product = garbage_item.name
-garbage_recipe.energy_required = craft_time * 4 -- Means ~4s to recycle each
-garbage_recipe.results = {{ type = "item", name = garbage_item.name, amount = 2 }} -- Returns 1/8 not 1/4
+garbage_recipe.energy_required = craft_time * 8 -- 40s in recycler (20s recipe)
+garbage_recipe.results = {{ type = "item", name = garbage_item.name, amount = 3 }} -- Returns 1/12 not 1/4
 garbage_recipe.hidden = true -- Don't show, ever
 garbage_recipe.order = order.."z"
 
