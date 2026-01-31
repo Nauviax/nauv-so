@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 Version: 1.0.8
-Date: 2026.02.31
+Date: 2026.01.31
   Info:
     - This update aims to slow down science production and decrease the effect of late-game productivity.
     - Mostly nerfs, a single Gleba buff. Existing saves will work fine, just slower.
