@@ -93,13 +93,14 @@ for name, props in pairs(science_data) do
 		}},
 		main_product = fluid.name,
 		category = props.craft_category,
-		subgroup = utils.subgroup.data_pre,
+		subgroup = utils.subgroup.gel,
 		order = order..util_props.order,
 		enabled = false,
 		energy_required = base_craft_time * util_props.craft_time_mult * (props.craft_time_mult or 1),
 		ingredients = props.ingredients,
 		results = {{ type = "fluid", name = fluid.name, amount = 400 }},
 		allow_productivity = false, -- No prod for gel, just for the data.
+		allow_quality = false,
 		maximum_productivity = 0.0, -- Should prevent base productivity affceting the recipe.
 		surface_conditions = util_props.surface_condition,
 		show_amount_in_title = false,

@@ -31,8 +31,7 @@ utils.science = {
 		data = utils.prefix.."agricultural-data",
 		pack = "agricultural-science-pack",
 		planet = "gleba",
-		surface_condition = {{ property = "pressure", min = 2000, max = 2000 }},
-		spoil_ticks = 432000 -- 2h, double normal. (Due to cost)
+		surface_condition = {{ property = "pressure", min = 2000, max = 2000 }}
 	},
 	electromagnetic = {
 		order = "d",
@@ -84,9 +83,11 @@ utils.items = { -- Common item ingredient/results
 
 utils.subgroup = { -- Groupings for things that need to follow vanilla
 	data_pre = utils.prefix.."science-data-pre",
+	gel = utils.prefix.."science-gel",
 	data = utils.prefix.."science-data",
 	pack_pre = utils.prefix.."science-pack-pre",
 	pack = "science-pack",
+	cycle = utils.prefix.."science-cycle",
 	fluid = "fluid",
 	fluid_order = "n[nauv]-" -- Useful, even if not a subgroup
 }
@@ -110,6 +111,7 @@ utils.removed_packs = {
 
 utils.misc = {
 	prod_cap_tt = { utils.prefix.."tooltip.prod-cap" },
+	qual_base_tt = { utils.prefix.."tooltip.qual-base" },
 	statpack_building = utils.prefix.."statpack-building",
 	statpack_combat = utils.prefix.."statpack-combat",
 }

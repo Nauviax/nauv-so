@@ -5,7 +5,12 @@ local base_craft_time = 12
 local stack_size = 50
 local weight = utils.science.common.weight
 local pack_craft_category = "cryogenics-or-assembling"
+local cycle_craft_time = 0.5
+local cycle_slurry_cost = 5
+local cycle_qual_base = 0.2 -- Applied to oil refinery
+local cycle_craft_category = "oil-processing"
 local order = "a-"
+local cycle_order = "z-"
 
 local science_data = {
 	space = {
@@ -20,7 +25,8 @@ local science_data = {
 	agricultural = {
 		advanced = false,
 		prom_amnt = 1, -- Less to help manage freshness
-		ingredient = { type = "item", name = "carbon", amount = 2 }
+		ingredient = { type = "item", name = "carbon", amount = 2 },
+		cycle_time_mult = 0.5
 	},
 	electromagnetic = {
 		advanced = false,
@@ -30,24 +36,26 @@ local science_data = {
 	cryogenic = {
 		advanced = true,
 		prom_amnt = 5,
-		ingredient = { type = "item", name = "ice", amount = 10 }
+		ingredient = { type = "item", name = "ice", amount = 10 },
+		cycle_time_mult = 2
 	},
 	promethium = {
 		advanced = true,
 		prom_amnt = 25,
 		ingredient = { type = "item", name = utils.items.blank_data, amount = 1 },
-		garbage_out = 2 -- Account for extra in
+		garbage_out = 2, -- Account for extra in
+		cycle_time_mult = 2
 	}
 }
 
 for name, props in pairs(science_data) do
 	local util_props = utils.science[name]
+	local slurry = props.advanced and utils.items.adv_slurry or utils.items.basic_slurry
 
 	local item = data.raw.tool[util_props.pack]
 	item.stack_size = stack_size
 	item.weight = weight
-	if util_props.spoil_ticks then
-		item.spoil_ticks = util_props.spoil_ticks
+	if item.spoil_ticks then
 		item.spoil_result = utils.items.garbage_data
 	end
 
@@ -59,7 +67,7 @@ for name, props in pairs(science_data) do
 	recipe.energy_required = base_craft_time * util_props.craft_time_mult
 	recipe.ingredients = {
 		{ type = "item", name = util_props.data, amount = util_props.data_per_pack },
-		{ type = "fluid", name = (props.advanced and utils.items.adv_slurry or utils.items.basic_slurry), amount = 100 },
+		{ type = "fluid", name = slurry, amount = 100 },
 		{ type = "item", name = utils.items.prom147, amount = props.prom_amnt }
 	}
 	if props.ingredient then
@@ -86,4 +94,53 @@ for name, props in pairs(science_data) do
 			break
 		end
 	end
+
+	-- Upcycling recipe
+	local upcycle_recipe = {
+		type = "recipe", name = utils.prefix..util_props.pack.."-upcycle",
+		main_product = util_props.pack, enabled = false,
+		icons = {
+			{ icon = item.icon },
+			{
+				icon = "__core__/graphics/icons/any-quality.png",
+				scale = 0.25, shift = {8, 8}, floating = true
+			}
+		},
+		category = cycle_craft_category, subgroup = utils.subgroup.cycle,
+		order = cycle_order..util_props.order,
+		energy_required = cycle_craft_time * (props.cycle_time_mult or 1),
+		ingredients = {
+			{ type = "item", name = util_props.pack, amount = 1, ignored_by_stats = 1 },
+			{ type = "fluid", name = slurry, amount = cycle_slurry_cost }
+		},
+		results = {
+			{ type = "item", name = util_props.pack, amount = 1, ignored_by_stats = 1 },
+			{ type = "fluid", name = "steam", amount = props.advanced and 5 or 2, temperature = 500 }
+		},
+		allow_productivity = false, -- Avoid obvious exploit
+		allow_quality = true,
+		surface_conditions = utils.science.promethium.surface_condition,
+		crafting_machine_tint = utils.recipe_tints(util_props.color),
+		custom_tooltip_fields = {{
+			name = utils.misc.qual_base_tt, value = (cycle_qual_base * 100).."%"
+		}};
+	}
+	data:extend({ upcycle_recipe })
+	utils.add_to_tech(tech.name, upcycle_recipe.name)
 end
+
+-- Give oil refineries a base 20% quality bonus to help with pack upcycling. (Should not affect other recipes)
+local refinery = data.raw["assembling-machine"]["oil-refinery"]
+refinery.effect_receiver = { base_effect = { quality = cycle_qual_base * 10 } }
+refinery.allowed_effects = { "consumption", "speed", "productivity", "pollution", "quality" } -- Overwrites old, but I can't find a way to do it otherwise.
+
+-- Reduce effectiveness of quality packs/tools, rare is base
+local tool_effectiveness = { 0.5, 0.8, 1.0, 1.1, nil, 1.2 } -- Basically quality > rare is just a minor improvement.
+for _, q_level in pairs(data.raw.quality) do
+	q_level.tool_durability_multiplier = tool_effectiveness[q_level.level + 1]
+end
+
+-- Buff repair packs so common qual is same as before due above change (locale change also)
+local repair_tool = data.raw["repair-tool"]["repair-pack"]
+repair_tool.durability = 300 / (1 - tool_effectiveness[1]) -- Aim is 300 for common after qual
+repair_tool.durability_description_value = "description.nso-rep-pack-durability-value"

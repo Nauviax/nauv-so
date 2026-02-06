@@ -190,6 +190,9 @@ data.raw.module["productivity-module-3"].effect.productivity = 0.08 -- Old 0.1
 -- Speed module 3 20% less speed
 data.raw.module["speed-module-3"].effect.speed = 0.4 -- Old 0.5
 data.raw.module["speed-module-3"].effect.quality = -0.2 -- Old -0.25
+-- Quality modules small energy penalty
+data.raw.module["quality-module"].effect.consumption = 0.15 -- Old 0
+data.raw.module["quality-module-3"].effect.consumption = 0.4 -- Old 0
 
 -- Misc
 data.raw["electric-pole"]["small-electric-pole"] = nil

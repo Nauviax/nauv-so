@@ -8,17 +8,23 @@ data.raw.technology["space-science-pack"].icon = "__nauv-so__/graphics/techs/spa
 -- Set up science tab subgroup
 data:extend({
 	{
-		type = "item-subgroup", name = utils.subgroup.data_pre, -- gel, fresh cards
+		type = "item-subgroup", name = utils.subgroup.data_pre, -- Fresh cards
 		group = "space", order = "z-a"
 	}, {
-		type = "item-subgroup", name = utils.subgroup.data,
+		type = "item-subgroup", name = utils.subgroup.gel,
 		group = "space", order = "z-b"
 	}, {
-		type = "item-subgroup", name = utils.subgroup.pack_pre, -- Bases, prom-147
+		type = "item-subgroup", name = utils.subgroup.data,
 		group = "space", order = "z-c"
+	}, {
+		type = "item-subgroup", name = utils.subgroup.pack_pre, -- Prom-147, slurries
+		group = "space", order = "z-d"
+	}, {
+		type = "item-subgroup", name = utils.subgroup.cycle,
+		group = "space", order = "z-f"
 	}
 })
 local pack_group = data.raw["item-subgroup"][utils.subgroup.pack]
 pack_group.group = "space"
-pack_group.order = "z-z"
-data.raw["item-group"]["space"].order_in_recipe = "z" -- Put these items at end of recipes
+pack_group.order = "z-e"
+data.raw["item-group"]["space"].order_in_recipe = "z" -- Try to put these items at end of recipes

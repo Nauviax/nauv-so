@@ -25,7 +25,7 @@ low_grade_item.spoil_result = "iron-ore"
 local prom_item = {
 	type = "item", name = utils.items.prom147,
 	subgroup = utils.subgroup.pack_pre,
-	order = "z-a", -- Last in subgroup
+	order = "a-a", -- First in subgroup
 	icons = {{
 		icon = "__nauv-so__/graphics/items/prom-147.png",
 		tint = {1.0, 0.5, 0.5}
@@ -45,7 +45,7 @@ prom_recipe.results = {
 } -- Chunk output NOT ignored apparently, and also uses prod
 prom_recipe.main_product = prom_item.name -- Deviation from other crushing recipes afaik
 prom_recipe.subgroup = utils.subgroup.pack_pre
-prom_recipe.order = "z-a" -- Last in subgroup
+prom_recipe.order = "a-a" -- First in subgroup
 prom_recipe.icon = nil -- Clear the custom icon
 prom_recipe.show_amount_in_title = false
 data:extend({ prom_item, prom_recipe })

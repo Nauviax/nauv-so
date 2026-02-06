@@ -248,7 +248,7 @@ all_techs["rocket-silo"].prerequisites = {utils.science.space.pack, "kovarex-enr
 all_techs["space-platform-thruster"].prerequisites = {"rocket-silo"}
 
 for index, tech_name in pairs({
-	"kovarex-enrichment-process", -- Significantly cheaper
+	"kovarex-enrichment-process", -- Significantly cheaper; should be obtainable via 2 gel crafts.
 	"rocket-silo",
 	"space-platform-thruster",
 	"planet-discovery-vulcanus",
@@ -258,7 +258,7 @@ for index, tech_name in pairs({
 	local tech = all_techs[tech_name]
 	tech.order = "a-t"..(index+3) -- Starting at 4
 	tech.unit.ingredients = {{utils.science.space.data, 1}}
-	tech.unit.count = index == 1 and 10 or 200
+	tech.unit.count = index == 1 and 4 or 100
 	tech.unit.time = 60
 end
 
