@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 Version: 1.1.0
-Date: 2026.02.06
+Date: 2026.02.08
   Info:
     - This update introduces a new method to upcycle science, as an extra way to encourage larger platforms.
     - Technically no breaking changes, but bumped to 1.1.0 anyway because platforms may want to be redesigned.
@@ -9,7 +9,7 @@ Date: 2026.02.06
     - Oil refineries have a base quality bonus of 20% to accomplish this. Should not affect any other vanilla recipes.
     - Quality packs are less effective than vanilla, due to ease of upcycling. Rare packs are the new baseline. (Repair packs affected unfortunately)
     - Automation card techs reduced in price to avoid being impacted by quality changes. (Also Kovarex is cheaper to unlock.)
-    - Agricultural science packs spoil normally again due to addition of quality stuff.
+    - Agricultural science packs spoil in 1h again due to addition of quality stuff. Result is now eggs to avoid easy access to quality circuits etc.
     - Quality modules now give a small energy efficiency penalty.
     - Minor changes to recipe ordering in crafting tab.
     - Updated tips and tricks.

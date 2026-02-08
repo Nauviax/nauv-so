@@ -26,7 +26,9 @@ local science_data = {
 		advanced = false,
 		prom_amnt = 1, -- Less to help manage freshness
 		ingredient = { type = "item", name = "carbon", amount = 2 },
-		cycle_time_mult = 0.5
+		cycle_time_mult = 0.5,
+		spoil_ticks = 216000, -- 1h, normal pack timer
+		spoil_result = "pentapod-egg" -- Avoid legendary materials in spoilage
 	},
 	electromagnetic = {
 		advanced = false,
@@ -55,8 +57,9 @@ for name, props in pairs(science_data) do
 	local item = data.raw.tool[util_props.pack]
 	item.stack_size = stack_size
 	item.weight = weight
-	if item.spoil_ticks then
-		item.spoil_result = utils.items.garbage_data
+	if props.spoil_ticks then
+		item.spoil_ticks = props.spoil_ticks
+		item.spoil_result = props.spoil_result
 	end
 
 	local recipe = data.raw.recipe[util_props.pack]
