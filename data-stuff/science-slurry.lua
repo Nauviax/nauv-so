@@ -34,17 +34,17 @@ end
 slurry_recipe(
     utils.items.basic_slurry, "chemistry-or-cryogenics", "a", basic_slurry_color, "space-science-pack", 1,
     {
-        { type = "fluid", name = "thruster-fuel", amount = 150 },
+        { type = "fluid", name = "thruster-fuel", amount = 225 },
         { type = "item", name = "steel-plate", amount = 1 },
-        { type = "item", name = "iron-stick", amount = 5 },
+        { type = "item", name = "iron-stick", amount = 10 },
         { type = "item", name = utils.items.prom147, amount = 2 }
     },
-    {{ type = "fluid", name = utils.items.basic_slurry, amount = 50 }} -- 1/2 pack
+    {{ type = "fluid", name = utils.items.basic_slurry, amount = 75 }} -- 3/4 pack
 )
 slurry_recipe(
     utils.items.adv_slurry, "cryogenics", "b", adv_slurry_color, "cryogenic-science-pack", 5,
     {
-        { type = "fluid", name = utils.items.basic_slurry, amount = 100 },
+        { type = "fluid", name = utils.items.basic_slurry, amount = 150 },
         { type = "fluid", name = "steam", amount = 1000, minimum_temperature = 500 },
         { type = "item", name = "slowdown-capsule", amount = 1 },
         { type = "item", name = utils.items.prom147, amount = 4 },

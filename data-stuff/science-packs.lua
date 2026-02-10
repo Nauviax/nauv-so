@@ -5,7 +5,7 @@ local base_craft_time = 12
 local stack_size = 50
 local weight = utils.science.common.weight
 local pack_craft_category = "cryogenics-or-assembling"
-local cycle_craft_time = 0.5
+local cycle_craft_time = 0.4
 local cycle_slurry_cost = 5
 local cycle_qual_base = 0.2 -- Applied to oil refinery
 local cycle_craft_category = "oil-processing"
@@ -28,7 +28,7 @@ local science_data = {
 		ingredient = { type = "item", name = "carbon", amount = 2 },
 		cycle_time_mult = 0.5,
 		spoil_ticks = 216000, -- 1h, normal pack timer
-		spoil_result = "pentapod-egg" -- Avoid legendary materials in spoilage
+		spoil_result = "nutrients" -- Avoid legendary materials in spoilage
 	},
 	electromagnetic = {
 		advanced = false,
