@@ -1,4 +1,12 @@
 ---------------------------------------------------------------------------------------------------
+Version: 1.1.1
+Date: 2026.05.04
+  Info:
+    - Minor balance changes. Contains a moderate nerf, so feel free to not update.
+  Changes:
+    - Prod techs now give 10% per level instead of 20%. Mining prod unaffected.
+    - Fulgora gel plastic use reduced slightly, increased acid instead.
+---------------------------------------------------------------------------------------------------
 Version: 1.1.0
 Date: 2026.02.08
   Info:

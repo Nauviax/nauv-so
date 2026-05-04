@@ -42,8 +42,8 @@ local science_data = {
 		craft_category = "electromagnetics",
 		ingredients = {
 			{ type = "fluid", name = "lubricant", amount = 2000 }, -- Extra lube
-			{ type = "fluid", name = "sulfuric-acid", amount = 125 },
-			{ type = "item", name = "plastic-bar", amount = 20 },
+			{ type = "fluid", name = "sulfuric-acid", amount = 175 },
+			{ type = "item", name = "plastic-bar", amount = 15 },
 			{ type = "item", name = "superconductor", amount = 40 },
 			{ type = "item", name = "lightning-rod", amount = 10 }
 		}

@@ -312,7 +312,7 @@ for type_name, type_techs in pairs(inf_prod_techs) do
 		old_tech.unit.count_formula = nil
 		old_tech.max_level = nil
 		for _, effect in pairs(old_tech.effects) do
-			effect.change = 0.2 -- 20% per tech
+			effect.change = 0.1 -- 10% per tech, max 50%
 		end
 		for level = 1, 5 do
 			local tech = table.deepcopy(old_tech)
