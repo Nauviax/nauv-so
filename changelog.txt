@@ -1,4 +1,11 @@
 ---------------------------------------------------------------------------------------------------
+Version: 1.1.2
+Date: 2026.05.08
+  Info:
+    - Extra balance change, was supposed to be part of the last update.
+  Changes:
+    - Gleba plants no longer have reduced spores, but base attack cost of pentapods increased x2. Expect smaller waves, but larger spore clouds.
+---------------------------------------------------------------------------------------------------
 Version: 1.1.1
 Date: 2026.05.04
   Info:

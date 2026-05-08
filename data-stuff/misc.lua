@@ -7,11 +7,12 @@ wood.weight = 1000 -- Old 2000
 data.raw.plant["tree-plant"].growth_ticks = 18000 -- 5m instead of 10m
 data.raw.plant["tree-plant"].minable.results[1].amount = 8 -- Double wood, also reduces seed dependency
 
--- Gleba plant spore reduction to help with increased fruit demand.
-for _, plant_name in pairs({
-	"yumako-tree",
-	"jellystem",
-}) do -- Count and time is post x5 time adjustment
-	local plant = data.raw.plant[plant_name]
-	plant.harvest_emissions.spores = 10 -- Old 15
-end
+-- Increased pentapod attack costs to compensate for increased fruit demand creating more spores.
+local pentapod = data.raw["spider-unit"]
+pentapod["small-stomper-pentapod"].absorptions_to_join_attack.spores = 50 -- Old 25
+pentapod["medium-stomper-pentapod"].absorptions_to_join_attack.spores = 50
+pentapod["big-stomper-pentapod"].absorptions_to_join_attack.spores = 50
+pentapod["small-strafer-pentapod"].absorptions_to_join_attack.spores = 40 -- Old 20
+pentapod["medium-strafer-pentapod"].absorptions_to_join_attack.spores = 40
+pentapod["big-strafer-pentapod"].absorptions_to_join_attack.spores = 40
+-- Wrigglers can remain the same, they're just chaff (2)
