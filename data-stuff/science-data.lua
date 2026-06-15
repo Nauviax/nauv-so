@@ -73,7 +73,7 @@ local science_data = {
 		is_tool = false,
 		ingredients = {
 			dcard, gel,
-			{ type = "item", name = "ice-platform", amount = 1 },
+			{ type = "item", name = "ice-platform", amount = 2 },
 			{ type = "item", name = "lithium-plate", amount = 8 }
 		},
 		fluoro_used = 50

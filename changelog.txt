@@ -1,4 +1,10 @@
 ---------------------------------------------------------------------------------------------------
+Version: 1.1.3
+Date: 2026.06.15
+  Changes:
+    - Aquilo gel uses less lube and more acid, to reduce surplus of petroleum from lube production.
+    - Aquilo data uses more ice platform. Recipe is still overall ice-positive.
+---------------------------------------------------------------------------------------------------
 Version: 1.1.2
 Date: 2026.05.08
   Info:

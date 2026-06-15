@@ -51,8 +51,8 @@ local science_data = {
 	cryogenic = {
 		craft_category = "cryogenics",
 		ingredients = {
-			{ type = "fluid", name = "lubricant", amount = 100 },
-			{ type = "fluid", name = "sulfuric-acid", amount = 300 },
+			{ type = "fluid", name = "lubricant", amount = 50 },
+			{ type = "fluid", name = "sulfuric-acid", amount = 600 },
 			{ type = "item", name = "wood", amount = 20 },
 			{ type = "item", name = "rocket-fuel", amount = 20 },
 			utils.items.fluo_in(100)
