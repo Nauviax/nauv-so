@@ -4,11 +4,11 @@ local utils = require("common.utils")
 local base_craft_time = 12
 local stack_size = 50
 local weight = utils.science.common.weight
-local pack_craft_category = "cryogenics-or-assembling"
+local pack_craft_categories = { "crafting-with-fluid", "cryogenics" } -- !!! TEST (no handcraft either)
 local cycle_craft_time = 0.4
 local cycle_slurry_cost = 5
 local cycle_qual_base = 0.2 -- Applied to oil refinery
-local cycle_craft_category = "oil-processing"
+local cycle_craft_categories = { "oil-processing" }
 local order = "a-"
 local cycle_order = "z-"
 
@@ -54,7 +54,7 @@ for name, props in pairs(science_data) do
 	local util_props = utils.science[name]
 	local slurry = props.advanced and utils.items.adv_slurry or utils.items.basic_slurry
 
-	local item = data.raw.tool[util_props.pack]
+	local item = data.raw.item[util_props.pack]
 	item.stack_size = stack_size
 	item.weight = weight
 	if props.spoil_ticks then
@@ -64,7 +64,7 @@ for name, props in pairs(science_data) do
 
 	local recipe = data.raw.recipe[util_props.pack]
 	recipe.main_product = util_props.pack
-	recipe.category = pack_craft_category
+	recipe.categories = pack_craft_categories
 	recipe.subgroup = utils.subgroup.pack
 	recipe.order = order..util_props.order
 	recipe.energy_required = base_craft_time * util_props.craft_time_mult
@@ -109,7 +109,7 @@ for name, props in pairs(science_data) do
 				scale = 0.25, shift = {8, 8}, floating = true
 			}
 		},
-		category = cycle_craft_category, subgroup = utils.subgroup.cycle,
+		categories = cycle_craft_categories, subgroup = utils.subgroup.cycle,
 		order = cycle_order..util_props.order,
 		energy_required = cycle_craft_time * (props.cycle_time_mult or 1),
 		ingredients = {

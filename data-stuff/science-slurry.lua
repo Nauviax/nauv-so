@@ -19,11 +19,11 @@ slurry(utils.items.basic_slurry, "__nauv-so__/graphics/fluids/slurry.png", basic
 slurry(utils.items.adv_slurry, "__nauv-so__/graphics/fluids/adv-slurry.png", adv_slurry_color, "b")
 
 -- Slurry recipe definitions
-local function slurry_recipe(name, category, order_suffix, tint, tech, craft_mult, ingredients, results)
+local function slurry_recipe(name, categories, order_suffix, tint, tech, craft_mult, ingredients, results)
 	utils.add_to_tech(tech, name)
     data:extend({{
         type = "recipe", name = name, main_product = name, enabled = false,
-        category = category, subgroup = utils.subgroup.pack_pre, order = order .. order_suffix,
+        categories = categories, subgroup = utils.subgroup.pack_pre, order = order .. order_suffix,
         energy_required = craft_time_base * craft_mult, ingredients = ingredients, results = results,
         allow_productivity = true, maximum_productivity = utils.science.common.max_productivity,
         surface_conditions = utils.science.promethium.surface_condition, show_amount_in_title = false,
@@ -32,7 +32,7 @@ local function slurry_recipe(name, category, order_suffix, tint, tech, craft_mul
     }})
 end
 slurry_recipe(
-    utils.items.basic_slurry, "chemistry-or-cryogenics", "a", basic_slurry_color, "space-science-pack", 1,
+    utils.items.basic_slurry, { "chemistry", "cryogenics" }, "a", basic_slurry_color, "space-science-pack", 1,
     {
         { type = "fluid", name = "thruster-fuel", amount = 225 },
         { type = "item", name = "steel-plate", amount = 1 },
@@ -42,7 +42,7 @@ slurry_recipe(
     {{ type = "fluid", name = utils.items.basic_slurry, amount = 75 }} -- 3/4 pack
 )
 slurry_recipe(
-    utils.items.adv_slurry, "cryogenics", "b", adv_slurry_color, "cryogenic-science-pack", 5,
+    utils.items.adv_slurry, { "cryogenics" }, "b", adv_slurry_color, "cryogenic-science-pack", 5,
     {
         { type = "fluid", name = utils.items.basic_slurry, amount = 150 },
         { type = "fluid", name = "steam", amount = 1000, minimum_temperature = 500 },

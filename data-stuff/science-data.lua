@@ -11,7 +11,7 @@ local order = "a-"
 local dcard = { type = "item", name = utils.items.blank_data, amount = 1 }
 local gel = { type = "fluid", name = utils.items.gel, amount = 100 }
 
-local base_item = table.deepcopy(data.raw.tool["automation-science-pack"])
+local base_item = table.deepcopy(data.raw.item["automation-science-pack"])
 base_item.icon = nil
 base_item.localised_description = nil
 
@@ -19,37 +19,40 @@ local science_data = {
 	space = {
 		stack_mult = 1,
 		weight_mult = 1, -- 10 crafts per data rocket
-		craft_category = "organic-or-assembling",
+		craft_categories = { "crafting-with-fluid", "organic" }, -- !!! TEST (no handcraft either)
 		is_tool = true,
 		ingredients = {
 			dcard, gel,
 			{ type = "item", name = "flying-robot-frame", amount = 4 },
 			{ type = "item", name = "electric-furnace", amount = 3 },
-			{ type = "item", name = "heat-exchanger", amount = 1 }
+			{ type = "item", name = "heat-exchanger", amount = 1 },
+			{ type = "item", name = "beacon", amount = 1 }
 		}
 	},
 	metallurgic = {
 		stack_mult = 0.4,
 		weight_mult = 2, -- 5 crafts per data rocket
-		craft_category = "metallurgy",
+		craft_categories = { "metallurgy" },
 		is_tool = false,
 		ingredients = {
 			dcard, gel,
 			{ type = "fluid", name = "molten-copper", amount = 1500 },
-			{ type = "item", name = "tungsten-plate", amount = 10 },
-			{ type = "item", name = "engine-unit", amount = 20 }
+			{ type = "item", name = "tungsten-plate", amount = 12 },
+			{ type = "item", name = "engine-unit", amount = 20 },
+			{ type = "item", name = "programmable-speaker", amount = 5 }
 		}
 	},
 	agricultural = {
 		stack_mult = 1,
 		weight_mult = 0.5, -- 20 crafts per data rocket
-		craft_category = "organic",
+		craft_categories = { "organic" },
 		is_tool = false,
 		ingredients = {
 			dcard, gel,
-			{ type = "item", name = "bioflux", amount = 5 },
-			{ type = "item", name = "pentapod-egg", amount = 5 },
-			{ type = "item", name = "electronic-circuit", amount = 10 }
+			{ type = "fluid", name = "steam", amount = 1000, minimum_temperature = 500 }, -- !!! SEE NOTES (amount is guess here)
+			{ type = "item", name = "bioflux", amount = 8 },
+			{ type = "item", name = "pentapod-egg", amount = 4 }, -- !!! SEE NOTES (Moving part of this to gel)
+			{ type = "item", name = "rocket-launcher", amount = 3 } -- !!! SEE NOTES (3 may be just a bit too many? 2 better?)
 		},
 		spoil_ticks = 216000, -- 1h, normal pack timer
 		spoil_result = utils.items.garbage_data
@@ -57,19 +60,20 @@ local science_data = {
 	electromagnetic = {
 		stack_mult = 4,
 		weight_mult = 2/15, -- 7.5 crafts per data rocket
-		craft_category = "electromagnetics",
+		craft_categories = { "electromagnetics" },
 		is_tool = false,
 		ingredients = {
 			dcard, gel,
 			{ type = "item", name = "accumulator", amount = 6 },
 			{ type = "fluid", name = "electrolyte", amount = 125 },
-			{ type = "item", name = "supercapacitor", amount = 8 }
+			{ type = "item", name = "supercapacitor", amount = 8 },
+			{ type = "item", name = "pumpjack", amount = 1 } -- !!! Play with this more (Cheap? Or is this actually good?)
 		}
 	},
 	cryogenic = {
 		stack_mult = 1,
 		weight_mult = 0.5, -- 20 crafts per data rocket
-		craft_category = "cryogenics",
+		craft_categories = { "cryogenics" },
 		is_tool = false,
 		ingredients = {
 			dcard, gel,
@@ -82,7 +86,7 @@ local science_data = {
 		stack_mult = 0.4,
 		weight_mult = 1,
 		extra_craft_mult = 0.2, -- Fast crafting for this step due to spoilables and hazardous area
-		craft_category = "cryogenics",
+		craft_categories = { "cryogenics" },
 		is_tool = false,
 		ingredients = {
 			dcard, gel,
@@ -102,7 +106,7 @@ for name, props in pairs(science_data) do
 	item.icons = {{ icon = icon, tint = util_props.color }}
 	if not props.is_tool then
 		item.type = "item"
-		item.durability = nil
+		item.durability = nil -- !!! TEST THIS if warning is valid or no
 		item.durability_description_key = nil
 		item.durability_description_value = nil
 	end
@@ -119,7 +123,7 @@ for name, props in pairs(science_data) do
 	local recipe = {
 		type = "recipe", name = item.name,
 		main_product = item.name,
-		category = props.craft_category,
+		categories = props.craft_categories,
 		subgroup = utils.subgroup.data,
 		order = order..util_props.order,
 		enabled = false,

@@ -2,7 +2,7 @@ local utils = require("common.utils") -- Potentually underutilized here
 
 -- Pack removal (tech done in tech-rework.lua)
 for _, pack_name in pairs(utils.removed_packs) do
-	data.raw.tool[pack_name] = nil
+	data.raw.item[pack_name] = nil
 	data.raw.recipe[pack_name] = nil
 	for _, lab in pairs(data.raw.lab) do
 		for index, input in ipairs(lab.inputs) do

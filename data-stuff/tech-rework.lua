@@ -100,7 +100,7 @@ local function merge_into_statpack(statpack, tech_name)
 				-- If effect already exists, merge modifier values
 				local found = false
 				for _, existing_effect in pairs(effect_list) do
-					if effect.modifier and existing_effect.type == effect.type then
+					if effect.modifier and existing_effect.type == effect.type and type(existing_effect.modifier) == "number" then
 						local key_match = true
 						for key in pairs(existing_effect) do
 							if key ~= "modifier" and existing_effect[key] ~= effect[key] then

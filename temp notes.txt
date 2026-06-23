@@ -1,0 +1,86 @@
+Do I just want rails and nauv-explosives?
+
+TAKE NEW PICS FOR PORTAL	
+2.1 colors for oil recipes
+	2.1 inclusive randomness in recipes (TEST !!! But otherwise done)
+2.1 use assemb 3? Migration 2->3 if so (if needed)
+2.1 maybe x5 packs again, back to normal? Review upcycling if so, and techs ofc
+^ Upcycle can't take 5, so use fractional amounts of steam output?
+^ Migration to x5 all packs in chests to aid in migration. (Stack size also)(Not sure what to do w data stack size, also x5? Careful w Fulgora) !!!
+check quality requirement in nso (Right name?)
+
+-- Changed all science packs to be plain items.
+Reworked recipe categories: added `hand-crafting` and removed `basic-crafting`, `recycling-or-hand-crafting`, `chemistry-or-cryogenics`, `pressing`, `crafting-with-fluid-or-metallurgy`, `metallurgy-or-assembling`, `organic-or-hand-crafting`, `organic-or-assembling`, `organic-or-chemistry`, `electronics-or-assembling`, `electronics`, `electronics-with-fluid` and `cryogenics-or-assembling`; instead using multiple categories per recipe where applicable.
+^ !! VERIFY THESE WORK AS INTENDED
+
+---
+
+Look at SA mid game recipes for inspiration
+Play with non-infinite researches, curious on new automation
+See if shattered vp is a thing
+
+MAX TODO IN MY SAVE
+regen terrain in fulgoraland? Earandels mod maybe
+fix concrete recycle loop !!!
+check ALL platforms wiring for asteroids !!!
+
+---
+
+CONFIG OPTION HARD MODE
+avoid using more of main resources, uran, tungs, holm etc
+All amounts should be significant/noticable
+
+S-extra: ice or ?
+^ !!! Also more thrust fuel too? Check base science pack for balance ideas (Water be careful)
+Not done yet!!!
+
+
+D-extra
+C-cable 10 / card (!!! Am I happy w just this? I think so)
+
+Byproduct from gels? Slurries?
+water for gels
+(slurry could output iron ore? Mess w promethium line)
+
+N (check iron/copper even?) Brick usage?
+Beacon       1 / data ( 2pp)
+exp-rock    50 / gel  (25pp)
+
+
+V
+Speaker      5 / data (10pp)
+Rail       100 / gel  (50pp)
++25% Tungsten costs
+(May be high? Review, but also maybe ok)
+
+F (Review full chests!) !!!
+Beacon could be ok-ish, see above
+>>> POWER SWITCH
+>> Chemplants? (Careful not to use ALL the copper wire and iron and steel etc)
+XXX Possibly petro-gas? (Or light) Use more water? (Note test pre-heating tower water use!)
+^ Too similar to R-fuel though.
+Not sold on flat holm plates as the other ingredient but oh well
+!!! I feel like I can add more here somehow !!! (But also don't need to make too expensive ig, as fulgora is wasteful inheriently)
+
+
+G (These ones cheap, no short spoil times on card!)
+Steam as gel ingredient? (Same-y with starfrost though, and too free still? Would want req large setup (lotta steam))
+Rocket launchers? Kiiiinda fits
+!!! Green circuits now kinda lame though !!!
+>> Replace green circuits with the steam! And maybe 2 rocket launchers then?
+!!! Double egg is weak. But also compare costs more? 16(4)-4 and use 8 bio in main maybe?
+
+
+A
+Fluorine? (The inf one) (What else is this used in?) (Add to data? Gel is full. Or just use MORE coolant? (Both?) Maybe just the fluoro in)
+(something hard for second if fluorine is the first)
+Molten iron? Or ehhh too much import?
+(Ooo maybe require ice asteroid specifically? Space station in Aquilo?)
+
+
+P
+More sf-slurry? (Gel takes this already tho, base)
+>> Maybe prom chunks whole? (Means can't mindlessly crush all, + HG-prom expired means used in DIFF recipe) (Avoid same)
+*maaaybe* use more t4 circuits?
+Fluorine? The inf gas one? (Does this have barrels?) (If not used in aquilo)
+railammo?
