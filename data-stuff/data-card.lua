@@ -1,7 +1,7 @@
 local utils = require("common.utils")
 
 -- Params
-local craft_time = 40
+local craft_time = 20
 local order = "b-"
 
 local item = table.deepcopy(data.raw.item["electronic-circuit"])
@@ -11,8 +11,8 @@ item.icons = {{ icon = "__nauv-so__/graphics/items/data-blank.png" }} -- More in
 item.type = "item"
 item.subgroup = utils.subgroup.data_pre
 item.order = order.."y"
-item.stack_size = 50
-item.weight = utils.science.common.weight
+item.stack_size = 200
+item.weight = utils.science.common.weight * 5 -- Don't rocket these >:(
 item.localised_description = nil
 
 local garbage_item = table.deepcopy(item)
@@ -22,36 +22,39 @@ table.insert(garbage_item.icons, {
 	scale = 0.3, shift = {-5, 5}, floating = true
 })
 garbage_item.order = order.."z"
+garbage_item.weight = utils.science.common.weight -- Ok you can rocket the garbage.
 
 local recipe = {
 	type = "recipe", name = item.name,
 	main_product = item.name,
-	categories = { "crafting", "electromagnetics" }, -- !!! TEST !!! (Do I want to allow handcraft? v1 was sure why not, so was packs afaik?) (!!! Changelog if making no-handcraft)
+	categories = { "crafting", "electromagnetics" },
 	subgroup = utils.subgroup.data_pre,
 	order = order.."y",
 	enabled = false,
 	energy_required = craft_time,
 	ingredients = {
-		{ type = "item", name = "steel-plate", amount = 2 },
-		{ type = "item", name = "battery", amount = 3 },
-		{ type = "item", name = "advanced-circuit", amount = 5 },
-		{ type = "item", name = "copper-cable", amount = 10 }
+		{ type = "item", name = "steel-plate", amount = 1 },
+		{ type = "item", name = "battery", amount = 2 },
+		{ type = "item", name = "advanced-circuit", amount = 3 },
+		{ type = "item", name = "copper-cable", amount = 5 }
 	},
 	results = {
-		{ type = "item", name = item.name, amount = 1, shared_probability = { min = 0.0 , max = 0.9} },
-		{ type = "item", name = garbage_item.name, amount = 1, shared_probability = { min = 0.9 , max = 1.0} }
+		{ type = "item", name = item.name, amount = 3, shared_probability = { min = 0.0 , max = 0.75} },
+		{ type = "item", name = garbage_item.name, amount = 3, shared_probability = { min = 0.75 , max = 1.0} }
 	},
 	allow_productivity = true,
 	surface_conditions = nil,
-	show_amount_in_title = false,
 	always_show_made_in = true
 }
 
 local garbage_recipe = table.deepcopy(recipe) -- Byproduct of data crafting
 garbage_recipe.name = garbage_item.name
 garbage_recipe.main_product = garbage_item.name
-garbage_recipe.energy_required = craft_time * 8 -- 40s in recycler (20s recipe)
-garbage_recipe.results = {{ type = "item", name = garbage_item.name, amount = 3 }} -- Returns 1/12 not 1/4
+garbage_recipe.energy_required = craft_time * 4 -- 10s in recycler (5s recipe, 4 x 1/16 of craft_time)
+garbage_recipe.results = {{
+	type = "item", name = garbage_item.name,
+	amount = recipe.results[2].amount * 3 -- x3 product, means recycle returns 1/12 instead of 1/4 (Do not take into account chance)
+}}
 garbage_recipe.hidden = true -- Don't show, ever
 garbage_recipe.order = order.."z"
 

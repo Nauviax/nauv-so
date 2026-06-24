@@ -2,13 +2,13 @@ local utils = require("common.utils")
 
 -- Params
 local base_craft_time = 60
-local base_stack_size = 50
+local base_stack_size = 200
 local base_weight = utils.science.common.weight
 local data_crafts_per_pack = 2
 local icon = "__nauv-so__/graphics/items/data.png"
 local order = "a-"
 
-local dcard = { type = "item", name = utils.items.blank_data, amount = 1 }
+local dcard = { type = "item", name = utils.items.blank_data, amount = 5 } -- 5 in, 5 out
 local gel = { type = "fluid", name = utils.items.gel, amount = 100 }
 
 local base_item = table.deepcopy(data.raw.item["automation-science-pack"])
@@ -17,9 +17,9 @@ base_item.localised_description = nil
 
 local science_data = {
 	space = {
-		stack_mult = 1,
+		stack_mult = 1, -- 20 crafts per stack
 		weight_mult = 1, -- 10 crafts per data rocket
-		craft_categories = { "crafting-with-fluid", "organic" }, -- !!! TEST (no handcraft either)
+		craft_categories = { "crafting-with-fluid", "organic" },
 		is_tool = true,
 		ingredients = {
 			dcard, gel,
@@ -30,7 +30,7 @@ local science_data = {
 		}
 	},
 	metallurgic = {
-		stack_mult = 0.4,
+		stack_mult = 0.25, -- 5 crafts per stack
 		weight_mult = 2, -- 5 crafts per data rocket
 		craft_categories = { "metallurgy" },
 		is_tool = false,
@@ -58,8 +58,8 @@ local science_data = {
 		spoil_result = utils.items.garbage_data
 	},
 	electromagnetic = {
-		stack_mult = 4,
-		weight_mult = 2/15, -- 7.5 crafts per data rocket
+		stack_mult = 2, -- 40/4 = 10 crafts per stack
+		weight_mult = 1/3, -- 7.5 crafts per data rocket
 		craft_categories = { "electromagnetics" },
 		is_tool = false,
 		ingredients = {
@@ -83,7 +83,7 @@ local science_data = {
 		fluoro_used = 50
 	},
 	promethium = {
-		stack_mult = 0.4,
+		stack_mult = 0.5,
 		weight_mult = 1,
 		extra_craft_mult = 0.2, -- Fast crafting for this step due to spoilables and hazardous area
 		craft_categories = { "cryogenics" },
@@ -106,9 +106,11 @@ for name, props in pairs(science_data) do
 	item.icons = {{ icon = icon, tint = util_props.color }}
 	if not props.is_tool then
 		item.type = "item"
-		item.durability = nil -- !!! TEST THIS if warning is valid or no
+---@diagnostic disable: inject-field
+		item.durability = nil -- Linter is not up to date, hense the disable above. data.raw.item includes "tools" now afaik.
 		item.durability_description_key = nil
 		item.durability_description_value = nil
+---@diagnostic enable: inject-field
 	end
 	item.subgroup = utils.subgroup.data
 	item.order = order..util_props.order
@@ -129,11 +131,10 @@ for name, props in pairs(science_data) do
 		enabled = false,
 		energy_required = base_craft_time * util_props.craft_time_mult * (props.extra_craft_mult or 1),
 		ingredients = props.ingredients,
-		results = {{ type = "item", name = item.name, amount = util_props.data_per_pack / data_crafts_per_pack }},
+		results = {{ type = "item", name = item.name, amount = 5 * util_props.data_per_pack / data_crafts_per_pack }}, -- 1 craft = "5 / data_crafts_per_pack" packs
 		allow_productivity = true,
 		maximum_productivity = utils.science.common.max_productivity,
 		surface_conditions = util_props.surface_condition,
-		show_amount_in_title = false,
 		always_show_products = true,
 		custom_tooltip_fields = {{
 			name = utils.misc.prod_cap_tt, value = (utils.science.common.max_productivity * 100).."%"

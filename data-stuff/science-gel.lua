@@ -104,13 +104,13 @@ for name, props in pairs(science_data) do
 		ingredients = props.ingredients,
 		results = {
 			{ type = "fluid", name = fluid.name, amount = 400 },
-			{ type = "fluid", name = 'water', amount = 40 } -- Byproduct
+			{ type = "fluid", name = 'water', amount = 40 }, -- Byproduct
+			{ type = "item", name = 'spoilage', amount = 4 } -- Byproduct
 		},
 		allow_productivity = false, -- No prod for gel, just for the data.
 		allow_quality = false,
 		maximum_productivity = 0.0, -- Should prevent base productivity affceting the recipe.
-		surface_conditions = util_props.surface_condition,
-		show_amount_in_title = false,
+		surface_conditions = util_props.surface_condition,		
 		crafting_machine_tint = utils.recipe_tints(fluid_color),
 		custom_tooltip_fields = {{
 			name = utils.misc.prod_cap_tt, value = "0%"

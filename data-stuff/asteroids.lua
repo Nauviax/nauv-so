@@ -47,7 +47,6 @@ prom_recipe.main_product = prom_item.name -- Deviation from other crushing recip
 prom_recipe.subgroup = utils.subgroup.pack_pre
 prom_recipe.order = "a-a" -- First in subgroup
 prom_recipe.icon = nil -- Clear the custom icon
-prom_recipe.show_amount_in_title = false
 data:extend({ prom_item, prom_recipe })
 table.insert(data.raw.technology["asteroid-productivity"].effects, {
 	type = "change-recipe-productivity", recipe = prom_recipe.name, change = 0.1

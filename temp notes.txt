@@ -1,25 +1,21 @@
-Do I just want rails and nauv-explosives?
 
 TAKE NEW PICS FOR PORTAL	
-2.1 colors for oil recipes
-	2.1 inclusive randomness in recipes (TEST !!! But otherwise done)
 2.1 use assemb 3? Migration 2->3 if so (if needed)
-Add slurry barrels, probably NOT for starfrost though.
-Review promethium crushing amounts
+Review promethium crushing amounts !!
 
 2.1 maybe x5 packs again, back to normal? Review upcycling if so, and techs ofc
 ^ Upcycle can't take 5, so use fractional amounts of steam output? (What is input/output rates now? Too high?)
-^ Migration to x5 all packs in chests to aid in migration. (Stack size also)(Not sure what to do w data stack size, also x5? Careful w Fulgora) !!!
 check quality requirement in nso (Right name?)
-^ careful of fulgora if increasing stack sizes of data (Note blank card craft will need faster if just output 1)
-^ Vulcanus can be denser than normal now too, as min 20 stack size was issue earlier, but now default is 100 for vulcanus! (Full review of this system)
-^ Probably just skip migration, and manually fix my save via editor mod. (Giving extra, count BEFORE making the change!) (Is this even needed? It could account for the science being more expensive now?)
 
 What do with settings branch?
 
 -- Changed all science packs to be plain items.
 Reworked recipe categories: added `hand-crafting` and removed `basic-crafting`, `recycling-or-hand-crafting`, `chemistry-or-cryogenics`, `pressing`, `crafting-with-fluid-or-metallurgy`, `metallurgy-or-assembling`, `organic-or-hand-crafting`, `organic-or-assembling`, `organic-or-chemistry`, `electronics-or-assembling`, `electronics`, `electronics-with-fluid` and `cryogenics-or-assembling`; instead using multiple categories per recipe where applicable.
 ^ !! VERIFY THESE WORK AS INTENDED
+
+Update tips for pack/data amounts where referenced. Also assemb etc if changed. Remove note on tech cost changes. (ALSO UPDATE PORTAL)
+
+-- !!! MAX experiment with 1.5 slurry in and 25% base quality? Allow for speed modules if desired? RETEST w old chart.
 
 ---
 
@@ -34,13 +30,12 @@ check ALL platforms wiring for asteroids !!!
 
 ---
 
-CONFIG OPTION HARD MODE
-avoid using more of main resources, uran, tungs, holm etc
 All amounts should be significant/noticable
 
 S-extra: ice or ?
 ^ !!! Also more thrust fuel too? Check base science pack for balance ideas (Water be careful)
 Not done yet!!!
+Star-S-extra: no clue yet
 
 !!! Promethium crushing output a single iron ore? 20% chance?
 
@@ -62,7 +57,7 @@ Rail       100 / gel  (50pp)
 +25% Tungsten costs
 (May be high? Review, but also maybe ok)
 
-F (Review full chests!) !!!
+F (Review full chests!) !!! This one is partially done, update when ready
 Beacon could be ok-ish, see above
 >>> POWER SWITCH
 >> Chemplants? (Careful not to use ALL the copper wire and iron and steel etc)
@@ -72,7 +67,7 @@ Not sold on flat holm plates as the other ingredient but oh well
 !!! I feel like I can add more here somehow !!! (But also don't need to make too expensive ig, as fulgora is wasteful inheriently)
 
 
-G (These ones cheap, no short spoil times on card!)
+G (These ones cheap, no short spoil times on card!) !!! This one is partially done, update when ready
 Steam as gel ingredient? (Same-y with starfrost though, and too free still? Would want req large setup (lotta steam))
 Rocket launchers? Kiiiinda fits
 !!! Green circuits now kinda lame though !!!

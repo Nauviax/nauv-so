@@ -7,26 +7,26 @@ local adv_slurry_color = {0.3, 0.5, 0.8}
 local order = "b-"
 
 -- Slurry fluid definitions
-local function slurry(name, icon, color, order_suffix)
+local function slurry(name, icon, color, order_suffix, barrelable)
     data:extend({{
         type = "fluid", name = name, icon = icon,
-        default_temperature = 15, auto_barrel = false, -- !!! True for basic? add to utils
+        default_temperature = 15, auto_barrel = barrelable,
         base_color = color, flow_color = color,
         subgroup = utils.subgroup.fluid, order = utils.subgroup.fluid_order .. order .. order_suffix
     }})
 end
-slurry(utils.items.basic_slurry, "__nauv-so__/graphics/fluids/slurry.png", basic_slurry_color, "a")
-slurry(utils.items.adv_slurry, "__nauv-so__/graphics/fluids/adv-slurry.png", adv_slurry_color, "b")
+slurry(utils.items.basic_slurry, "__nauv-so__/graphics/fluids/slurry.png", basic_slurry_color, "a", true)
+slurry(utils.items.adv_slurry, "__nauv-so__/graphics/fluids/adv-slurry.png", adv_slurry_color, "b", false)
 
 -- Slurry recipe definitions
-local function slurry_recipe(name, categories, order_suffix, tint, tech, craft_mult, ingredients, results)
+local function slurry_recipe(name, categories, order_suffix, tint, tech, craft_time_mult, ingredients, results)
 	utils.add_to_tech(tech, name)
     data:extend({{
         type = "recipe", name = name, main_product = name, enabled = false,
         categories = categories, subgroup = utils.subgroup.pack_pre, order = order .. order_suffix,
-        energy_required = craft_time_base * craft_mult, ingredients = ingredients, results = results,
+        energy_required = craft_time_base * craft_time_mult, ingredients = ingredients, results = results,
         allow_productivity = true, maximum_productivity = utils.science.common.max_productivity,
-        surface_conditions = utils.science.promethium.surface_condition, show_amount_in_title = false,
+        surface_conditions = utils.science.promethium.surface_condition,
         always_show_products = true, crafting_machine_tint = utils.recipe_tints(tint),
 		custom_tooltip_fields = {{ name = utils.misc.prod_cap_tt, value = (utils.science.common.max_productivity * 100).."%" }},
     }})
@@ -34,12 +34,12 @@ end
 slurry_recipe(
     utils.items.basic_slurry, { "chemistry", "cryogenics" }, "a", basic_slurry_color, "space-science-pack", 1,
     {
-        { type = "fluid", name = "thruster-fuel", amount = 225 },
+        { type = "fluid", name = "thruster-fuel", amount = 225 }, -- !!! More of this? Then what, ice?
         { type = "item", name = "steel-plate", amount = 1 },
         { type = "item", name = "iron-stick", amount = 10 },
         { type = "item", name = utils.items.prom147, amount = 2 }
     },
-    {{ type = "fluid", name = utils.items.basic_slurry, amount = 75 }} -- 3/4 pack
+    {{ type = "fluid", name = utils.items.basic_slurry, amount = 75 }} -- 3/4 of a pack craft
 )
 slurry_recipe(
     utils.items.adv_slurry, { "cryogenics" }, "b", adv_slurry_color, "cryogenic-science-pack", 5,
@@ -51,7 +51,7 @@ slurry_recipe(
         utils.items.fluo_in(6)
     },
     {
-        { type = "fluid", name = utils.items.adv_slurry, amount = 50 }, -- 1/2 pack
+        { type = "fluid", name = utils.items.adv_slurry, amount = 50 }, -- 1/2 of a pack craft
         utils.items.fluo_out(3)
     }
 )

@@ -2,11 +2,11 @@ local utils = require("common.utils")
 
 -- Params
 local base_craft_time = 12
-local stack_size = 50
+local stack_size = 200
 local weight = utils.science.common.weight
-local pack_craft_categories = { "crafting-with-fluid", "cryogenics" } -- !!! TEST (no handcraft either)
-local cycle_craft_time = 0.4
-local cycle_slurry_cost = 5
+local pack_craft_categories = { "crafting-with-fluid", "cryogenics" }
+local cycle_craft_time = 0.2 -- This is quite slow compared to 2.0 speeds, may change? -- !!! MAX experiment with 1.5 slurry in and 25% base quality? Allow for speed modules if desired? RETEST w old chart.
+local cycle_slurry_cost = 1
 local cycle_qual_base = 0.2 -- Applied to oil refinery
 local cycle_craft_categories = { "oil-processing" }
 local order = "a-"
@@ -44,8 +44,8 @@ local science_data = {
 	promethium = {
 		advanced = true,
 		prom_amnt = 25,
-		ingredient = { type = "item", name = utils.items.blank_data, amount = 1 },
-		garbage_out = 2, -- Account for extra in
+		ingredient = { type = "item", name = utils.items.blank_data, amount = 5 },
+		garbage_out = 10, -- Account for extra in
 		cycle_time_mult = 2
 	}
 }
@@ -69,7 +69,7 @@ for name, props in pairs(science_data) do
 	recipe.order = order..util_props.order
 	recipe.energy_required = base_craft_time * util_props.craft_time_mult
 	recipe.ingredients = {
-		{ type = "item", name = util_props.data, amount = util_props.data_per_pack },
+		{ type = "item", name = util_props.data, amount = 5 * util_props.data_per_pack },
 		{ type = "fluid", name = slurry, amount = 100 },
 		{ type = "item", name = utils.items.prom147, amount = props.prom_amnt }
 	}
@@ -77,8 +77,8 @@ for name, props in pairs(science_data) do
 		table.insert(recipe.ingredients, props.ingredient)
 	end
 	recipe.results = {
-		{ type = "item", name = util_props.pack, amount = 1 },
-		{ type = "item", name = utils.items.garbage_data, amount = props.garbage_out or 1 }
+		{ type = "item", name = util_props.pack, amount = 5 },
+		{ type = "item", name = utils.items.garbage_data, amount = props.garbage_out or 5 }
 	}
 	recipe.allow_productivity = true -- Already true, just clarity
 	recipe.maximum_productivity = utils.science.common.max_productivity
@@ -118,7 +118,7 @@ for name, props in pairs(science_data) do
 		},
 		results = {
 			{ type = "item", name = util_props.pack, amount = 1, ignored_by_stats = 1 },
-			{ type = "fluid", name = "steam", amount = props.advanced and 5 or 2, temperature = 500 }
+			{ type = "fluid", name = "steam", amount = props.advanced and 1 or 0.5, temperature = 500 }
 		},
 		allow_productivity = false, -- Avoid obvious exploit
 		allow_quality = true,
@@ -134,7 +134,7 @@ end
 
 -- Give oil refineries a base 20% quality bonus to help with pack upcycling. (Should not affect other recipes)
 local refinery = data.raw["assembling-machine"]["oil-refinery"]
-refinery.effect_receiver = { base_effect = { quality = cycle_qual_base * 10 } }
+refinery.effect_receiver = { base_effect = { quality = cycle_qual_base } }
 refinery.allowed_effects = { "consumption", "speed", "productivity", "pollution", "quality" } -- Overwrites old, but I can't find a way to do it otherwise.
 
 -- Reduce effectiveness of quality packs/tools, rare is base
