@@ -75,7 +75,7 @@ local statpack_building_tech = {
 	type = "technology", name = utils.misc.statpack_building,
 	icon = "__base__/graphics/technology/toolbelt.png", icon_size = 256,
 	effects = {},
-	unit = { ingredients = {}, count = 1, time = 12 }, -- Time will be 60 after x5
+	unit = { ingredients = {}, count = 1, time = 12 }, -- Time will be 60 after x5 -- !!! Hardcode to 60 --!!! Why not count here? Why is it not /5? Rounding?!!!
 	order = "a-t1"
 }
 data:extend({statpack_building_tech})
@@ -83,7 +83,7 @@ local statpack_combat_tech = {
 	type = "technology", name = utils.misc.statpack_combat,
 	icon = "__base__/graphics/technology/stronger-explosives-3.png", icon_size = 256,
 	effects = {},
-	unit = { ingredients = {}, count = 1, time = 12 },
+	unit = { ingredients = {}, count = 1, time = 12 }, -- !!! Hardcode to 60
 	order = "a-t2"
 }
 data:extend({statpack_combat_tech})
@@ -218,7 +218,7 @@ lab_speed_tech.name = "research-speed" -- Remove number
 lab_speed_tech.effects = {{ type = "laboratory-speed", modifier = 1.0 }}
 lab_speed_tech.prerequisites = {utils.science.space.pack}
 lab_speed_tech.unit.ingredients = {{utils.science.space.pack, 1}}
-lab_speed_tech.unit.count = 500 -- Will be 100 after the /5
+lab_speed_tech.unit.count = 500 -- Will be 100 after the /5 -- !!! THIS NEEDS TO GO TO 100, but what about time here? !!!
 lab_speed_tech.upgrade = false
 data:extend({lab_speed_tech}) -- Add back modified
 for level = 2, 6 do -- Remove rest of techs
@@ -228,21 +228,24 @@ end
 -- Go through all remaining techs, if not trigger tech then /5 pack cost (Round up) and *5 time
 for _, tech in pairs(all_techs) do
     if tech.unit then
-		tech.unit.time = tech.unit.time * 5 -- Affects all tech (Note: Change lab research before changing tech times)
-		if tech.unit.count then
-			-- Won't touch infinite techs, those are done later down.
-			tech.unit.count = math.ceil(tech.unit.count / 5) -- Affects non-inf
-        end
+		-- !!! BEING REMOVED !!!
+		-- tech.unit.time = tech.unit.time * 5 -- Affects all tech (Note: Change lab research before changing tech times)
+		-- if tech.unit.count then
+		-- 	-- Won't touch infinite techs, those are done later down.
+		-- 	tech.unit.count = math.ceil(tech.unit.count / 5) -- Affects non-inf
+        -- end
     else
 		tech.order = "t-for-trigger" -- Move them out of the way of data-card techs
 	end
 end
 
+-- !!! MAX IS UP TO HERE IN FILE
+
 -- Misc adjustments for now-early-game techs
 local space_pack_tech = all_techs[utils.science.space.pack]
 space_pack_tech.prerequisites = nil
 space_pack_tech.research_trigger = nil
-space_pack_tech.unit = { ingredients = {}, count = 1000, time = 60 } -- Intentionally AFTER the /5 to cost
+space_pack_tech.unit = { ingredients = {}, count = 1000, time = 60 } -- Intentionally AFTER the /5 to cost -- !!! KEEP AS 60x1000 afaik, check v1
 space_pack_tech.order = "a-t3"
 all_techs["rocket-silo"].prerequisites = {utils.science.space.pack, "kovarex-enrichment-process"}
 all_techs["space-platform-thruster"].prerequisites = {"rocket-silo"}

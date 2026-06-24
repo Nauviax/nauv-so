@@ -1,4 +1,28 @@
 ---------------------------------------------------------------------------------------------------
+Version: 1.2.0
+Date: 2026.06.24
+  Info:
+    - Updated for 2.1, but also includes a fair amount of additional complexity. I'm starting a second playthrough for 2.1 and I desire *more.*
+    - Existing factories won't break, but anything related to science will generally require an extra ingredient.
+    - If there is demand for a 2.1 version without these additions, I'm happy to make a config to exclude these additions. Please let me know.
+  Changes:
+    - Updated for 2.1
+    - !!! Techs: All technologies require x5 as many packs, though all packs are x5 as cheap. This brings pack amounts back in line with vanilla, as landing pad throughput is solved in 2.1.
+    - !!! Promethium: -byproduct and recipe prod change-
+    - !!! Blank data: -recipe and density-
+    - !!! Space Slurry: -recipe- -barrel-
+    - !!! Science Gel: All gel recipes now have a small water byproduct to deal with. !!! Spoilage too? !!!
+    - !!! All science data and packs: -density-
+    - !!! Automation science: -recipex2 and tweaks-
+    - !!! Automation science: -recipex2 and tweaks- -density ex vulc-
+    - !!! Automation science: -recipex2 and tweaks-
+    - !!! Automation science: -recipex2 and tweaks- -density ex fulg-
+    - !!! Space Slurry: -recipe-
+    - !!! Automation science: -recipex2 and tweaks-
+    - !!! Automation science: -recipex2 and tweaks-
+    - !!! MORE HERE !!!
+
+---------------------------------------------------------------------------------------------------
 Version: 1.1.3
 Date: 2026.06.15
   Changes:

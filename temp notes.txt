@@ -4,10 +4,18 @@ TAKE NEW PICS FOR PORTAL
 2.1 colors for oil recipes
 	2.1 inclusive randomness in recipes (TEST !!! But otherwise done)
 2.1 use assemb 3? Migration 2->3 if so (if needed)
+Add slurry barrels, probably NOT for starfrost though.
+Review promethium crushing amounts
+
 2.1 maybe x5 packs again, back to normal? Review upcycling if so, and techs ofc
-^ Upcycle can't take 5, so use fractional amounts of steam output?
+^ Upcycle can't take 5, so use fractional amounts of steam output? (What is input/output rates now? Too high?)
 ^ Migration to x5 all packs in chests to aid in migration. (Stack size also)(Not sure what to do w data stack size, also x5? Careful w Fulgora) !!!
 check quality requirement in nso (Right name?)
+^ careful of fulgora if increasing stack sizes of data (Note blank card craft will need faster if just output 1)
+^ Vulcanus can be denser than normal now too, as min 20 stack size was issue earlier, but now default is 100 for vulcanus! (Full review of this system)
+^ Probably just skip migration, and manually fix my save via editor mod. (Giving extra, count BEFORE making the change!) (Is this even needed? It could account for the science being more expensive now?)
+
+What do with settings branch?
 
 -- Changed all science packs to be plain items.
 Reworked recipe categories: added `hand-crafting` and removed `basic-crafting`, `recycling-or-hand-crafting`, `chemistry-or-cryogenics`, `pressing`, `crafting-with-fluid-or-metallurgy`, `metallurgy-or-assembling`, `organic-or-hand-crafting`, `organic-or-assembling`, `organic-or-chemistry`, `electronics-or-assembling`, `electronics`, `electronics-with-fluid` and `cryogenics-or-assembling`; instead using multiple categories per recipe where applicable.
@@ -34,12 +42,13 @@ S-extra: ice or ?
 ^ !!! Also more thrust fuel too? Check base science pack for balance ideas (Water be careful)
 Not done yet!!!
 
+!!! Promethium crushing output a single iron ore? 20% chance?
 
 D-extra
 C-cable 10 / card (!!! Am I happy w just this? I think so)
 
 Byproduct from gels? Slurries?
-water for gels
+water for gels !!! Spoilage too? !!!
 (slurry could output iron ore? Mess w promethium line)
 
 N (check iron/copper even?) Brick usage?
@@ -75,12 +84,12 @@ A
 Fluorine? (The inf one) (What else is this used in?) (Add to data? Gel is full. Or just use MORE coolant? (Both?) Maybe just the fluoro in)
 (something hard for second if fluorine is the first)
 Molten iron? Or ehhh too much import?
-(Ooo maybe require ice asteroid specifically? Space station in Aquilo?)
+(Ooo maybe require ice asteroid specifically? Space station in Aquilo?) (Stationary may be too slow though, and hard to scale)
 
 
 P
 More sf-slurry? (Gel takes this already tho, base)
 >> Maybe prom chunks whole? (Means can't mindlessly crush all, + HG-prom expired means used in DIFF recipe) (Avoid same)
 *maaaybe* use more t4 circuits?
-Fluorine? The inf gas one? (Does this have barrels?) (If not used in aquilo)
+Fluorine? The inf gas one? (Does this have barrels? !NO!) (If not used in aquilo)
 railammo?

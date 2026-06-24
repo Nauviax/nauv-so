@@ -26,7 +26,7 @@ garbage_item.order = order.."z"
 local recipe = {
 	type = "recipe", name = item.name,
 	main_product = item.name,
-	categories = { "crafting", "electromagnetics" }, -- !!! TEST !!! (Do I want to allow handcraft? v1 was sure why not, so was packs afaik?)
+	categories = { "crafting", "electromagnetics" }, -- !!! TEST !!! (Do I want to allow handcraft? v1 was sure why not, so was packs afaik?) (!!! Changelog if making no-handcraft)
 	subgroup = utils.subgroup.data_pre,
 	order = order.."y",
 	enabled = false,

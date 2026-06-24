@@ -10,7 +10,7 @@ local order = "b-"
 local function slurry(name, icon, color, order_suffix)
     data:extend({{
         type = "fluid", name = name, icon = icon,
-        default_temperature = 15, auto_barrel = false,
+        default_temperature = 15, auto_barrel = false, -- !!! True for basic? add to utils
         base_color = color, flow_color = color,
         subgroup = utils.subgroup.fluid, order = utils.subgroup.fluid_order .. order .. order_suffix
     }})
