@@ -46,10 +46,10 @@ local science_data = {
 		ingredients = {
 			{ type = "fluid", name = "lubricant", amount = 2000 }, -- Extra lube
 			{ type = "fluid", name = "sulfuric-acid", amount = 200 },
-			{ type = "item", name = "plastic-bar", amount = 15 },
-			{ type = "item", name = "superconductor", amount = 40 },
+			{ type = "item", name = "plastic-bar", amount = 10 },
+			{ type = "item", name = "superconductor", amount = 50 },
 			{ type = "item", name = "lightning-rod", amount = 10 },
-			{ type = "item", name = "holmium-plate", amount = 20 } -- !!! Play with this more (boring-ish) (Check raw vals too)
+			{ type = "item", name = "holmium-plate", amount = 20 }
 		}
 	},
 	cryogenic = {
@@ -110,7 +110,7 @@ for name, props in pairs(science_data) do
 		allow_productivity = false, -- No prod for gel, just for the data.
 		allow_quality = false,
 		maximum_productivity = 0.0, -- Should prevent base productivity affceting the recipe.
-		surface_conditions = util_props.surface_condition,		
+		surface_conditions = util_props.surface_condition,
 		crafting_machine_tint = utils.recipe_tints(fluid_color),
 		custom_tooltip_fields = {{
 			name = utils.misc.prod_cap_tt, value = "0%"

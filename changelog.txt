@@ -4,23 +4,26 @@ Date: 2026.06.24
   Info:
     - Updated for 2.1, but also includes a fair amount of additional complexity. I'm starting a second playthrough for 2.1 and I desire *more.*
     - Existing factories won't break, but anything related to science will generally require an extra ingredient.
-    - If there is demand for a 2.1 version without these additions, I'm happy to make a config to exclude these additions. Please let me know.
+    - If there is demand for a 2.1 version without these additions, I can look at creating a version without these changes. Please let me know.
   Changes:
     - Updated for 2.1
     - !!! Techs: All technologies require x5 as many packs, though all packs are x5 as cheap. This brings pack amounts back in line with vanilla, as landing pad throughput is solved in 2.1.
-    - !!! Promethium: -byproduct and recipe prod change-
+    - Promethium: Asteroid byproduct is no longer affected by prod, to match the other recipes. Now also has a small iron ore byproduct. !!! MAX CHECK TIPS JIC
     - !!! Blank data: -recipe and density- -failrate-up-
-    - !!! Space Slurry: -recipe- -barrel-
-    - !!! Science Gel: All gel recipes now have a small water byproduct to deal with. !!! Spoilage too? ye !!!
+    - !!! Space Slurry: -recipe stone- -barrel- !!! TIPS TOO FOR SLURRY
+    - Science Gel: All gel recipes now have a small water and spoilage byproduct to deal with.
     - !!! All science data and packs: -density-
     - !!! Automation science: -recipex2 and tweaks-
     - !!! Metallurgic science: -recipex2 and tweaks- -density ex vulc-
-    - !!! Agricultural science: -recipex2 and tweaks-
-    - !!! Electromagnetic science: -recipex2 and tweaks- -density ex fulg-
-    - !!! Starfrost Slurry: -recipe-
+    - !!! Agricultural science: -recipex2 and tweaks- -pack spoils into COMMON garbage data-
+    - !!! Electromagnetic science: -recipex2 and tweaks- -density ex fulg- -rockets less-
+    - !!! Starfrost Slurry: -recipe stone-
     - !!! Cryogenic science: -recipex2 and tweaks-
     - !!! Promethium science: -recipex2 and tweaks-
+    - Upcycling rework: Base quality massively increased to 100%, but craft time also significantly increased. Slurry usage to get packs to x quality should be unchanged, even with density changes.
+    - - This means pre-speed modules, you will be *guaranteed* at least 1 quality increase. Though you will likely need speed modules to keep up, and (optionally) quality modules to remain over 100%.
     - !!! MORE HERE !!!
+    - Assembling machine 3 is now used as the main assembler. Stats are the same, only the texture is different.
 
 ---------------------------------------------------------------------------------------------------
 Version: 1.1.3

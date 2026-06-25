@@ -59,15 +59,15 @@ local science_data = {
 	},
 	electromagnetic = {
 		stack_mult = 2, -- 40/4 = 10 crafts per stack
-		weight_mult = 1/3, -- 7.5 crafts per data rocket
+		weight_mult = 1/4, -- 10 crafts per data rocket (Due to x4 density)
 		craft_categories = { "electromagnetics" },
 		is_tool = false,
 		ingredients = {
 			dcard, gel,
 			{ type = "item", name = "accumulator", amount = 6 },
-			{ type = "fluid", name = "electrolyte", amount = 125 },
+			{ type = "fluid", name = "electrolyte", amount = 200 },
 			{ type = "item", name = "supercapacitor", amount = 8 },
-			{ type = "item", name = "pumpjack", amount = 1 } -- !!! Play with this more (Cheap? Or is this actually good?)
+			{ type = "item", name = "pumpjack", amount = 2 }
 		}
 	},
 	cryogenic = {
@@ -120,6 +120,7 @@ for name, props in pairs(science_data) do
 	if props.spoil_ticks then
 		item.spoil_ticks = props.spoil_ticks
 		item.spoil_result = props.spoil_result
+		item.spoil_quality_max = "normal" -- Always common quality
 	end
 
 	local recipe = {

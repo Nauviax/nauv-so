@@ -34,12 +34,16 @@ end
 slurry_recipe(
     utils.items.basic_slurry, { "chemistry", "cryogenics" }, "a", basic_slurry_color, "space-science-pack", 1,
     {
-        { type = "fluid", name = "thruster-fuel", amount = 225 }, -- !!! More of this? Then what, ice?
+        { type = "fluid", name = "thruster-fuel", amount = 225 }, -- Relatively low ice use, compared to base game space science.
         { type = "item", name = "steel-plate", amount = 1 },
         { type = "item", name = "iron-stick", amount = 10 },
+        { type = "item", name = "stone", amount = 5 }, -- Catalyst, only 1 consumed
         { type = "item", name = utils.items.prom147, amount = 2 }
     },
-    {{ type = "fluid", name = utils.items.basic_slurry, amount = 75 }} -- 3/4 of a pack craft
+    {
+        { type = "fluid", name = utils.items.basic_slurry, amount = 75 }, -- 3/4 of a pack craft
+        { type = "item", name = 'stone', amount = 4, ignored_by_stats = 4 }
+    }
 )
 slurry_recipe(
     utils.items.adv_slurry, { "cryogenics" }, "b", adv_slurry_color, "cryogenic-science-pack", 5,
@@ -47,11 +51,13 @@ slurry_recipe(
         { type = "fluid", name = utils.items.basic_slurry, amount = 150 },
         { type = "fluid", name = "steam", amount = 1000, minimum_temperature = 500 },
         { type = "item", name = "slowdown-capsule", amount = 1 },
+        { type = "item", name = "stone", amount = 20 }, -- Catalyst, only 2 consumed
         { type = "item", name = utils.items.prom147, amount = 4 },
         utils.items.fluo_in(6)
     },
     {
         { type = "fluid", name = utils.items.adv_slurry, amount = 50 }, -- 1/2 of a pack craft
+        { type = "item", name = 'stone', amount = 18, ignored_by_stats = 18 },
         utils.items.fluo_out(3)
     }
 )

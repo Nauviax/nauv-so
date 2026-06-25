@@ -5,9 +5,9 @@ local base_craft_time = 12
 local stack_size = 200
 local weight = utils.science.common.weight
 local pack_craft_categories = { "crafting-with-fluid", "cryogenics" }
-local cycle_craft_time = 0.2 -- This is quite slow compared to 2.0 speeds, may change? -- !!! MAX experiment with 1.5 slurry in and 25% base quality? Allow for speed modules if desired? RETEST w old chart.
-local cycle_slurry_cost = 1
-local cycle_qual_base = 0.2 -- Applied to oil refinery
+local cycle_craft_time = 1 -- Speed modules encouraged
+local cycle_slurry_cost = 5
+local cycle_qual_base = 1.0 -- Applied to oil refinery (1.0 means before speed, there will be 0 same-tier output)
 local cycle_craft_categories = { "oil-processing" }
 local order = "a-"
 local cycle_order = "z-"
@@ -28,7 +28,7 @@ local science_data = {
 		ingredient = { type = "item", name = "carbon", amount = 2 },
 		cycle_time_mult = 0.5,
 		spoil_ticks = 216000, -- 1h, normal pack timer
-		spoil_result = "nutrients" -- Avoid legendary materials in spoilage
+		spoil_result = utils.items.garbage_data -- Will always be common quality
 	},
 	electromagnetic = {
 		advanced = false,
@@ -60,6 +60,7 @@ for name, props in pairs(science_data) do
 	if props.spoil_ticks then
 		item.spoil_ticks = props.spoil_ticks
 		item.spoil_result = props.spoil_result
+		item.spoil_quality_max = "normal" -- Always common quality
 	end
 
 	local recipe = data.raw.recipe[util_props.pack]
@@ -118,7 +119,7 @@ for name, props in pairs(science_data) do
 		},
 		results = {
 			{ type = "item", name = util_props.pack, amount = 1, ignored_by_stats = 1 },
-			{ type = "fluid", name = "steam", amount = props.advanced and 1 or 0.5, temperature = 500 }
+			{ type = "fluid", name = "steam", amount = cycle_slurry_cost * (props.advanced and 1 or 0.4), temperature = 500 } -- Basic returns 2/5ths as steam
 		},
 		allow_productivity = false, -- Avoid obvious exploit
 		allow_quality = true,
@@ -147,3 +148,16 @@ end
 local repair_tool = data.raw["repair-tool"]["repair-pack"]
 repair_tool.durability = 300 / (1 - tool_effectiveness[1]) -- Aim is 300 for common after qual
 repair_tool.durability_description_value = "description.nso-rep-pack-durability-value"
+
+-- UPCYCLING CALCULATIONS (decimal amounts as appropriate)
+-- Input	              Cell
+-- Base chance (p)	      A2   
+-- Chance modifier (m)	  B2
+-- Craft time (t)	      C2
+-- Speed modifier (s)	  D2
+-- Slurry per craft (c)	  E2
+-- Target upgrades (K)	  F2
+-- Total time             =(0.9*F2/(A2+B2))*(C2/(1+D2))
+-- Total slurry           =(0.9*F2/(A2+B2))*E2
+--
+-- See changelog for notes of recent value changes. Higher base quality tends to indirectly buff speed and nerf quality.

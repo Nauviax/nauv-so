@@ -53,9 +53,6 @@ for _, pack_name in pairs(packs_to_dupe) do
 	local recipe = table.deepcopy(data.raw.recipe[pack_name])
 	recipe.name = pack_name.."-OLD"
 	recipe.enabled = true
-	for _, ingredient in pairs(recipe.ingredients) do
-		ingredient.amount = ingredient.amount * 5
-	end
 	recipe.results[1].name = pack_name.."-OLD"
 	recipe.main_product = pack_name.."-OLD"
 	data:extend({ recipe })
