@@ -49,10 +49,10 @@ local science_data = {
 		is_tool = false,
 		ingredients = {
 			dcard, gel,
-			{ type = "fluid", name = "steam", amount = 1000, minimum_temperature = 500 }, -- !!! SEE NOTES (amount is guess here)
+			{ type = "fluid", name = "steam", amount = 2000, minimum_temperature = 500 },
 			{ type = "item", name = "bioflux", amount = 8 },
-			{ type = "item", name = "pentapod-egg", amount = 4 }, -- !!! SEE NOTES (Moving part of this to gel)
-			{ type = "item", name = "rocket-launcher", amount = 3 } -- !!! SEE NOTES (3 may be just a bit too many? 2 better?)
+			{ type = "item", name = "pentapod-egg", amount = 4 },
+			{ type = "item", name = "rocket-launcher", amount = 2 }
 		},
 		spoil_ticks = 216000, -- 1h, normal pack timer
 		spoil_result = utils.items.garbage_data
@@ -78,7 +78,8 @@ local science_data = {
 		ingredients = {
 			dcard, gel,
 			{ type = "item", name = "ice-platform", amount = 2 },
-			{ type = "item", name = "lithium-plate", amount = 8 }
+			{ type = "item", name = "lithium-plate", amount = 10 },
+			{ type = "fluid", name = "fluorine", amount = 40 }
 		},
 		fluoro_used = 50
 	},
@@ -92,7 +93,8 @@ local science_data = {
 			dcard, gel,
 			{ type = "item", name = "biter-egg", amount = 5 },
 			{ type = "item", name = "quantum-processor", amount = 2 },
-			{ type = "item", name = utils.items.hg_prom, amount = 1 }
+			{ type = "item", name = utils.items.hg_prom, amount = 1 },
+			{ type = "item", name = "spoilage", amount = 25 }
 		},
 		fluoro_used = 4
 	}

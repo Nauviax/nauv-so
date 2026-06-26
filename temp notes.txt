@@ -5,58 +5,51 @@ What do with settings branch?
 
 Update tips for pack/data amounts where referenced. Also assemb etc if changed. Remove notes on tech cost changes. (ALSO UPDATE PORTAL)
 
-Should I do a storage tank nerf? 10k? Or is that bit much?
-^ +1 because of e-plants not filling up properly
-
 ---
 
 Look at SA mid game recipes for inspiration
 
 MAX TODO IN MY SAVE
-regen terrain in fulgoraland? Earandels mod maybe
+regen terrain in fulgoraland? Earandels mod maybe (Fixed in 2.1.8, try regen WITHOUT my patch)
 fix concrete recycle loop !!!
 check ALL platforms wiring for asteroids !!! (Mine is dead)
+dead mine on Nauvis, but that may be testing only
 
 ---
 
 
 N (check iron/copper even?) Brick usage?
-Beacon       1 / data ( 2ppc)
-Exp-Rock    50 / gel  (25ppc)
+Beacon
+Exp-Rock
+Slightly more oil products
 
 
 V
-Speaker      5 / data (10ppc)
-Rail       100 / gel  (50ppc)
+Speaker
+Rail
 +25% Tungsten costs
-(May be high? Review, but also maybe ok)
 
 F
-Pumpjacks    2 / data ( 4ppc)
-Holm plate  25 / gel  (10ppc)
+Pumpjacks
+Holm plate in gel
 Holmium costs in general increased, more conductors etc.
 Plastic in gel slightly decreased, but more conductors slightly cancel.
 No longer uses extra rocket space compared to automation. !!! Adjust notes as needed.
 ^ Above should help w plastic use due to more blue and lds. Wouldn't mind more r-fuel now though.
+Slightly more lightning rod, brick etc
 
-G (These ones cheap, no short spoil times on card!) !!! This one is partially done, update when ready
-Steam as gel ingredient? (Same-y with starfrost though, and too free still? Would want req large setup (lotta steam))
-Rocket launchers? Kiiiinda fits
-!!! Green circuits now kinda lame though !!!
->> Replace green circuits with the steam! And maybe 2 rocket launchers then?
-!!! Double egg is weak. But also compare costs more? 16(4)-4 and use 8 bio in main maybe?
+G
+Steam
+Rocket launchers
+More eggs, in gel as well
 
 
 A
-Fluorine? (The inf one) (What else is this used in?) (Add to data? Gel is full. Or just use MORE coolant? (Both?) Maybe just the fluoro in)
-(something hard for second if fluorine is the first)
-Molten iron? Or ehhh too much import?
-(Ooo maybe require ice asteroid specifically? Space station in Aquilo?) (Stationary may be too slow though, and hard to scale)
-
+Fluorine (total usage doubled)
+Concrete  (Intended to rocket up bricks from Vulcanus) (!!! TIPS)
+Slightly more lithium use
 
 P
-More sf-slurry? (Gel takes this already tho, base)
->> Maybe prom chunks whole? (Means can't mindlessly crush all, + HG-prom expired means used in DIFF recipe) (Avoid same)
-*maaaybe* use more t4 circuits?
-Fluorine? The inf gas one? (Does this have barrels? !NO!) (If not used in aquilo)
-railammo?
+Small railammo
+Spoilage !!! Tips for b-egg -> spoilage + direct insert
+Unchanged otherwise

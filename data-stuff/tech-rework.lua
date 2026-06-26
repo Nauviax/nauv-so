@@ -225,10 +225,10 @@ for level = 2, 6 do -- Remove rest of techs
 	all_techs["research-speed-"..level] = nil
 end
 
--- Mark trigger techs to put them before the data-card techs.
+-- Mark trigger techs to put (most of) them after the data-card techs.
 for _, tech in pairs(all_techs) do
     if not tech.unit then
-		tech.order = "t-for-trigger" -- !!! This is broken again, triggers are NOT before data-card techs !!!
+		tech.order = "t-for-trigger"
 	end
 end
 

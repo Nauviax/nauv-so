@@ -7,13 +7,13 @@ local fluid_color = {0.9, 0.6, 0.6}
 local order = "a-"
 
 local science_data = {
-	space = {
+	space = { -- Note: no base 50% prod for data until Gleba
 		craft_categories = { "oil-processing" },
 		craft_time_mult = 0.5, -- Oil refinery has a low base speed
 		ingredients = {
-			{ type = "fluid", name = "lubricant", amount = 200 }, -- No extra compared to VFG, but also no base 50% prod until Gleba
-			{ type = "fluid", name = "sulfuric-acid", amount = 200 },
-			{ type = "item", name = "plastic-bar", amount = 25 },
+			{ type = "fluid", name = "lubricant", amount = 300 },
+			{ type = "fluid", name = "sulfuric-acid", amount = 300 },
+			{ type = "item", name = "plastic-bar", amount = 30 },
 			{ type = "item", name = "uranium-235", amount = 5 },
 			{ type = "item", name = "flamethrower-ammo", amount = 20 },
 			{ type = "item", name = "explosive-rocket", amount = 25 }
@@ -27,7 +27,7 @@ local science_data = {
 			{ type = "item", name = "plastic-bar", amount = 20 },
 			{ type = "item", name = "tungsten-carbide", amount = 50 },
 			{ type = "item", name = "refined-concrete", amount = 100 },
-			{ type = "item", name = "rail", amount = 100 } -- !!! Verify both new items in orange is good, and not too much
+			{ type = "item", name = "rail", amount = 120 }
 		}
 	},
 	agricultural = {
@@ -38,7 +38,7 @@ local science_data = {
 			{ type = "item", name = "plastic-bar", amount = 75 }, -- Extra plastic
 			{ type = "item", name = "nutrients", amount = 75 },
 			{ type = "item", name = "coal", amount = 10 },
-			{ type = "item", name = "pentapod-egg", amount = 16 } -- !!! SEE NOTES (4pp here, 8pp in data, old was 10pp)
+			{ type = "item", name = "pentapod-egg", amount = 16 }
 		}
 	},
 	electromagnetic = {
@@ -48,7 +48,7 @@ local science_data = {
 			{ type = "fluid", name = "sulfuric-acid", amount = 200 },
 			{ type = "item", name = "plastic-bar", amount = 10 },
 			{ type = "item", name = "superconductor", amount = 50 },
-			{ type = "item", name = "lightning-rod", amount = 10 },
+			{ type = "item", name = "lightning-rod", amount = 12 },
 			{ type = "item", name = "holmium-plate", amount = 20 }
 		}
 	},
@@ -59,9 +59,9 @@ local science_data = {
 			{ type = "fluid", name = "sulfuric-acid", amount = 600 },
 			{ type = "item", name = "wood", amount = 20 },
 			{ type = "item", name = "rocket-fuel", amount = 20 },
-			utils.items.fluo_in(100)
+			{ type = "item", name = "concrete", amount = 50 }
 		},
-		byproduct = utils.items.fluo_out(50)
+		fluoro_used = 50
 	},
 	promethium = {
 		craft_categories = { "cryogenics" },
@@ -72,6 +72,7 @@ local science_data = {
 			{ type = "item", name = "wood", amount = 20 },
 			{ type = "item", name = "pentapod-egg", amount = 5 },
 			{ type = "item", name = "foundation", amount = 2 },
+			{ type = "item", name = "railgun-ammo", amount = 2 }
 		}
 	}
 }
@@ -116,8 +117,9 @@ for name, props in pairs(science_data) do
 			name = utils.misc.prod_cap_tt, value = "0%"
 		}},
 	}
-	if props.byproduct then
-		table.insert(recipe.results, props.byproduct)
+	if props.fluoro_used then
+		table.insert(recipe.ingredients, utils.items.fluo_in(props.fluoro_used * 2))
+		table.insert(recipe.results, utils.items.fluo_out(props.fluoro_used))
 	end
 	data:extend({ recipe })
 	utils.add_to_tech(util_props.pack, recipe.name)

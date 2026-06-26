@@ -7,8 +7,9 @@ Date: 2026.06.24
     - If there is demand for a 2.1 version without these additions, I can look at creating a version without these changes. Please let me know.
   Changes:
     - Updated for 2.1
-    - !!! Techs: All technologies require x5 as many packs, though all packs are x5 as cheap. This brings pack amounts back in line with vanilla, as landing pad throughput is solved in 2.1.
-    - Promethium: Asteroid byproduct is no longer affected by prod, to match the other recipes. Now also has a small iron ore byproduct. !!! MAX CHECK TIPS JIC
+    - Techs: All technologies require x5 as many packs, though all packs are x5 as cheap.
+    - - This brings pack amounts back in line with vanilla, as landing pad throughput is solved in 2.1.
+    - Promethium: Asteroid byproduct is no longer affected by prod, to match the other recipes. Now also has a small iron ore byproduct.
     - !!! Blank data: -recipe and density- -failrate-up-
     - !!! Space Slurry: -recipe stone- -barrel- !!! TIPS TOO FOR SLURRY
     - Science Gel: All gel recipes now have a small water and spoilage byproduct to deal with.
