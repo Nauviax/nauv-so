@@ -1,14 +1,5 @@
 {
-	"item": [
-		[
-			"assembling-machine-2",
-			"assembling-machine-3"
-		]
-	],
-	"entity": [
-		[
-			"assembling-machine-2",
-			"assembling-machine-3"
-		]
-	]
+	"item":   [["assembling-machine-2", "assembling-machine-3"]],
+	"recipe": [["assembling-machine-2", "assembling-machine-3"]],
+	"entity": [["assembling-machine-2", "assembling-machine-3"]]
 }
