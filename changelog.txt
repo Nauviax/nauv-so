@@ -2,30 +2,28 @@
 Version: 1.2.0
 Date: 2026.06.24
   Info:
-    - Updated for 2.1, but also includes a fair amount of additional complexity. I'm starting a second playthrough for 2.1 and I desire *more.*
-    - Existing factories won't break, but anything related to science will generally require an extra ingredient.
-    - If there is demand for a 2.1 version without these additions, I can look at creating a version without these changes. Please let me know.
+    - Updated for 2.1, but also includes additional complexity. I'm starting a second playthrough for 2.1 and I desire *more.*
+    - Existing factories won't break, but anything related to science may need to be *slightly* reworked.
+    - If there is demand for a 2.1 version without these additions, I can look at creating an alternative "original" version. Please let me know.
   Changes:
     - Updated for 2.1
     - Techs: All technologies require x5 as many packs, though all packs are x5 as cheap.
     - - This brings pack amounts back in line with vanilla, as landing pad throughput is solved in 2.1.
     - Promethium: Asteroid byproduct is no longer affected by prod, to match the other recipes. Now also has a small iron ore byproduct.
-    - !!! Blank data: -recipe and density- -failrate-up-
-    - !!! Space Slurry: -recipe stone- -barrel- !!! TIPS TOO FOR SLURRY
-    - Science Gel: All gel recipes now have a small water and spoilage byproduct to deal with.
-    - !!! All science data and packs: -density-
-    - !!! Automation science: -recipex2 and tweaks-
-    - !!! Metallurgic science: -recipex2 and tweaks- -density ex vulc-
-    - !!! Agricultural science: -recipex2 and tweaks- -pack spoils into COMMON garbage data-
-    - !!! Electromagnetic science: -recipex2 and tweaks- -density ex fulg- -rockets less-
-    - !!! Starfrost Slurry: -recipe stone-
-    - !!! Cryogenic science: -recipex2 and tweaks-
-    - !!! Promethium science: -recipex2 and tweaks-
+    - Blank data: Recipe now takes copper cable, and fail rate increased. Density /5 to match science and data.
+    - Space Slurry: Can now be barreled, and takes stone as a catalyst. Will require infrequent stone deliveries from surface.
+    - Science Gel: All gel recipes now have a small water and spoilage byproduct to deal with. See below for changes to ingredients.
+    - Automation science: Added beacon to data. Added explosive rockets to gel, and increased lube/acid slightly.
+    - Metallurgic science: Added speakers to data. Added rail to gel. Increased tungsten use in both.
+    - Agricultural science: Replaced circuits with steam in data, and added rocket launchers. Gel now also takes eggs. Pack spoils into garbage data again, but fixed at common quality. Due to density changes, pack craft is affected less by promethium freshness.
+    - Electromagnetic science: Added pumpjack to data. Added holmium plate to gel. Most other costs increased slightly. Data density relative to other sciences reduced 10x -> 4x. No longer requires extra rockets compared to Nauvis.
+    - Starfrost Slurry: Also requires stone as a catalyst.
+    - Cryogenic science: Added fluorine to data. Added concrete to gel. (Recommended to export bricks and craft concrete in space!)
+    - Promethium science: Added spoilage to data. Added railgun ammo to gel. (Intended method is spoilage from eggs)
     - Upcycling rework: Base quality massively increased to 100%, but craft time also significantly increased. Slurry usage to get packs to x quality should be unchanged, even with density changes.
     - - This means pre-speed modules, you will be *guaranteed* at least 1 quality increase. Though you will likely need speed modules to keep up, and (optionally) quality modules to remain over 100%.
-    - !!! MORE HERE !!!
     - Assembling machine 3 is now used as the main assembler. Stats are the same, only the texture is different.
-
+    - Other minor fixes. See Github for all changes.
 ---------------------------------------------------------------------------------------------------
 Version: 1.1.3
 Date: 2026.06.15
