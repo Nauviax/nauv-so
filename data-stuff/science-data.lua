@@ -39,7 +39,7 @@ local science_data = {
 			{ type = "fluid", name = "molten-copper", amount = 1500 },
 			{ type = "item", name = "tungsten-plate", amount = 12 },
 			{ type = "item", name = "engine-unit", amount = 20 },
-			{ type = "item", name = "programmable-speaker", amount = 5 }
+			{ type = "item", name = "land-mine", amount = 12 }
 		}
 	},
 	agricultural = {

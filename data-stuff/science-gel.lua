@@ -23,11 +23,11 @@ local science_data = {
 		craft_categories = { "metallurgy" },
 		ingredients = {
 			{ type = "fluid", name = "lubricant", amount = 150 },
-			{ type = "fluid", name = "sulfuric-acid", amount = 2000 }, -- Extra acid
+			{ type = "fluid", name = "sulfuric-acid", amount = 2500 }, -- Extra acid
 			{ type = "item", name = "plastic-bar", amount = 20 },
 			{ type = "item", name = "tungsten-carbide", amount = 50 },
-			{ type = "item", name = "refined-concrete", amount = 100 },
-			{ type = "item", name = "rail", amount = 120 }
+			{ type = "item", name = "refined-concrete", amount = 150 },
+			{ type = "item", name = "rail", amount = 150 }
 		}
 	},
 	agricultural = {
@@ -44,7 +44,7 @@ local science_data = {
 	electromagnetic = {
 		craft_categories = { "electromagnetics" },
 		ingredients = {
-			{ type = "fluid", name = "lubricant", amount = 2000 }, -- Extra lube
+			{ type = "fluid", name = "lubricant", amount = 2500 }, -- Extra lube
 			{ type = "fluid", name = "sulfuric-acid", amount = 200 },
 			{ type = "item", name = "plastic-bar", amount = 10 },
 			{ type = "item", name = "superconductor", amount = 50 },

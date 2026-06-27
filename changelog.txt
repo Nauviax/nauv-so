@@ -14,7 +14,7 @@ Date: 2026.06.24
     - Space Slurry: Can now be barreled, and takes stone as a catalyst. Will require infrequent stone deliveries from surface.
     - Science Gel: All gel recipes now have a small water and spoilage byproduct to deal with. See below for changes to ingredients.
     - Automation science: Added beacon to data. Added explosive rockets to gel, and increased lube/acid slightly.
-    - Metallurgic science: Added speakers to data. Added rail to gel. Increased tungsten use in both.
+    - Metallurgic science: Added land mines to data. Added rail to gel, and increased concrete usage. Increased tungsten use in both.
     - Agricultural science: Replaced circuits with steam in data, and added rocket launchers. Gel now also takes eggs. Pack spoils into garbage data again, but fixed at common quality. Due to density changes, pack craft is affected less by promethium freshness.
     - Electromagnetic science: Added pumpjack to data. Added holmium plate to gel. Most other costs increased slightly. Data density relative to other sciences reduced 10x -> 4x. No longer requires extra rockets compared to Nauvis.
     - Starfrost Slurry: Also requires stone as a catalyst.

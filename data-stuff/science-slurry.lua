@@ -26,7 +26,7 @@ local function slurry_recipe(name, categories, order_suffix, tint, tech, craft_t
         categories = categories, subgroup = utils.subgroup.pack_pre, order = order .. order_suffix,
         energy_required = craft_time_base * craft_time_mult, ingredients = ingredients, results = results,
         allow_productivity = true, maximum_productivity = utils.science.common.max_productivity,
-        surface_conditions = utils.science.promethium.surface_condition,
+        allow_quality = false, surface_conditions = utils.science.promethium.surface_condition,
         always_show_products = true, crafting_machine_tint = utils.recipe_tints(tint),
 		custom_tooltip_fields = {{ name = utils.misc.prod_cap_tt, value = (utils.science.common.max_productivity * 100).."%" }},
     }})
