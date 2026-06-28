@@ -4,12 +4,19 @@ local utils = require("common.utils")
 local base_craft_time = 60
 local base_stack_size = 200
 local base_weight = utils.science.common.weight
-local data_crafts_per_pack = 2
+local default_crafts_per_pack = 2 -- This is the number of data crafts needed to fill one whole pack craft. NOT for an individual pack.
 local icon = "__nauv-so__/graphics/items/data.png"
 local order = "a-"
 
-local dcard = { type = "item", name = utils.items.blank_data, amount = 5 } -- 5 in, 5 out
-local gel = { type = "fluid", name = utils.items.gel, amount = 100 }
+local function dcard(cpp)
+	cpp = cpp or default_crafts_per_pack -- Default value
+	return { type = "item", name = utils.items.blank_data, amount = 10 / cpp } -- 5 in, 5 out
+end
+
+local function gel(cpp)
+	cpp = cpp or default_crafts_per_pack -- Default value
+	return { type = "fluid", name = utils.items.gel, amount = 200 / cpp }
+end
 
 local base_item = table.deepcopy(data.raw.item["automation-science-pack"])
 base_item.icon = nil
@@ -22,7 +29,7 @@ local science_data = {
 		craft_categories = { "crafting-with-fluid", "organic" },
 		is_tool = true,
 		ingredients = {
-			dcard, gel,
+			dcard(), gel(),
 			{ type = "item", name = "flying-robot-frame", amount = 4 },
 			{ type = "item", name = "electric-furnace", amount = 3 },
 			{ type = "item", name = "heat-exchanger", amount = 1 },
@@ -35,7 +42,7 @@ local science_data = {
 		craft_categories = { "metallurgy" },
 		is_tool = false,
 		ingredients = {
-			dcard, gel,
+			dcard(), gel(),
 			{ type = "fluid", name = "molten-copper", amount = 1500 },
 			{ type = "item", name = "tungsten-plate", amount = 12 },
 			{ type = "item", name = "engine-unit", amount = 20 },
@@ -47,12 +54,13 @@ local science_data = {
 		weight_mult = 0.5, -- 20 crafts per data rocket
 		craft_categories = { "organic" },
 		is_tool = false,
+		crafts_per_pack = 10, -- Agri recipe is x5 less "dense", crafting one at a time.
 		ingredients = {
-			dcard, gel,
-			{ type = "fluid", name = "steam", amount = 2000, minimum_temperature = 500 },
-			{ type = "item", name = "bioflux", amount = 8 },
-			{ type = "item", name = "pentapod-egg", amount = 4 },
-			{ type = "item", name = "rocket-launcher", amount = 2 }
+			dcard(10), gel(10), -- Match crafts_per_pack
+			{ type = "fluid", name = "steam", amount = 400, minimum_temperature = 500 },
+			{ type = "item", name = "bioflux", amount = 2 },
+			{ type = "item", name = "pentapod-egg", amount = 1 }, -- Try to keep this at 1
+			{ type = "item", name = "piercing-rounds-magazine", amount = 1 }
 		},
 		spoil_ticks = 216000, -- 1h, normal pack timer
 		spoil_result = utils.items.garbage_data
@@ -63,7 +71,7 @@ local science_data = {
 		craft_categories = { "electromagnetics" },
 		is_tool = false,
 		ingredients = {
-			dcard, gel,
+			dcard(), gel(),
 			{ type = "item", name = "accumulator", amount = 6 },
 			{ type = "fluid", name = "electrolyte", amount = 200 },
 			{ type = "item", name = "supercapacitor", amount = 8 },
@@ -76,7 +84,7 @@ local science_data = {
 		craft_categories = { "cryogenics" },
 		is_tool = false,
 		ingredients = {
-			dcard, gel,
+			dcard(), gel(),
 			{ type = "item", name = "ice-platform", amount = 2 },
 			{ type = "item", name = "lithium-plate", amount = 10 },
 			{ type = "fluid", name = "fluorine", amount = 40 }
@@ -90,11 +98,10 @@ local science_data = {
 		craft_categories = { "cryogenics" },
 		is_tool = false,
 		ingredients = {
-			dcard, gel,
-			{ type = "item", name = "biter-egg", amount = 5 },
-			{ type = "item", name = "quantum-processor", amount = 2 },
-			{ type = "item", name = utils.items.hg_prom, amount = 1 },
-			{ type = "item", name = "spoilage", amount = 25 }
+			dcard(), gel(),
+			{ type = "item", name = "biter-egg", amount = 6 },
+			{ type = "item", name = "quantum-processor", amount = 3 },
+			{ type = "item", name = utils.items.hg_prom, amount = 1 }
 		},
 		fluoro_used = 4
 	}
@@ -125,6 +132,7 @@ for name, props in pairs(science_data) do
 		item.spoil_quality_max = "normal" -- Always common quality
 	end
 
+	local crafts_per_pack = props.crafts_per_pack or default_crafts_per_pack -- Default value
 	local recipe = {
 		type = "recipe", name = item.name,
 		main_product = item.name,
@@ -132,9 +140,9 @@ for name, props in pairs(science_data) do
 		subgroup = utils.subgroup.data,
 		order = order..util_props.order,
 		enabled = false,
-		energy_required = base_craft_time * util_props.craft_time_mult * (props.extra_craft_mult or 1),
+		energy_required = base_craft_time * util_props.craft_time_mult * (props.extra_craft_mult or 1) * (2 / crafts_per_pack),
 		ingredients = props.ingredients,
-		results = {{ type = "item", name = item.name, amount = 5 * util_props.data_per_pack / data_crafts_per_pack }}, -- 1 craft = "5 / data_crafts_per_pack" packs
+		results = {{ type = "item", name = item.name, amount = 5 * util_props.data_per_pack / crafts_per_pack }}, -- 1 craft makes = "5 / crafts_per_pack" packs
 		allow_productivity = true,
 		maximum_productivity = utils.science.common.max_productivity,
 		surface_conditions = util_props.surface_condition,

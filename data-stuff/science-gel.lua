@@ -38,7 +38,7 @@ local science_data = {
 			{ type = "item", name = "plastic-bar", amount = 75 }, -- Extra plastic
 			{ type = "item", name = "nutrients", amount = 75 },
 			{ type = "item", name = "coal", amount = 10 },
-			{ type = "item", name = "pentapod-egg", amount = 16 }
+			{ type = "item", name = "pentapod-egg", amount = 10 }
 		}
 	},
 	electromagnetic = {
@@ -70,9 +70,9 @@ local science_data = {
 			{ type = "fluid", name = utils.items.basic_slurry, amount = 400 },
 			{ type = "fluid", name = "sulfuric-acid", amount = 400 },
 			{ type = "item", name = "wood", amount = 20 },
-			{ type = "item", name = "pentapod-egg", amount = 5 },
-			{ type = "item", name = "foundation", amount = 2 },
-			{ type = "item", name = "railgun-ammo", amount = 2 }
+			{ type = "item", name = "spoilage", amount = 200 },
+			{ type = "item", name = "foundation", amount = 3 },
+			{ type = "item", name = "railgun-ammo", amount = 3 }
 		}
 	}
 }

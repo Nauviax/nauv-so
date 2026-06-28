@@ -15,14 +15,16 @@ Date: 2026.06.24
     - Science Gel: All gel recipes now have a small water and spoilage byproduct to deal with. See below for changes to ingredients.
     - Automation science: Added beacon to data. Added explosive rockets to gel, and increased lube/acid slightly.
     - Metallurgic science: Added land mines to data. Added rail to gel, and increased concrete usage. Increased tungsten use in both.
-    - Agricultural science: Replaced circuits with steam in data, and added rocket launchers. Gel now also takes eggs. Pack spoils into garbage data again, but fixed at common quality. Due to density changes, pack craft is affected less by promethium freshness.
-    - Electromagnetic science: Added pumpjack to data. Added holmium plate to gel. Most other costs increased slightly. Data density relative to other sciences reduced 10x -> 4x. No longer requires extra rockets compared to Nauvis.
+    - Agricultural science: Replaced circuits with steam in data, and added piercing ammo. Gel now also takes eggs. Data craft makes just one card at a time, to allow for 1 egg per craft. (Takes just 20 gel per craft now)
+    - - Pack spoils into garbage data again, but fixed at common quality. Due to density changes, pack craft is affected less by promethium freshness.
+    - Electromagnetic science: Added pumpjack to data. Added holmium plate to gel. Other costs increased slightly. Data density relative to other sciences reduced 10x -> 4x. No longer requires extra rockets compared to Nauvis.
     - Starfrost Slurry: Also requires stone as a catalyst.
     - Cryogenic science: Added fluorine to data. Added concrete to gel. (Recommended to export bricks and craft concrete in space!)
-    - Promethium science: Added spoilage to data. Added railgun ammo to gel. (Intended method is spoilage from eggs)
+    - Promethium science: Added railgun ammo to gel, and replaced p-eggs with spoilage. Other costs increased slightly. (Intended method for spoilage is from eggs)
     - Upcycling rework: Base quality massively increased to 100%, but craft time also significantly increased. Slurry usage to get packs to x quality should be unchanged, even with density changes.
     - - This means pre-speed modules, you will be *guaranteed* at least 1 quality increase. Though you will likely need speed modules to keep up, and (optionally) quality modules to remain over 100%.
     - Assembling machine 3 is now used as the main assembler. Stats are the same, only the texture is different.
+    - Offshore pumps are now much slower.
     - Other minor fixes. See Github for all changes.
 ---------------------------------------------------------------------------------------------------
 Version: 1.1.3
