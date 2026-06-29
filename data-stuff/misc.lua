@@ -16,3 +16,6 @@ pentapod["small-strafer-pentapod"].absorptions_to_join_attack.spores = 40 -- Old
 pentapod["medium-strafer-pentapod"].absorptions_to_join_attack.spores = 40
 pentapod["big-strafer-pentapod"].absorptions_to_join_attack.spores = 40
 -- Wrigglers can remain the same, they're just chaff (2)
+
+-- Reduce speed of offshore pumps 1200/s -> 240/s, simply to require more of them.
+data.raw["offshore-pump"]["offshore-pump"].pumping_speed = 4 -- Old was 20

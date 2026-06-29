@@ -40,14 +40,14 @@ prom_recipe.name = prom_item.name
 prom_recipe.energy_required = 4 -- Normal is 2
 prom_recipe.ingredients[1].name = "promethium-asteroid-chunk"
 prom_recipe.results = {
-	{ type = "item", name = prom_item.name, amount = 5 }, -- ~6.25 per chunk, pre-prod
-	{ type = "item", name = "promethium-asteroid-chunk", amount = 1, probability = 0.2 }
-} -- Chunk output NOT ignored apparently, and also uses prod
+	{ type = "item", name = prom_item.name, amount = 5 }, -- ~7.14 per chunk before prod
+	{ type = "item", name = "iron-ore", amount = 1, independent_probability = 0.2 },
+	{ type = "item", name = "promethium-asteroid-chunk", amount = 1, ignored_by_stats = 1, independent_probability = 0.3 }
+} -- Chunk output once again does not use prod, to match 2.1 behaviour
 prom_recipe.main_product = prom_item.name -- Deviation from other crushing recipes afaik
 prom_recipe.subgroup = utils.subgroup.pack_pre
 prom_recipe.order = "a-a" -- First in subgroup
 prom_recipe.icon = nil -- Clear the custom icon
-prom_recipe.show_amount_in_title = false
 data:extend({ prom_item, prom_recipe })
 table.insert(data.raw.technology["asteroid-productivity"].effects, {
 	type = "change-recipe-productivity", recipe = prom_recipe.name, change = 0.1

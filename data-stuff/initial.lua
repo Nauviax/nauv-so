@@ -1,7 +1,7 @@
 local utils = require("common.utils")
 
 -- Update space science sprite
-data.raw.tool["space-science-pack"].icon = "__nauv-so__/graphics/items/space-science-pack.png"
+data.raw.item["space-science-pack"].icon = "__nauv-so__/graphics/items/space-science-pack.png"
 data.raw.recipe["space-science-pack"].icon = "__nauv-so__/graphics/items/space-science-pack.png"
 data.raw.technology["space-science-pack"].icon = "__nauv-so__/graphics/techs/space-science-pack.png"
 

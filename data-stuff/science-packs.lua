@@ -2,13 +2,13 @@ local utils = require("common.utils")
 
 -- Params
 local base_craft_time = 12
-local stack_size = 50
+local stack_size = 200
 local weight = utils.science.common.weight
-local pack_craft_category = "cryogenics-or-assembling"
-local cycle_craft_time = 0.4
+local pack_craft_categories = { "crafting-with-fluid", "cryogenics" }
+local cycle_craft_time = 1 -- Speed modules encouraged
 local cycle_slurry_cost = 5
-local cycle_qual_base = 0.2 -- Applied to oil refinery
-local cycle_craft_category = "oil-processing"
+local cycle_qual_base = 1.0 -- Applied to oil refinery (1.0 means before speed, there will be 0 same-tier output)
+local cycle_craft_categories = { "oil-processing" }
 local order = "a-"
 local cycle_order = "z-"
 
@@ -28,7 +28,7 @@ local science_data = {
 		ingredient = { type = "item", name = "carbon", amount = 2 },
 		cycle_time_mult = 0.5,
 		spoil_ticks = 216000, -- 1h, normal pack timer
-		spoil_result = "nutrients" -- Avoid legendary materials in spoilage
+		spoil_result = utils.items.garbage_data -- Will always be common quality
 	},
 	electromagnetic = {
 		advanced = false,
@@ -44,8 +44,8 @@ local science_data = {
 	promethium = {
 		advanced = true,
 		prom_amnt = 25,
-		ingredient = { type = "item", name = utils.items.blank_data, amount = 1 },
-		garbage_out = 2, -- Account for extra in
+		ingredient = { type = "item", name = utils.items.blank_data, amount = 5 },
+		garbage_out = 10, -- Account for extra in
 		cycle_time_mult = 2
 	}
 }
@@ -54,22 +54,23 @@ for name, props in pairs(science_data) do
 	local util_props = utils.science[name]
 	local slurry = props.advanced and utils.items.adv_slurry or utils.items.basic_slurry
 
-	local item = data.raw.tool[util_props.pack]
+	local item = data.raw.item[util_props.pack]
 	item.stack_size = stack_size
 	item.weight = weight
 	if props.spoil_ticks then
 		item.spoil_ticks = props.spoil_ticks
 		item.spoil_result = props.spoil_result
+		item.spoil_quality_max = "normal" -- Always common quality
 	end
 
 	local recipe = data.raw.recipe[util_props.pack]
 	recipe.main_product = util_props.pack
-	recipe.category = pack_craft_category
+	recipe.categories = pack_craft_categories
 	recipe.subgroup = utils.subgroup.pack
 	recipe.order = order..util_props.order
 	recipe.energy_required = base_craft_time * util_props.craft_time_mult
 	recipe.ingredients = {
-		{ type = "item", name = util_props.data, amount = util_props.data_per_pack },
+		{ type = "item", name = util_props.data, amount = 5 * util_props.data_per_pack },
 		{ type = "fluid", name = slurry, amount = 100 },
 		{ type = "item", name = utils.items.prom147, amount = props.prom_amnt }
 	}
@@ -77,8 +78,8 @@ for name, props in pairs(science_data) do
 		table.insert(recipe.ingredients, props.ingredient)
 	end
 	recipe.results = {
-		{ type = "item", name = util_props.pack, amount = 1 },
-		{ type = "item", name = utils.items.garbage_data, amount = props.garbage_out or 1 }
+		{ type = "item", name = util_props.pack, amount = 5 },
+		{ type = "item", name = utils.items.garbage_data, amount = props.garbage_out or 5 }
 	}
 	recipe.allow_productivity = true -- Already true, just clarity
 	recipe.maximum_productivity = utils.science.common.max_productivity
@@ -109,7 +110,7 @@ for name, props in pairs(science_data) do
 				scale = 0.25, shift = {8, 8}, floating = true
 			}
 		},
-		category = cycle_craft_category, subgroup = utils.subgroup.cycle,
+		categories = cycle_craft_categories, subgroup = utils.subgroup.cycle,
 		order = cycle_order..util_props.order,
 		energy_required = cycle_craft_time * (props.cycle_time_mult or 1),
 		ingredients = {
@@ -118,7 +119,7 @@ for name, props in pairs(science_data) do
 		},
 		results = {
 			{ type = "item", name = util_props.pack, amount = 1, ignored_by_stats = 1 },
-			{ type = "fluid", name = "steam", amount = props.advanced and 5 or 2, temperature = 500 }
+			{ type = "fluid", name = "steam", amount = cycle_slurry_cost * (props.advanced and 1 or 0.4), temperature = 500 } -- Basic returns 2/5ths as steam
 		},
 		allow_productivity = false, -- Avoid obvious exploit
 		allow_quality = true,
@@ -134,7 +135,7 @@ end
 
 -- Give oil refineries a base 20% quality bonus to help with pack upcycling. (Should not affect other recipes)
 local refinery = data.raw["assembling-machine"]["oil-refinery"]
-refinery.effect_receiver = { base_effect = { quality = cycle_qual_base * 10 } }
+refinery.effect_receiver = { base_effect = { quality = cycle_qual_base } }
 refinery.allowed_effects = { "consumption", "speed", "productivity", "pollution", "quality" } -- Overwrites old, but I can't find a way to do it otherwise.
 
 -- Reduce effectiveness of quality packs/tools, rare is base
@@ -147,3 +148,16 @@ end
 local repair_tool = data.raw["repair-tool"]["repair-pack"]
 repair_tool.durability = 300 / (1 - tool_effectiveness[1]) -- Aim is 300 for common after qual
 repair_tool.durability_description_value = "description.nso-rep-pack-durability-value"
+
+-- UPCYCLING CALCULATIONS (decimal amounts as appropriate)
+-- Input	              Cell
+-- Base chance (p)	      A2   
+-- Chance modifier (m)	  B2
+-- Craft time (t)	      C2
+-- Speed modifier (s)	  D2
+-- Slurry per craft (c)	  E2
+-- Target upgrades (K)	  F2
+-- Total time             =(0.9*F2/(A2+B2))*(C2/(1+D2))
+-- Total slurry           =(0.9*F2/(A2+B2))*E2
+--
+-- See changelog for notes of recent value changes. Higher base quality tends to indirectly buff speed and nerf quality.

@@ -75,7 +75,7 @@ local statpack_building_tech = {
 	type = "technology", name = utils.misc.statpack_building,
 	icon = "__base__/graphics/technology/toolbelt.png", icon_size = 256,
 	effects = {},
-	unit = { ingredients = {}, count = 1, time = 12 }, -- Time will be 60 after x5
+	unit = { ingredients = {}, count = 1, time = 60 },
 	order = "a-t1"
 }
 data:extend({statpack_building_tech})
@@ -83,7 +83,7 @@ local statpack_combat_tech = {
 	type = "technology", name = utils.misc.statpack_combat,
 	icon = "__base__/graphics/technology/stronger-explosives-3.png", icon_size = 256,
 	effects = {},
-	unit = { ingredients = {}, count = 1, time = 12 },
+	unit = { ingredients = {}, count = 1, time = 60 },
 	order = "a-t2"
 }
 data:extend({statpack_combat_tech})
@@ -100,7 +100,7 @@ local function merge_into_statpack(statpack, tech_name)
 				-- If effect already exists, merge modifier values
 				local found = false
 				for _, existing_effect in pairs(effect_list) do
-					if effect.modifier and existing_effect.type == effect.type then
+					if effect.modifier and existing_effect.type == effect.type and type(existing_effect.modifier) == "number" then
 						local key_match = true
 						for key in pairs(existing_effect) do
 							if key ~= "modifier" and existing_effect[key] ~= effect[key] then
@@ -218,23 +218,17 @@ lab_speed_tech.name = "research-speed" -- Remove number
 lab_speed_tech.effects = {{ type = "laboratory-speed", modifier = 1.0 }}
 lab_speed_tech.prerequisites = {utils.science.space.pack}
 lab_speed_tech.unit.ingredients = {{utils.science.space.pack, 1}}
-lab_speed_tech.unit.count = 500 -- Will be 100 after the /5
+lab_speed_tech.unit.count = 500
 lab_speed_tech.upgrade = false
 data:extend({lab_speed_tech}) -- Add back modified
 for level = 2, 6 do -- Remove rest of techs
 	all_techs["research-speed-"..level] = nil
 end
 
--- Go through all remaining techs, if not trigger tech then /5 pack cost (Round up) and *5 time
+-- Mark trigger techs to put (most of) them after the data-card techs.
 for _, tech in pairs(all_techs) do
-    if tech.unit then
-		tech.unit.time = tech.unit.time * 5 -- Affects all tech (Note: Change lab research before changing tech times)
-		if tech.unit.count then
-			-- Won't touch infinite techs, those are done later down.
-			tech.unit.count = math.ceil(tech.unit.count / 5) -- Affects non-inf
-        end
-    else
-		tech.order = "t-for-trigger" -- Move them out of the way of data-card techs
+    if not tech.unit then
+		tech.order = "t-for-trigger"
 	end
 end
 
@@ -242,24 +236,24 @@ end
 local space_pack_tech = all_techs[utils.science.space.pack]
 space_pack_tech.prerequisites = nil
 space_pack_tech.research_trigger = nil
-space_pack_tech.unit = { ingredients = {}, count = 1000, time = 60 } -- Intentionally AFTER the /5 to cost
+space_pack_tech.unit = { ingredients = {}, count = 1000, time = 60 }
 space_pack_tech.order = "a-t3"
 all_techs["rocket-silo"].prerequisites = {utils.science.space.pack, "kovarex-enrichment-process"}
 all_techs["space-platform-thruster"].prerequisites = {"rocket-silo"}
 
 for index, tech_name in pairs({
-	"kovarex-enrichment-process", -- Significantly cheaper; should be obtainable via 2 gel crafts.
+	"kovarex-enrichment-process", -- Significantly cheaper; should be obtainable via exactly 1 gel craft before prod. (See count below)
 	"rocket-silo",
 	"space-platform-thruster",
 	"planet-discovery-vulcanus",
 	"planet-discovery-gleba",
 	"planet-discovery-fulgora"
-}) do -- Count and time is post x5 time adjustment
+}) do
 	local tech = all_techs[tech_name]
 	tech.order = "a-t"..(index+3) -- Starting at 4
 	tech.unit.ingredients = {{utils.science.space.data, 1}}
-	tech.unit.count = index == 1 and 4 or 100
-	tech.unit.time = 60
+	tech.unit.count = index == 1 and 20 or 500
+	tech.unit.time = 30
 end
 
 -- Modify normal lab to allow early data use, but not late science use
@@ -301,7 +295,7 @@ local tiers = { -- Single VGF packs are done manually
     {{ utils.science.space.pack, 1 }, { utils.science.metallurgic.pack, 1 }, { utils.science.electromagnetic.pack, 1 }, { utils.science.agricultural.pack, 1 }, { utils.science.cryogenic.pack, 1 }, { utils.science.promethium.pack, 1 }}
 }
 
-local prod_tech_costs = { 1, 2, 3, 5, 10 } -- 500*this
+local prod_tech_costs = { 1, 2, 3, 5, 10 } -- 2500*this
 for type_name, type_techs in pairs(inf_prod_techs) do
     local first_pack_name = type_name.."-science-pack"
 	local aquilo_tech = type_name == "cryogenic" -- Aquilo tier_level is different
@@ -317,7 +311,7 @@ for type_name, type_techs in pairs(inf_prod_techs) do
 		for level = 1, 5 do
 			local tech = table.deepcopy(old_tech)
 			tech.name = tech_name.."-"..level
-			tech.unit.count = 500 * prod_tech_costs[level] * count_modifier
+			tech.unit.count = 2500 * prod_tech_costs[level] * count_modifier
 			local tier_level = aquilo_tech and ({2,2,3,3,3})[level] or (level-1) -- 'or' tiers are effectively {0,1,2,3,3}
 			local tier = tiers[math.min(tier_level, 3)]
 			if level > 1 then
@@ -410,38 +404,38 @@ local spare_tech -- Used in edge cases
 tech_name = "physical-projectile-damage"
 old_tech = all_techs[tech_name.."-6"]
 cleanup_old(tech_name, 6)
-create_tech(old_tech, tech_name, 1, packs[1], 250, {0.4, 0.4, 0.8, 2.3})
-create_tech(old_tech, tech_name, 2, packs[2], 1000, {0.4, 0.4, 0.8, 2.0})
+create_tech(old_tech, tech_name, 1, packs[1], 1250, {0.4, 0.4, 0.8, 2.3})
+create_tech(old_tech, tech_name, 2, packs[2], 5000, {0.4, 0.4, 0.8, 2.0})
 tech_name = "weapon-shooting-speed"
 old_tech = all_techs[tech_name.."-6"]
 cleanup_old(tech_name, 6)
-create_tech(old_tech, tech_name, nil, packs[1], 120, {0.4, 0.4, 1.5, 1.3})
+create_tech(old_tech, tech_name, nil, packs[1], 600, {0.4, 0.4, 1.5, 1.3})
 tech_name = "laser-weapons-damage"
 old_tech = all_techs[tech_name.."-5"]
 cleanup_old(tech_name, 5)
-create_tech(old_tech, tech_name, 1, packs[1], 250, {1.0})
-create_tech(old_tech, tech_name, 2, packs[3], 1000, {1.5})
+create_tech(old_tech, tech_name, 1, packs[1], 1250, {1.0})
+create_tech(old_tech, tech_name, 2, packs[3], 5000, {1.5})
 tech_name = "laser-shooting-speed"
 old_tech = all_techs[tech_name.."-5"]
 cleanup_old(tech_name, 5)
-create_tech(old_tech, tech_name, 1, packs[1], 60, {0.6})
-create_tech(old_tech, tech_name, 2, packs[3], 120, {0.7})
+create_tech(old_tech, tech_name, 1, packs[1], 300, {0.6})
+create_tech(old_tech, tech_name, 2, packs[3], 600, {0.7})
 tech_name = "electric-weapons-damage"
 old_tech = all_techs[tech_name.."-1"]
 spare_tech = all_techs[tech_name.."-3"]
 cleanup_old(tech_name, 1)
-create_tech(old_tech, tech_name, 1, packs[1], 150, {0.7})
-create_tech(spare_tech, tech_name, 2, packs[1], 1000, {2.0, 2.0, 1.3})
+create_tech(old_tech, tech_name, 1, packs[1], 750, {0.7})
+create_tech(spare_tech, tech_name, 2, packs[1], 5000, {2.0, 2.0, 1.3})
 tech_name = "refined-flammables"
 old_tech = all_techs[tech_name.."-4"]
 cleanup_old(tech_name, 4)
-create_tech(old_tech, tech_name, 1, packs[1], 150, {0.6, 0.6})
-create_tech(old_tech, tech_name, 2, packs[4], 600, {0.8, 0.8})
+create_tech(old_tech, tech_name, 1, packs[1], 750, {0.6, 0.6})
+create_tech(old_tech, tech_name, 2, packs[4], 3000, {0.8, 0.8})
 tech_name = "stronger-explosives"
 old_tech = all_techs[tech_name.."-4"]
 cleanup_old(tech_name, 4)
-create_tech(old_tech, tech_name, 1, packs[1], 200, {0.9, 0.4, 0.4}) -- Big in 9->6
-create_tech(old_tech, tech_name, 2, packs[4], 800, {1.6, 0.6, 0.6}) -- Big in 6->3
+create_tech(old_tech, tech_name, 1, packs[1], 1000, {0.9, 0.4, 0.4}) -- Big in 9->6
+create_tech(old_tech, tech_name, 2, packs[4], 4000, {1.6, 0.6, 0.6}) -- Big in 6->3
 tech_name = utils.prefix.."artillery-improvements" -- Artillery special case
 old_tech = all_techs["artillery-shell-range-1"]
 table.insert(old_tech.effects, all_techs["artillery-shell-damage-1"].effects[1])
@@ -449,73 +443,73 @@ table.insert(old_tech.effects, all_techs["artillery-shell-speed-1"].effects[1]) 
 cleanup_old("artillery-shell-range", 1)
 cleanup_old("artillery-shell-damage", 1)
 cleanup_old("artillery-shell-speed", 1)
-create_tech(old_tech, tech_name, 1, packs[1], 1000, {0.6, 0.5, 1.0})
-create_tech(old_tech, tech_name, 2, packs[5], 4000, {0.9, 0.5, 2.0})
+create_tech(old_tech, tech_name, 1, packs[1], 5000, {0.6, 0.5, 1.0})
+create_tech(old_tech, tech_name, 2, packs[5], 20000, {0.9, 0.5, 2.0})
 tech_name = "railgun-damage"
 old_tech = all_techs[tech_name.."-1"]
 table.insert(old_tech.effects, { type = "turret-attack", turret_id = "railgun-turret" })
 cleanup_old(tech_name, 1)
-create_tech(old_tech, tech_name, nil, packs[7], 2500, {0.6, 1.0}) -- Phuge in 1
+create_tech(old_tech, tech_name, nil, packs[7], 12500, {0.6, 1.0}) -- Phuge in 1
 tech_name = "railgun-shooting-speed"
 old_tech = all_techs[tech_name.."-1"]
 cleanup_old(tech_name, 1)
-create_tech(old_tech, tech_name, 1, packs[6], 2000, {0.5})
-create_tech(old_tech, tech_name, 2, packs[7], 8000, {0.5})
+create_tech(old_tech, tech_name, 1, packs[6], 10000, {0.5})
+create_tech(old_tech, tech_name, 2, packs[7], 40000, {0.5})
 
 -- Other techs
 tech_name = "health"
 old_tech = all_techs[tech_name]
 all_techs[tech_name] = nil -- No -1
-create_tech(old_tech, tech_name, nil, packs[1], 500, {250})
+create_tech(old_tech, tech_name, nil, packs[1], 2500, {250})
 tech_name = "worker-robots-storage"
 old_tech = all_techs[tech_name.."-2"]
 cleanup_old(tech_name, 2)
-create_tech(old_tech, tech_name, 1, packs[1], 60, {1})
-create_tech(old_tech, tech_name, 2, packs[3], 90, {1})
+create_tech(old_tech, tech_name, 1, packs[1], 300, {1})
+create_tech(old_tech, tech_name, 2, packs[3], 450, {1})
 tech_name = "worker-robots-speed"
 old_tech = all_techs[tech_name.."-3"]
 cleanup_old(tech_name, 3)
-create_tech(old_tech, tech_name, 1, packs[1], 50, {0.6})
-create_tech(old_tech, tech_name, 2, packs[3], 100, {0.9})
-create_tech(old_tech, tech_name, 3, packs[6], 400, {1.2})
-create_tech(old_tech, tech_name, 4, packs[7], 1000, {1.45})
+create_tech(old_tech, tech_name, 1, packs[1], 250, {0.6})
+create_tech(old_tech, tech_name, 2, packs[3], 500, {0.9})
+create_tech(old_tech, tech_name, 3, packs[6], 2000, {1.2})
+create_tech(old_tech, tech_name, 4, packs[7], 5000, {1.45})
 tech_name = "follower-robot-count"
 old_tech = all_techs[tech_name.."-4"]
 cleanup_old(tech_name, 4)
-create_tech(old_tech, tech_name, 1, packs[1], 80, {30})
-create_tech(old_tech, tech_name, 2, packs[3], 200, {90})
+create_tech(old_tech, tech_name, 1, packs[1], 400, {30})
+create_tech(old_tech, tech_name, 2, packs[3], 1000, {90})
 tech_name = "braking-force"
 old_tech = all_techs[tech_name.."-3"]
 cleanup_old(tech_name, 1)
-create_tech(old_tech, tech_name, nil, packs[1], 300, {1.0})
+create_tech(old_tech, tech_name, nil, packs[1], 1500, {1.0})
 tech_name = "inserter-capacity-bonus"
 old_tech = all_techs[tech_name.."-7"]
 cleanup_old(tech_name, 4)
-create_tech(old_tech, tech_name, nil, packs[1], 300, {1, 7}, statpack_building_tech.name)
+create_tech(old_tech, tech_name, nil, packs[1], 1500, {1, 7}, statpack_building_tech.name)
 tech_name = "transport-belt-capacity"
 old_tech = all_techs[tech_name.."-2"]
 table.insert(old_tech.prerequisites, "stack-inserter") -- Copied -2, so this is missing
 cleanup_old(tech_name, 1)
-create_tech(old_tech, tech_name, nil, packs[5], 400, {2, 1})
+create_tech(old_tech, tech_name, nil, packs[5], 2000, {2, 1})
 
 -- Last one, mining prod
 tech_name = "mining-productivity"
 old_tech = all_techs[tech_name.."-3"]
 cleanup_old(tech_name, 1)
-create_tech(old_tech, tech_name, 1, packs[1], 200, {0.2}) -- S
-create_tech(old_tech, tech_name, 2, packs[2], 500, {0.1}) -- V
-spare_tech = create_tech(old_tech, tech_name, 2, packs[3], 500, {0.1}, nil, true) -- F
+create_tech(old_tech, tech_name, 1, packs[1], 1000, {0.2}) -- S
+create_tech(old_tech, tech_name, 2, packs[2], 2500, {0.1}) -- V
+spare_tech = create_tech(old_tech, tech_name, 2, packs[3], 2500, {0.1}, nil, true) -- F
 spare_tech.name = tech_name.."-3" -- Manually increment to put side-by-side
 data:extend({spare_tech})
-spare_tech = create_tech(old_tech, tech_name, 2, packs[4], 500, {0.1}, nil, true) -- G
+spare_tech = create_tech(old_tech, tech_name, 2, packs[4], 2500, {0.1}, nil, true) -- G
 spare_tech.name = tech_name.."-4"
 data:extend({spare_tech})
-spare_tech = create_tech(old_tech, tech_name, 5, packs[5], 500, {0.2}) -- VFG
+spare_tech = create_tech(old_tech, tech_name, 5, packs[5], 2500, {0.2}) -- VFG
 table.insert(spare_tech.prerequisites, tech_name.."-2")
 table.insert(spare_tech.prerequisites, tech_name.."-3")
 spare_tech = create_tech(old_tech, tech_name, 6, packs[6], nil, {0.1}) -- A (Last+Inf)
-spare_tech.unit.count_formula = "500 * (1.3 ^ (L - 6))" -- Scales harder than vanilla
+spare_tech.unit.count_formula = "2500 * (1.3 ^ (L - 6))" -- Scales harder than vanilla
 spare_tech.max_level = "infinite"
 
 -- Adjust research productivity formula
-all_techs["research-productivity"].unit.count_formula = "200 * (1.3 ^ L)" -- Note the 1.2->1.3
+all_techs["research-productivity"].unit.count_formula = "1000 * (1.3 ^ L)" -- Note the 1.2->1.3

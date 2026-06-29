@@ -2,7 +2,7 @@ local utils = require("common.utils") -- Potentually underutilized here
 
 -- Pack removal (tech done in tech-rework.lua)
 for _, pack_name in pairs(utils.removed_packs) do
-	data.raw.tool[pack_name] = nil
+	data.raw.item[pack_name] = nil
 	data.raw.recipe[pack_name] = nil
 	for _, lab in pairs(data.raw.lab) do
 		for index, input in ipairs(lab.inputs) do
@@ -49,18 +49,18 @@ data.raw.recipe["burner-mining-drill"] = nil
 
 -- Assembler adjustments
 data.raw["assembling-machine"]["assembling-machine-1"] = nil
-data.raw["assembling-machine"]["assembling-machine-3"] = nil
+data.raw["assembling-machine"]["assembling-machine-2"] = nil
 data.raw.item["assembling-machine-1"] = nil
-data.raw.item["assembling-machine-3"] = nil
+data.raw.item["assembling-machine-2"] = nil
 data.raw.recipe["assembling-machine-1"] = nil
-data.raw.recipe["assembling-machine-3"] = nil
-data.raw.technology["automation-3"] = nil -- MK1 is removed later anyway
-local assembling_machine_2 = data.raw["assembling-machine"]["assembling-machine-2"]
-assembling_machine_2.crafting_speed = 1.0 -- Was 0.75
-assembling_machine_2.energy_usage = "200kW" -- Was 150kW
-assembling_machine_2.module_slots = 4
-assembling_machine_2.next_upgrade = nil
-data.raw.recipe["assembling-machine-2"].ingredients = { -- Little over double, but then no mk1
+data.raw.recipe["assembling-machine-2"] = nil
+data.raw.technology["automation-3"] = nil
+local assembling_machine_3 = data.raw["assembling-machine"]["assembling-machine-3"]
+assembling_machine_3.crafting_speed = 1.0 -- Mk2 is 0.75
+assembling_machine_3.energy_usage = "200kW" -- Mk2 is 150kW
+local assembling_machine_3_recipe = data.raw.recipe["assembling-machine-3"]
+assembling_machine_3_recipe.enabled = true -- Unlocked from the start
+assembling_machine_3_recipe.ingredients = { -- Little over double mk2, but then no mk1
 	{ type = "item", name = "iron-gear-wheel", amount = 10 },
 	{ type = "item", name = "electronic-circuit", amount = 8 },
 	{ type = "item", name = "steel-plate", amount = 5 }
@@ -189,7 +189,7 @@ data.raw.module["productivity-module-3"].effect.speed = -0.3 -- Old -0.15
 data.raw.module["productivity-module-3"].effect.productivity = 0.08 -- Old 0.1
 -- Speed module 3 20% less speed
 data.raw.module["speed-module-3"].effect.speed = 0.4 -- Old 0.5
-data.raw.module["speed-module-3"].effect.quality = -0.2 -- Old -0.25
+data.raw.module["speed-module-3"].effect.quality = -0.02 -- Old -0.025
 -- Quality modules small energy penalty
 data.raw.module["quality-module"].effect.consumption = 0.15 -- Old 0
 data.raw.module["quality-module-3"].effect.consumption = 0.4 -- Old 0
