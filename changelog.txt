@@ -1,4 +1,12 @@
 ---------------------------------------------------------------------------------------------------
+Version: 1.2.1
+Date: 2026.07.05
+  Changes:
+    - Added electric engines to rocket part recipe.
+    - Adjusted rocket part recipe to take twice as many items but make 2 parts. (This is to allow engines to be used at half rate)
+    - Rocket part recipe is slightly slower overall. (Following this mod's trend to make recipes slower)
+    - Added a config to disable this change, as it affects ALL rocket launches and does break bases again. (Default enabled however)
+---------------------------------------------------------------------------------------------------
 Version: 1.2.0
 Date: 2026.06.24
   Info:
