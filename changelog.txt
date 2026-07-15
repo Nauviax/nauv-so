@@ -1,4 +1,10 @@
 ---------------------------------------------------------------------------------------------------
+Version: 1.2.2
+Date: 2026.07.15
+  Changes:
+    - Fixed beacons not being unlocked from the start, making automation science uncraftable
+    - Fixed a few typos
+---------------------------------------------------------------------------------------------------
 Version: 1.2.1
 Date: 2026.07.05
   Changes:

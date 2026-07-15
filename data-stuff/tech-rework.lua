@@ -63,6 +63,9 @@ unlock_and_delete("steam-power")
 unlock_and_delete("oil-processing")
 unlock_and_delete("uranium-processing")
 
+-- Remove techs that have items which science requires
+unlock_and_delete("effect-transmission")
+
 -- Merge space platform unlocks into rocket silo
 local rocket_silo_tech = all_techs["rocket-silo"]
 for _, effect in pairs(all_techs["space-platform"].effects) do
