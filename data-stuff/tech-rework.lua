@@ -255,7 +255,7 @@ for index, tech_name in pairs({
 	local tech = all_techs[tech_name]
 	tech.order = "a-t"..(index+3) -- Starting at 4
 	tech.unit.ingredients = {{utils.science.space.data, 1}}
-	tech.unit.count = index == 1 and 20 or 500
+	tech.unit.count = index == 1 and 10 or 500
 	tech.unit.time = 30
 end
 
