@@ -27,9 +27,9 @@ local function slurry_recipe(name, categories, order_suffix, tint, tech, craft_t
         energy_required = craft_time_base * craft_time_mult, ingredients = ingredients, results = results,
         allow_productivity = true, maximum_productivity = utils.science.common.max_productivity,
         allow_quality = false, surface_conditions = utils.science.promethium.surface_condition,
-        always_show_products = true, crafting_machine_tint = utils.recipe_tints(tint),
+		auto_recycle = false, always_show_products = true, crafting_machine_tint = utils.recipe_tints(tint),
 		custom_tooltip_fields = {{ name = utils.misc.prod_cap_tt, value = (utils.science.common.max_productivity * 100).."%" }},
-    }})
+    }}) -- No auto recycle to prevent stone recycling into slurry ingredients.
 end
 slurry_recipe(
     utils.items.basic_slurry, { "chemistry", "cryogenics" }, "a", basic_slurry_color, "space-science-pack", 1,

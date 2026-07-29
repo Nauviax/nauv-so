@@ -112,6 +112,7 @@ for name, props in pairs(science_data) do
 		allow_quality = false,
 		maximum_productivity = 0.0, -- Should prevent base productivity affceting the recipe.
 		surface_conditions = util_props.surface_condition,
+		auto_recycle = false, -- Prevent issues with spoilage recycling into gel ingredients.
 		crafting_machine_tint = utils.recipe_tints(fluid_color),
 		custom_tooltip_fields = {{
 			name = utils.misc.prod_cap_tt, value = "0%"
