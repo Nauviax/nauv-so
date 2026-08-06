@@ -1,4 +1,9 @@
 ---------------------------------------------------------------------------------------------------
+Version: 1.2.5
+Date: 2026.08.06
+  Changes:
+    - Factorio 2.1.13 made recycling faster for certain recipes. This update reverts that change just for garbage data. (Long recycle time is intended)
+---------------------------------------------------------------------------------------------------
 Version: 1.2.4
 Date: 2026.07.29
   Changes:

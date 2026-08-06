@@ -47,14 +47,15 @@ local recipe = {
 	always_show_made_in = true
 }
 
+-- Note on craft time: 2.1.13 made recycling respect recipe result amounts, so we need to revert that by multiplying craft time by amount.
 local garbage_recipe = table.deepcopy(recipe) -- Byproduct of data crafting
 garbage_recipe.name = garbage_item.name
 garbage_recipe.main_product = garbage_item.name
-garbage_recipe.energy_required = craft_time * 4 -- 10s in recycler (5s recipe, 4 x 1/16 of craft_time)
 garbage_recipe.results = {{
 	type = "item", name = garbage_item.name,
 	amount = recipe.results[2].amount * 3 -- x3 product, means recycle returns 1/12 instead of 1/4 (Do not take into account chance)
 }}
+garbage_recipe.energy_required = garbage_recipe.results[1].amount * craft_time * 4 -- 10s in recycler (5s recipe, 4 x 1/16 of craft_time)
 garbage_recipe.hidden = true -- Don't show, ever
 garbage_recipe.order = order.."z"
 
