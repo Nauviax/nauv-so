@@ -27,7 +27,6 @@ local science_data = {
 		stack_mult = 1, -- 20 crafts per stack
 		weight_mult = 1, -- 10 crafts per data rocket
 		craft_categories = { "crafting-with-fluid", "organic" },
-		is_tool = true,
 		ingredients = {
 			dcard(), gel(),
 			{ type = "item", name = "flying-robot-frame", amount = 4 },
@@ -40,7 +39,6 @@ local science_data = {
 		stack_mult = 0.25, -- 5 crafts per stack
 		weight_mult = 2, -- 5 crafts per data rocket
 		craft_categories = { "metallurgy" },
-		is_tool = false,
 		ingredients = {
 			dcard(), gel(),
 			{ type = "fluid", name = "molten-copper", amount = 1500 },
@@ -53,7 +51,6 @@ local science_data = {
 		stack_mult = 1,
 		weight_mult = 0.5, -- 20 crafts per data rocket
 		craft_categories = { "organic" },
-		is_tool = false,
 		crafts_per_pack = 10, -- Agri recipe is x5 less "dense", crafting one at a time.
 		ingredients = {
 			dcard(10), gel(10), -- Match crafts_per_pack
@@ -69,7 +66,6 @@ local science_data = {
 		stack_mult = 2, -- 40/4 = 10 crafts per stack
 		weight_mult = 1/4, -- 10 crafts per data rocket (Due to x4 density)
 		craft_categories = { "electromagnetics" },
-		is_tool = false,
 		ingredients = {
 			dcard(), gel(),
 			{ type = "item", name = "accumulator", amount = 6 },
@@ -82,7 +78,6 @@ local science_data = {
 		stack_mult = 1,
 		weight_mult = 0.5, -- 20 crafts per data rocket
 		craft_categories = { "cryogenics" },
-		is_tool = false,
 		ingredients = {
 			dcard(), gel(),
 			{ type = "item", name = "ice-platform", amount = 2 },
@@ -96,7 +91,6 @@ local science_data = {
 		weight_mult = 1,
 		extra_craft_mult = 0.2, -- Fast crafting for this step due to spoilables and hazardous area
 		craft_categories = { "cryogenics" },
-		is_tool = false,
 		ingredients = {
 			dcard(), gel(),
 			{ type = "item", name = "biter-egg", amount = 6 },
@@ -113,14 +107,6 @@ for name, props in pairs(science_data) do
 	local item = table.deepcopy(base_item)
 	item.name = util_props.data
 	item.icons = {{ icon = icon, tint = util_props.color }}
-	if not props.is_tool then
-		item.type = "item"
----@diagnostic disable: inject-field
-		item.durability = nil -- Linter is not up to date, hense the disable above. data.raw.item includes "tools" now afaik.
-		item.durability_description_key = nil
-		item.durability_description_value = nil
----@diagnostic enable: inject-field
-	end
 	item.subgroup = utils.subgroup.data
 	item.order = order..util_props.order
 	item.stack_size = base_stack_size * props.stack_mult

@@ -138,16 +138,11 @@ local refinery = data.raw["assembling-machine"]["oil-refinery"]
 refinery.effect_receiver = { base_effect = { quality = cycle_qual_base } }
 refinery.allowed_effects = { "consumption", "speed", "productivity", "pollution", "quality" } -- Overwrites old, but I can't find a way to do it otherwise.
 
--- Reduce effectiveness of quality packs/tools, rare is base
-local tool_effectiveness = { 0.5, 0.8, 1.0, 1.1, nil, 1.2 } -- Basically quality > rare is just a minor improvement.
+-- Reduce effectiveness of quality packs, rare is base
+local pack_effectiveness = { 0.5, 0.8, 1.0, 1.1, nil, 1.2 } -- Basically quality > rare is just a minor improvement.
 for _, q_level in pairs(data.raw.quality) do
-	q_level.tool_durability_multiplier = tool_effectiveness[q_level.level + 1]
+	q_level.science_capacity_multiplier = pack_effectiveness[q_level.level + 1]
 end
-
--- Buff repair packs so common qual is same as before due above change (locale change also)
-local repair_tool = data.raw["repair-tool"]["repair-pack"]
-repair_tool.durability = 300 / (1 - tool_effectiveness[1]) -- Aim is 300 for common after qual
-repair_tool.durability_description_value = "description.nso-rep-pack-durability-value"
 
 -- UPCYCLING CALCULATIONS (decimal amounts as appropriate)
 -- Input	              Cell

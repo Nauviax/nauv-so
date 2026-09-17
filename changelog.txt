@@ -1,4 +1,12 @@
 ---------------------------------------------------------------------------------------------------
+Version: 1.2.6
+Date: 2026.09.17
+  Changes:
+    - Fix for 2.1.15 causing this mod to crash on load
+    - Now uses QualityPrototype::science_capacity_multiplier added in 2.1.18, meaning repair packs are normal again.
+    - Packs now show capacity as a percentage again rather than a decimal value. 
+    - New minimum Factorio version of 2.1.19
+---------------------------------------------------------------------------------------------------
 Version: 1.2.5
 Date: 2026.08.06
   Changes:

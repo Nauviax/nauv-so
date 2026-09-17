@@ -181,19 +181,6 @@ merge_into_statpack(statpack_combat_tech, "follower-robot-count-1")
 merge_into_statpack(statpack_combat_tech, "follower-robot-count-2")
 merge_into_statpack(statpack_combat_tech, "follower-robot-count-3")
 
--- Loop one more time to clean up dependencies on removed techs
-for _, tech in pairs(all_techs) do
-    if tech.prerequisites then
-		local new_prereqs = {}
-		for _, prereq in ipairs(tech.prerequisites) do
-            if all_techs[prereq] then
-				table.insert(new_prereqs, prereq)
-            end
-		end
-		tech.prerequisites = new_prereqs
-    end
-end
-
 -- Unlock all shortcuts (Some unlocks relied on removed techs)
 for _, shortcut in pairs(data.raw.shortcut) do
 	if all_techs[shortcut.technology_to_unlock] == nil then
@@ -516,3 +503,16 @@ spare_tech.max_level = "infinite"
 
 -- Adjust research productivity formula
 all_techs["research-productivity"].unit.count_formula = "1000 * (1.3 ^ L)" -- Note the 1.2->1.3
+
+-- Loop one more time to clean up any dependencies on removed techs
+for _, tech in pairs(all_techs) do
+    if tech.prerequisites then
+		local new_prereqs = {}
+		for _, prereq in ipairs(tech.prerequisites) do
+            if all_techs[prereq] then
+				table.insert(new_prereqs, prereq)
+            end
+		end
+		tech.prerequisites = new_prereqs
+    end
+end
