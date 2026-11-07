@@ -111,6 +111,7 @@ for name, props in pairs(science_data) do
 		allow_productivity = false, -- No prod for gel, just for the data.
 		allow_quality = false,
 		maximum_productivity = 0.0, -- Should prevent base productivity affceting the recipe.
+		overload_multiplier = 1, -- Gel recipes are slow so overload is not needed. (It's actually harmful for the gleba gel recipe)
 		surface_conditions = util_props.surface_condition,
 		auto_recycle = false, -- Prevent issues with spoilage recycling into gel ingredients.
 		crafting_machine_tint = utils.recipe_tints(fluid_color),

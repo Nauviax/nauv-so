@@ -1,4 +1,9 @@
 ---------------------------------------------------------------------------------------------------
+Version: 1.2.7
+Date: 2026.11.05
+  Changes:
+    - Set overload_multiplier to 1 for gel recipes. This mainly affects Gleba gel, which tends to stockpile too many nutrients in each biochamber.
+---------------------------------------------------------------------------------------------------
 Version: 1.2.6
 Date: 2026.09.17
   Changes:
